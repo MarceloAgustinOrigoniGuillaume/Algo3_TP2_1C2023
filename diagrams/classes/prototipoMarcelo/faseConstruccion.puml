@@ -1,0 +1,47 @@
+@startuml
+
+interface Construcciones{
+    + puedeCostear(construible) bool
+    + puedeConstruir(construible) bool
+    + construir(construible)
+}
+
+interface Construible{
+    + construibleEn(mapa) bool
+    + construirEn(mapa) Construccion
+    + nombre() String
+    + costo() int
+
+}
+
+
+class Constantes{
+    + static obtenerConstruibles() Construible[]
+}
+
+class FaseConstruccion{
+    + FaseConstruccion(construcciones)
+    + accionarEn(turno, controladorJuego)
+    - mostrarUsuarioConstrucciones()
+    + iniciarConstruccion(construible) ConstruccionTentativa
+}
+
+note top of FaseConstruccion
+en accionar crearia una interfaz para el usuario
+los botones de esa interfaz llamaran a iniciarConstruccion
+y al finalizar llamaran a construir de ConstruccionTentativa
+end note
+
+
+class ConstruccionTentativa{
+    ConstruccionTentativa(construcciones, construible)
+    + posicion() Posicion
+    + moverCentroA(posicion)
+    + sePuedeConstruir() bool
+    + construir()
+}
+
+FaseConstruccion --> Construcciones
+FaseConstruccion ..> Constantes
+
+@enduml

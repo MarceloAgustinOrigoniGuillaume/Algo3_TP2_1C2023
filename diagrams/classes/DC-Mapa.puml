@@ -1,0 +1,72 @@
+@startuml
+class Mapa{
+    -int x
+    -int y
+    +Mapa()
+    +moverPosicion(x,y, cantidadUnidadesVelocidad)
+    +estaEnLaPosicionFinal(X,Y):booleano
+}
+
+class Camino{
+}
+
+abstract class Enemigo{
+    -int fila
+    -int columna
+    -int vida
+    -int cantidadVelocidad
+    +moverse(Mapa)
+}
+
+abstract class TipoParcelas{}
+
+abstract class Pasarela{}
+class PasarelaSalida{}
+
+class PasarelaLLegada{}
+
+class Rocoso{}
+
+class Tierra{}
+
+note top of Camino
+ Imaginamos que  tiene:
+  -tiene relacion con la pasarela a nivel conceptual
+  -lista de posiciones que será el camino
+end note
+
+note top of Mapa
+ Imaginamos que mapa tiene:
+
+ - es un arreglo bidimensional que guarda tipo parcela
+ - algoritmo de busqueda de camino
+ - guarda los puntos de salida
+end note
+
+note top of PasarelaSalida
+ -¿Tendrá limite de ocupacion?
+end note
+
+note right of Enemigo::moverse
+  mapa moverPosicion(fila, columna,cantidadVelocidad)
+end note
+
+
+
+Mapa -> Camino: moverPosicion()
+Mapa --> TipoParcelas: tiene
+
+Enemigo .left.> Mapa: usa
+
+TipoParcelas <|--- Pasarela
+TipoParcelas <|--- Rocoso
+TipoParcelas <|--- Tierra
+
+Pasarela <|--PasarelaLLegada
+Pasarela <|--PasarelaSalida
+Pasarela <|--PasarelaIntermedio
+Pasarela "1"->"*" Camino: tiene
+
+
+
+@enduml

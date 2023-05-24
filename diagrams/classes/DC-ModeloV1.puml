@@ -1,0 +1,76 @@
+@startuml
+
+class Mapa {}
+
+class SistemaCreditos{}
+
+abstract class Enemigo{}
+
+class Araña{}
+
+class Hormriga{}
+
+abstract class Construccion{}
+
+class Defensa{}
+
+class TorrePlateada{}
+
+class TorreBlanca{}
+
+abstract class Turno{}
+
+class EtapaConstruccion{}
+
+class Juego{}
+
+
+class Jugador{
+    -vida
+}
+
+class SistemaCredítos{}
+
+class SístemaCreditos{}
+
+abstract class TipoParcelas{}
+
+
+note top of Juego
+ ya tiene el json incorporado
+end note
+
+
+Enemigo -left-> SistemaCreditos
+Enemigo <|-- Araña: es un
+Enemigo <|--  Hormriga:es un
+
+
+Construccion <|-up- Defensa
+Construccion -left-> EtapaConstruccion
+Construccion --right-> SistemaCredítos
+
+
+Defensa <|-up- TorreBlanca
+Defensa <|-up- TorrePlateada
+
+
+EtapaConstruccion --up-|> Turno
+
+Juego -left-> Mapa
+Juego -up-> Construccion
+Juego -right-> Jugador
+Juego "1"-->"*" Enemigo
+Jugador-> SístemaCreditos
+
+
+
+Mapa -left-> Camino
+Mapa --> TipoParcelas
+
+
+
+
+
+
+@enduml

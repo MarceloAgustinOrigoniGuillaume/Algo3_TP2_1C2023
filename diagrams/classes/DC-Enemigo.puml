@@ -1,0 +1,25 @@
+@startuml
+
+
+abstract class Enemigo{
+    -int fila
+    -int columna
+    -int vida
+    -int cantidadVelocidad
+    +moverse(Mapa)
+}
+class Mapa{
+    -int x
+    -int y
+    +Mapa()
+    +moverPosicion(x,y, cantidadUnidadesVelocidad)
+    +estaEnLaPosicionFinal(X,Y):booleano
+}
+
+Mapa <.. Enemigo: usa
+
+
+Enemigo -left-> SistemaCreditos
+Enemigo <|-- Araña: es un
+Enemigo <|--  Hormriga:es un
+@enduml

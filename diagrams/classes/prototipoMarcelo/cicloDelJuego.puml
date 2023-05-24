@@ -1,0 +1,51 @@
+@startuml
+
+class Juego{
+    + iniciarJuego()
+    + terminarJuego()
+    + estaEnCurso() bool
+}
+
+interface ControladorJuego{
+    + mover(posicion,unidades) Posicion
+    + atacarJugador(damage)
+    + finalizado() bool
+    + ganoJugador() bool
+}
+
+class ControladorBase{
+    ControladorBase(jugador, enemigos)
+    + atacarJugador(damage)
+    + finalizado() bool
+    + ganoJugador() bool
+}
+
+ControladorBase ..|> ControladorJuego
+Juego *-- ControladorBase
+
+
+interface Actor{
+    +accionarEn(turno, controladorJuego)
+}
+
+class GestorTurnos{
+    -turno
+    +agregarActor(actor)
+    +jugarTurno(controladorJuego)
+}
+
+GestorTurnos ---> Actor
+
+
+
+
+
+
+Juego --> GestorTurnos
+
+
+GestorTurnos..> ControladorJuego
+
+
+
+@enduml

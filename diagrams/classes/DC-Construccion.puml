@@ -1,0 +1,12 @@
+@startuml
+
+abstract class Construccion{}
+Construccion <|-up- Defensa
+Construccion -left-> EtapaConstruccion
+Construccion --right-> SistemaCredítos
+EtapaConstruccion --up-|> Turno
+
+Defensa <|-up- TorreBlanca
+Defensa <|-up- TorrePlateada
+
+@enduml

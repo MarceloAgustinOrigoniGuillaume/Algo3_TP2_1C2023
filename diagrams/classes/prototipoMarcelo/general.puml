@@ -1,0 +1,61 @@
+@startuml
+
+interface ControladorJuego{
+
+}
+
+class Juego{
+}
+
+
+
+interface Actor{
+    +accionarEn(turno, juego)
+}
+
+class Jugador{
+}
+
+
+
+class Enemigos{
+    +accionarEn(turno, juego)
+}
+
+class DefensasJugador{
+    +accionarEn(turno, juego)
+}
+
+class FaseConstruccion{
+    +accionarEn(turno, juego)
+}
+
+class Mapa{
+}
+
+class GestorTurnos{
+}
+
+
+class ControladorBase{
+}
+
+ControladorBase --> Jugador
+ControladorBase --> Mapa
+ControladorBase --> Enemigos
+ControladorBase ..|> ControladorJuego
+
+Juego --> GestorTurnos
+Juego-->ControladorBase
+
+GestorTurnos ..> ControladorJuego
+GestorTurnos --> Actor
+
+Enemigos ..|> Actor
+DefensasJugador ..|> Actor
+FaseConstruccion ..|> Actor
+
+
+
+
+@enduml

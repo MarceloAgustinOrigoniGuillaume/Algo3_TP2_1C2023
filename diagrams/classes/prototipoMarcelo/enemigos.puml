@@ -1,0 +1,31 @@
+@startuml
+
+class Oleada{
+
+}
+
+
+class Enemigos{
+    Enemigos(oleadas)
+    + accionarEn(turno, controlador)
+    + atacarMasCercano(posicion,defensa)
+}
+
+interface Unidad{
+    + estaViva() bool
+    + recibirAtaque(dmg)
+    + moverseEn(mapa)
+}
+
+class Enemigo{
+    + estaViva() bool
+    + recibirAtaque(dmg)
+    + moverseEn(mapa)
+    + llegoAlFinal(mapa) bool
+}
+
+Enemigos --> Enemigo
+Enemigo ..|> Unidad
+Enemigos --> Oleada
+
+@enduml

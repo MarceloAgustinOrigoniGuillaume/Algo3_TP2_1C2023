@@ -1,0 +1,66 @@
+@startuml
+
+class Posicion{
+    +x()
+    +y()
+}
+
+class Mapa{
+    Mapa(width,height)
+    + setParcela(posicion, parcela)
+    + construibleEn(posicion) bool
+    + mover(posicion,unidad) Posicion
+    + esUnFinal(posicion) bool
+}
+
+class Camino{
+    Camino(inicio,fin,pasarelas)
+    + mover(posicion, unidades) Posicion
+    + esElFinal(posicion) bool
+}
+
+interface Parcela{
+    +construible() bool
+    +caminable() bool
+    +estaLLena() bool
+    +ocupar()
+    +desocupar()
+}
+
+class Terreno{
+    +construible() bool
+    +caminable() bool
+    +estaLLena() bool
+    +ocupar()
+    +desocupar()
+}
+
+class Pasarela{
+    +construible() bool
+    +caminable() bool
+    +estaLLena() bool
+    +ocupar()
+    +desocupar()
+}
+
+Pasarela ...|> Parcela
+Terreno ...|> Parcela
+
+note top of Mapa
+En el constructor
+ademas de agregar a una matriz bidimensional
+cada pasarela la agregara a una lista
+a menos que sea un punto de salida o llegada
+al final instanciara un camino.
+end note
+
+note top of Camino
+En el constructor
+buscara el orden correcto
+de las pasarelas para que sea un camino
+secuencial de inicio a fin.
+end note
+
+Mapa --> "1..*"Parcela
+
+@enduml
