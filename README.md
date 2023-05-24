@@ -6,11 +6,11 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo {N}
 
-* **Integrante 1** - [Valdivia Wong, Angie Isabella](https://github.com/GiaWong)
+* **Integrante 1** - [Marcelo Agustin, Origoni Guillaume](https://github.com/MarceloAgustinOrigoniGuillaume)
 * **Integrante 2** - [Janampa Salazar, Mario Rafael](https://github.com/Dayrustz7u7)
-* **Integrante 3** - [Marcelo Agustin, Origoni Guillaume](https://github.com/MarceloAgustinOrigoniGuillaume)
-* **Integrante 4** - [Roy Icer, Fiorilo Davalos](https://github.com/Rfiorilo14)
-* **Integrante 5** - [Cesar Reyna](https://github.com/cesarreyna07)
+* **Integrante 3** - [alumno](github)
+* **Integrante 4** - [alumno](github)
+* **Integrante 5** - [alumno](github)
 
 Corrector: **{Corrector}**
 
