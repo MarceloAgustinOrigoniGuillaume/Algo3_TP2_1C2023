@@ -30,6 +30,8 @@ class FaseConstruccion{
     +accionarEn(turno, juego)
 }
 
+interface GestorObjetos
+
 class Mapa{
 }
 
@@ -41,7 +43,9 @@ class ControladorBase{
 }
 
 ControladorBase --> Jugador
-ControladorBase --> Mapa
+Mapa ...|> GestorObjetos
+ControladorBase --> GestorObjetos
+
 ControladorBase --> Enemigos
 ControladorBase ..|> ControladorJuego
 

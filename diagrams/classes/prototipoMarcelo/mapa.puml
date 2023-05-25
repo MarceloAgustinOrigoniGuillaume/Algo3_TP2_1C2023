@@ -1,47 +1,69 @@
 @startuml
 
+interface GameEntity{
+    + drawAt(posicion)
+}
+
 class Posicion{
     +x()
     +y()
 }
 
+interface GestorObjetos{
+    + puedeOcupar(posicion, gameEntity) bool
+    + ocupar(posicion, gameEntity) bool
+    + mover(posicion, unidad, unidades)
+    + esUnFinal(posicion) bool
+}
+
+
 class Mapa{
-    Mapa(width,height)
-    + setParcela(posicion, parcela)
-    + construibleEn(posicion) bool
-    + mover(posicion,unidad) Posicion
+    Mapa(json)
+    + ocupar(posicion, gameEntity)
+    + puedeOcupar(posicion, gameEntity) bool
+    + mover(posicion,unidad, unidades) Posicion
     + esUnFinal(posicion) bool
 }
 
 class Camino{
     Camino(inicio,fin,pasarelas)
-    + mover(posicion, unidades) Posicion
+    + mover(posicion, unidad, unidades) Posicion
+    + ocupar(pasarela,unidad)
     + esElFinal(posicion) bool
 }
 
 interface Parcela{
-    +construible() bool
-    +caminable() bool
-    +estaLLena() bool
-    +ocupar()
-    +desocupar()
+    +ocupar(gameEntity)
+    +puedeOcupar(gameEntity) bool
+    +desocupar(gameEntity)
+    +dibujar()
 }
 
 class Terreno{
-    +construible() bool
-    +caminable() bool
-    +estaLLena() bool
-    +ocupar()
-    +desocupar()
+    Terreno(posicion, construible)
+    +ocupar(gameEntity)
+    +desocupar(gameEntity)
+    +puedeOcupar(gameEntity) bool
+    +puedeOcupar(defensa) bool
+    +ocupar(defensa)
+
+    +dibujar()
 }
 
 class Pasarela{
-    +construible() bool
-    +caminable() bool
-    +estaLLena() bool
-    +ocupar()
-    +desocupar()
+    Pasarela(posicion)
+    +ocupar(gameEntity)
+    +desocupar(gameEntity)
+    +puedeOcupar(gameEntity) bool
+
+    +puedeOcupar(unidad) bool
+    +ocupar(unidad)
+
+    +dibujar()
 }
+
+
+
 
 Pasarela ...|> Parcela
 Terreno ...|> Parcela
@@ -49,18 +71,13 @@ Terreno ...|> Parcela
 note top of Mapa
 En el constructor
 ademas de agregar a una matriz bidimensional
-cada pasarela la agregara a una lista
-a menos que sea un punto de salida o llegada
-al final instanciara un camino.
-end note
-
-note top of Camino
-En el constructor
-buscara el orden correcto
-de las pasarelas para que sea un camino
-secuencial de inicio a fin.
+cada pasarela, trackearia el inicio y fin y
+pasaria a camino el resultado de buscar el camino
 end note
 
 Mapa --> "1..*"Parcela
+Mapa --|> GestorObjetos
+Mapa o-- Camino
+
 
 @enduml

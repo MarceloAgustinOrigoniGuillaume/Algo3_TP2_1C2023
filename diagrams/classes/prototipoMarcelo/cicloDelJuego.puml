@@ -7,7 +7,6 @@ class Juego{
 }
 
 interface ControladorJuego{
-    + mover(posicion,unidades) Posicion
     + atacarJugador(damage)
     + finalizado() bool
     + ganoJugador() bool

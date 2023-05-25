@@ -1,14 +1,20 @@
 @startuml
 
+interface GameEntity
+
 interface Construcciones{
     + puedeCostear(construible) bool
     + puedeConstruir(construible) bool
     + construir(construible)
 }
+
+
+
 interface Construccion{
 
 }
 
+Construccion...|> GameEntity
 interface Defensa{
 
 }

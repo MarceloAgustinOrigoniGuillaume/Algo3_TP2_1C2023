@@ -6,23 +6,27 @@ class Oleada{
 
 
 class Enemigos{
-    Enemigos(oleadas)
+    Enemigos(oleadas, gestorObjetos)
     + accionarEn(turno, controlador)
     + atacarMasCercano(posicion,defensa)
 }
 
 interface Unidad{
-    + estaViva() bool
+    + isAlive() bool
     + recibirAtaque(dmg)
     + moverseEn(mapa)
 }
 
+
+
 class Enemigo{
-    + estaViva() bool
+    + isAlive() bool
     + recibirAtaque(dmg)
-    + moverseEn(mapa)
-    + llegoAlFinal(mapa) bool
+    + accionEn(gestorObjetos, controladorJuego) bool
 }
+
+interface GameEntity
+Unidad...|> GameEntity
 
 Enemigos --> Enemigo
 Enemigo ..|> Unidad
