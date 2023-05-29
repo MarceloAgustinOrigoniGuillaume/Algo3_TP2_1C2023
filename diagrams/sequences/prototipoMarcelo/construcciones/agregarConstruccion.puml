@@ -1,23 +1,34 @@
 @startuml
 
 Actor usuarioOTest as usuario
+participant ":ConstruccionTentativa" as placing
+participant ":Construcciones" as buildings
+participant ":Jugador" as Jugador
+participant ":Mapa" as Mapa
 
-usuario -> ConstruccionTentativa : moverCentroA(posicion)
-usuario -> ConstruccionTentativa: construir()
+usuario -> placing : moverCentroA(posicion)
+usuario -> placing: construir()
+activate placing
 
-ConstruccionTentativa-> Construcciones: posicionar(construccion,pos)
+placing-> buildings: posicionar(construccion,pos)
+activate buildings
 
-Construcciones -> Jugador : puedeCostear(construccion)
-Jugador -> Construcciones : true
+buildings -> Jugador : puedeCostear(construccion)
+activate Jugador
+Jugador --> buildings : true
+deactivate Jugador
 
-Construcciones-> Mapa: posicionar(construccion,pos)
-Mapa-> Construcciones : true
+buildings-> Mapa: posicionar(construccion,pos)
+activate Mapa
+Mapa --> buildings : true
+deactivate Mapa
 
-Construcciones -> Jugador: costear(construccion)
+buildings -> Jugador: costear(construccion)
 
-Construcciones->ConstruccionTentativa : true
-ConstruccionTentativa-> usuario: true
-
+buildings-->placing : true
+deactivate buildings
+placing--> usuario: true
+deactivate placing
 
 
 @enduml

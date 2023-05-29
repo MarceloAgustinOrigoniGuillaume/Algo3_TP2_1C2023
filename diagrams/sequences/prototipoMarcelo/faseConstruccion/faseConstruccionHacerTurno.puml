@@ -2,23 +2,36 @@
 
 Actor sistemaOUsuario as sis
 
-sis -> FaseConstruccion : FaseConstruccion(construcciones)
+participant ":FaseConstruccion" as builder
+participant ":Construcciones" as estructuras
+participant ":Construible" as Construible
+participant ":interfazUsuario" as ui
+participant ":Opcion" as Opcion
 
-group inicador accion turno
-sis-> FaseConstruccion: hacerTurno(pantalla?, otrosParametros?)
+ref over sis, builder,estructuras :iniciar
 
-FaseConstruccion ->Construcciones: posiblesConstruibles()
-Construcciones -> FaseConstruccion : construibles
-group crear opciones
+sis-> builder: hacerTurno(pantalla?, otrosParametros?)
+activate builder
+
+builder ->estructuras: posiblesConstruibles()
+activate estructuras
+
+
 loop por cada posible construccion
-Construcciones -> Construible : Construible(this,nombre,puedeCostear,..etc)
+estructuras -> Construible : Construible(this,nombre,puedeCostear,..etc)
 Construible->Opcion :Opcion(puedecostear,titulo,etc...)
-Construible->Construcciones: construible
+Construible-->estructuras: construible
 end
-Construcciones->FaseConstruccion: opciones
-FaseConstruccion -> interfazUsuario : empezarFaseConstruccion(construibles, opcionPasarTurno)
 
-end
+
+estructuras-->builder: construibles
+deactivate estructuras
+builder -> ui : empezarFaseConstruccion(construibles, opcionPasarTurno)
+activate ui 
+ui --> builder: void
+deactivate ui 
+builder--> sis: void
+deactivate builder
 
 
 @enduml

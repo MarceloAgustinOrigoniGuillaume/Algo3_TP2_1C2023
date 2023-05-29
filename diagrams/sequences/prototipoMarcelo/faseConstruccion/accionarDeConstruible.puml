@@ -2,7 +2,14 @@
 
 Actor interfazUsuario as sis
 
+participant ":Construible" as Construible
+participant ":ConstruccionTentativa" as placing
+
+
+
+
 sis-> Construible: iniciarConstruccion()
+activate Construible
 
 note left
 siempre interfazUsuario entre cada mensaje
@@ -11,32 +18,43 @@ una accion, mocking para tests.
 Capaz tambien se podria cancelar?
 end note
 
-Construible -> ConstruccionTentativa: ConstruccionTentativa(construcciones, construccion)
-ConstruccionTentativa->  Construible: construccionTentativa
 
-Construible-> sis:construcctionTentativa
+Construible -> placing: placing(construcciones, construccion)
+activate placing
+placing-->  Construible: placing
+deactivate placing
+
+Construible--> sis:construcctionTentativa
+deactivate Construible
+
 
 sis->sis: simularPosicionamiento\n(construccion)
-
-group simulacion
+activate sis
+== simulacion == 
 group Falla
 
-sis -> ConstruccionTentativa: construir()
-ConstruccionTentativa-> sis: False
+
+sis -> placing: construir()
+activate placing
+placing--> sis: False
+deactivate placing
 sis-> sis : mostrarErrorUsuario()
 end group
 
 
 group mover?
-sis -> ConstruccionTentativa : moverCentroA(posicion)
-sis -> ConstruccionTentativa : moverCentroA(posicion2)
+sis -> placing : moverCentroA(posicion)
+sis -> placing : moverCentroA(posicion2)
 end group
 
 group Finalizar
-sis -> ConstruccionTentativa: construir()
-ConstruccionTentativa-> sis: True
-end group
+sis -> placing: construir()
+activate placing
+placing--> sis: True
+deactivate placing
 end group
 
+
+deactivate sis
 
 @enduml

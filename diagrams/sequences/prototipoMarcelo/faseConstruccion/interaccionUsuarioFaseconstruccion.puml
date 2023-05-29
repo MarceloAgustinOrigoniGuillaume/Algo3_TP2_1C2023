@@ -1,22 +1,35 @@
 @startuml
 
+participant ":FaseConstruccion" as builder
+participant ":Controlador" as controller
 Actor usuario
-FaseConstruccion-> interfazUsuario: interaccionFaseConstruccion(construibles,opcionPasarTurno)
+activate builder
+builder-> controller: interaccionFaseConstruccion(construibles,opcionPasarTurno)
+activate controller
 group interaccion con usuario
 
-interfazUsuario-> usuario: elegimeOpcion()(input)
-usuario -> interfazUsuario: estaOpcion
+controller-> usuario: elegimeOpcion()(input)
+activate usuario
+usuario --> controller: estaOpcion
+deactivate usuario
 
 Loop mientras la opcion no sea opcionPasarTurno
-interfazUsuario->Construible: inicarConstruccion()
-Construible->interfazUsuario: construccionTentativa
-interfazUsuario -> interfazUsuario : simularPosicionamiento\n(construccion)
+controller->Construible: inicarConstruccion()
+activate Construible
+Construible-->controller: construccionTentativa
+deactivate Construible
 
-interfazUsuario-> usuario: elegimeOpcion()(input)
-usuario -> interfazUsuario: estaOpcion
+
+controller -> controller : simularPosicionamiento\n(construccion)
+
+controller-> usuario: elegimeOpcion()(input)
+activate usuario
+usuario --> controller: estaOpcion
+deactivate usuario
+
 end
 end group
 
-interfazUsuario -> FaseConstruccion: void
-
+controller -> builder: void
+deactivate controller
 @enduml

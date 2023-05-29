@@ -3,33 +3,44 @@
 
 Actor interfazUsuario as usuario
 
-usuario -> PantallaOut: EmpezarPartida()
+participant ":Controlador" as controller
+participant ":Juego" as Juego
+participant ":FaseConstruccion" as builder
 
+usuario -> controller: EmpezarPartida()
+activate controller
 loop manejoTurnos? mientras haySiguienteTurno == True
 
 
 note right 
 el como lo haga no es importante, 
 pero le dira empezar la partida.....
-ahora PantallaOut ya no inicia un juego, dice jugarTurno.
+ahora controller ya no inicia un juego, dice jugarTurno.
 Sacando la logica de manejo de turnos 
 fuera de Juego escencialmente
 end note
 
 
 
-PantallaOut-> Juego: haySiguienteTurno(this)
-
-Juego -> FaseConstruccion: hacerTurno(pantalla,otrosParametros?)
-
+controller-> Juego: haySiguienteTurno(this)
+activate Juego
+Juego -> builder: hacerTurno(pantalla,otrosParametros?)
+activate builder
 note right
 podria ser, y yo lo haria,
 de poner un gestor de turnos en el medio
 end note
 
 
-FaseConstruccion-> Juego: void
+builder--> Juego: void
+deactivate builder
 Juego -> Juego: haceRestoDelTurno()
-Juego -> PantallaOut: (sigue el juego?) True
+activate Juego
+Juego --> controller: (sigue el juego?) True
+deactivate Juego
+deactivate Juego
 end
+
+deactivate controller
+
 @enduml

@@ -2,8 +2,12 @@
 
 
 Actor testOUI as user
-
-user -> Construcciones: Construcciones(jugador, defensas,mapa)
+participant ":Construcciones" as builder
+participant "ConstantesJuego" as provider
+participant ":Jugador" as Jugador
+participant ":Construible" as Construible
+participant ":ConstruccionTentativa" as placing
+user -> builder: Construcciones(jugador, defensas,mapa)
 
 note right
 Por medio del accionar? osea claramente 
@@ -11,18 +15,18 @@ sera por medio de juego y asi, un gestor de turnos.
 end note
 
 
-user -> Construcciones : posiblesConstruibles()
+user -> builder : posiblesConstruibles()
 
-Construcciones->ConstantesJuego: obtenerPosiblesConstrucciones()
-ConstantesJuego-> Construcciones: [torreplateada,torreBlanca]
+builder->provider: obtenerPosiblesConstrucciones()
+provider-> builder: [torreplateada,torreBlanca]
 loop por cada construccion(defensa)
 
-Construcciones -> Jugador : puedeCostear(construccion)
-Jugador-> Construcciones: puedeCostear
-Construcciones -> Construible: Construible(this, construccion, puedeCostear)
-Construible->Construcciones : construible
+builder -> Jugador : puedeCostear(construccion)
+Jugador-> builder: puedeCostear
+builder -> Construible: Construible(this, construccion, puedeCostear)
+Construible->builder : construible
 end
-Construcciones -> user: construibles
+builder -> user: construibles
 
 
 
@@ -30,7 +34,7 @@ user-> Construible : inicarConstruccion()
 Construible-> user: construciconTentativa
 
 
-user -> ConstruccionTentativa: construir()
+user -> placing: construir()
 
 
 
