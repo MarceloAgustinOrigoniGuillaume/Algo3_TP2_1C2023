@@ -7,7 +7,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo {N}
 
 * **Integrante 1** - [Marcelo Agustin, Origoni Guillaume](https://github.com/MarceloAgustinOrigoniGuillaume)
-* **Integrante 2** - [Janampa Salazar, Mario Rafael](https://github.com/Dayrustz7u7)
+* **Integrante 2** - [Janampa Salazar Mario Rafael](https://github.com/Dayrustz7u7)
 * **Integrante 3** - [Cabrera, Isaias Augusto](https://github.com/isaiascabreraa)
 * **Integrante 4** - [Llosas, Nicolas Pablo](https://github.com/nllosas)
 * **Integrante 5** - [Exner, Tomas](https://github.com/tomas1000)
