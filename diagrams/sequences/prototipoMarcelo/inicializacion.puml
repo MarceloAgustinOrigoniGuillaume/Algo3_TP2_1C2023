@@ -1,0 +1,13 @@
+@startuml
+
+actor usuario
+
+group incializacion basica
+usuario -> Juego : Juego(nombreUsuario)
+Juego -> Jugador : Jugador(nombre, creditos)
+Jugador -> SistCreditos: SistCreditos(c)
+SistCreditos -> Jugador: sistCreditos
+Jugador-> Juego: jugador
+end
+
+@enduml

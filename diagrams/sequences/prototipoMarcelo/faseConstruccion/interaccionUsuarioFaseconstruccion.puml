@@ -1,0 +1,22 @@
+@startuml
+
+Actor usuario
+FaseConstruccion-> interfazUsuario: interaccionFaseConstruccion(construibles,opcionPasarTurno)
+group interaccion con usuario
+
+interfazUsuario-> usuario: elegimeOpcion()(input)
+usuario -> interfazUsuario: estaOpcion
+
+Loop mientras la opcion no sea opcionPasarTurno
+interfazUsuario->Construible: inicarConstruccion()
+Construible->interfazUsuario: construccionTentativa
+interfazUsuario -> interfazUsuario : simularPosicionamiento\n(construccion)
+
+interfazUsuario-> usuario: elegimeOpcion()(input)
+usuario -> interfazUsuario: estaOpcion
+end
+end group
+
+interfazUsuario -> FaseConstruccion: void
+
+@enduml

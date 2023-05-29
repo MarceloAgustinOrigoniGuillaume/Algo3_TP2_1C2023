@@ -1,0 +1,23 @@
+@startuml
+
+Actor usuarioOTest as usuario
+
+usuario -> ConstruccionTentativa : moverCentroA(posicion)
+usuario -> ConstruccionTentativa: construir()
+
+ConstruccionTentativa-> Construcciones: posicionar(construccion,pos)
+
+Construcciones -> Jugador : puedeCostear(construccion)
+Jugador -> Construcciones : true
+
+Construcciones-> Mapa: posicionar(construccion,pos)
+Mapa-> Construcciones : true
+
+Construcciones -> Jugador: costear(construccion)
+
+Construcciones->ConstruccionTentativa : true
+ConstruccionTentativa-> usuario: true
+
+
+
+@enduml

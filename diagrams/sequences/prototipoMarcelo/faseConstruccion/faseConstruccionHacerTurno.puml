@@ -1,0 +1,24 @@
+@startuml
+
+Actor sistemaOUsuario as sis
+
+sis -> FaseConstruccion : FaseConstruccion(construcciones)
+
+group inicador accion turno
+sis-> FaseConstruccion: hacerTurno(pantalla?, otrosParametros?)
+
+FaseConstruccion ->Construcciones: posiblesConstruibles()
+Construcciones -> FaseConstruccion : construibles
+group crear opciones
+loop por cada posible construccion
+Construcciones -> Construible : Construible(this,nombre,puedeCostear,..etc)
+Construible->Opcion :Opcion(puedecostear,titulo,etc...)
+Construible->Construcciones: construible
+end
+Construcciones->FaseConstruccion: opciones
+FaseConstruccion -> interfazUsuario : empezarFaseConstruccion(construibles, opcionPasarTurno)
+
+end
+
+
+@enduml

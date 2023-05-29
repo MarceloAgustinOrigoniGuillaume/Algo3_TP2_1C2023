@@ -1,0 +1,39 @@
+@startuml
+
+
+Actor testOUI as user
+
+user -> Construcciones: Construcciones(jugador, defensas,mapa)
+
+note right
+Por medio del accionar? osea claramente 
+sera por medio de juego y asi, un gestor de turnos.
+end note
+
+
+user -> Construcciones : posiblesConstruibles()
+
+Construcciones->ConstantesJuego: obtenerPosiblesConstrucciones()
+ConstantesJuego-> Construcciones: [torreplateada,torreBlanca]
+loop por cada construccion(defensa)
+
+Construcciones -> Jugador : puedeCostear(construccion)
+Jugador-> Construcciones: puedeCostear
+Construcciones -> Construible: Construible(this, construccion, puedeCostear)
+Construible->Construcciones : construible
+end
+Construcciones -> user: construibles
+
+
+
+user-> Construible : inicarConstruccion()
+Construible-> user: construciconTentativa
+
+
+user -> ConstruccionTentativa: construir()
+
+
+
+
+
+@enduml

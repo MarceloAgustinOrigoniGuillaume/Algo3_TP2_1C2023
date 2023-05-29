@@ -1,0 +1,51 @@
+@startuml
+
+Actor interfazUsuario as sis
+sis-> Juego: construir(construccionTentativa)
+Juego-> SistemaConstruccion: construir(construccionTentativa)
+
+
+sis->Juego : siguienteTurno(this)
+
+Juego->SistemaConstruccion: activaEstructuras(estructurasActivas)
+
+SistemaConstruccion->SistemaConstruccion: daChanceConstruir()
+
+loop por cada construccion tentativa
+SistemaConstruccion-> ConstruccionTentativa: reducirCooldown()
+ConstruccionTentativa -> SistemaConstruccion: true
+end
+SistemaConstruccion-> Juego: void
+Juego->EstructurasActivas: ataquenOAlgo()
+Juego->Juego: restoTurno()
+Juego -> sis: true
+
+
+
+
+sis->Juego : siguienteTurno(this)
+SistemaConstruccion->SistemaConstruccion: daChanceConstruir()
+loop por cada construccion tentativa
+SistemaConstruccion-> ConstruccionTentativa: reducirCooldown()
+ConstruccionTentativa -> SistemaConstruccion: false
+SistemaConstruccion-> ConstruccionTentativa : construir()
+ConstruccionTentativa -> SistemaConstruccion: construccionActiva
+SistemaConstruccion -> EstructurasActivas: agregar(construccionActiva)
+SistemaConstruccion -> SistemaConstruccion: borrar(construccionTentativa)
+end
+SistemaConstruccion-> Juego: void
+Juego->EstructurasActivas: ataquenOAlgo()
+Juego->Juego: restoTurno()
+Juego -> sis: true
+
+
+
+
+
+
+
+
+
+
+
+@enduml

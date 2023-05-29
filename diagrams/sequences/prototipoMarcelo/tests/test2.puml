@@ -1,0 +1,27 @@
+@startuml
+
+Actor test as sis
+
+sis-> Construcciones: Construcciones(mockJugador, mockMapa, defensas)
+sis-> Construcciones: iniciarTodoloDeConstruiblesYAVisto()
+sis-> ConstruccionTentativa: construir()
+
+sis-> Defensas: obtenerDefensa
+Defensas -> sis: defensa
+
+sis->sis : assert no esta activa
+sis->Construccion: estaActiva()
+Construccion-> sis: false
+
+Loop
+sis-> Defensas: hacerTurno(mockInterfaz)
+end
+
+
+sis->sis : assert esta activa
+sis->Construccion: estaActiva()
+Construccion-> sis: true
+
+
+
+@enduml

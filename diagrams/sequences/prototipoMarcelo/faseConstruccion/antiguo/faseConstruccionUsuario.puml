@@ -1,0 +1,43 @@
+@startuml
+
+
+Actor testOUsuario as usuario
+
+usuario -> interfazUsuario: EmpezarPartida()
+
+loop manejoTurnos? mientras haySiguienteTurno == True
+
+
+note right 
+el como lo haga no es importante, 
+pero le dira empezar la partida.....
+ahora PantallaOut ya no inicia un juego, dice jugarTurno.
+Sacando la logica de manejo de turnos 
+fuera de Juego escencialmente
+end note
+
+
+interfazUsuario-> Juego: haySiguienteTurno(this)
+group fase construccion, turno usuario
+Juego -> FaseConstruccion: hacerTurno(pantalla,otrosParametros?)
+note right
+podria ser, y yo lo haria,
+de poner un gestor de turnos en el medio
+end note
+
+
+
+
+FaseConstruccion-> interfazUsuario: empezarFaseConstruccion(opciones, opcionPasarTurno)
+end group
+
+interfazUsuario -> usuario: interaccionFaseConstruccion(opciones,opcionPasarTurno)
+usuario -> interfazUsuario : void
+
+interfazUsuario->FaseConstruccion : void
+
+FaseConstruccion-> Juego: void
+Juego -> Juego: haceRestoDelTurno()
+Juego -> interfazUsuario: (sigue el juego?) True
+end
+@enduml
