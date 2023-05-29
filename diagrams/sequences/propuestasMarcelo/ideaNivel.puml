@@ -1,0 +1,53 @@
+@startuml
+
+
+Actor interfazUsuario as usuario
+
+participant ":Controlador" as controller
+participant ":Nivel" as Juego
+participant ":FaseConstruccion" as builder
+
+
+usuario -> controller: empezarNivel(json)
+activate controller
+controller-> controller: decifraJson()
+
+controller -> Juego: Nivel(mapa,enemigos,jugador)
+activate Juego
+Juego --> controller : nivel
+deactivate Juego
+
+controller --> usuario: void
+deactivate controller
+
+
+usuario -> controller: jugarNivel(ui)
+activate controller
+loop manejoTurnos? mientras haySiguienteTurno == True
+
+
+
+
+controller-> Juego: haySiguienteTurno(ui)
+activate Juego
+Juego -> builder: hacerTurno(ui,jugador,otrosParametros?)
+activate builder
+note right
+podria ser, y yo lo haria,
+de poner un gestor de turnos en el medio
+end note
+
+
+builder--> Juego: void
+deactivate builder
+Juego -> Juego: haceRestoDelTurno(jugador)
+activate Juego
+Juego --> controller: (sigue el nivel?) True
+deactivate Juego
+deactivate Juego
+end
+controller--> usuario: void
+
+deactivate controller
+
+@enduml
