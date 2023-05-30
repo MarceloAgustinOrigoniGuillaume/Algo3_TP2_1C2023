@@ -4,15 +4,30 @@ Actor usuario as sis
 participant ":Juego" as juego
 participant ":SistemaConstruccion" as building
 participant ":EstructurasActivas" as estructuras
+participant ":Mapa" as mapa
+participant ":Enemigos" as enemies
 
 
-
-sis -> juego: Juego(mapa,enemigos, jugador)
+sis -> juego: Juego(lectorMapa,lectorEnemigos, jugador)
 note left
-podemos decifrar el json en juego..
-podemos crear Jugador en juego
+lectores seran streams que le podras 
+pedir de a items
+podriamos crear Jugador en juego
 end note
 activate juego
+
+
+juego->mapa: Mapa(lectorMapa)
+activate mapa
+mapa-->juego: mapa
+deactivate mapa
+
+juego->enemies: Enemigos(lectorEnemigos)
+activate enemies
+enemies-->juego: enemigos
+deactivate enemies
+
+
 
 juego->estructuras: EstructurasActivas()
 activate estructuras
@@ -21,12 +36,10 @@ deactivate estructuras
 
 
 
-juego->building: EstructurasActivas()
+juego->building: SistemaConstruccion()
 activate building
-building-->juego: building
+building-->juego: sistemaConstruccion
 deactivate building
-
-
 
 
 

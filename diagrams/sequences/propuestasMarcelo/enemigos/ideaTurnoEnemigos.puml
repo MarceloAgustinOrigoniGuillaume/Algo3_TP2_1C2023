@@ -3,9 +3,9 @@
 Actor JuegoOAlguien as sis
 participant ":Enemigos" as enemies
 participant ":Enemigo" as enemy
-participant ":Oleada" as oleada
+participant ":Oleadas" as oleada
 
-sis-> enemies : accionar(turno,jugador)
+sis-> enemies : accionar(turno,mapa,jugador)
 activate enemies
 
 loop por cada enemigo existente
@@ -22,9 +22,7 @@ end note
 
 deactivate enemy
 end
-enemies-> enemies: obtenerOleada(turno)
-
-enemies -> oleada: instanciar(mapa)
+enemies -> oleada: instanciar(turno, mapa)
 activate oleada
 oleada-> enemies: arr[Enemigo]
 deactivate oleada

@@ -1,0 +1,46 @@
+@startuml
+
+Actor JuegoOAlguien as sis
+
+participant ":Mapa" as mapa
+participant ":LectorMapa" as lector
+participant ":Camino" as cammino
+
+participant ":Terreno" as terreno
+participant ":Pasarela" as pasarela
+participant "ConstantesJuego" as utils
+
+
+sis->mapa: Mapa(lectorMapa)
+activate mapa
+
+loop mientras haya mas elementos
+mapa ->lector : siguienteElemento()
+activate lector
+lector --> mapa: elemento
+deactivate lector
+
+mapa->mapa: setTerreno(posicion,puedeConstruir)
+activate mapa
+mapa->terreno: Terreno(posicion, puedeConstruir)
+activate terreno
+terreno-->mapa:parcela
+deactivate terreno
+deactivate mapa
+end
+
+
+mapa->utils: obtenerCaminoGrilla(inicio, fin, definidorPuedeIr)
+activate utils
+utils--> mapa: arr[posicion](camino)
+deactivate utils
+mapa -> camino: Camino(arr[pasarelas])
+camino --> mapa: camino
+
+
+mapa-->sis: mapa
+deactivate mapa
+
+
+
+@enduml
