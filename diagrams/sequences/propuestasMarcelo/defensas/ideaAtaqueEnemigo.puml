@@ -16,9 +16,9 @@ loop por cada estructura
 estr->defe : accionar(ui,mapa)
 activate defe
 
-defe->atk : atacarDesde(mapa,posicion,rango)
+defe->atk : atacarDesde(mapa)
 activate atk
-atk->mapa: obtenerMasCercano(posicion,rango)
+atk->mapa: obtenerMasCercanoFinal(this)
 activate mapa
 mapa-->atk: arr[unidades]
 deactivate mapa
@@ -26,6 +26,12 @@ deactivate mapa
 atk->atk: obtenerUnoSolo?
 
 atk->enemy: recibirDamage(dmg)
+activate enemy
+enemy-->atk: void
+deactivate enemy
+
+
+atk->enemy: estaMuerto()
 activate enemy
 enemy-->atk: true
 deactivate enemy

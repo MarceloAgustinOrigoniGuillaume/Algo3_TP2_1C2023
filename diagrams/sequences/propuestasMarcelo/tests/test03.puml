@@ -1,0 +1,61 @@
+@startuml
+
+Actor test as sis
+participant ":Jugador" as jugador
+participant ":TorreBlanca" as torre
+participant ":ConstruccionTentativa" as placing
+
+sis-> jugador: Jugador()
+activate jugador
+
+jugador --> sis : jugador
+deactivate jugador
+
+
+sis->torre : TorreBlanca(posicion)
+activate torre
+torre--> sis: torreBlanca
+deactivate torre
+
+sis->placing : ConstruccionTentativa(torreBlanca)
+activate placing
+placing--> sis: construccionTentativa
+deactivate placing
+
+sis->sis: assertPuedeCostear()
+activate sis
+
+loop 10 veces, compro 10 torres blancas
+
+
+sis->jugador: puedeCostear(tentativa)
+activate jugador
+jugador-->sis: true
+deactivate jugador
+
+sis->jugador: costear(tentativa)
+activate jugador
+jugador-->sis: void
+deactivate jugador
+
+end
+deactivate sis
+
+
+
+
+
+
+
+sis->sis: assertNoPuedeCostear()
+activate sis
+
+sis->jugador: puedeCostear(tentativa)
+activate jugador
+jugador-->sis: false
+deactivate jugador
+
+
+
+
+@enduml

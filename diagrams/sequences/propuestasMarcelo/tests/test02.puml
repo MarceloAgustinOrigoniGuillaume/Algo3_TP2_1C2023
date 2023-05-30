@@ -1,0 +1,82 @@
+@startuml
+
+Actor test as sis
+participant ":SistemaConstruccion" as builder
+participant ":ConstruccionTentativa" as placing
+participant ":MockEstructurasActivas" as activas
+
+sis-> builder: SistemaConstruccion()
+activate builder
+
+builder --> sis : sistemaConstruccion
+deactivate builder
+
+
+sis->placing : ConstruccionTentativa(torrePlateada)
+activate placing
+placing--> sis: construccionTentativa
+deactivate placing
+
+sis-> builder: agregarEnConstruccion(construccionTentativa)
+activate builder
+
+
+builder --> sis : void
+deactivate builder
+
+sis->activas: CrearMock(1)
+activate activas
+activas--> sis:  mock
+deactivate activas
+
+sis->sis: assertNoEstaActiva()
+activate sis
+
+loop 3 veces, paso 2 turnos
+sis->placing: finalizoConstruccion()
+activate placing
+placing --> sis: false
+deactivate placing 
+
+
+sis->activas: estaVacia()
+activate activas
+activas --> sis: true
+deactivate activas
+
+sis->builder: activaEstructuras(mockActivas)
+activate builder
+builder-->sis: void
+deactivate builder
+end
+deactivate sis
+
+
+
+
+
+
+
+sis->sis: assertEstaActiva()
+activate sis
+sis->placing: finalizoConstruccion()
+activate placing
+placing --> sis: true
+deactivate placing 
+
+
+sis->activas: estaVacia()
+activate activas
+activas --> sis: false
+deactivate activas
+deactivate sis
+
+
+
+
+
+
+
+
+
+@enduml

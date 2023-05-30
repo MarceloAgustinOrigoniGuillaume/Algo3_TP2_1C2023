@@ -1,0 +1,53 @@
+@startuml
+
+Actor test as sis
+
+participant ":Jugador" as jugador
+participant ":Spider" as enemy
+
+
+sis-> jugador: Jugador()
+activate jugador
+
+jugador --> sis : jugador
+deactivate jugador
+
+sis->enemy: Spider(posInicio,jugador)
+activate enemy
+enemy--> sis: spider
+deactivate enemy
+
+
+sis-> sis: assertRecibioCreditos
+activate sis
+
+loop 2 veces
+
+sis-> juego: obtenerCreditos()
+activate juego
+juego-> sis : 100
+deactivate juego
+
+sis-> enemy : recibirDamage(1)
+activate enemy
+enemy--> sis: void
+deactivate enemy
+end
+
+sis-> jugador: obtenerCreditos()
+activate jugador
+jugador-> sis : 105
+deactivate jugador
+sis->sis: verificarMayor a 100 y menor a 110
+
+
+deactivate juego
+
+sis-> enemy : estaMuerto()
+activate enemy
+enemy--> sis: true
+deactivate enemy
+
+deactivate sis
+
+@enduml

@@ -1,0 +1,76 @@
+@startuml
+
+Actor test as sis
+
+
+participant ":MockLectorMapa" as mock
+participant ":Mapa" as Mapa
+participant ":ConstruccionTentativa" as placing
+
+
+
+sis->placing : ConstruccionTentativa(torreBlanca)
+activate placing
+placing--> sis: construccionTentativa
+deactivate placing
+
+
+
+sis->sis: assertMapaTierra()
+activate sis
+
+
+sis-> mock: MockLector(todoTierra)
+activate mock
+
+mock --> sis : mockLectorTierra
+deactivate mock
+
+
+sis-> Mapa: Mapa(mockLectorTierra)
+activate Mapa
+
+Mapa --> sis : mapaTierra
+deactivate Mapa
+
+
+sis->Mapa: posicionar(tentativa)
+activate Mapa
+Mapa-->sis: true
+deactivate Mapa
+
+deactivate sis
+
+
+
+sis->sis: assertMapaRoca()
+activate sis
+
+
+
+sis-> mock: MockLector(todoRoca)
+activate mock
+
+mock --> sis : mockLectorRoca
+deactivate mock
+
+
+sis-> Mapa: Mapa(mockLectorRoca)
+activate Mapa
+
+Mapa --> sis : mapaRoca
+deactivate Mapa
+
+sis->Mapa: posicionar(tentativa)
+activate Mapa
+Mapa-->sis: false
+deactivate Mapa
+
+deactivate sis
+
+
+
+
+
+
+@enduml

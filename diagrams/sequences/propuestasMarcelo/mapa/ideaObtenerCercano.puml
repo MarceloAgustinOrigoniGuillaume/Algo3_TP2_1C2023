@@ -4,13 +4,25 @@ Actor alguien as sis
 
 participant ":Mapa" as mapa
 participant ":Camino" as camino
+participant ":Ataque" as atk
 participant ":Pasarela" as pasarela
 
-sis-> mapa: obtenerMasCercanoFinal(posicion,rangoMaximo)
+sis-> mapa: obtenerMasCercanoFinal(ataque)
 activate mapa
 
-mapa->camino: obtenerPasarela\nEnRango(posicion,rango)
+mapa->camino: obtenerPasarela\nEnRango(ataque)
 activate camino
+
+loop por cada pasarela hasta \nque este en rango
+
+camino-> atk: enRango(posicion)
+activate atk
+atk--> camino: true
+deactivate atk
+
+end
+
+
 camino-->mapa: pasarela
 deactivate camino
 
