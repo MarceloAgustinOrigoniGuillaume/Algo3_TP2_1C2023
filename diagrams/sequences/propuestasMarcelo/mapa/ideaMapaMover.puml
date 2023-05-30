@@ -1,0 +1,46 @@
+@startuml
+
+Actor alguien as sis
+
+participant ":Mapa" as mapa
+participant ":Camino" as camino
+participant ":Pasarela" as pasarela
+
+
+sis-> mapa: mover(unidad,\nposicion,unidades)
+activate mapa
+
+mapa->camino: mover(unidad,\npasarelaPosicion,unidades)
+activate camino
+
+camino->pasarela: sacar(unidad)
+activate pasarela
+pasarela--> camino: void
+deactivate pasarela
+
+loop 1 a unidades
+camino->camino: obtenerPasarelaA(unidad)
+
+camino->pasarela: estaLLena()
+activate pasarela
+pasarela--> camino: false
+deactivate pasarela
+
+end
+
+camino->pasarela: poner(unidad)
+activate pasarela
+pasarela--> camino: void
+deactivate pasarela
+
+
+
+camino-->mapa: posicionNueva
+deactivate camino
+
+mapa--> sis: posicionNueva
+deactivate mapa
+
+
+
+@enduml

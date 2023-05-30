@@ -2,7 +2,7 @@
 
 Actor ":Controlador" as sis
 
-participant ":Nivel" as Juego
+participant ":Juego" as Juego
 participant ":SistemaConstruccion" as builder
 participant ":EstructurasActivas" as buildings
 participant ":ConstruccionTentativa" as placing

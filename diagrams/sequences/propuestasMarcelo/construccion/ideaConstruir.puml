@@ -4,7 +4,7 @@ Actor usuarioOTest as usuario
 
 participant ":Controlador" as controller
 
-participant ":Nivel" as nivel
+participant ":Juego" as nivel
 participant ":Jugador" as Jugador
 participant ":Mapa" as Mapa
 

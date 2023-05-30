@@ -1,0 +1,28 @@
+@startuml
+
+Actor Alguien as sis
+participant ":Oleada" as oleada
+participant ":Enemigo" as enemy
+participant ":Mapa" as mapa
+
+
+sis -> oleada: instanciar(mapa)
+activate oleada
+loop por cada Enemigo a instanciar
+oleada->mapa: obtenerPosicionInicio()
+activate mapa
+mapa --> oleada : posicion
+deactivate mapa
+
+oleada-> enemy: Enemigo(posicion)
+activate enemy
+
+enemy --> oleada: enemigo
+deactivate enemy
+
+end
+oleada --> sis: arr[Enemigo]
+deactivate oleada
+
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+
+Actor JuegoOAlguien as sis
+participant ":Oleada" as oleada
+participant ":Enemigos" as enemies
+
+loop por cada enemigo a instanciar json
+
+sis->sis: siNoExisteLaOleada
+activate sis
+sis-->oleada: Oleada()
+activate oleada
+oleada->sis:oleada
+deactivate oleada
+deactivate sis
+
+sis->oleada : agregarEnemigo(tipo)
+activate oleada
+oleada-->sis: void
+deactivate oleada
+
+end
+
+
+sis->enemies: Enemigos(mapa)
+activate enemies
+enemies-->sis: enemigos 
+deactivate enemies
+
+loop por cada oleada
+sis->enemies: agregarOleada(turno,oleada)
+activate enemies
+enemies--> sis: void
+deactivate enemies
+end
+
+
+
+
+
+@enduml

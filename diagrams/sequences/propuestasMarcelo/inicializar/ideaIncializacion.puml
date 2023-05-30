@@ -1,0 +1,38 @@
+@startuml
+
+Actor usuario as sis
+participant ":Juego" as juego
+participant ":SistemaConstruccion" as building
+participant ":EstructurasActivas" as estructuras
+
+
+
+sis -> juego: Juego(mapa,enemigos, jugador)
+note left
+podemos decifrar el json en juego..
+podemos crear Jugador en juego
+end note
+activate juego
+
+juego->estructuras: EstructurasActivas()
+activate estructuras
+estructuras-->juego: estructuras
+deactivate estructuras
+
+
+
+juego->building: EstructurasActivas()
+activate building
+building-->juego: building
+deactivate building
+
+
+
+
+
+juego--> sis: juego
+deactivate juego
+
+
+
+@enduml

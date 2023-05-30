@@ -1,0 +1,41 @@
+@startuml
+
+Actor JuegoOAlguien as sis
+participant ":Enemigos" as enemies
+participant ":Enemigo" as enemy
+participant ":Oleada" as oleada
+
+sis-> enemies : accionar(turno,jugador)
+activate enemies
+
+loop por cada enemigo existente
+enemies->enemy: acciona(mapa,jugador)
+activate enemy
+enemy->enemies: true
+note right
+true significa debe 
+ser removido de existentes
+sea porque murio o llego al final
+end note
+
+
+
+deactivate enemy
+end
+enemies-> enemies: obtenerOleada(turno)
+
+enemies -> oleada: instanciar(mapa)
+activate oleada
+oleada-> enemies: arr[Enemigo]
+deactivate oleada
+
+loop por cada enemigo instanciado
+enemies->enemies: agregarEnemigo(enemigo)
+end
+
+enemies-->sis: false
+deactivate enemies
+
+
+
+@enduml
