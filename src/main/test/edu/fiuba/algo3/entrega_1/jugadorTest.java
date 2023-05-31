@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class jugadorTest {
     @Test
     public void verificarQueJugadorEmpiezaConVidaYCreditosCorrespondientes() {
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador("Nicolas");
         assertEquals(100,jugador.obtenerCreditos());
         assertEquals(20,jugador.obtenerVida());
     }/*@Test
