@@ -3,8 +3,10 @@
 Actor test as sis
 participant ":Jugador" as jugador
 
-sis-> jugador: Jugador()
+sis-> jugador: Jugador(nombre)
 activate jugador
+
+jugador->jugador: verificarNombre(nombre)
 
 jugador --> sis : jugador
 deactivate jugador
