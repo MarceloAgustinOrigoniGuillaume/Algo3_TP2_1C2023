@@ -35,7 +35,7 @@ loop por cada enemigo instanciado
 enemies->enemies: agregarEnemigo(enemigo)
 end
 
-enemies-->sis: false
+enemies-->sis: void
 deactivate enemies
 
 

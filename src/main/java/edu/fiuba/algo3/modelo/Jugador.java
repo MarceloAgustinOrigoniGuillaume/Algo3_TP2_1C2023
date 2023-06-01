@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
+
 public class Jugador {
     private int vida;
     private int creditos;
@@ -13,5 +15,19 @@ public class Jugador {
 
     public int obtenerVida() {
         return vida;
+    }
+
+    public boolean puedeCostear(ConstruccionTentativa enConstruccion) {
+        return (creditos >= enConstruccion.costo());
+    }
+
+    public void costear(ConstruccionTentativa enConstruccion) {
+        if(!puedeCostear(enConstruccion)){
+            /*
+            la idea esta que devuelva un error;
+             */
+           return;
+        }
+        creditos -= enConstruccion.costo();
     }
 }
