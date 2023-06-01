@@ -35,4 +35,11 @@ public class Jugador {
     public void ganoCreditos(int creditos){
         this.creditos+= creditos;
     }
+
+    public void recibirAtaque(int damege) {
+        vida = vida- damege;
+        if(vida < 0 ){
+            vida = 0;
+        }
+    }
 }

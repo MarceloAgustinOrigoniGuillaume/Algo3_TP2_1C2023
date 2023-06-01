@@ -17,6 +17,6 @@ public class EstadoJuego {
     }
 
     public boolean ganoJugador() {
-        return true;
+        return jugador.obtenerVida()>0;
     }
 }
