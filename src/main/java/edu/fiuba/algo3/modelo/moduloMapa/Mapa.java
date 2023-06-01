@@ -11,8 +11,11 @@ public class Mapa {
     private final static String TIPO_ROCA = "roca";
     private final static String TIPO_PASARELA = "pasarela";
 
+    private ArrayList<ArrayList<Parcela>> matriz;
+    private ArrayList<Pasarela> camino;
+
     public Mapa(Lector unLector) {
-        ArrayList<ArrayList<Parcela>> filas = new ArrayList<>();
+        matriz = new ArrayList<>();
         ArrayList<Parcela> fila = new ArrayList<>();
         filas.add(fila);
         int y;
@@ -34,6 +37,10 @@ public class Mapa {
                               Integer.parseInt(elemento.obtener("Coordenada_x")),
                               y));
         }
+
+
+        camino = UtilsMapa.ordenarPasarelas(camino);
+
     }
     private Parcela instanciarParcela(String parcela,int x,int y){
 
@@ -48,7 +55,11 @@ public class Mapa {
 
 
         if (TIPO_PASARELA.equals(parcela)){
-            return new Pasarela(new Posicion(x,y));
+            Pasarela pasarela = new Pasarela(new Posicion(x,y));
+
+            camino.add(pasarela);
+
+            return pasarela;
         }
 
         // TIRAR ERROR?
@@ -71,4 +82,50 @@ public class Mapa {
 
         return true;
     }
+
+    public boolean posicionar(GameEntity gameEntity, Posicion pos){
+
+        Parcela parcela = obtenerParcela(pos);
+
+        if(!parcela.puedePoner(gameEntity)){
+            return false;
+        }
+
+        // posicionar....
+        parcela.poner(gameEntity);
+
+        return true;
+    }
+
+    public Posicion posicionInicio(){
+        return camino.get(0);
+    }
+
+
+    public Posicion mover(Unidad unidad, Posicion desde, int unidades){
+        Parcela pasarela = obtenerParcela(desde);
+
+        if(!camino.contains(pasarela)){
+            // o tirar error....
+            return desde;
+        }
+
+        int index = camino.indexOf(pasarela);
+
+        index += unidades;
+
+        if( index>= camino.size()){
+            index = camino.size()-1;
+        }
+
+        pasarela.sacar(unidad);
+        pasarela = camino.get(index);
+        pasarela.poner(unidad);
+
+        return pasarela;
+
+    }
+
+
+
 }

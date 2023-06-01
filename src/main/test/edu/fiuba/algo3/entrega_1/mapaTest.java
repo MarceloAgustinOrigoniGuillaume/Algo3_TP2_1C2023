@@ -74,4 +74,113 @@ public class mapaTest {
     }
 
 
+
+
+    @Test
+    public void VerificarEnemigosSeMuevenPorPasarelas() {
+        Lector mockLector = Mockito.mock(Lector.class);
+
+        Mockito.when(mockLector.siguienteElemento()).thenReturn(new ElementoMapa("1","1","pasarela"))
+        											.thenReturn(new ElementoMapa("1","2","pasarela"))
+        											.thenReturn(new ElementoMapa("1","3","pasarela"))
+        											.thenReturn(new ElementoMapa("1","4","tierra"));
+
+        Mockito.when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
+        									   .thenReturn(true).thenReturn(false);
+
+
+        Mapa unMapa = new Mapa(mockLector);
+
+
+        Posicion inicio = unMapa.posicionInicio();
+        Hormiga enemigo = new Hormiga(inicio);
+
+        unMapa.posicionar(enemigo,inicio);
+
+
+        Posicion posNueva =  unMapa.mover(enemigo,inicio,1);
+
+        // posNueva
+        assertEquals(posNueva.x(),1);
+        assertEquals(posNueva.y(),2);
+        
+        // inicio
+        assertEquals(inicio.x(),1);
+        assertEquals(inicio.y(),1);
+        
+
+    }
+
+
+    @Test
+    public void VerificarEnemigosSeMuevenSoloPorPasarelasLlamadosSucesivos() {
+        Lector mockLector = Mockito.mock(Lector.class);
+
+        Mockito.when(mockLector.siguienteElemento()).thenReturn(new ElementoMapa("1","1","pasarela"))
+        											.thenReturn(new ElementoMapa("1","2","pasarela"))
+        											.thenReturn(new ElementoMapa("1","3","pasarela"))
+        											.thenReturn(new ElementoMapa("1","4","tierra"));
+
+        Mockito.when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
+        									   .thenReturn(true).thenReturn(false);
+
+
+        Mapa unMapa = new Mapa(mockLector);
+
+
+        Posicion inicio = unMapa.posicionInicio();
+        Hormiga enemigo = new Hormiga(inicio);
+
+        unMapa.posicionar(enemigo,inicio);
+
+
+        Posicion posNueva =  unMapa.mover(enemigo,inicio,1);
+        Posicion posNueva =  unMapa.mover(enemigo,posNueva,1);
+        Posicion posNueva =  unMapa.mover(enemigo,posNueva,1);
+
+        // posNueva
+        assertEquals(posNueva.x(),1);
+        assertEquals(posNueva.y(),3);
+        
+        // inicio
+        assertEquals(inicio.x(),1);
+        assertEquals(inicio.y(),1);
+        
+
+    }
+
+    @Test
+    public void VerificarEnemigosSeMuevenSoloPorPasarelas() {
+        Lector mockLector = Mockito.mock(Lector.class);
+
+        Mockito.when(mockLector.siguienteElemento()).thenReturn(new ElementoMapa("1","1","pasarela"))
+        											.thenReturn(new ElementoMapa("1","2","pasarela"))
+        											.thenReturn(new ElementoMapa("1","3","pasarela"))
+        											.thenReturn(new ElementoMapa("1","4","tierra"));
+
+        Mockito.when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
+        									   .thenReturn(true).thenReturn(false);
+
+
+        Mapa unMapa = new Mapa(mockLector);
+
+
+        Posicion inicio = unMapa.posicionInicio();
+        Hormiga enemigo = new Hormiga(inicio);
+
+        unMapa.posicionar(enemigo,inicio);
+
+
+        Posicion posNueva =  unMapa.mover(enemigo,inicio,4);
+
+        // posNueva
+        assertEquals(posNueva.x(),1);
+        assertEquals(posNueva.y(),3);
+        
+        // inicio
+        assertEquals(inicio.x(),1);
+        assertEquals(inicio.y(),1);
+        
+
+    }
 }
