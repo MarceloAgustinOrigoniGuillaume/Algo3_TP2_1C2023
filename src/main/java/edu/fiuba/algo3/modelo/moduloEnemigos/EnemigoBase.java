@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.moduloEnemigos;
 
 import edu.fiuba.algo3.modelo.moduloMapa.Mapa;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
 
 
 public abstract class EnemigoBase implements Enemigo{
@@ -11,7 +12,7 @@ public abstract class EnemigoBase implements Enemigo{
 	protected int velocidad;
 	protected int creditosAlMorir;
 	protected Posicion pos;
-	protected Jugador jugadorAsociado
+	protected Jugador jugadorAsociado;
 	public EnemigoBase(Posicion pos, Jugador jugador,
 		int vida, int atk, int velocidad, int creditosAlMorir){
 		this.pos = pos;
@@ -24,13 +25,13 @@ public abstract class EnemigoBase implements Enemigo{
 
 	}
 
-	public virtual int obtenerCreditosMuerte(){
+	public int obtenerCreditosMuerte(){
 		return creditosAlMorir;
 	} 
 
 
 	public boolean estaMuerto(){
-		return vida>0;
+		return vida <= 0;
 	}
 
 	public boolean recibirDamage(int dmg){
@@ -43,7 +44,7 @@ public abstract class EnemigoBase implements Enemigo{
 			vida = 0;
 			// murio, denle la recompensa.... no deberia realmente
 			// pasar aca... pero para tener algo funcional
-			jugador.ganoCreditos(obtenerCreditosMuerte());
+			jugadorAsociado.ganoCreditos(obtenerCreditosMuerte());
 		}
 
 		return estaMuerto();

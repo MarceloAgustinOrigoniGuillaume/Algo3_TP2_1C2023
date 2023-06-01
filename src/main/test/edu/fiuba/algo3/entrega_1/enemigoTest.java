@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
 import edu.fiuba.algo3.modelo.moduloDefensas.TorreBlanca;
 import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada;
+import edu.fiuba.algo3.modelo.moduloEnemigos.Hormiga;
+import edu.fiuba.algo3.modelo.moduloEnemigos.Spider;
 import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
 import javafx.geometry.Pos;
 import org.junit.jupiter.api.Test;

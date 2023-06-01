@@ -5,10 +5,14 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
 import edu.fiuba.algo3.modelo.moduloDefensas.TorreBlanca;
 import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada;
+import edu.fiuba.algo3.modelo.moduloEnemigos.Hormiga;
 import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
 import javafx.geometry.Pos;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import edu.fiuba.algo3.modelo.moduloEnemigos.Spider;
 
 public class jugadorTest {
     @Test
@@ -40,7 +44,7 @@ public class jugadorTest {
     }
 
     @Test
-    public void verificarQueJugadorGaneCreditosCorrespondientesAlMatarEnemigo() {
+    public void verificarQueJugadorGaneCreditosCorrespondientesAlMatarSpider() {
         Jugador jugador = new Jugador();
 
         Spider enemigo = new Spider(new Posicion(0,0),jugador);
@@ -54,7 +58,7 @@ public class jugadorTest {
     }
 
     @Test
-    public void verificarQueJugadorGaneCreditosCorrespondientesSoloAlMatarEnemigo() {
+    public void verificarQueJugadorGaneCreditosCorrespondientesSoloAlMatarSpiderYSigueViva() {
         Jugador jugador = new Jugador();
 
         Spider enemigo = new Spider(new Posicion(0,0),jugador);

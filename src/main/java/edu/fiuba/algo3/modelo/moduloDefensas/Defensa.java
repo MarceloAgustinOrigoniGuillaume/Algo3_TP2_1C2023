@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.moduloDefensas;
 
-public interface Defensa {
+import edu.fiuba.algo3.modelo.moduloMapa.GameEntity;
+
+public interface Defensa  extends GameEntity {
     int turnoParaContruir();
     int costoConstruccion();
 }

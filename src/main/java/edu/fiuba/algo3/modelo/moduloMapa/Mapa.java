@@ -1,15 +1,17 @@
 package edu.fiuba.algo3.modelo.moduloMapa;
 
+import edu.fiuba.algo3.modelo.moduloEnemigos.Enemigo;
 import edu.fiuba.algo3.modelo.moduloLector.Elemento;
 import edu.fiuba.algo3.modelo.moduloLector.Lector;
+import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
 
 import java.util.ArrayList;
 
 public class Mapa {
 
-    private final static String TIPO_TIERRA = "tierra";
-    private final static String TIPO_ROCA = "roca";
-    private final static String TIPO_PASARELA = "pasarela";
+    private final static String TIPO_TIERRA = "Tierra";
+    private final static String TIPO_ROCA = "Rocoso";
+    private final static String TIPO_PASARELA = "Pasarela";
 
     private ArrayList<ArrayList<Parcela>> matriz;
     private ArrayList<Pasarela> camino;
@@ -17,24 +19,25 @@ public class Mapa {
     public Mapa(Lector unLector) {
         matriz = new ArrayList<>();
         ArrayList<Parcela> fila = new ArrayList<>();
-        filas.add(fila);
+        matriz.add(fila);
         int y;
+        camino = new ArrayList<>();
         while (unLector.haySiguiente()){
             Elemento elemento = unLector.siguienteElemento();
             
 
-            y = Integer.parseInt(elemento.obtener("Coordenada_y"));
+            y = Integer.parseInt(elemento.obtener("Coordenada_Y"));
 
-            if(y > filas){
+            if(y > matriz.size()){
                 
                 fila = new ArrayList<>();
-                filas.add(fila);
+                matriz.add(fila);
             }
 
 
 
             fila.add(instanciarParcela(elemento.obtener("tipo"),
-                              Integer.parseInt(elemento.obtener("Coordenada_x")),
+                              Integer.parseInt(elemento.obtener("Coordenada_X")),
                               y));
         }
 
@@ -42,19 +45,19 @@ public class Mapa {
         camino = UtilsMapa.ordenarPasarelas(camino);
 
     }
-    private Parcela instanciarParcela(String parcela,int x,int y){
+    private Parcela instanciarParcela(String tipo,int x,int y){
 
-        if (TIPO_TIERRA.equals(parcela)){
+        if (TIPO_TIERRA == tipo){
             return new Terreno(new Posicion(x,y), true);
         }
 
 
-        if (TIPO_ROCA.equals(parcela)){
+        if (TIPO_ROCA == tipo){
             return new Terreno(new Posicion(x,y), false);
         }        
 
 
-        if (TIPO_PASARELA.equals(parcela)){
+        if (TIPO_PASARELA == tipo){
             Pasarela pasarela = new Pasarela(new Posicion(x,y));
 
             camino.add(pasarela);
@@ -63,10 +66,12 @@ public class Mapa {
         }
 
         // TIRAR ERROR?
+        return null;
     }
 
     private Parcela obtenerParcela(Posicion pos){
-
+        return matriz.get(pos.Y()).get(pos.X());
+        //return new Terreno(new Posicion(0,0), true);
     }
 
     public boolean posicionar(ConstruccionTentativa construccion){
@@ -98,11 +103,11 @@ public class Mapa {
     }
 
     public Posicion posicionInicio(){
-        return camino.get(0);
+        return camino.get(0).posicion();
     }
 
 
-    public Posicion mover(Unidad unidad, Posicion desde, int unidades){
+    public Posicion mover(Enemigo unidad, Posicion desde, int unidades){
         Parcela pasarela = obtenerParcela(desde);
 
         if(!camino.contains(pasarela)){
@@ -122,7 +127,7 @@ public class Mapa {
         pasarela = camino.get(index);
         pasarela.poner(unidad);
 
-        return pasarela;
+        return pasarela.posicion();
 
     }
 
