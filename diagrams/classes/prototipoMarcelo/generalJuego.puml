@@ -1,0 +1,94 @@
+@startuml
+
+class Juego{
+    
+    Juego(lectorMapa,lectorEnemigos)
+    construir(construccionTentativa)
+    iniciar()
+    termino()
+    ganoJugador()
+}
+class Mapa{
+    Mapa(lectorMapa)
+    posicionar(posicion, gameEntity) bool
+    posicionInicial() Posicion
+    mover(unidad, posicion, unidades) posicion
+}
+class FaseConstruccion{
+     accionar(ui,jugador)
+}
+
+
+
+class SistemaConstruccion{
+
+    agregarEnConstruccion(construccionTentativa)
+    activarConstrucciones(estructurasActivas)
+}
+
+class EstructurasActivas{
+    agregarEstructura(estructura)
+    accionar(estado,mapa)
+}
+
+class EstadoJuego{
+     EstadoJuego(enemigos,jugador)
+     atacarEnemigo(dmg,enemigo)
+     termino() bool
+     obtenerTurno() int
+     pasarTurno() int
+     ganoJugador() bool
+}
+class Jugador{
+    vida
+    Jugador()
+    Jugador(vida,puntos)
+    obtenerConstruibles() arr[construibles]
+    recibirAtaque(dmg)
+    estaMuerto() bool
+    puedeRecibir(dmg) bool
+}
+
+class Enemigos{
+    Enemigos(lectorEnemigos)
+    accionar(estado,mapa,jugador)
+    puedeMatar(jugador) bool
+    actualizar(enemigo)
+}
+
+class ConstruccionTentativa{
+}
+
+interface Estructura{
+}
+interface Enemigo{
+}
+
+
+
+Juego o--"1" Mapa
+Juego --> "1" Jugador
+Juego o-- "1" Enemigos
+Juego --> "1" FaseConstruccion
+
+Juego --> "1" SistemaConstruccion
+
+Jugador--> SistemaCreditos
+
+
+SistemaConstruccion--> "0..*" ConstruccionTentativa
+Juego --> "1" EstructurasActivas
+
+EstructurasActivas--> "0..*" Estructura
+Juego *-- "1" EstadoJuego
+EstadoJuego-->Jugador
+
+EstadoJuego-->Enemigos
+
+Enemigos--> "0..*" Enemigo
+Enemigos--> "1" Oleadas
+
+
+
+
+@enduml

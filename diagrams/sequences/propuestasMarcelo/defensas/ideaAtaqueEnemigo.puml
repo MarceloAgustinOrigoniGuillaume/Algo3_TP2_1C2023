@@ -5,13 +5,13 @@ participant ":EstructurasActivas" as estr
 participant ":Defensa" as defe
 participant ":SistemaAtaque" as atk
 participant ":Mapa" as mapa
-participant ":Enemigo" as enemy
+participant ":EstadoJuego" as state
 
 
-sis->estr: accionar(ui,mapa)
+sis->estr: accionar(ui,estado,mapa)
 activate estr
 
-loop por cada estructura
+loop por cada estructura\n y estado no termino
 
 estr->defe : accionar(ui,mapa)
 activate defe
@@ -25,16 +25,10 @@ deactivate mapa
 
 atk->atk: obtenerUnoSolo?
 
-atk->enemy: recibirDamage(dmg)
-activate enemy
-enemy-->atk: void
-deactivate enemy
-
-
-atk->enemy: removerSiEstaMuerto(mapa)
-activate enemy
-enemy-->atk: void
-deactivate enemy
+atk->state: atacarEnemigo(enemigo,dmg)
+activate state
+state-->atk: void
+deactivate state
 
 atk-->defe: void
 deactivate atk

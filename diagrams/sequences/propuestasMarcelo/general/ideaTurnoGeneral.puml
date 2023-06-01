@@ -9,19 +9,21 @@ participant ":Enemigos" as enemies
 participant ":EstructurasActivas" as estr
 participant ":SistemaConstrucicon" as constr
 
+participant ":EstadoJuego" as state
+
 usuario-> Juego: haySiguienteTurno(ui)
 activate Juego
-Juego -> builder: hacerTurno(ui,jugador)
+Juego -> builder: hacerTurno(ui,controlador,jugador)
 activate builder
 
 
 builder--> Juego: void
 deactivate builder
 
-Juego->enemies: puedeMatar(jugador)
-activate enemies
-enemies--> Juego: true
-deactivate enemies
+Juego->state: termino()
+activate state
+state --> Juego: false
+deactivate state
 
 Juego->enemies: accionar(ui,mapa,jugador)
 activate enemies
@@ -29,23 +31,15 @@ enemies--> Juego: void
 deactivate enemies
 
 
-Juego->constr: accionar(ui,mapa,jugador)
+Juego->constr: accionar(ui,controlador,mapa,jugador)
 activate constr
 constr--> Juego: void
 deactivate constr
 
-Juego->estr: accionar(ui,mapa,jugador)
+Juego->estr: accionar(ui,controlador,mapa,jugador)
 activate estr
 estr--> Juego: void
 deactivate estr
-
-
-
-Juego->enemies: verificarQuedanEnemigos()
-activate enemies
-enemies--> Juego: true
-deactivate enemies
-
 
 Juego --> usuario: (sigue el nivel?) True
 deactivate Juego

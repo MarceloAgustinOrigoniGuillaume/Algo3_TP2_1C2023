@@ -4,11 +4,12 @@ Actor JuegoOAlguien as sis
 participant ":Enemigos" as enemies
 participant ":Enemigo" as enemy
 participant ":Oleadas" as oleada
+participant ":EstadoJuego" as state
 
-sis-> enemies : accionar(turno,mapa,jugador)
+sis-> enemies : accionar(ui,estado,mapa,jugador)
 activate enemies
 
-loop por cada enemigo existente
+loop por cada enemigo existente y\n mientras no termine el juego
 enemies->enemy: acciona(mapa,jugador)
 activate enemy
 enemy->enemies: true
@@ -17,11 +18,14 @@ true significa debe
 ser removido de existentes
 sea porque murio o llego al final
 end note
-
-
-
 deactivate enemy
 end
+
+enemies -> state : termino()
+activate state
+state-->enemies : false
+deactivate state
+
 enemies -> oleada: instanciar(turno, mapa)
 activate oleada
 oleada-> enemies: arr[Enemigo]

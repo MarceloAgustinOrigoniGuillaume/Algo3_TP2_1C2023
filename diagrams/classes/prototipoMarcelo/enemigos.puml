@@ -1,35 +1,95 @@
 @startuml
 
-class Oleada{
 
+class Mapa{
+    Mapa(lectorMapa)
+    posicionar(posicion, gameEntity) bool
+    posicionInicial() Posicion
+    mover(unidad, posicion, unidades) posicion
 }
 
+class EstadoJuego{
+     EstadoJuego(enemigos,jugador)
+     atacarEnemigo(dmg,enemigo)
+     termino() bool
+     obtenerTurno() int
+     pasarTurno() int
+     ganoJugador() bool
+}
+
+class Jugador{
+    vida
+    Jugador()
+    Jugador(vida,puntos)
+    obtenerConstruibles() arr[construibles]
+    recibirAtaque(dmg)
+    estaMuerto() bool
+    puedeRecibir(dmg) bool
+}
 
 class Enemigos{
-    Enemigos(oleadas, gestorObjetos)
-    + accionarEn(turno, controlador)
-    + atacarMasCercano(posicion,defensa)
-}
-
-interface Unidad{
-    + isAlive() bool
-    + recibirAtaque(dmg)
-    + moverseEn(mapa)
+    Enemigos(lectorEnemigos)
+    accionar(estado,mapa,jugador)
+    puedeMatar(jugador) bool
+    actualizar(enemigo)
 }
 
 
-
-class Enemigo{
-    + isAlive() bool
-    + recibirAtaque(dmg)
-    + accionEn(gestorObjetos, controladorJuego) bool
+interface Atacable{
+     +recibiAtaque(damage)
+     +estaMuerto() bool
+}
+interface Enemigo{
+     +accionar(mapa,jugador) bool
+     +removerMapa(mapa)
 }
 
-interface GameEntity
-Unidad...|> GameEntity
+class Oleadas{
+    Oleadas(lectorEnemigos)
+    +instanciarOleadas(turno) arr[Enemigo]
+}
 
-Enemigos --> Enemigo
-Enemigo ..|> Unidad
-Enemigos --> Oleada
+abstract class EnemigoBase{
+    - vida
+    - dmg
+    - velocidad
+    - posicion
+    EnemigoBase(posicion,vida,dmg,velocidad)
+    +recibiAtaque(damage)
+    +estaMuerto() bool
+    +accionar(mapa,jugador) bool
+    +removerMapa(mapa)
+}
+
+class Spider{
+    Spider(posicion)
+}
+
+class Hormiga{
+    Hormiga(posicion)
+}
+
+EstadoJuego-->Jugador
+
+EstadoJuego-->Enemigos
+
+Enemigos--> "0..*" Enemigo
+Enemigos--> "0..*" Oleadas
+
+
+Enemigos ..> EstadoJuego
+
+
+Enemigos ..> Jugador
+Enemigo ...|> Atacable
+
+Oleadas ..> Enemigo
+
+EnemigoBase ..|> Enemigo
+Spider --|> EnemigoBase
+Hormiga --|> EnemigoBase
+
+EnemigoBase ...>Mapa
+
 
 @enduml

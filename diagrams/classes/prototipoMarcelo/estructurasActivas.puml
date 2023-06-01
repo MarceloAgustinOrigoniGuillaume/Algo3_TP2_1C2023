@@ -1,0 +1,77 @@
+@startuml
+
+class Mapa{
+    Mapa(lectorMapa)
+    posicionar(posicion, gameEntity) bool
+    posicionInicial() Posicion
+    mover(unidad, posicion, unidades) posicion
+}
+
+
+
+
+class EstructurasActivas{
+    agregarEstructura(estructura)
+    accionar(estado,mapa)
+}
+
+class EstadoJuego{
+     EstadoJuego(enemigos,jugador)
+     atacarEnemigo(dmg,enemigo)
+     termino() bool
+     obtenerTurno() int
+     pasarTurno() int
+     ganoJugador() bool
+}
+
+
+
+interface Estructura{
+     +accionar(estado,mapa)
+}
+
+
+interface Atacker{
+    + estaEnRango(posicion) bool
+}
+
+
+
+
+EstructurasActivas--> "0..*" Estructura
+Estructura ..|> Atacker 
+
+
+class Torre{
+   Torre(rango,dmg,posicion)
+   + estaEnRango(posicion) bool
+   + accionar(mapa,estado)
+}
+
+
+class TorreBlanca{
+     TorreBlanca(posicion)
+}
+
+
+class TorrePlateada{
+     TorrePlateada(posicion)
+}
+
+Torre ..|> Estructura
+
+
+class SistemaAtaque{
+    atacar(mapa,estado)
+}
+
+SistemaAtaque ..|> Atacker
+Torre *-- "1" SistemaAtaque
+
+
+Torre ..> Mapa
+Torre ..> EstadoJuego
+
+
+
+@enduml
