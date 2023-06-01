@@ -39,6 +39,43 @@ public class jugadorTest {
         assertEquals(jugador.puedeCostear(enConstruccion),false);
     }
 
+    @Test
+    public void verificarQueJugadorGaneCreditosCorrespondientesAlMatarEnemigo() {
+        Jugador jugador = new Jugador();
+
+        Spider enemigo = new Spider(new Posicion(0,0),jugador);
+
+        enemigo.recibirDamage(1);
+        enemigo.recibirDamage(1);
+
+        assertTrue(jugador.obtenerCreditos() > 100);
+        assertTrue(jugador.obtenerCreditos() <=110);
+        
+    }
+
+    @Test
+    public void verificarQueJugadorGaneCreditosCorrespondientesSoloAlMatarEnemigo() {
+        Jugador jugador = new Jugador();
+
+        Spider enemigo = new Spider(new Posicion(0,0),jugador);
+
+        enemigo.recibirDamage(1);
+
+        assertEquals(jugador.obtenerCreditos(),100);        
+        
+    }
+
+
+    @Test
+    public void verificarQueJugadorGaneCreditosCorrespondientesAlMatarEnemigo() {
+        Jugador jugador = new Jugador();
+
+        Hormiga enemigo = new Hormiga(new Posicion(0,0),jugador);
+
+        enemigo.recibirDamage(1);
+
+        assertEquals(jugador.obtenerCreditos(),101);        
+    }
 
 
 }

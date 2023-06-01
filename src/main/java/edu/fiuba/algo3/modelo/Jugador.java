@@ -30,4 +30,9 @@ public class Jugador {
         }
         creditos -= enConstruccion.costo();
     }
+
+
+    public void ganoCreditos(int creditos){
+        this.creditos+= creditos;
+    }
 }

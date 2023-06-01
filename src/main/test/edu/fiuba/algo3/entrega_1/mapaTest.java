@@ -93,7 +93,7 @@ public class mapaTest {
 
 
         Posicion inicio = unMapa.posicionInicio();
-        Hormiga enemigo = new Hormiga(inicio);
+        Hormiga enemigo = new Hormiga(inicio, new Jugador());
 
         unMapa.posicionar(enemigo,inicio);
 
@@ -129,7 +129,7 @@ public class mapaTest {
 
 
         Posicion inicio = unMapa.posicionInicio();
-        Hormiga enemigo = new Hormiga(inicio);
+        Hormiga enemigo = new Hormiga(inicio, new Jugador());
 
         unMapa.posicionar(enemigo,inicio);
 
@@ -166,7 +166,7 @@ public class mapaTest {
 
 
         Posicion inicio = unMapa.posicionInicio();
-        Hormiga enemigo = new Hormiga(inicio);
+        Hormiga enemigo = new Hormiga(inicio, new Jugador());
 
         unMapa.posicionar(enemigo,inicio);
 
