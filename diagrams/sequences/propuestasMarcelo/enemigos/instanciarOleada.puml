@@ -15,12 +15,12 @@ oleadas-> oleadas: obtenerOleada(turno)
 
 oleadas-> oleada: instanciar(mapa)
 activate oleada
-loop por cada Enemigo a instanciar
 oleada->mapa: obtenerPosicionInicio()
 activate mapa
 mapa --> oleada : posicion
 deactivate mapa
 
+loop por cada Enemigo a instanciar
 oleada-> enemy: Enemigo(posicion)
 activate enemy
 

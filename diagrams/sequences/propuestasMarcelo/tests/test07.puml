@@ -1,0 +1,44 @@
+@startuml
+
+Actor test as sis
+
+
+participant ":MockLector" as mock
+participant ":Mapa" as mapa
+
+sis-> mock: MockLector(caminoLongitud4)
+
+activate mock
+mock --> sis : mockLectorLongitud4
+deactivate mock
+
+
+
+sis-> mapa: Mapa(mockLectorLongitud4)
+activate mapa
+mapa--> sis: mapa
+deactivate mapa
+
+sis->mapa: posicionarInicio(unidadMock)
+activate mapa
+mapa-->sis: void
+deactivate mapa
+
+
+loop 4 veces, una para cada parcela
+sis->mapa: mover(unidadMock, posicionInicio, 1)
+activate mapa
+mapa-->sis: posicionNueva
+deactivate mapa
+
+sis->sis: assertPosicionNueva\nesta en camino
+end
+
+
+
+
+
+
+
+
+@enduml

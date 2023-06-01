@@ -1,0 +1,78 @@
+@startuml
+
+Actor test as sis
+
+
+participant ":MockMapa" as mock
+participant ":MockJugador" as mockJugador
+participant ":Spider" as enemy1
+participant ":Hormiga" as enemy2
+
+sis-> mock: MockMapa(caminoLongitud4)
+
+note left
+genera el mock para un mapa
+con un camino de longitud 4
+predefinido por el test
+esto incluiria el start y el final
+i - 1 - 2 - f
+spider tardara 2 turnos en llegar, hormiga 3.
+end note
+
+activate mock
+mock --> sis : mockMapaLongitud4
+deactivate mock
+
+sis-> mockJugador: MockJugador()
+activate mockJugador
+mockJugador -> sis: mock
+deactivate mockJugador
+
+
+sis->enemy1 : Spider(posicionInicial)
+activate enemy1
+enemy1--> sis: spider
+deactivate enemy1
+
+sis->enemy2 : Hormiga(posicionInicial)
+activate enemy2
+enemy2--> sis: hormiga
+deactivate enemy2
+
+
+sis->sis: mover
+activate sis
+sis-> enemy1: accionarEn(mapa,jugador)
+activate enemy1
+enemy1-> sis : false
+deactivate enemy1
+
+sis-> enemy2: accionarEn(mapa,jugador)
+activate enemy2
+enemy1-> sis : false
+deactivate enemy2
+
+
+deactivate sis
+
+sis->sis: assertMove
+activate sis
+
+sis-> enemy1: posicion()
+activate enemy1
+enemy1-> sis : posicion2 se movio 2
+deactivate enemy1
+
+sis-> enemy2: posicion()
+activate enemy2
+enemy2-> sis : posicion1 se movio 1
+deactivate enemy2
+
+deactivate sis
+
+
+
+
+
+
+@enduml

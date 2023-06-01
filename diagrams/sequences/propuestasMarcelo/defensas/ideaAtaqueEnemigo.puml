@@ -31,12 +31,7 @@ enemy-->atk: void
 deactivate enemy
 
 
-atk->enemy: estaMuerto()
-activate enemy
-enemy-->atk: true
-deactivate enemy
-
-atk->enemy: removerDeMapa(mapa)
+atk->enemy: removerSiEstaMuerto(mapa)
 activate enemy
 enemy-->atk: void
 deactivate enemy

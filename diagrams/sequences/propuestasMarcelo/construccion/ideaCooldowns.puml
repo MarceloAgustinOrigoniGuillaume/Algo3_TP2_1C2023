@@ -9,7 +9,7 @@ participant ":ConstruccionTentativa" as placing
 
 
 
-sis-> Juego: construir(construciconTentativa)
+sis-> Juego: construir(construccionTentativa)
 activate Juego
 
 Juego-> builder: agregarEnConstruccion(construccionTentativa)
