@@ -1,0 +1,50 @@
+@startuml
+
+Actor test as sis
+
+
+participant ":MockLectorEnemigos" as mock
+participant ":Enemigos" as enemies
+participant ":Jugador" as mockJ
+
+
+sis-> mock: MockLectorEnemigos(5hormigas)
+activate mock
+mock --> sis : lectorEnemigos
+deactivate mock
+
+sis-> enemies: Enemigos(lectorEnemigos)
+activate enemies
+enemies --> sis : enemigos
+deactivate enemies
+
+sis-> mockJ: Jugador(vida = 30)
+activate mockJ
+mockJ --> sis : jugador
+deactivate mockJ
+
+sis->enemies: puedeMatar(jugador)
+activate enemies
+enemies--> sis: false
+deactivate enemies
+
+sis-> mockJ: Jugador(vida = 4)
+activate mockJ
+mockJ --> sis : jugador
+deactivate mockJ
+
+
+sis->enemies: puedeMatar(jugador)
+activate enemies
+enemies--> sis: true
+deactivate enemies
+
+
+participant ":EstadoJuego" as state
+
+sis-> state: EstadoJuego(enemigos,jugador)
+activate state
+state --> sis : estadoJuego
+deactivate state
+
+@enduml

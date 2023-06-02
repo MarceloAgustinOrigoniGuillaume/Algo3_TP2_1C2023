@@ -1,0 +1,31 @@
+@startuml
+
+Actor alguien as usuario
+
+participant ":Juego" as nivel
+participant ":Jugador" as Jugador
+participant ":Mapa" as Mapa
+
+usuario-> usuario: obtene y move una\nConstruccion Tentativa
+
+usuario -> nivel: construir(construccionTentativa)
+activate nivel
+
+nivel -> Jugador : puedeCostear(construccionTentativa)
+activate Jugador
+Jugador --> nivel : true
+deactivate Jugador
+
+nivel-> Mapa: posicionar(construccion,pos)
+activate Mapa
+Mapa --> nivel : true
+deactivate Mapa
+
+nivel -> Jugador: costear(construccion)
+nivel -> ":SistemaConstruccion" : agregarEnConstruccion(construccionTentativa)
+
+nivel--> usuario: true
+deactivate nivel
+
+
+@enduml

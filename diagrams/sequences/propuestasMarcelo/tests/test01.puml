@@ -1,0 +1,37 @@
+@startuml
+
+Actor test as sis
+participant ":Jugador" as jugador
+
+sis-> jugador: Jugador(nombre)
+activate jugador
+
+jugador->jugador: verificarNombre(nombre)
+
+jugador --> sis : jugador
+deactivate jugador
+
+
+sis->sis : assert vida\n es 20
+activate sis
+
+sis-> jugador: obtenerVida()
+activate jugador
+jugador --> sis : vida
+deactivate jugador
+deactivate sis
+
+
+sis->sis : assert creditos\n es 100
+activate sis
+
+sis-> jugador: obtenerCreditos()
+activate jugador
+jugador --> sis : creditos
+deactivate jugador
+deactivate sis
+
+
+
+
+@enduml

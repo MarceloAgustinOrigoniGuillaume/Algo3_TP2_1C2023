@@ -1,0 +1,34 @@
+@startuml
+
+Actor sistemaOUsuario as sis
+
+sis -> FaseConstruccion : FaseConstruccion(construcciones)
+
+group iniciar construccion
+sis-> FaseConstruccion: iniciarConstruccion(construible)
+FaseConstruccion -> ConstruccionTentativa: ConstruccionTentativa(construcciones, construible)
+ConstruccionTentativa->  FaseConstruccion: construccion
+FaseConstruccion -> sis: construccionTentativa
+end
+
+group Falla
+
+sis -> ConstruccionTentativa: construir()
+ConstruccionTentativa-> sis: False
+sis-> sis : mostrarErrorUsuario()
+end group
+
+
+group mover?
+sis -> ConstruccionTentativa : moverCentroA(posicion)
+sis -> ConstruccionTentativa : moverCentroA(posicion2)
+end group
+
+group Finalizar
+sis -> ConstruccionTentativa: construir()
+ConstruccionTentativa-> sis: True
+sis-> sis: seguirJuego()
+end group
+
+
+@enduml

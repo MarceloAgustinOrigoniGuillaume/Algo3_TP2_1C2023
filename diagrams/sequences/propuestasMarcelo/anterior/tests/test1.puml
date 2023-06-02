@@ -1,0 +1,34 @@
+@startuml
+
+Actor test as sis
+
+sis-> Jugador: Jugador()
+
+note right 
+constructor default haria
+lo que dice el enunciado
+20 de vida y 100 creditos
+end note
+
+Jugador -> Creditos : Creditos(100)
+Creditos -> Jugador: creditos
+
+
+sis -> Jugador: obtenerVida()
+Jugador -> sis: 20
+
+sis-> Jugador: obtenerCreditos()
+Jugador -> Creditos: obtenerCreditos()
+Creditos->Jugador: 100
+Jugador -> sis: 100
+
+note left
+Solo para propositos de ui o asi
+para mostrar, no se deberia 
+usar para otras cosas..
+end note
+sis-> sis: assert
+
+
+
+@enduml

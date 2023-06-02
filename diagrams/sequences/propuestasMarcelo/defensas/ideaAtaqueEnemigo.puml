@@ -1,0 +1,46 @@
+@startuml
+
+Actor alguien as sis
+participant ":EstructurasActivas" as estr
+participant ":Defensa" as defe
+participant ":SistemaAtaque" as atk
+participant ":Mapa" as mapa
+participant ":EstadoJuego" as state
+
+
+sis->estr: accionar(ui,estado,mapa)
+activate estr
+
+loop por cada estructura\n y estado no termino
+
+estr->defe : accionar(ui,mapa)
+activate defe
+
+defe->atk : atacarDesde(mapa)
+activate atk
+atk->mapa: obtenerMasCercanoFinal(this)
+activate mapa
+mapa-->atk: arr[unidades]
+deactivate mapa
+
+atk->atk: obtenerUnoSolo?
+
+atk->state: atacarEnemigo(enemigo,dmg)
+activate state
+state-->atk: void
+deactivate state
+
+atk-->defe: void
+deactivate atk
+
+defe-->estr : void
+deactivate defe
+
+end
+
+
+estr-->sis: void
+deactivate estr
+
+
+@enduml

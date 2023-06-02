@@ -1,0 +1,38 @@
+@startuml
+
+Actor test as sis
+
+sis-> Juego: Juego(json? datos)
+note left
+o capaz con un gestor de turnos ...
+end note
+Juego -> sis: juego
+
+
+sis-> Mocking: crearMockImitandoUsuario()
+Mocking-> sis: inputUsuario
+sis -> interfazUsuario: interfazUsuario(inputUsuario,juego)
+interfazUsuario -> sis: interfazUser
+
+sis-> Juego: haySiguienteTurno(interfazUser)
+
+Juego -> interfazUsuario: empezarFaseConstruccion(construibles)
+note right
+Todo el tema de FaseConstruccion 
+esta en otros diagramas
+end note
+
+interfazUsuario->Mocking: elegimeOpcion(opciones)
+Mocking -> interfazUsuario: estaOpcion
+note right
+Todo esto como se maneja 
+esta en otros diagramas
+end note
+
+interfazUsuario -> Juego : void
+
+Juego-> Juego : restoTurno()
+
+Juego -> sis: true
+
+@enduml

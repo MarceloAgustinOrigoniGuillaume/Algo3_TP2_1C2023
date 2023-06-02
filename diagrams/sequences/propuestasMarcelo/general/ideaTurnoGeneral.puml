@@ -1,0 +1,48 @@
+@startuml
+
+
+Actor interfazUsuario as usuario
+
+participant ":Juego" as Juego
+participant ":FaseConstruccion" as builder
+participant ":Enemigos" as enemies
+participant ":EstructurasActivas" as estr
+participant ":SistemaConstrucicon" as constr
+
+participant ":EstadoJuego" as state
+
+usuario-> Juego: haySiguienteTurno(ui)
+activate Juego
+Juego -> builder: hacerTurno(ui,controlador,jugador)
+activate builder
+
+
+builder--> Juego: void
+deactivate builder
+
+Juego->state: termino()
+activate state
+state --> Juego: false
+deactivate state
+
+Juego->enemies: accionar(ui,mapa,jugador)
+activate enemies
+enemies--> Juego: void
+deactivate enemies
+
+
+Juego->constr: accionar(ui,controlador,mapa,jugador)
+activate constr
+constr--> Juego: void
+deactivate constr
+
+Juego->estr: accionar(ui,controlador,mapa,jugador)
+activate estr
+estr--> Juego: void
+deactivate estr
+
+Juego --> usuario: (sigue el nivel?) True
+deactivate Juego
+
+
+@enduml

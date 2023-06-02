@@ -1,0 +1,86 @@
+@startuml
+
+Actor ":Controlador" as sis
+
+participant ":Juego" as Juego
+participant ":SistemaConstruccion" as builder
+participant ":EstructurasActivas" as buildings
+participant ":ConstruccionTentativa" as placing
+
+
+
+sis-> Juego: construir(construccionTentativa)
+activate Juego
+
+Juego-> builder: agregarEnConstruccion(construccionTentativa)
+activate builder
+builder -->Juego : void
+deactivate builder
+Juego -->sis: true
+deactivate Juego
+
+
+sis->Juego : siguienteTurno(ui)
+activate Juego
+Juego->builder: activaEstructuras(buildings)
+activate builder
+builder->builder: daChanceConstruir()
+
+loop por cada construccion tentativa
+builder-> placing: reducirCooldown()
+activate placing
+placing --> builder: true
+deactivate placing
+end
+builder--> Juego: void
+deactivate builder
+
+Juego->buildings: ataquenOAlgo()
+activate buildings
+buildings --> Juego: void
+deactivate buildings
+Juego->Juego: restoTurno()
+
+Juego --> sis: true
+deactivate Juego
+
+
+
+sis->Juego : siguienteTurno(ui)
+activate Juego
+
+
+Juego->builder: activaEstructuras(buildings)
+activate builder
+
+builder->builder: daChanceConstruir()
+loop por cada construccion tentativa
+builder-> placing: reducirCooldown()
+activate placing
+placing --> builder: false
+deactivate placing
+builder-> placing : construir()
+activate placing
+placing --> builder: construccionActiva
+
+deactivate placing
+builder -> buildings: agregar(construccionActiva)
+builder -> builder: borrar(construccionTentativa)
+end
+
+
+builder--> Juego: void
+deactivate builder
+
+Juego->buildings: ataquenOAlgo()
+activate buildings
+buildings -> Juego: void
+deactivate buildings
+
+Juego->Juego: restoTurno()
+
+Juego --> sis: true
+deactivate Juego
+
+
+@enduml

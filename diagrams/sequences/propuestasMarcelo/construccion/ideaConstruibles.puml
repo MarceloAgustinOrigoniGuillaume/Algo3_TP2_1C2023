@@ -1,0 +1,62 @@
+@startuml
+
+Actor interfazUsuario as ui
+
+participant ":Controller" as controller
+participant ":Construible" as Construible
+participant ":ConstruccionTentativa" as placing
+
+
+
+
+ui-> Construible: iniciarConstruccion()
+activate Construible
+
+note left
+siempre interfazUsuario entre cada mensaje
+a Construible le pidio a usuario o test
+una accion, mocking para tests.
+Capaz tambien se podria cancelar?
+end note
+
+
+Construible -> placing: ConstruccionTentativa(construccion)
+activate placing
+placing-->  Construible: construccionTentativa
+deactivate placing
+
+Construible--> ui:construcctionTentativa
+deactivate Construible
+
+
+ui->ui: simularPosicionamiento\n(construccion)
+activate ui
+== simulacion == 
+group Falla
+
+
+ui -> controller : construir(construccionTentativa)
+activate controller
+controller--> ui: false
+deactivate controller
+
+ui-> ui : mostrarErrorUsuario()
+end group
+
+
+group mover?
+ui -> placing : moverCentroA(posicion)
+ui -> placing : moverCentroA(posicion2)
+end group
+
+group Finalizar
+ui -> controller : construir(construccionTentativa)
+activate controller
+controller--> ui: True
+deactivate controller
+end group
+
+
+deactivate ui
+
+@enduml

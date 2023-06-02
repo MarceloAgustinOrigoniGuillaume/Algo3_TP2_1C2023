@@ -1,0 +1,37 @@
+@startuml
+
+Actor sistemaOUsuario as sis
+
+participant ":FaseConstruccion" as builder
+participant ":Construcciones" as estructuras
+participant ":Construible" as Construible
+participant ":interfazUsuario" as ui
+participant ":Opcion" as Opcion
+
+ref over sis, builder,estructuras :iniciar
+
+sis-> builder: hacerTurno(pantalla?, otrosParametros?)
+activate builder
+
+builder ->estructuras: posiblesConstruibles()
+activate estructuras
+
+
+loop por cada posible construccion
+estructuras -> Construible : Construible(this,nombre,puedeCostear,..etc)
+Construible->Opcion :Opcion(puedecostear,titulo,etc...)
+Construible-->estructuras: construible
+end
+
+
+estructuras-->builder: construibles
+deactivate estructuras
+builder -> ui : empezarFaseConstruccion(construibles, opcionPasarTurno)
+activate ui 
+ui --> builder: void
+deactivate ui 
+builder--> sis: void
+deactivate builder
+
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+
+
+Actor interfazUsuario as usuario
+
+participant ":Controlador" as controller
+participant ":Juego" as Juego
+participant ":FaseConstruccion" as builder
+
+usuario -> controller: EmpezarPartida()
+activate controller
+loop manejoTurnos? mientras haySiguienteTurno == True
+
+
+note right 
+el como lo haga no es importante, 
+pero le dira empezar la partida.....
+ahora controller ya no inicia un juego, dice jugarTurno.
+Sacando la logica de manejo de turnos 
+fuera de Juego escencialmente
+end note
+
+
+
+controller-> Juego: haySiguienteTurno(this)
+activate Juego
+Juego -> builder: hacerTurno(pantalla,otrosParametros?)
+activate builder
+note right
+podria ser, y yo lo haria,
+de poner un gestor de turnos en el medio
+end note
+
+
+builder--> Juego: void
+deactivate builder
+Juego -> Juego: haceRestoDelTurno()
+activate Juego
+Juego --> controller: (sigue el juego?) True
+deactivate Juego
+deactivate Juego
+end
+
+deactivate controller
+
+@enduml

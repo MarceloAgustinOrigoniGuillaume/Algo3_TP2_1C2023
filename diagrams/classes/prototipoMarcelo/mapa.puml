@@ -1,64 +1,55 @@
 @startuml
 
-interface GameEntity{
-    + drawAt(posicion)
-}
-
 class Posicion{
     +x()
     +y()
 }
 
-interface GestorObjetos{
-    + puedeOcupar(posicion, gameEntity) bool
-    + ocupar(posicion, gameEntity) bool
-    + mover(posicion, unidad, unidades)
-    + esUnFinal(posicion) bool
-}
-
 
 class Mapa{
     Mapa(json)
-    + ocupar(posicion, gameEntity)
-    + puedeOcupar(posicion, gameEntity) bool
+    + posicionar(posicion, gameEntity) bool
     + mover(posicion,unidad, unidades) Posicion
     + esUnFinal(posicion) bool
+    + obtenerMasCercano(posicion,rango) arr[unidades]
 }
 
 class Camino{
     Camino(inicio,fin,pasarelas)
     + mover(posicion, unidad, unidades) Posicion
     + ocupar(pasarela,unidad)
+    + obtenerEnRangoFinal(posicion,rango) Pasarela
     + esElFinal(posicion) bool
 }
 
 interface Parcela{
-    +ocupar(gameEntity)
-    +puedeOcupar(gameEntity) bool
-    +desocupar(gameEntity)
+    +sacar(gameEntity)
+    +puedePoner(gameEntity) bool
+    +poner(gameEntity)
+    +obtener() arr[gameentity]
+
     +dibujar()
 }
 
 class Terreno{
-    Terreno(posicion, construible)
-    +ocupar(gameEntity)
-    +desocupar(gameEntity)
-    +puedeOcupar(gameEntity) bool
-    +puedeOcupar(defensa) bool
-    +ocupar(defensa)
-
+    Terreno(posicion, sePuedeConstruir)
+    +sacar(gameEntity)
+    +puedePoner(gameEntity) bool
+    +poner(gameEntity)
+    +puedePoner(construccion) bool
+    +poner(construccion)
+    +obtener() arr[gameentity]
     +dibujar()
 }
 
 class Pasarela{
     Pasarela(posicion)
-    +ocupar(gameEntity)
-    +desocupar(gameEntity)
-    +puedeOcupar(gameEntity) bool
-
-    +puedeOcupar(unidad) bool
-    +ocupar(unidad)
-
+    +sacar(gameEntity)
+    +puedePoner(gameEntity) bool
+    +poner(gameEntity)
+    +puedePoner(construccion) bool
+    +poner(construccion)
+    +obtener() arr[gameentity]
     +dibujar()
 }
 
@@ -68,15 +59,8 @@ class Pasarela{
 Pasarela ...|> Parcela
 Terreno ...|> Parcela
 
-note top of Mapa
-En el constructor
-ademas de agregar a una matriz bidimensional
-cada pasarela, trackearia el inicio y fin y
-pasaria a camino el resultado de buscar el camino
-end note
 
 Mapa --> "1..*"Parcela
-Mapa --|> GestorObjetos
 Mapa o-- Camino
 
 

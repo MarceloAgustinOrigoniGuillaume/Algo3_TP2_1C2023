@@ -1,0 +1,35 @@
+@startuml
+
+participant ":FaseConstruccion" as builder
+participant ":Controlador" as controller
+Actor usuario
+activate builder
+builder-> controller: interaccionFaseConstruccion(construibles,opcionPasarTurno)
+activate controller
+group interaccion con usuario
+
+controller-> usuario: elegimeOpcion()(input)
+activate usuario
+usuario --> controller: estaOpcion
+deactivate usuario
+
+Loop mientras la opcion no sea opcionPasarTurno
+controller->Construible: inicarConstruccion()
+activate Construible
+Construible-->controller: construccionTentativa
+deactivate Construible
+
+
+controller -> controller : simularPosicionamiento\n(construccion)
+
+controller-> usuario: elegimeOpcion()(input)
+activate usuario
+usuario --> controller: estaOpcion
+deactivate usuario
+
+end
+end group
+
+controller -> builder: void
+deactivate controller
+@enduml

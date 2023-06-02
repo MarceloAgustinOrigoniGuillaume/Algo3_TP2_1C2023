@@ -1,0 +1,51 @@
+@startuml
+
+Actor usuario as sis
+participant ":Juego" as juego
+participant ":SistemaConstruccion" as building
+participant ":EstructurasActivas" as estructuras
+participant ":Mapa" as mapa
+participant ":Enemigos" as enemies
+
+
+sis -> juego: Juego(lectorMapa,lectorEnemigos, jugador)
+note left
+lectores seran streams que le podras 
+pedir de a items
+podriamos crear Jugador en juego
+end note
+activate juego
+
+
+juego->mapa: Mapa(lectorMapa)
+activate mapa
+mapa-->juego: mapa
+deactivate mapa
+
+juego->enemies: Enemigos(lectorEnemigos)
+activate enemies
+enemies-->juego: enemigos
+deactivate enemies
+
+
+
+juego->estructuras: EstructurasActivas()
+activate estructuras
+estructuras-->juego: estructuras
+deactivate estructuras
+
+
+
+juego->building: SistemaConstruccion()
+activate building
+building-->juego: sistemaConstruccion
+deactivate building
+
+
+
+juego--> sis: juego
+deactivate juego
+
+
+
+@enduml

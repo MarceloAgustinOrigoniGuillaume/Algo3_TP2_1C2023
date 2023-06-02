@@ -1,0 +1,34 @@
+@startuml
+
+Actor usuarioOTest as usuario
+participant ":ConstruccionTentativa" as placing
+participant ":Construcciones" as buildings
+participant ":Jugador" as Jugador
+participant ":Mapa" as Mapa
+
+usuario -> placing : moverCentroA(posicion)
+usuario -> placing: construir()
+activate placing
+
+placing-> buildings: posicionar(construccion,pos)
+activate buildings
+
+buildings -> Jugador : puedeCostear(construccion)
+activate Jugador
+Jugador --> buildings : true
+deactivate Jugador
+
+buildings-> Mapa: posicionar(construccion,pos)
+activate Mapa
+Mapa --> buildings : true
+deactivate Mapa
+
+buildings -> Jugador: costear(construccion)
+
+buildings-->placing : true
+deactivate buildings
+placing--> usuario: true
+deactivate placing
+
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+
+Actor test as sis
+
+participant ":Spider" as enemy
+
+sis->enemy: Spider(posInicio,jugador)
+activate enemy
+enemy--> sis: spider
+deactivate enemy
+
+
+sis-> sis: assertRecibioCorrecto
+activate sis
+
+loop 2 veces
+sis-> enemy : estaMuerto()
+activate enemy
+enemy--> sis: false
+deactivate enemy
+
+sis-> enemy : recibirDamage(1)
+activate enemy
+enemy--> sis: void
+deactivate enemy
+end
+
+sis-> enemy : estaMuerto()
+activate enemy
+enemy--> sis: true
+deactivate enemy
+
+deactivate sis
+
+@enduml

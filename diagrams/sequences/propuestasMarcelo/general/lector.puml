@@ -1,0 +1,31 @@
+@startuml
+
+Actor alguien as sis
+
+participant ":LectorJson" as lector
+participant ":Elemento" as elemento
+
+sis-> lector: LectorJson(json)
+activate lector
+lector--> sis: lector
+deactivate lector
+
+
+
+loop hay siguiente elemento
+sis-> lector: siguienteElemento()
+activate lector
+
+lector--> sis: elemento
+deactivate lector
+sis-> sis: hace algo
+activate sis
+sis-> elemento: obtener(campo1)
+activate elemento
+elemento-->sis: valor1
+deactivate elemento
+deactivate sis
+
+end
+
+@enduml

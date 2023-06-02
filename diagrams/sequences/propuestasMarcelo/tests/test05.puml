@@ -1,0 +1,33 @@
+@startuml
+
+Actor test as sis
+
+participant ":TorreBlanca" as torre
+
+sis->torre : TorreBlanca((0,0))
+activate torre
+torre--> sis: torreBlanca
+deactivate torre
+
+sis-> sis: assertEnRango
+activate sis
+sis-> torre : enRango((0,3))
+activate torre
+torre-> sis: true
+deactivate torre
+
+deactivate sis
+
+
+sis-> sis: assertNoEstaEnRango
+activate sis
+sis-> torre : enRango((0,4))
+activate torre
+torre-> sis: false
+deactivate torre
+
+deactivate sis
+
+
+
+@enduml

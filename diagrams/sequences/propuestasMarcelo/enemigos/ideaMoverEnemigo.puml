@@ -1,0 +1,33 @@
+@startuml
+
+Actor alguien as sis
+participant ":Enemigo" as enemy
+participant ":Mapa" as mapa
+
+sis-> enemy: accionar(mapa,jugador)
+activate enemy
+
+enemy-> mapa: mover(this,\nposicion,unidades)
+activate mapa
+mapa--> enemy: posicionNueva
+deactivate mapa
+
+
+enemy-> mapa: llegoAlFinal(posicionNueva)
+activate mapa
+mapa-> enemy: true
+deactivate mapa
+
+
+enemy-> mapa : removerUnidad(this,posicionNueva)
+
+enemy-> jugador: recibirDamage(damage)
+activate jugador
+jugador->enemy: void
+deactivate jugador
+
+enemy--> sis: true
+deactivate enemy
+
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+
+participant ":Juego" as nivel
+participant ":FaseConstruccion" as builder
+participant ":Jugador u otro " as Jugador
+participant ":Construible" as Construible
+participant ":interfazUsuario" as ui
+participant ":Opcion" as Opcion
+
+ref over nivel, builder :iniciar
+
+nivel-> builder: hacerTurno(ui, mapa, jugador)
+activate builder
+
+builder ->Jugador: posiblesConstruibles()
+activate Jugador
+
+
+loop por cada posible construccion
+Jugador -> Construible : Construible(this,nombre,puedeCostear,..etc)
+Construible->Opcion :Opcion(puedecostear,titulo,etc...)
+Construible-->Jugador: construible
+end
+
+
+Jugador-->builder: construibles
+deactivate Jugador
+builder -> ui : empezarFaseConstruccion(construibles, opcionPasarTurno)
+activate ui 
+ui --> builder: void
+deactivate ui 
+builder--> nivel: void
+deactivate builder
+
+
+@enduml
