@@ -6,10 +6,13 @@ import edu.fiuba.algo3.modeloNico.Enemigo.Enemigo;
 import edu.fiuba.algo3.modeloNico.Enemigo.Hormiga;
 import edu.fiuba.algo3.modeloNico.Juego;
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
         App.main(args);
 
 
@@ -46,14 +49,14 @@ public class Main {
 
                 System.out.print(matriz[i][j]);
 
-                if (matriz[i][j] == "Rocoso") {
+                if (matriz[i][j].equals("Rocoso")) {
                     matrizDeCeldas[i][j] = new Rocosa();
                 }
-                if (matriz[i][j] == "Tierra") {
+                if (matriz[i][j].equals("Tierra")) {
                     matrizDeCeldas[i][j] = new Tierra();
                 }
-                if (matriz[i][j] == "Pasarela") {
-                    if (esPrimeraCoordenada == false) {
+                if (matriz[i][j].equals("Pasarela")) {
+                    if (!esPrimeraCoordenada) {
                         coordenadaInicial = new Coordenada(i,j);
                         esPrimeraCoordenada = true;
                     }
@@ -89,7 +92,7 @@ public class Main {
         oleadas[3][0] = new Hormiga();
         oleadas[3][1] = new Arania();
         oleadas[3][0].establecerCantidad(0);
-        oleadas[0][1].establecerCantidad(1);
+        oleadas[3][1].establecerCantidad(1);
 
          oleadas[4][0] = new Hormiga();
          oleadas[4][1] = new Arania();

@@ -2,9 +2,6 @@ package edu.fiuba.algo3.modeloNico.Mapa;
 
 import edu.fiuba.algo3.modeloNico.Celdas.*;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 public class Mapa {
 
     private Celda[][] matrix15;
