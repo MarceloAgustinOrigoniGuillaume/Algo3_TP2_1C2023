@@ -1,11 +1,19 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modeloNico.Celdas.*;
+import edu.fiuba.algo3.modeloNico.Enemigo.Arania;
+import edu.fiuba.algo3.modeloNico.Enemigo.Enemigo;
+import edu.fiuba.algo3.modeloNico.Enemigo.Hormiga;
+import edu.fiuba.algo3.modeloNico.Juego;
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 
 public class Main {
+
     public static void main(String[] args) {
         App.main(args);
+
+
+        Juego juego = new Juego();
 
 
         //Mapa unMapa = new Mapa();
@@ -57,10 +65,71 @@ public class Main {
         }
 
         Mapa mapa = new Mapa(matrizDeCeldas, coordenadaInicial, coordenadaFinal);
-
         System.out.print(matriz[0][0]);
         System.out.print(matriz[5][5]);
         System.out.print(matriz[10][14]);
+
+        Enemigo[][] oleadas = new Enemigo[12][2];
+
+        oleadas[0][0] = new Hormiga();
+        oleadas[0][1] = new Arania();
+        oleadas[0][0].establecerCantidad(1);
+        oleadas[0][1].establecerCantidad(0);
+
+        oleadas[1][0] = new Hormiga();
+        oleadas[1][1] = new Arania();
+        oleadas[1][0].establecerCantidad(1);
+        oleadas[1][1].establecerCantidad(1);
+
+        oleadas[2][0] = new Hormiga();
+        oleadas[2][1] = new Arania();
+        oleadas[2][0].establecerCantidad(2);
+        oleadas[2][1].establecerCantidad(1);
+
+        oleadas[3][0] = new Hormiga();
+        oleadas[3][1] = new Arania();
+        oleadas[3][0].establecerCantidad(0);
+        oleadas[0][1].establecerCantidad(1);
+
+         oleadas[4][0] = new Hormiga();
+         oleadas[4][1] = new Arania();
+         oleadas[4][0].establecerCantidad(1);
+         oleadas[4][1].establecerCantidad(1);
+
+        oleadas[5][0] = new Hormiga();
+        oleadas[5][1] = new Arania();
+        oleadas[5][0].establecerCantidad(1);
+        oleadas[5][1].establecerCantidad(2);
+
+        oleadas[6][0] = new Hormiga();
+        oleadas[6][1] = new Arania();
+        oleadas[6][0].establecerCantidad(0);
+        oleadas[6][1].establecerCantidad(1);
+
+        oleadas[7][0] = new Hormiga();
+        oleadas[7][1] = new Arania();
+        oleadas[7][0].establecerCantidad(1);
+        oleadas[7][1].establecerCantidad(0);
+
+        oleadas[8][0] = new Hormiga();
+        oleadas[8][1] = new Arania();
+        oleadas[8][0].establecerCantidad(1);
+        oleadas[8][1].establecerCantidad(0);
+
+        oleadas[9][0] = new Hormiga();
+        oleadas[9][1] = new Arania();
+        oleadas[9][0].establecerCantidad(2);
+        oleadas[9][1].establecerCantidad(0);
+
+        oleadas[10][0] = new Hormiga();
+        oleadas[10][1] = new Arania();
+        oleadas[10][0].establecerCantidad(0);
+        oleadas[10][1].establecerCantidad(1);
+
+        oleadas[11][0] = new Hormiga();
+        oleadas[11][1] = new Arania();
+        oleadas[11][0].establecerCantidad(1);
+        oleadas[11][1].establecerCantidad(2);
         
     }
 }
