@@ -2,10 +2,12 @@ name: build
 on: [ push, pull_request ]
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Add permissions
+        run : chmod +x scripts/start_services.sh
       - name: Start services
         run: scripts/start_services.sh
       - name: Run test suite
@@ -14,7 +16,7 @@ jobs:
         uses: codecov/codecov-action@v2
 
   package:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: build
     if: contains(github.ref, 'refs/tags/v')
     steps:
