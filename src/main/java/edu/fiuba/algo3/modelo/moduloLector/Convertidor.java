@@ -2,12 +2,13 @@ package edu.fiuba.algo3.modelo.moduloLector;
 
 import java.util.Hashtable;
 
-public class Elemento {
+public class Convertidor {
 private Hashtable<String,String> Valores;
-    public Elemento(){
+    public Convertidor(){
         Valores = new Hashtable<>();
     }
     public String obtener(String key){
+
         return Valores.get(key);
     }
     protected void agregar(String key,String value){

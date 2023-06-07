@@ -10,7 +10,7 @@ public class LectorEnemigo  extends Lector{
     }
 
     @Override
-    public Elemento siguienteElemento() {
+    public Convertidor siguienteElemento() {
         return null;
     }
 }

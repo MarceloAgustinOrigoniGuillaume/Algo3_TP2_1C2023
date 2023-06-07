@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
@@ -19,7 +18,7 @@ public abstract class  Lector {
         this.jsonArray = (JSONArray) obj;
         this.iterador = jsonArray.iterator();
     }
-    public abstract Elemento siguienteElemento();
+    public abstract Convertidor siguienteElemento();
     public boolean haySiguiente() {
 
         return iterador.hasNext();

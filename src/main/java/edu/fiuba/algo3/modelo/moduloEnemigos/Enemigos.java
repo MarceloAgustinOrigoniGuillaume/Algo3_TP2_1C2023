@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.moduloEnemigos;
 
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.moduloLector.Elemento;
+import edu.fiuba.algo3.modelo.moduloLector.Convertidor;
 import edu.fiuba.algo3.modelo.moduloLector.Lector;
 import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
 
@@ -13,7 +13,7 @@ public class Enemigos {
     public Enemigos(Lector unLector, Jugador jugador, Posicion pos){
         enemigos = new ArrayList<Enemigo>();
         while (unLector.haySiguiente()){
-            Elemento elemento = unLector.siguienteElemento();
+            Convertidor elemento = unLector.siguienteElemento();
 
 
             int cantidad = Integer.parseInt(elemento.obtener("cantidad"));

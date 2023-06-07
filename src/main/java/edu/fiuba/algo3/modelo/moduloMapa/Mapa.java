@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.moduloMapa;
 
 import edu.fiuba.algo3.modelo.moduloEnemigos.Enemigo;
-import edu.fiuba.algo3.modelo.moduloLector.Elemento;
+import edu.fiuba.algo3.modelo.moduloLector.Convertidor;
 import edu.fiuba.algo3.modelo.moduloLector.Lector;
 import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
 
@@ -23,7 +23,7 @@ public class Mapa {
         int y;
         camino = new ArrayList<>();
         while (unLector.haySiguiente()){
-            Elemento elemento = unLector.siguienteElemento();
+            Convertidor elemento = unLector.siguienteElemento();
             
 
             y = Integer.parseInt(elemento.obtener("Coordenada_Y"));
