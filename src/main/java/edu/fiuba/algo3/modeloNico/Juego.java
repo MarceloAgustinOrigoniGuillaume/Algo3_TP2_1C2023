@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Juego {
     private EstadoJuego estadoDeJuego;
     private Mapa mapa;
-    private Oleada oleadas; //La clase oleadas almacena un vector de enemigos.
+    private Oleadas oleadas; //La clase oleadas almacena un vector de enemigos.
 
     public Juego() throws IOException, ParseException {
         this.estadoDeJuego = new EstadoInicial(this);
@@ -28,7 +28,7 @@ public class Juego {
         this.mapa = mapa;
     }
 
-    public void asignarOleadas(Oleada oleadas){
+    public void asignarOleadas(Oleadas oleadas){
 
         this.oleadas = oleadas;
 
