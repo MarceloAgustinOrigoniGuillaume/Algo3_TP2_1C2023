@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modeloNico.Estados;
 
-import edu.fiuba.algo3.modeloNico.AlgoDefense;
+import edu.fiuba.algo3.modeloNico.Juego;
 
 public class EstadoJugando implements EstadoJuego {
-    AlgoDefense juego;
+    Juego juego;
 
-    public EstadoJugando(AlgoDefense juego) {
+    public EstadoJugando(Juego juego) {
         this.juego = juego;
     }
 

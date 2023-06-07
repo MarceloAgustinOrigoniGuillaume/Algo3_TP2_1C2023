@@ -8,11 +8,12 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
-public class AlgoDefense {
+public class Juego {
     private EstadoJuego estadoDeJuego;
     private Mapa mapa;
+    private Oleada oleadas; //La clase oleadas almacena un vector de enemigos.
 
-    public AlgoDefense() throws IOException, ParseException {
+    public Juego() throws IOException, ParseException {
         this.estadoDeJuego = new EstadoInicial(this);
         estadoDeJuego.ejecutarEstado();
     }
@@ -20,6 +21,17 @@ public class AlgoDefense {
     public void iniciarJuego() {
         this.estadoDeJuego = new EstadoJugando(this);
         estadoDeJuego.ejecutarEstado();
+    }
+
+    public void asignarMapa(Mapa mapa){
+
+        this.mapa = mapa;
+    }
+
+    public void asignarOleadas(Oleada oleadas){
+
+        this.oleadas = oleadas;
+
     }
 
 
