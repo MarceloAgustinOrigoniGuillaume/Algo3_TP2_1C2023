@@ -9,4 +9,7 @@ public class Lector {
     public boolean haySiguiente() {
         return false;
     }
+
+    public void inicializarMapa() {
+    }
 }
