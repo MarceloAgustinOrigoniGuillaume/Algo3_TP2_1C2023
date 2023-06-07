@@ -9,18 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
-public abstract class  Lector {
-    JSONArray jsonArray;
-    JSONObject actual;
-    protected Iterator iterador;
-    public Lector(String filePath) throws IOException, ParseException {
-        Object obj = new JSONParser().parse(new FileReader(filePath));
-        this.jsonArray = (JSONArray) obj;
-        this.iterador = jsonArray.iterator();
-    }
-    public abstract Convertidor siguienteElemento();
-    public boolean haySiguiente() {
-
-        return iterador.hasNext();
-    }
+public interface  Lector {
+    Convertidor siguienteElemento();
+    boolean haySiguiente();
 }

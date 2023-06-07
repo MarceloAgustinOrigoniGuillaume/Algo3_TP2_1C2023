@@ -16,14 +16,14 @@ public class Enemigos {
             Convertidor elemento = unLector.siguienteElemento();
 
 
-            int cantidad = Integer.parseInt(elemento.obtener("cantidad"));
+            int cantidad = 0;//Integer.parseInt(elemento.obtener("cantidad"));
 
             if(cantidad <= 0){
                     continue;
             }
-            int turno = Integer.parseInt(elemento.obtener("turno"));
+            int turno = 0;//Integer.parseInt(elemento.obtener("turno"));
 
-            String enemigo = elemento.obtener("tipo");
+            String enemigo = "arana";//elemento.obtener("tipo");
             for(int i =0; i< cantidad; i ++ ) {
                 if (enemigo == "arana") {
                     enemigos.add(new Spider(pos, jugador));

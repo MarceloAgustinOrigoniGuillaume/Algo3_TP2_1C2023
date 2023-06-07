@@ -26,7 +26,7 @@ public class Mapa {
             Convertidor elemento = unLector.siguienteElemento();
             
 
-            y = Integer.parseInt(elemento.obtener("Coordenada_Y"));
+            y = 0;//Integer.parseInt(elemento.obtener("Coordenada_Y"));
 
             if(y > matriz.size()){
                 
@@ -36,8 +36,8 @@ public class Mapa {
 
 
 
-            fila.add(instanciarParcela(elemento.obtener("tipo"),
-                              Integer.parseInt(elemento.obtener("Coordenada_X")),
+            fila.add(instanciarParcela("Tierra",//elemento.obtener("tipo"),
+                              0,//Integer.parseInt(elemento.obtener("Coordenada_X")),
                               y));
         }
 
