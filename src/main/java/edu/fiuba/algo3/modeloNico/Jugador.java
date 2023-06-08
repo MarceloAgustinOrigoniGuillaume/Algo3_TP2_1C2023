@@ -49,10 +49,14 @@ public class Jugador {
         this.creditos+= creditos;
     }
 
+    public boolean estaMuerto(){
+        return vida <= 0;
+    }
+
     public void recibirAtaque(int damege) {
         vida = vida- damege;
         // Aca capaz, queda mejor si la vida-damage =< 0 entonces que le pase un mensaje a juego o estado jugando que se termino el juego.
-        if(vida < 0 ){
+        if(estaMuerto()){
             vida = 0;
         }
     }

@@ -1,12 +1,15 @@
 package edu.fiuba.algo3.modeloNico.Estados;
 
 import edu.fiuba.algo3.modeloNico.Juego;
+import edu.fiuba.algo3.modeloNico.Jugador;
 
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 //import edu.fiuba.algo3.modeloNico.Oleadas;
 import edu.fiuba.algo3.modeloNico.Turnos.Turno;
 import edu.fiuba.algo3.modeloNico.Defensas.EstructurasActivas;
 
+import java.util.ArrayList;
+import edu.fiuba.algo3.modeloNico.Celdas.Unidad;
 
 public class EstadoJugando implements EstadoJuego {
     Juego juego;
@@ -30,5 +33,20 @@ public class EstadoJugando implements EstadoJuego {
     		juego.obtenerEstructuras(),
     		juego.obtenerOleadas()
     		);
+
+        Jugador jugador = juego.obtenerJugador();
+        ArrayList<Unidad> enemigos = juego.obtenerMapa().popUnidadesFinal();
+        int ind = 0;
+
+        while(!jugador.estaMuerto() && ind < enemigos.size()){
+
+            jugador.recibirAtaque(enemigos.get(ind).ataque());
+
+            ind+=1;
+        }
+
+        if(jugador.estaMuerto()){
+            juego.terminarJuego();
+        }
     }
 }

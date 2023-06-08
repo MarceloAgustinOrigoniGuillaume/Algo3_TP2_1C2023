@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoInicial;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoJuego;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoJugando;
+import edu.fiuba.algo3.modeloNico.Estados.EstadoTerminado;
 import edu.fiuba.algo3.modeloNico.Defensas.EstructurasActivas;
 import org.json.simple.parser.ParseException;
 
@@ -26,6 +27,11 @@ public class Juego {
         this.estadoDeJuego = new EstadoJugando(this);
         estadoDeJuego.ejecutarEstado();
     }
+
+    public void terminarJuego() {
+        this.estadoDeJuego = new EstadoTerminado(this);
+    }
+
 
 
     public void asignarMapa(Mapa mapa){

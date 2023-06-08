@@ -7,4 +7,8 @@ public class Hormiga implements Enemigo {
 	public int velocidad(){
 		return 1;
 	}
+
+	public int ataque(){
+		return 1;
+	}
 }
