@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modeloNico.Defensas;
 
+public class TorreBlanca extends Defensa {
 
-public class TorrePlateada extends Defensa {
 
-    public TorrePlateada(int turnosParaConstruccion) {
+    public TorreBlanca(int turnosParaConstruccion) {
 
         this.turnosParaConstruccion = turnosParaConstruccion;
         this.estadoActual = new EstadoConstruyendo(turnosParaConstruccion);
@@ -11,8 +11,7 @@ public class TorrePlateada extends Defensa {
 
     @Override
     public int costo() {
-        return 20;
+        return 10;
     }
-
 
 }
