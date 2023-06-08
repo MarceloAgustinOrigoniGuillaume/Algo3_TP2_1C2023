@@ -17,6 +17,7 @@ public class Juego {
     private Oleadas oleadas; //La clase oleadas almacena un vector de enemigos.
 
     public Juego(String jsonMapa,String jsonEnemigos) throws IOException, ParseException {
+        jugador = new Jugador();
         this.estadoDeJuego = new EstadoInicial(this,jsonMapa,jsonEnemigos);
         estadoDeJuego.ejecutarEstado();
     }

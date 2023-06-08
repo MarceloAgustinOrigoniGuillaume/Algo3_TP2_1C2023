@@ -1,12 +1,19 @@
 package edu.fiuba.algo3.modeloNico.Estados;
 
-import edu.fiuba.algo3.modelo.moduloLector.LectorMapa;
-import edu.fiuba.algo3.modelo.moduloLector.ConvertidorParcela;
-import edu.fiuba.algo3.modeloNico.Juego;
-import org.json.simple.parser.ParseException;
-
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 import edu.fiuba.algo3.modeloNico.Celdas.Celda;
+
+import edu.fiuba.algo3.modeloNico.Juego;
+import edu.fiuba.algo3.modeloNico.Oleadas;
+
+
+
+
+import edu.fiuba.algo3.modelo.moduloLector.LectorMapa;
+import edu.fiuba.algo3.modelo.moduloLector.LectorEnemigo;
+import edu.fiuba.algo3.modelo.moduloLector.ConvertidorParcela;
+import org.json.simple.parser.ParseException;
+
 
 import java.io.IOException;
 
@@ -30,11 +37,20 @@ public class EstadoInicial implements EstadoJuego {
 
     @Override
     public void ejecutarEstado() {
-        //Crear turno? tiene mas sentido para mi pero bueno
 
         try{
+            // reinicia el estado de Juego
 	        LectorMapa lector = new LectorMapa(jsonMapa,WIDTH_MAP,HEIGHT_MAP);
-	        Mapa mapa = new Mapa(lector, WIDTH_MAP,HEIGHT_MAP);        	
+
+            juego.asignarMapa(new Mapa(lector, WIDTH_MAP,HEIGHT_MAP));
+            
+            LectorEnemigo lectorEnemigos = new LectorEnemigo(jsonEnemigos);
+
+            juego.asignarOleadas(new Oleadas( juego.obtenerJugador(), lectorEnemigos));
+
+            juego.resetEstructurasActivas();
+
+
         } catch (Exception e){
         	System.out.println("ERROR "+e.toString());
         }
