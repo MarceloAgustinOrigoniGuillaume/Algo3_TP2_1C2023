@@ -22,8 +22,9 @@ public class Tierra implements Celda {
     public boolean posicionar(Construccion entidad){
 		if (construccion == null) {
 			construccion = entidad;
+            return true;
 		}
-		return construccion == null;
+        return false;
 
 	}
     /*
