@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException {
         App.main(args);
 
-
+        /*
         Juego juego = new Juego();
 
 
@@ -133,7 +133,7 @@ public class Main {
         oleadas[11][1] = new Arania();
         oleadas[11][0].establecerCantidad(1);
         oleadas[11][1].establecerCantidad(2);
-        
+        */
     }
 }
 
