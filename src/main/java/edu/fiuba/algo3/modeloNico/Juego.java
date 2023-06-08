@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modeloNico;
 
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
+import edu.fiuba.algo3.modeloNico.Celdas.Coordenada;
 import edu.fiuba.algo3.modeloNico.Defensas.Estructura;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoInicial;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoJuego;
