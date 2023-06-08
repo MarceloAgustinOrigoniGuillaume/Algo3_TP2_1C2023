@@ -16,7 +16,7 @@ public class Mapa {
     private ArrayList<ArrayList<Parcela>> matriz;
     private ArrayList<Pasarela> camino;
 
-    public Mapa(Lector unLector) {
+    public Mapa(Lector unLector) throws Exception {
         matriz = new ArrayList<>();
         ArrayList<Parcela> fila = new ArrayList<>();
         matriz.add(fila);

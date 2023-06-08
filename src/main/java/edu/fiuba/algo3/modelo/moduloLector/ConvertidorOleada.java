@@ -15,7 +15,7 @@ public class ConvertidorOleada implements Convertidor {
     }
 
 
-    public Object obtener(){
+    public Object obtener() throws Exception {
         return new Oleada(aInstanciar);// instanciar Oleada
     }
 }

@@ -14,10 +14,15 @@ public class Oleada{
 
 	private ArrayList<Instanciador> aInstanciar;
 
-	public Oleada(Map<String, Integer> instanciacion){
+	public Oleada(Map<String, Integer> instanciacion) throws Exception {
 
 		aInstanciar = new ArrayList<>();
-
+		if(!instanciacion.containsKey(HORMIGA_LABEL)){
+			throw new Exception("No tenia label Hormiga");
+		}
+		if (!instanciacion.containsKey(ARANIA_LABEL)){
+			throw new Exception("No tenia label Arania");
+		}
 		int cantidad = instanciacion.get(HORMIGA_LABEL);
 		if(cantidad > 0){
 			aInstanciar.add(new Instanciador(new Hormiga(), cantidad));

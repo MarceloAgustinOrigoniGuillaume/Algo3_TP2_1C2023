@@ -17,7 +17,7 @@ public class Mapa {
     private ArrayList<Coordenada> defensas;
 
 
-    private void agregarCelda(ConvertidorParcela convertidor){
+    private void agregarCelda(ConvertidorParcela convertidor) throws Exception {
        	// [y == height][x == width]
     	Celda celda = (Celda)convertidor.obtener();
         matrizDeCeldas[convertidor.fila()-1][convertidor.columna()-1] = celda;
@@ -42,7 +42,7 @@ public class Mapa {
 
 
 
-    public Mapa(LectorMapa lector ,int width, int height) {
+    public Mapa(LectorMapa lector ,int width, int height) throws Exception {
         
 
     	// inicializas

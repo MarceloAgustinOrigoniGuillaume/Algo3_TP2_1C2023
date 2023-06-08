@@ -31,7 +31,7 @@ public class ConvertidorParcela implements Convertidor {
     }
 
 
-    private Celda instanciarParcela(){
+    private Celda instanciarParcela() throws Exception {
 
         if (TIPO_TIERRA.equals(tipo)){
             return new Tierra(new Coordenada(x, y));
@@ -47,14 +47,13 @@ public class ConvertidorParcela implements Convertidor {
             return new Pasarela(new Coordenada(x,y));
         }
 
-        System.out.println("TIPO INVALIDO?? '"+tipo+"'");
+        throw new Exception("Tipo de parcela invalido "+tipo);
         // TIRAR ERROR?
-        return null;
     }
 
 
 
-    public Object obtener(){
+    public Object obtener() throws Exception {
         return instanciarParcela();
     }
 

@@ -17,10 +17,11 @@ import java.util.Iterator;
 import edu.fiuba.algo3.modeloNico.Juego;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestFormatoJson {
     @Test
-    public void formatoValidoDeEnemigos() throws IOException, ParseException {
+    public void formatoValidoDeEnemigos() throws Exception {
         
 
         Lector lector = new LectorEnemigo("src/main/resorces/enemigos.json");
@@ -39,7 +40,7 @@ public class TestFormatoJson {
 
 
     @Test
-    public void formatoValidoDeMapa() throws IOException, ParseException {
+    public void formatoValidoDeMapa() throws Exception {
         
         Lector lector = new LectorMapa("src/main/resorces/mapa.json",15,15);
         int cantidad = 0;
@@ -57,8 +58,33 @@ public class TestFormatoJson {
         Juego juego = new Juego("src/main/resorces/mapa.json","src/main/resorces/enemigos.json");
 
     }
+    @Test
+    public void pruebaLectorFormatoEnemigosInvalido() {
+       assertThrows(Exception.class, ()->{Lector lector = new LectorEnemigo("src/main/resorces/enemigosInvalidos.json");
+           int cantidad = 0;
+           while(lector.haySiguiente()){
+
+               Object element = lector.siguienteElemento().obtener();
+
+               cantidad+=1;
+           }});
 
 
+    }
+    @Test
+    public void pruebaLectorFormatoMapaInvalido() {
+        assertThrows(Exception.class, () -> {
+            Lector lector = new LectorMapa("src/main/resorces/mapaParcelaInvalida.json",15,15);
+            int cantidad = 0;
+            while (lector.haySiguiente()) {
 
+                Object element = lector.siguienteElemento().obtener();
+
+                cantidad += 1;
+            }
+        });
+
+
+    }
 
 }

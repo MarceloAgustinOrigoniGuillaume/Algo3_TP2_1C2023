@@ -11,6 +11,6 @@ import java.util.Iterator;
 
 
 public interface  Lector {
-    Convertidor siguienteElemento();
+    Convertidor siguienteElemento() throws Exception;
     boolean haySiguiente();
 }

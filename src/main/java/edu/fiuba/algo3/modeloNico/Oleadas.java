@@ -11,7 +11,7 @@ public class Oleadas {
 	private void agregarOleada(Oleada oleada){
 		oleadas.add(oleada);
 	}
-	public Oleadas(LectorEnemigo lector){
+	public Oleadas(LectorEnemigo lector) throws Exception {
 		oleadas = new ArrayList();
     	// cargas lector
         while(lector.haySiguiente()){

@@ -37,7 +37,7 @@ public class LectorEnemigo  implements Lector{
     }
 
     @Override
-    public Convertidor siguienteElemento() {
+    public Convertidor siguienteElemento() throws Exception {
 
 
     	JSONObject obj = (JSONObject)iterador.next();

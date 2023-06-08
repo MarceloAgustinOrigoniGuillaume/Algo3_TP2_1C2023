@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class mapaTest {
     
     @Test
-    public void VerificarSePuedaConstruirDefensasSobreTierra() {
+    public void VerificarSePuedaConstruirDefensasSobreTierra() throws Exception {
         TorrePlateada torrePlateada = new TorrePlateada();
         //ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
         LectorMapa mockLector = mock(LectorMapa.class);
@@ -38,7 +38,7 @@ public class mapaTest {
     }
     
     @Test
-    public void VerificarNoSePuedaConstruirDefensasSobreRoca() {
+    public void VerificarNoSePuedaConstruirDefensasSobreRoca() throws Exception {
         TorrePlateada torrePlateada = new TorrePlateada();
 
         LectorMapa mockLector = mock(LectorMapa.class);
@@ -53,7 +53,7 @@ public class mapaTest {
     }    
 
     @Test
-    public void VerificarNoSePuedaConstruirDefensasSobrePasarela() {
+    public void VerificarNoSePuedaConstruirDefensasSobrePasarela() throws Exception {
         TorrePlateada torrePlateada = new TorrePlateada();
 
         LectorMapa mockLector = mock(LectorMapa.class);
@@ -71,7 +71,7 @@ public class mapaTest {
     
 
     @Test
-    public void VerificarSePuedaConstruirDefensasSobreTierraSoloUnaVez() {
+    public void VerificarSePuedaConstruirDefensasSobreTierraSoloUnaVez() throws Exception {
         TorrePlateada torrePlateada = new TorrePlateada();
         //ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
         LectorMapa mockLector = mock(LectorMapa.class);
@@ -90,7 +90,7 @@ public class mapaTest {
     
 
     @Test
-    public void VerificarEnemigosSePosicionanAlInicio() {
+    public void VerificarEnemigosSePosicionanAlInicio() throws Exception {
         LectorMapa mockLector = mock(LectorMapa.class);
 
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
@@ -115,7 +115,7 @@ public class mapaTest {
     }
 
     @Test
-    public void VerificarEnemigosSeMuevenPorPasarelas() {
+    public void VerificarEnemigosSeMuevenPorPasarelas() throws Exception {
         LectorMapa mockLector = mock(LectorMapa.class);
 
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
@@ -144,7 +144,7 @@ public class mapaTest {
     }
 
     @Test
-    public void VerificarEnemigosSeMuevenSoloPorPasarelasLlamadosSucesivos() {
+    public void VerificarEnemigosSeMuevenSoloPorPasarelasLlamadosSucesivos() throws Exception {
         LectorMapa mockLector = mock(LectorMapa.class);
 
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
@@ -174,7 +174,7 @@ public class mapaTest {
     }
 
     @Test
-    public void VerificarEnemigosSeMuevenSoloPorPasarelasHastaElFinal() {
+    public void VerificarEnemigosSeMuevenSoloPorPasarelasHastaElFinal() throws Exception {
         LectorMapa mockLector = mock(LectorMapa.class);
 
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Enemigos {
     ArrayList<Enemigo> enemigos;
 
-    public Enemigos(Lector unLector, Jugador jugador, Posicion pos){
+    public Enemigos(Lector unLector, Jugador jugador, Posicion pos) throws Exception {
         enemigos = new ArrayList<Enemigo>();
         while (unLector.haySiguiente()){
             Convertidor elemento = unLector.siguienteElemento();
