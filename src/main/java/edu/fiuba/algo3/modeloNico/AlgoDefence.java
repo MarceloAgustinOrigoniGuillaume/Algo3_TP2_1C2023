@@ -8,7 +8,7 @@ public class AlgoDefence {
 
     Juego juego;
 
-    public AlgoDefence() throws IOException, ParseException {
-        this.juego = new Juego();
+    public AlgoDefence(String jsonMapa,String jsonEnemigos) throws IOException, ParseException {
+        this.juego = new Juego(jsonMapa,jsonEnemigos);
     }
 }

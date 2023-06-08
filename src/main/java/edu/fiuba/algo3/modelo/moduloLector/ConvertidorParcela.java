@@ -4,10 +4,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import java.util.Iterator;
 
-import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
-import edu.fiuba.algo3.modelo.moduloMapa.Parcela;
-import edu.fiuba.algo3.modelo.moduloMapa.Terreno;
-import edu.fiuba.algo3.modelo.moduloMapa.Pasarela;
+//import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
+//import edu.fiuba.algo3.modelo.moduloMapa.Parcela;
+//import edu.fiuba.algo3.modelo.moduloMapa.Terreno;
+//import edu.fiuba.algo3.modelo.moduloMapa.Pasarela;
+
+import edu.fiuba.algo3.modeloNico.Celdas.*;
 
 
 public class ConvertidorParcela implements Convertidor {
@@ -29,20 +31,20 @@ public class ConvertidorParcela implements Convertidor {
     }
 
 
-    private Parcela instanciarParcela(){
+    private Celda instanciarParcela(){
 
         if (TIPO_TIERRA.equals(tipo)){
-            return new Terreno(new Posicion(x,y), true);
+            return new Tierra(new Coordenada(x, y));
         }
 
 
         if (TIPO_ROCA.equals(tipo)){
-            return new Terreno(new Posicion(x,y), false);
+            return new Rocosa(new Coordenada(x,y));
         }        
 
 
         if (TIPO_PASARELA.equals(tipo)){
-            return new Pasarela(new Posicion(x,y));
+            return new Pasarela(new Coordenada(x,y));
         }
 
         System.out.println("TIPO INVALIDO?? '"+tipo+"'");
@@ -62,5 +64,9 @@ public class ConvertidorParcela implements Convertidor {
 
     public int columna(){
         return x;
+    }
+
+    public boolean esCaminable(){
+        return TIPO_PASARELA.equals(tipo);
     }
 }

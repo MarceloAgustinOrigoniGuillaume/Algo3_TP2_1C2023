@@ -20,4 +20,12 @@ public class Coordenada {
         return Objects.equals(coordenadaX, coordenada.coordenadaX) && Objects.equals(coordenadaY, coordenada.coordenadaY);
     }
 
+    public int x(){
+        return coordenadaX;
+    }
+
+    public int y(){
+        return coordenadaY;
+    }
+
 }

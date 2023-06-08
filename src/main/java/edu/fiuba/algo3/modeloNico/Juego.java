@@ -13,8 +13,8 @@ public class Juego {
     private Mapa mapa;
     private Oleadas oleadas; //La clase oleadas almacena un vector de enemigos.
 
-    public Juego() throws IOException, ParseException {
-        this.estadoDeJuego = new EstadoInicial(this);
+    public Juego(String jsonMapa,String jsonEnemigos) throws IOException, ParseException {
+        this.estadoDeJuego = new EstadoInicial(this,jsonMapa,jsonEnemigos);
         estadoDeJuego.ejecutarEstado();
     }
 
@@ -24,7 +24,6 @@ public class Juego {
     }
 
     public void asignarMapa(Mapa mapa){
-
         this.mapa = mapa;
     }
 

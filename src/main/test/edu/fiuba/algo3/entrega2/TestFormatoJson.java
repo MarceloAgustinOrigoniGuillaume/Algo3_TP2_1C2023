@@ -14,6 +14,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
+import edu.fiuba.algo3.modeloNico.Juego;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestFormatoJson {
@@ -27,7 +29,7 @@ public class TestFormatoJson {
 
         	Object element = lector.siguienteElemento().obtener();
         	cantidad+=1;
-	        System.out.println("TURNO "+String.valueOf(cantidad)+" got "+element.toString());
+	        //System.out.println("TURNO "+String.valueOf(cantidad)+" got "+element.toString());
         }
 	    //assertEquals(225,cantidad);
     }
@@ -46,6 +48,15 @@ public class TestFormatoJson {
         }
 	    assertEquals(225,cantidad);
     }
+
+    @Test
+    public void formatoValidoDeMapaJuego() throws IOException, ParseException {
+        
+        Juego juego = new Juego("src/main/resorces/mapa.json","src/main/resorces/enemigos.json");
+
+    }
+
+
 
 
 }

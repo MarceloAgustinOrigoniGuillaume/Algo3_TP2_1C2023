@@ -1,13 +1,20 @@
 package edu.fiuba.algo3.modeloNico.Celdas;
 
-public abstract class Celda {
+public abstract class Celda {    
+    protected String tipoCelda;
+
     private Coordenada coordenada;
 
-    private String tipoCelda;
+    public Celda(Coordenada coordenada){
+    	this.coordenada = coordenada;
 
-    private void asignarCoordenda(int fila, int columna){
-        this.coordenada = new Coordenada(fila, columna);
     }
+
+    public Coordenada posicion(){
+    	return coordenada;
+    }
+
+
 
     public String imprimirTipo() {
         return tipoCelda;
