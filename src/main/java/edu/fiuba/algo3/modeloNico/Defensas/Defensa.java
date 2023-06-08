@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modeloNico.Defensas;
+import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 
 public abstract class Defensa implements Estructura {
 
@@ -10,5 +11,11 @@ public abstract class Defensa implements Estructura {
         this.estadoActual = new EstadoConstruido();
 
     }
+    public void accionar(Mapa mapa){
+        estadoActual.ejecutarMetodo(this, mapa);
+    }
 
+    public boolean finalizoContruccion() {
+        return estadoActual.estaActivo();
+    }
 }

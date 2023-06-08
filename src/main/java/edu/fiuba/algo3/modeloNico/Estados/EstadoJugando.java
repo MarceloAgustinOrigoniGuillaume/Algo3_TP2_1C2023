@@ -6,7 +6,6 @@ import edu.fiuba.algo3.modeloNico.Jugador;
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 //import edu.fiuba.algo3.modeloNico.Oleadas;
 import edu.fiuba.algo3.modeloNico.Turnos.Turno;
-import edu.fiuba.algo3.modeloNico.Defensas.EstructurasActivas;
 
 import java.util.ArrayList;
 import edu.fiuba.algo3.modeloNico.Celdas.Unidad;

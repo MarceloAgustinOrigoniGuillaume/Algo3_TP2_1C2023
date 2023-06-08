@@ -22,6 +22,8 @@ public class EstadoConstruido implements EstadoEstructura{
         }
         */
     }
-
+    public boolean estaActivo(){
+        return true;
+    }
 }
 

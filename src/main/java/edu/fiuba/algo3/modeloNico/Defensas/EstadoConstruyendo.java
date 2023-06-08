@@ -27,4 +27,11 @@ public class EstadoConstruyendo implements EstadoEstructura{
         }
 
     }
+
+    @Override
+    public boolean estaActivo() {
+        return false;
+    }
+
+
 }
