@@ -8,7 +8,9 @@ public class TorrePlateada extends Defensa {
         this.turnosParaConstruccion = turnosParaConstruccion;
         this.estadoActual = new EstadoConstruyendo(turnosParaConstruccion);
     }
-
+    public TorrePlateada() {
+        this(2);
+    }
     @Override
     public int costo() {
         return 20;

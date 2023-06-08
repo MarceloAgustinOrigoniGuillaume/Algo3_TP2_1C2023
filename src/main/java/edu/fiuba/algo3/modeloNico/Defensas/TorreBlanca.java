@@ -9,6 +9,10 @@ public class TorreBlanca extends Defensa {
         this.estadoActual = new EstadoConstruyendo(turnosParaConstruccion);
     }
 
+    public TorreBlanca() {
+        this(1);
+    }
+
     @Override
     public int costo() {
         return 10;
