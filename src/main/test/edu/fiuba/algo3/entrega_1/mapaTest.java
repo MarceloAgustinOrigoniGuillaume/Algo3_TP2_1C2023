@@ -1,86 +1,90 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
-import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada;
-import edu.fiuba.algo3.modelo.moduloLector.Lector;
+
+//import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
 import edu.fiuba.algo3.modelo.moduloLector.LectorMapa;
-import edu.fiuba.algo3.modelo.moduloMapa.Mapa;
-import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
-import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modeloNico.Defensas.TorrePlateada;
+import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.moduloLector.ConvertidorParcela;
+import edu.fiuba.algo3.modeloNico.Celdas.Coordenada;
+
+//import edu.fiuba.algo3.modelo.moduloEnemigos.Hormiga;
+//import edu.fiuba.algo3.modelo.Jugador;
+//import edu.fiuba.algo3.modelo.moduloLector.Lector;
+
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import edu.fiuba.algo3.modelo.moduloEnemigos.Hormiga;
-import edu.fiuba.algo3.modelo.Jugador;
 
 public class mapaTest {
-    /*
+    
     @Test
     public void VerificarSePuedaConstruirDefensasSobreTierra() {
-        TorrePlateada torrePlateada = new TorrePlateada(new Posicion(0,0));
-        ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
-        Lector mockLector = mock(LectorMapa.class);
+        TorrePlateada torrePlateada = new TorrePlateada();
+        //ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
+        LectorMapa mockLector = mock(LectorMapa.class);
 
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorMapa("0","0","Tierra"));
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector);
+        Mapa unMapa = new Mapa(mockLector,1,1);
 
-        assertEquals(unMapa.posicionar(enConstruccion),true);
-        
+        assertEquals(true, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
     }
-
+    
     @Test
     public void VerificarNoSePuedaConstruirDefensasSobreRoca() {
-        TorrePlateada torrePlateada = new TorrePlateada(new Posicion(0,0));
-        ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
-        Lector mockLector = mock(LectorMapa.class);
+        TorrePlateada torrePlateada = new TorrePlateada();
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorMapa("0","0","Rocoso"));
+        LectorMapa mockLector = mock(LectorMapa.class);
+
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Rocoso"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector);
+        Mapa unMapa = new Mapa(mockLector,1,1);
 
-        assertEquals(unMapa.posicionar(enConstruccion),false);
+        assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
         
     }    
 
     @Test
     public void VerificarNoSePuedaConstruirDefensasSobrePasarela() {
-        TorrePlateada torrePlateada = new TorrePlateada(new Posicion(0,0));
-        ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
-        Lector mockLector = mock(LectorMapa.class);
+        TorrePlateada torrePlateada = new TorrePlateada();
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorMapa("0","0","Pasarela"));
+        LectorMapa mockLector = mock(LectorMapa.class);
+
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector);
+        Mapa unMapa = new Mapa(mockLector,1,1);
 
-        assertEquals(unMapa.posicionar(enConstruccion),false);
+        assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
         
-    }    
+    }  
+
+
+    
 
     @Test
     public void VerificarSePuedaConstruirDefensasSobreTierraSoloUnaVez() {
-        TorrePlateada torrePlateada = new TorrePlateada(new Posicion(0,0));
-        ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
-        Lector mockLector = mock(LectorMapa.class);
+        TorrePlateada torrePlateada = new TorrePlateada();
+        //ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
+        LectorMapa mockLector = mock(LectorMapa.class);
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorMapa("0","0","Tierra"));
+
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector);
+        Mapa unMapa = new Mapa(mockLector,1,1);
+        unMapa.posicionar(new Coordenada(1,1),torrePlateada);
 
-        unMapa.posicionar(enConstruccion);
-
-        assertEquals(unMapa.posicionar(enConstruccion),false);
-        
+        assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
     }
 
 
-
+    /*
 
     @Test
     public void VerificarEnemigosSeMuevenPorPasarelas() {

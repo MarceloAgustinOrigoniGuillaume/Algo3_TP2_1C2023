@@ -2,10 +2,12 @@ package edu.fiuba.algo3.modeloNico.Celdas;
 
 public class Tierra extends Celda {
 
+	private Construccion construccion;
 
     public Tierra(Coordenada coordenada){
     	super(coordenada);
 	    tipoCelda = "Tierra";
+	    construccion = null;
     }
 
 
@@ -14,6 +16,11 @@ public class Tierra extends Celda {
     }
 
     public boolean posicionar(Construccion entidad){
+    	if(construccion == null){
+    		construccion = entidad;
+    		return true;
+    	}
+
     	return false;
     }
 

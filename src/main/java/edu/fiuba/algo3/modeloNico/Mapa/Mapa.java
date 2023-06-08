@@ -25,7 +25,7 @@ public class Mapa {
 
         if (convertidor.esCaminable()){
         	camino.add(celda.posicion());
-	        //System.out.println("(*Pasarela SET MAPA "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" == "+celda.getClass());
+            //System.out.println("(*Pasarela SET MAPA "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" == "+celda.getClass());
         } else{
 	        //System.out.println("->(CELDA SET MAPA "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" == "+celda.getClass());
         }
@@ -33,7 +33,10 @@ public class Mapa {
     }
 
     private Celda obtenerCelda(Coordenada coordenada){
-    	return matrizDeCeldas[coordenada.y()-1][coordenada.x()-1];
+        //System.out.println("-->SE OBTUVO "+String.valueOf(coordenada.x())+","+String.valueOf(coordenada.y())+" == "+(matrizDeCeldas[coordenada.y()-1][coordenada.x()-1]).getClass());
+
+        return matrizDeCeldas[coordenada.y()-1][coordenada.x()-1];
+
     }
 
 
@@ -54,8 +57,8 @@ public class Mapa {
 
     }
 
-    public boolean posicionar(Construccion construccion){
-        return obtenerCelda(camino.get(0)).posicionar(construccion);
+    public boolean posicionar(Coordenada coordenada,Construccion construccion){
+        return obtenerCelda(coordenada).posicionar(construccion);
     }
 
 
