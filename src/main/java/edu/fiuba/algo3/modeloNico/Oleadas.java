@@ -24,6 +24,14 @@ public class Oleadas {
 	}
 
 	public ArrayList<Enemigo> instanciar(int turno){
+		if(noHayMasOleadas(turno)){
+			return new ArrayList<>();
+		}
+		
 		return oleadas.get(turno).instanciar(jugador);
+	}
+
+	public boolean noHayMasOleadas(int turno){
+		return turno>= oleadas.size();
 	}
 }

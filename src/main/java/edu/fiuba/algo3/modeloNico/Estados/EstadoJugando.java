@@ -21,21 +21,31 @@ public class EstadoJugando implements EstadoJuego {
 
     @Override
     public void ejecutarEstado() {
-       // juego.ejecutarTurno();
+       // verificar si puede matar a jugador
+        Jugador jugador = juego.obtenerJugador();
+        Mapa mapa =juego.obtenerMapa();
+
+        // verificar si no pueden hacer suficiente dmg?
+        if(juego.obtenerOleadas().noHayMasOleadas(turno.turnoActual())
+            && mapa.cantidadDmgPosible()< jugador.obtenerVida()){ 
+            
+            juego.terminarJuego();
+
+            return;
+        }
+
 
     	// jugar turno...
-    	turno.jugarTurno(
-    		juego.obtenerMapa(),
+    	turno.jugarTurno(mapa,jugador,
     		juego.obtenerOleadas()
     		);
 
-        Jugador jugador = juego.obtenerJugador();
-        ArrayList<Unidad> enemigos = juego.obtenerMapa().popUnidadesFinal();
+        ArrayList<Unidad> enemigos = mapa.popUnidadesFinal();
         int ind = 0;
 
         while(!jugador.estaMuerto() && ind < enemigos.size()){
 
-            enemigos.get(ind).atacar(jugador);
+            jugador.recibirAtaque(enemigos.get(ind).ataque());
             ind+=1;
         }
 

@@ -170,5 +170,23 @@ public class Mapa {
         return unidadesPasarela;
     }
 
+    public int cantidadDmgPosible(){
+        int dmg = 0;
+        int indice = camino.size()-2;
+
+        while(indice >= 0){
+
+            for(Unidad unidad : obtenerPasarela(camino.get(indice)).obtenerUnidades()){
+                dmg += unidad.ataque();
+            }
+            indice-=1;
+        }
+
+        return dmg;
+
+    }
+
+
+
 
 }
