@@ -87,4 +87,31 @@ public class TestFormatoJson {
 
     }
 
+    @Test
+    public void pruebaMapaTamanioInvalidoColumna (){
+        assertThrows(Exception.class, () -> {
+            Lector lector = new LectorMapa("src/main/resorces/mapaTamanioInvalidoColumna.json",15,15);
+            int cantidad = 0;
+            while (lector.haySiguiente()) {
+
+                Object element = lector.siguienteElemento().obtener();
+
+                cantidad += 1;
+            }
+        });
+    }
+    @Test
+    public void pruebaMapaTamanioInvalidoFila (){
+        assertThrows(Exception.class, () -> {
+            Lector lector = new LectorMapa("src/main/resorces/mapaTamanioInvalidoFila.json",15,15);
+            int cantidad = 0;
+            while (lector.haySiguiente()) {
+
+                Object element = lector.siguienteElemento().obtener();
+
+                cantidad += 1;
+            }
+        });
+    }
+
 }

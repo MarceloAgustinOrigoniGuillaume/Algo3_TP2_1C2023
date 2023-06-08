@@ -15,7 +15,7 @@ public class ConvertidorFila{
 	private Iterator iteradorFila;
 	private int row;
 	
-	public ConvertidorFila(int width,int row, JSONArray fila){
+	public ConvertidorFila(int width,int row, JSONArray fila) throws Exception {
 		this.width = width;
 		this.row = row;
         int columnas = 0;
@@ -24,10 +24,8 @@ public class ConvertidorFila{
         }
 
         if(columnas != width){
-        	//throw new ParseException("Esperaba '"+String.valueOf(width)+"' columnas obtuvo "+String.valueOf(columnas)+"'");
-            System.out.println(">>Esperaba '"+String.valueOf(width)+"' columnas obtuvo "+String.valueOf(columnas)+"'");
-            iteradorFila = null;
-            return;
+        	throw new Exception("Esperaba '"+String.valueOf(width)+"' columnas obtuvo "+String.valueOf(columnas)+"'");
+
         }
 
         iteradorFila = fila.iterator();

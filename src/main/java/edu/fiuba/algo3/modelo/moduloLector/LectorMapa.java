@@ -21,7 +21,7 @@ public class LectorMapa implements Lector{
     private int filaActual;
     private ConvertidorFila fila;
 
-    public LectorMapa(String filePath, int width, int height) throws IOException, ParseException {
+    public LectorMapa(String filePath, int width, int height) throws Exception {
         JSONObject parsedObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
 
 
@@ -56,7 +56,7 @@ public class LectorMapa implements Lector{
     }
 
 
-    private void replaceFilaNext(){
+    private void replaceFilaNext() throws Exception {
         if((filaActual+1) > height){
             fila = null;
         	return;
@@ -68,7 +68,7 @@ public class LectorMapa implements Lector{
 
 
     @Override
-    public Convertidor siguienteElemento() {
+    public Convertidor siguienteElemento() throws Exception {
     	if(!haySiguiente()){
     		return null;
     	}
