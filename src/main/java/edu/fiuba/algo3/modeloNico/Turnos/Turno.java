@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modeloNico.Enemigo.Enemigo;
 import edu.fiuba.algo3.modeloNico.Celdas.Unidad;
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 import edu.fiuba.algo3.modeloNico.Oleadas;
+import edu.fiuba.algo3.modeloNico.Jugador;
 
 public class Turno{
 
@@ -18,14 +19,20 @@ public class Turno{
 		return turno;
 	}
 
-	public void jugarTurno(Mapa mapa, Oleadas oleadas){
+	public void jugarTurno(Mapa mapa,Jugador jugador, Oleadas oleadas){
+
+
 
 		// move enemigos
 		mapa.moverEnemigos();
 
 		// defensas atacan mapa
 		ArrayList<Unidad> enemigosMuertos = mapa.accionarDefensas();
-		
+
+		for (Unidad muerto : enemigosMuertos){
+			jugador.ganoCreditos(muerto.creditosDados());
+		}
+
 
 		// instancia enemigos.
 		ArrayList<Enemigo> enemigos = oleadas.instanciar(turno);
