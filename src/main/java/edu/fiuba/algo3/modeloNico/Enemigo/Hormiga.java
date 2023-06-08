@@ -14,8 +14,9 @@ public class Hormiga implements Enemigo {
 		return 1;
 	}
 
-	public void atacar(SistemaVida target){
-		target.recibirAtaque(1); // hace uno de dmg
+    public int ataque(){
+        return 1;
+		//target.recibirAtaque(1); // hace uno de dmg
 	}
 
     public boolean estaMuerto(){
@@ -29,6 +30,10 @@ public class Hormiga implements Enemigo {
         if(estaMuerto()){
             vida = 0;
         }
+    }
+
+    public int creditosDados(){
+    	return 1;
     }
 
 }

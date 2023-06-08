@@ -13,8 +13,9 @@ public class Arania implements Enemigo {
 		return 2;
 	}
 
-	public void atacar(SistemaVida target){
-		target.recibirAtaque(2); // hace dos de dmg
+    public int ataque(){
+        return 2;
+		//target.recibirAtaque(2); // hace dos de dmg
 	}
 
 
@@ -31,5 +32,8 @@ public class Arania implements Enemigo {
         }
     }
 
+    public int creditosDados(){
+    	return 6;
+    }
 
 }

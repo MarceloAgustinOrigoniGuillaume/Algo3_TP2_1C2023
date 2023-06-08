@@ -33,7 +33,7 @@ public class Tierra implements Celda {
     public void atacar(SistemaVida target){
 
         if(construccion != null){
-            construccion.atacar(target);
+            target.recibirAtaque(construccion.ataque()) ;
         }
     }
 

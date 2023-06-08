@@ -20,8 +20,9 @@ public class TorreBlanca extends Defensa {
         return 10;
     }
 
-    public void atacar(SistemaVida target){
-        target.recibirAtaque(1); // hace uno de dmg
+    public int ataque(){
+        return 2;
+        //target.recibirAtaque(1); // hace uno de dmg
     }
 
     public int obtenerRango(){

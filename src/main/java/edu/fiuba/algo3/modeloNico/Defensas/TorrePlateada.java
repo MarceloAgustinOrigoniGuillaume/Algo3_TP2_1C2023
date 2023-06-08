@@ -12,13 +12,15 @@ public class TorrePlateada extends Defensa {
     public TorrePlateada() {
         this(2);
     }
+
     @Override
     public int costo() {
         return 20;
     }
 
-    public void atacar(SistemaVida target){
-        target.recibirAtaque(2); // hace uno de dmg
+    public int ataque(){
+        return 2;
+        //target.recibirAtaque(2); // hace uno de dmg
     }
 
     public int obtenerRango(){

@@ -44,8 +44,7 @@ public class Pasarela implements Celda{
     public void atacar(SistemaVida target){
 
         for(Unidad unidad : unidades){
-            unidad.atacar(target);
-
+            target.recibirAtaque(unidad.ataque());
         }
     }
 
