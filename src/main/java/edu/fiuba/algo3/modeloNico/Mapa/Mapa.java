@@ -1,8 +1,12 @@
 package edu.fiuba.algo3.modeloNico.Mapa;
 
 import edu.fiuba.algo3.modeloNico.Celdas.*;
+import edu.fiuba.algo3.modeloNico.Enemigo.Enemigo;
+
+
 import edu.fiuba.algo3.modelo.moduloLector.LectorMapa;
 import edu.fiuba.algo3.modelo.moduloLector.ConvertidorParcela;
+
 import java.util.ArrayList;
 
 
@@ -52,7 +56,7 @@ public class Mapa {
 
     public void moverEnemigos(){
 
-    	
+
     }
     
     public void posicionarInicio(Enemigo enemigo){

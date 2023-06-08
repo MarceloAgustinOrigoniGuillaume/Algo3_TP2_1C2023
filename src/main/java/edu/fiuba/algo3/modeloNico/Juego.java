@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modeloNico;
 
-import edu.fiuba.algo3.modelo.moduloMapa.Mapa;
+import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoInicial;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoJuego;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoJugando;
