@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modeloNico;
 
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
+import edu.fiuba.algo3.modeloNico.Defensas.Estructura;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoInicial;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoJuego;
 import edu.fiuba.algo3.modeloNico.Estados.EstadoJugando;
@@ -52,6 +53,22 @@ public class Juego {
 
     public Oleadas obtenerOleadas(){
         return oleadas;
+    }
+
+
+    public boolean posicionar(Estructura estructura, Coordenada pos){
+        if(!jugador.puedeCostear(estructura)){
+            return false;
+        }
+
+        if(!mapa.posicionar(pos, estructura)){
+            return false;
+        }
+
+        jugador.costear(estructura);
+        return true;
+
+
     }
 
 
