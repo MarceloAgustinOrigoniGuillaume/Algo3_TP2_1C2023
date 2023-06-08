@@ -7,14 +7,12 @@ import edu.fiuba.algo3.modelo.moduloLector.LectorEnemigo;
 public class Oleadas {
 
 	private ArrayList<Oleada> oleadas;
-	private Jugador jugador;
 
 	private void agregarOleada(Oleada oleada){
 		oleadas.add(oleada);
 	}
-	public Oleadas(Jugador jugador, LectorEnemigo lector){
+	public Oleadas(LectorEnemigo lector){
 		oleadas = new ArrayList();
-		this.jugador = jugador;
     	// cargas lector
         while(lector.haySiguiente()){
         	agregarOleada((Oleada)(lector.siguienteElemento().obtener()));
@@ -27,8 +25,8 @@ public class Oleadas {
 		if(noHayMasOleadas(turno)){
 			return new ArrayList<>();
 		}
-		
-		return oleadas.get(turno).instanciar(jugador);
+
+		return oleadas.get(turno).instanciar();
 	}
 
 	public boolean noHayMasOleadas(int turno){

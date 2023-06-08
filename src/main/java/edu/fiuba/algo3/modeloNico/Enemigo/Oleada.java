@@ -5,28 +5,38 @@ import java.util.Map;
 import edu.fiuba.algo3.modeloNico.Jugador;
 import java.util.Iterator;
 
+import edu.fiuba.algo3.modeloNico.Enemigo.instanciacion.Instanciador;
+
 public class Oleada{
 
-	private Map<String, Integer> aInstanciar;
+	public static final String HORMIGA_LABEL = "hormiga";
+	public static final String ARANIA_LABEL = "arana";
+
+	private ArrayList<Instanciador> aInstanciar;
+
 	public Oleada(Map<String, Integer> instanciacion){
-		aInstanciar = instanciacion;
-	} 
 
-	public ArrayList<Enemigo> instanciar(Jugador jugador){
-		ArrayList<Enemigo> lista = new ArrayList<>();
-    	
-		// instanciar
-    	Iterator keys = aInstanciar.keySet().iterator();
-    	String key;
-    	while(keys.hasNext()){
-    		key = keys.next().toString();
+		aInstanciar = new ArrayList<>();
 
-			for (int i = 0; i< aInstanciar.get(key); i++){
-				//lista.add()
-			}
-			
+		int cantidad = instanciacion.get(HORMIGA_LABEL);
+		if(cantidad > 0){
+			aInstanciar.add(new Instanciador(new Hormiga(), cantidad));
 		}
 
-		return lista;
+		cantidad = instanciacion.get(ARANIA_LABEL);
+		if(cantidad > 0){
+			aInstanciar.add(new Instanciador(new Arania(), cantidad));
+		}
+
+	} 
+
+	public ArrayList<Enemigo> instanciar(){
+		ArrayList<Enemigo> instanciados = new ArrayList<>();
+    	
+    	for(Instanciador instanciando : aInstanciar){
+    		instanciando.agregarInstancias(instanciados);
+    	}
+
+		return instanciados;
 	}
 }

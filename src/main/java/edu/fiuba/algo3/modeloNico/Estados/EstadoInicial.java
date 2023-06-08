@@ -46,7 +46,7 @@ public class EstadoInicial implements EstadoJuego {
             
             LectorEnemigo lectorEnemigos = new LectorEnemigo(jsonEnemigos);
 
-            juego.asignarOleadas(new Oleadas( juego.obtenerJugador(), lectorEnemigos));
+            juego.asignarOleadas(new Oleadas(lectorEnemigos));
 
 
         } catch (Exception e){

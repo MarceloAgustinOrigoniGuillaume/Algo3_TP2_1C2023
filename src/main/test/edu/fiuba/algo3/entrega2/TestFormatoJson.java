@@ -22,13 +22,15 @@ public class TestFormatoJson {
     @Test
     public void formatoValidoDeEnemigos() throws IOException, ParseException {
         
+
         Lector lector = new LectorEnemigo("src/main/resorces/enemigos.json");
 
         int cantidad = 0;
         while(lector.haySiguiente()){
 
         	Object element = lector.siguienteElemento().obtener();
-        	cantidad+=1;
+
+            cantidad+=1;
 	        //System.out.println("TURNO "+String.valueOf(cantidad)+" got "+element.toString());
         }
 	    //assertEquals(225,cantidad);

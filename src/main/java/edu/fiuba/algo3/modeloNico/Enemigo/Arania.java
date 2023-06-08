@@ -36,4 +36,9 @@ public class Arania implements Enemigo {
     	return 6;
     }
 
+
+    public Enemigo copiar(){
+    	return new Arania();
+    }
+
 }

@@ -22,21 +22,27 @@ public class LectorEnemigo  implements Lector{
 
     }
 
+
+    private Hashtable<String,Integer> convertToHash(JSONObject enemigos){
+        Hashtable<String,Integer> oleada = new Hashtable<String,Integer>();
+        
+        Iterator keys = enemigos.keySet().iterator();
+        String key;
+        while(keys.hasNext()){
+            key = (keys.next()).toString();
+            String value = enemigos.get(key).toString();
+            oleada.put(key, (Integer.parseInt((value))) );
+        }
+        return oleada;        
+    }
+
     @Override
     public Convertidor siguienteElemento() {
 
+
     	JSONObject obj = (JSONObject)iterador.next();
 
-    	JSONObject enemigos = (JSONObject) obj.get("enemigos");
-    	Hashtable<String,Integer> oleada = new Hashtable<String,Integer>();
-    	
-    	Iterator keys = enemigos.keySet().iterator();
-    	String key;
-    	while(keys.hasNext()){
-    		key = (keys.next()).toString();
-    		String value = enemigos.get(key).toString();
-    		oleada.put(key, (Integer.parseInt((value))) );
-    	}
+    	Hashtable<String,Integer> oleada = convertToHash((JSONObject) obj.get("enemigos"));
 
         return new ConvertidorOleada(obj.get("turno").toString(), oleada);//new ConvertidorEnemigo((JSONObject) iterador.next());
     }

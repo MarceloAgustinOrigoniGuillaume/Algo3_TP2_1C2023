@@ -36,4 +36,8 @@ public class Hormiga implements Enemigo {
     	return 1;
     }
 
+    public Enemigo copiar(){
+    	return new Hormiga();
+    }
+
 }
