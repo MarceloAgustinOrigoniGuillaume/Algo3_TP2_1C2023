@@ -5,4 +5,6 @@ public interface EstadoJuego {
     void ejecutarEstado();
 
 
+
+
 }

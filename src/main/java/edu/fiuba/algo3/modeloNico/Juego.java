@@ -15,7 +15,10 @@ public class Juego {
     private EstadoJuego estadoDeJuego;
     private Mapa mapa;
     private Jugador jugador;
-    private Oleadas oleadas; //La clase oleadas almacena un vector de enemigos.
+    private Oleadas oleadas;
+
+    private boolean estaJugando;
+    //La clase oleadas almacena un vector de enemigos.
 
     public Juego(String jsonMapa,String jsonEnemigos) throws IOException, ParseException {
         jugador = new Jugador();
@@ -25,11 +28,13 @@ public class Juego {
 
     public void iniciarJuego() {
         this.estadoDeJuego = new EstadoJugando(this);
+        this.estaJugando = true;
         estadoDeJuego.ejecutarEstado();
     }
 
     public void terminarJuego() {
         this.estadoDeJuego = new EstadoTerminado(this);
+        this.estaJugando = false;
     }
 
 
@@ -72,5 +77,10 @@ public class Juego {
     }
 
 
-
+    public void pasarTurno() {
+        estadoDeJuego.ejecutarEstado();
+    }
+    public boolean estanEnJuego(){
+        return estaJugando;
+    }
 }
