@@ -1,7 +1,10 @@
-package edu.fiuba.algo3.Turnos;
+package edu.fiuba.algo3.modeloNico.Turnos;
 
 import java.util.ArrayList;
-import edu.fiuba.algo3.modeloNico.Enemigo;
+import edu.fiuba.algo3.modeloNico.Enemigo.Enemigo;
+import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
+import edu.fiuba.algo3.modeloNico.Oleadas;
+import edu.fiuba.algo3.modeloNico.Defensas.EstructurasActivas;
 
 public class Turno{
 
