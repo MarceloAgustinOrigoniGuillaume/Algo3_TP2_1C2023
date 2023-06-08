@@ -114,12 +114,36 @@ public class Mapa {
     }
 
 
-    public void ataquenDefensas(){
-        //int indice = 0; // ultima defensa
+    public ArrayList<Unidad> accionarDefensas(){
+        int indice = 0; // ultima defensa
+        Tierra celdaActual;
+        Pasarela pasarelaTarget;
+        ArrayList<Coordenada> enRango;
+        ArrayList<Unidad> enemigosMuertos = new ArrayList<>();
+        while(indice < defensas.size()){
 
-        //while(indice < defensas.size()){
-            //indice+=1;
-        //}
+            // no es ideal este casteo ja...
+            celdaActual = (Tierra) obtenerCelda(defensas.get(indice));
+
+
+            enRango = celdaActual.obtenerEnRango(camino);
+
+            for (Coordenada target: enRango){
+                pasarelaTarget = obtenerPasarela(target);
+                for(Unidad enemigo: pasarelaTarget.obtenerUnidades()){
+                    celdaActual.atacar(enemigo);
+
+                    if(enemigo.estaMuerto()){
+                        pasarelaTarget.sacar(enemigo);
+                        enemigosMuertos.add(enemigo);
+                    }
+                }
+            }
+
+            indice+=1;
+        }
+
+        return enemigosMuertos;
     }
 
 

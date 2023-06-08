@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modeloNico.Celdas;
 
 import java.util.Objects;
+import java.util.ArrayList;
+import java.lang.Math;
+
 
 public class Coordenada {
 
@@ -11,6 +14,25 @@ public class Coordenada {
         this.coordenadaX = x;
         this.coordenadaY = y;
     }
+
+    public ArrayList<Coordenada> obtenerEnRango(ArrayList<Coordenada> coordenadas, int rango){
+        ArrayList<Coordenada> enRango = new ArrayList<>();
+
+        for (Coordenada coord: coordenadas){
+            if(distanciaA(coord) <= rango){
+                enRango.add(coord);
+            }
+        }
+        return enRango;
+    }
+
+    public int distanciaA(Coordenada coord){
+        int diffX = Math.abs(coord.x()- x());
+        int diffY = Math.abs(coord.y()- y());
+
+        return diffX+ diffY;
+    }
+
 
     @Override
     public boolean equals(Object o) {

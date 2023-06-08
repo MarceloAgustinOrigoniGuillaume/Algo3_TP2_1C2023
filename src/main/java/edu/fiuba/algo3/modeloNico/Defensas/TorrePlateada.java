@@ -21,4 +21,8 @@ public class TorrePlateada extends Defensa {
         target.recibirAtaque(2); // hace uno de dmg
     }
 
+    public int obtenerRango(){
+        return 5;
+    }
+
 }

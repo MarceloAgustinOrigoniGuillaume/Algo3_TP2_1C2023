@@ -48,8 +48,6 @@ public class EstadoInicial implements EstadoJuego {
 
             juego.asignarOleadas(new Oleadas( juego.obtenerJugador(), lectorEnemigos));
 
-            juego.resetEstructurasActivas();
-
 
         } catch (Exception e){
         	System.out.println("ERROR "+e.toString());

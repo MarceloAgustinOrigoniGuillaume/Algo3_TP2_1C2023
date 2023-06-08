@@ -24,6 +24,9 @@ public class TorreBlanca extends Defensa {
         target.recibirAtaque(1); // hace uno de dmg
     }
 
+    public int obtenerRango(){
+        return 3;
+    }
 
 }
 

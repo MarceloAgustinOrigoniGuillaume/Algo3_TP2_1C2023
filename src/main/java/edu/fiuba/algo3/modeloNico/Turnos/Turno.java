@@ -2,9 +2,9 @@ package edu.fiuba.algo3.modeloNico.Turnos;
 
 import java.util.ArrayList;
 import edu.fiuba.algo3.modeloNico.Enemigo.Enemigo;
+import edu.fiuba.algo3.modeloNico.Celdas.Unidad;
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 import edu.fiuba.algo3.modeloNico.Oleadas;
-import edu.fiuba.algo3.modeloNico.Defensas.EstructurasActivas;
 
 public class Turno{
 
@@ -18,13 +18,14 @@ public class Turno{
 		return turno;
 	}
 
-	public void jugarTurno(Mapa mapa, EstructurasActivas defensas, Oleadas oleadas){
+	public void jugarTurno(Mapa mapa, Oleadas oleadas){
 
 		// move enemigos
 		mapa.moverEnemigos();
 
 		// defensas atacan mapa
-		defensas.atacar(mapa);
+		ArrayList<Unidad> enemigosMuertos = mapa.accionarDefensas();
+		
 
 		// instancia enemigos.
 		ArrayList<Enemigo> enemigos = oleadas.instanciar(turno);

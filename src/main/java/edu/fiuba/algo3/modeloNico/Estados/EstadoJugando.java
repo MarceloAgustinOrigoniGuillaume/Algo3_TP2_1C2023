@@ -23,14 +23,9 @@ public class EstadoJugando implements EstadoJuego {
     public void ejecutarEstado() {
        // juego.ejecutarTurno();
 
-    	// fase construccion
-    	
-
-
     	// jugar turno...
     	turno.jugarTurno(
     		juego.obtenerMapa(),
-    		juego.obtenerEstructuras(),
     		juego.obtenerOleadas()
     		);
 

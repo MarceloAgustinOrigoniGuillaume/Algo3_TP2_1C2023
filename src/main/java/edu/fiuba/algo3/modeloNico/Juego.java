@@ -14,7 +14,6 @@ public class Juego {
     private EstadoJuego estadoDeJuego;
     private Mapa mapa;
     private Jugador jugador;
-    private EstructurasActivas estructuras;
     private Oleadas oleadas; //La clase oleadas almacena un vector de enemigos.
 
     public Juego(String jsonMapa,String jsonEnemigos) throws IOException, ParseException {
@@ -44,27 +43,9 @@ public class Juego {
 
     }
 
-
-    public void resetEstructurasActivas(){
-
-        /*
-        if( estructuras != null){
-            // clean mapa 
-        }
-        */
-
-        estructuras = new EstructurasActivas();
-    }
-
-
     public Jugador obtenerJugador(){
         return jugador;
     }
-
-    public EstructurasActivas obtenerEstructuras(){
-        return estructuras;
-    }
-
     public Mapa obtenerMapa(){
         return mapa;
     }

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modeloNico.Celdas;
 
+import java.util.ArrayList;
+
 public class Tierra implements Celda {
 
 	private Construccion construccion;
@@ -33,6 +35,17 @@ public class Tierra implements Celda {
         if(construccion != null){
             construccion.atacar(target);
         }
+    }
+
+
+    public ArrayList<Coordenada> obtenerEnRango(ArrayList<Coordenada> targets){
+        if(construccion != null){
+
+            return coordenada.obtenerEnRango(targets, construccion.obtenerRango());
+        }
+
+        return new ArrayList<Coordenada>();
+
     }
 
 

@@ -33,7 +33,11 @@ public class Pasarela implements Celda{
     }
 
     public void sacarTodos(){
-    	unidades.clear();
+        unidades.clear();
+    }
+
+    public void sacar(Unidad unidad){
+        unidades.remove(unidad);
     }
 
 
