@@ -19,3 +19,8 @@ public class TorreBlanca extends Defensa {
     }
 
 }
+
+/*
+ No me queda claro por que aca se creo la clase Defensa,
+ cuando ya existe la interfaz Estructura, me parece que se puede combinar ambas.
+*/

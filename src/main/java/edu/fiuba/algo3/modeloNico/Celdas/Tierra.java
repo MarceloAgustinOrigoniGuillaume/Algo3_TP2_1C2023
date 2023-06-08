@@ -20,13 +20,12 @@ public class Tierra implements Celda {
     }
 
     public boolean posicionar(Construccion entidad){
-    	if(construccion == null){
-    		construccion = entidad;
-    		return true;
-    	}
+		if (construccion == null) {
+			construccion = entidad;
+		}
+		return construccion == null;
 
-    	return false;
-    }
+	}
     /*
     public GameEntity obtener(){
     	return construccion;
