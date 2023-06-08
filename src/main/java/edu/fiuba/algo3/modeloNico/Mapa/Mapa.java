@@ -117,4 +117,16 @@ public class Mapa {
     public void posicionarInicio(Unidad enemigo){
         obtenerCelda(camino.get(0)).posicionar(enemigo);
     }
+
+    public ArrayList<Unidad> popUnidadesFinal(){
+        Pasarela pos_final = obtenerPasarela(camino.get(camino.size()-1));
+
+        ArrayList<Unidad> unidadesPasarela = pos_final.obtenerUnidades();
+
+        pos_final.sacarTodos();
+
+        return unidadesPasarela;
+    }
+
+
 }
