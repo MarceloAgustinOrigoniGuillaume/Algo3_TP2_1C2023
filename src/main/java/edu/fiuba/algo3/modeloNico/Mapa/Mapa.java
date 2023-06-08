@@ -28,6 +28,10 @@ public class Mapa {
 
     }
 
+    private Celda obtenerCelda(Coordenada coordenada){
+    	return matrizDeCeldas[coordenada.y()-1][coordenada.x()-1];
+    }
+
 
 
     public Mapa(LectorMapa lector ,int width, int height) {
@@ -46,4 +50,12 @@ public class Mapa {
 
     }
 
+    public void moverEnemigos(){
+
+    	
+    }
+    
+    public void posicionarInicio(Enemigo enemigo){
+    	//obtenerCelda(camino.first()).posicionar(enemigo);
+    }
 }
