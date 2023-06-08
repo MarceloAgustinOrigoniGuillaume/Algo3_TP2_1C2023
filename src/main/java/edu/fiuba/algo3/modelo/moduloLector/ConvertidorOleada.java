@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.moduloLector;
 
 import org.json.simple.JSONObject;
 import java.util.Map;
+import edu.fiuba.algo3.modeloNico.Enemigo.Oleada;
 
 public class ConvertidorOleada implements Convertidor {
 
@@ -15,6 +16,6 @@ public class ConvertidorOleada implements Convertidor {
 
 
     public Object obtener(){
-        return aInstanciar;// instanciar Oleada
+        return new Oleada(aInstanciar);// instanciar Oleada
     }
 }
