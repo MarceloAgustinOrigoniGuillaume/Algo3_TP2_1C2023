@@ -8,4 +8,14 @@ public class Tierra extends Celda {
 	    tipoCelda = "Tierra";
     }
 
+
+    public boolean posicionar(Unidad entidad){
+    	return false;
+    }
+
+    public boolean posicionar(Construccion entidad){
+    	return false;
+    }
+
+
 }

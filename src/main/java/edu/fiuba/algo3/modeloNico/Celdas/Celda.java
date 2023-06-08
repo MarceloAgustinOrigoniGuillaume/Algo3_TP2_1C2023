@@ -18,5 +18,8 @@ public abstract class Celda {
 
     public String imprimirTipo() {
         return tipoCelda;
-    };
+    }
+
+    public abstract boolean posicionar(Construccion construccion);
+    public abstract boolean posicionar(Unidad unidad);
 }

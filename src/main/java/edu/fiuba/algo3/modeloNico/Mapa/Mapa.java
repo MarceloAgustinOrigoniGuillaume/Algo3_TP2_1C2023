@@ -54,12 +54,18 @@ public class Mapa {
 
     }
 
-    public void moverEnemigos(){
+    public boolean posicionar(Construccion construccion){
+        return obtenerCelda(camino.get(0)).posicionar(construccion);
+    }
 
+
+
+    // mover
+    public void moverEnemigos(){
 
     }
     
-    public void posicionarInicio(Enemigo enemigo){
-    	//obtenerCelda(camino.first()).posicionar(enemigo);
+    public void posicionarInicio(Unidad enemigo){
+        obtenerCelda(camino.get(0)).posicionar(enemigo);
     }
 }

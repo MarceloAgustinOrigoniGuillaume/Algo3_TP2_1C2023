@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modeloNico.Defensas;
 
-public interface Estructura{
+import edu.fiuba.algo3.modeloNico.Celdas.Construccion;
+public interface Estructura extends Construccion{
     int costo();
 }

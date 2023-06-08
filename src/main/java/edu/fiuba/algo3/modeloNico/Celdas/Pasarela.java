@@ -8,4 +8,12 @@ public class Pasarela extends Celda{
 	    tipoCelda = "Pasarela";
     }
 
+    public boolean posicionar(Unidad entidad){
+    	return false;
+    }
+
+    public boolean posicionar(Construccion entidad){
+    	return false;
+    }
+
 }

@@ -8,4 +8,13 @@ public class Rocosa extends Celda {
     	tipoCelda = "Rocosa";
     }
 
+    public boolean posicionar(Unidad entidad){
+    	return false;
+    }
+
+    public boolean posicionar(Construccion entidad){
+    	return false;
+    }
+
+
 }
