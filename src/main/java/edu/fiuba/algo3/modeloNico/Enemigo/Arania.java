@@ -5,7 +5,7 @@ public class Arania implements Enemigo {
 
 	private int vida;
 	public Arania(){
-		vida = 1;
+		vida = 2;
 	}
 
 
