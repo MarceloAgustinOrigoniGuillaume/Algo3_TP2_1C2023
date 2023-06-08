@@ -1,15 +1,19 @@
 package edu.fiuba.algo3.modeloNico.Celdas;
 
-public class Tierra extends Celda {
+public class Tierra implements Celda {
 
 	private Construccion construccion;
+    private Coordenada coordenada;
+
 
     public Tierra(Coordenada coordenada){
-    	super(coordenada);
-	    tipoCelda = "Tierra";
+    	this.coordenada = coordenada;
 	    construccion = null;
     }
 
+    public Coordenada posicion(){
+    	return coordenada;
+    }
 
     public boolean posicionar(Unidad entidad){
     	return false;
@@ -23,6 +27,11 @@ public class Tierra extends Celda {
 
     	return false;
     }
+    /*
+    public GameEntity obtener(){
+    	return construccion;
+    }
+    */
 
 
 }

@@ -7,10 +7,13 @@ import edu.fiuba.algo3.modeloNico.Defensas.TorrePlateada;
 import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.moduloLector.ConvertidorParcela;
 import edu.fiuba.algo3.modeloNico.Celdas.Coordenada;
+import edu.fiuba.algo3.modeloNico.Celdas.Unidad;
 
-//import edu.fiuba.algo3.modelo.moduloEnemigos.Hormiga;
-//import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modeloNico.Enemigo.Hormiga;
+import edu.fiuba.algo3.modeloNico.Jugador;
 //import edu.fiuba.algo3.modelo.moduloLector.Lector;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -84,115 +87,124 @@ public class mapaTest {
     }
 
 
-    /*
+    
+
+    @Test
+    public void VerificarEnemigosSePosicionanAlInicio() {
+        LectorMapa mockLector = mock(LectorMapa.class);
+
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,2,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,3,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,4,"Tierra"));
+
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
+                                               .thenReturn(true).thenReturn(false);
+
+        Mapa unMapa = new Mapa(mockLector,1,4);
+        Hormiga enemigo = new Hormiga();//new Jugador()
+
+
+        unMapa.posicionarInicio(enemigo);
+
+        ArrayList<Unidad> unidades = unMapa.obtenerUnidades(new Coordenada(1,1));
+
+        assertEquals(1, unidades.size());
+        assertEquals(unidades.get(0), enemigo);        
+
+    }
 
     @Test
     public void VerificarEnemigosSeMuevenPorPasarelas() {
-        Lector mockLector = mock(LectorMapa.class);
+        LectorMapa mockLector = mock(LectorMapa.class);
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorMapa("0","0","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","1","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","2","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","3","Tierra"));
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,2,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,3,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,4,"Tierra"));
 
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
-        									   .thenReturn(true).thenReturn(false);
+                                               .thenReturn(true).thenReturn(false);
+
+        Mapa unMapa = new Mapa(mockLector,1,4);
+        Hormiga enemigo = new Hormiga();//new Jugador()
 
 
-        Mapa unMapa = new Mapa(mockLector);
+        unMapa.posicionarInicio(enemigo);
 
+        unMapa.moverEnemigos();
 
-        Posicion inicio = unMapa.posicionInicio();
-        Hormiga enemigo = new Hormiga(inicio, new Jugador());
+        ArrayList<Unidad> unidadesInicio = unMapa.obtenerUnidades(new Coordenada(1,1));
+        ArrayList<Unidad> unidadesDondeEstaria = unMapa.obtenerUnidades(new Coordenada(1,2));
 
-        unMapa.posicionar(enemigo,inicio);
+        assertEquals(1, unidadesDondeEstaria.size());
+        assertEquals(unidadesDondeEstaria.get(0), enemigo);
 
-
-        Posicion posNueva =  unMapa.mover(enemigo,inicio,1);
-
-        // posNueva
-        assertEquals(posNueva.X(),0);
-        assertEquals(posNueva.Y(),1);
-        
-        // inicio
-        assertEquals(inicio.X(),0);
-        assertEquals(inicio.Y(),0);
-        
-
+        assertEquals(0, unidadesInicio.size());
     }
-
 
     @Test
     public void VerificarEnemigosSeMuevenSoloPorPasarelasLlamadosSucesivos() {
-        Lector mockLector = mock(LectorMapa.class);
+        LectorMapa mockLector = mock(LectorMapa.class);
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorMapa("0","0","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","1","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","2","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","3","Tierra"));
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,2,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,3,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,4,"Tierra"));
 
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
-        									   .thenReturn(true).thenReturn(false);
+                                               .thenReturn(true).thenReturn(false);
+
+        Mapa unMapa = new Mapa(mockLector,1,4);
+        Hormiga enemigo = new Hormiga();//new Jugador()
 
 
-        Mapa unMapa = new Mapa(mockLector);
+        unMapa.posicionarInicio(enemigo);
 
+        unMapa.moverEnemigos();
+        unMapa.moverEnemigos();
 
-        Posicion inicio = unMapa.posicionInicio();
-        Hormiga enemigo = new Hormiga(inicio, new Jugador());
+        ArrayList<Unidad> unidadesInicio = unMapa.obtenerUnidades(new Coordenada(1,2));
+        ArrayList<Unidad> unidadesDondeEstaria = unMapa.obtenerUnidades(new Coordenada(1,3));
 
-        unMapa.posicionar(enemigo,inicio);
+        assertEquals(1, unidadesDondeEstaria.size());
+        assertEquals(unidadesDondeEstaria.get(0), enemigo);
 
-
-        Posicion posNueva =  unMapa.mover(enemigo,inicio,1);
-        posNueva =  unMapa.mover(enemigo,posNueva,1);
-        posNueva =  unMapa.mover(enemigo,posNueva,1);
-
-        // posNueva
-        assertEquals(posNueva.X(),0);
-        assertEquals(posNueva.Y(),2);
-        
-        // inicio
-        assertEquals(inicio.X(),0);
-        assertEquals(inicio.Y(),0);
-        
-
+        assertEquals(0, unidadesInicio.size());
     }
 
     @Test
-    public void VerificarEnemigosSeMuevenSoloPorPasarelas() {
-        Lector mockLector = mock(LectorMapa.class);
+    public void VerificarEnemigosSeMuevenSoloPorPasarelasHastaElFinal() {
+        LectorMapa mockLector = mock(LectorMapa.class);
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorMapa("0","0","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","1","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","2","Pasarela"))
-        											.thenReturn(new ConvertidorMapa("0","3","Tierra"));
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,2,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,3,"Pasarela"))
+                                                    .thenReturn(new ConvertidorParcela(1,4,"Tierra"));
 
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
-        									   .thenReturn(true).thenReturn(false);
+                                               .thenReturn(true).thenReturn(false);
+
+        Mapa unMapa = new Mapa(mockLector,1,4);
+        Hormiga enemigo = new Hormiga();//new Jugador()
 
 
-        Mapa unMapa = new Mapa(mockLector);
+        unMapa.posicionarInicio(enemigo);
+
+        unMapa.moverEnemigos();
+        unMapa.moverEnemigos();
+        unMapa.moverEnemigos();
+        unMapa.moverEnemigos();
+        unMapa.moverEnemigos();
+        unMapa.moverEnemigos();
 
 
-        Posicion inicio = unMapa.posicionInicio();
-        Hormiga enemigo = new Hormiga(inicio, new Jugador());
+        ArrayList<Unidad> unidadesInicio = unMapa.obtenerUnidades(new Coordenada(1,2));
+        ArrayList<Unidad> unidadesDondeEstaria = unMapa.obtenerUnidades(new Coordenada(1,3));
 
-        unMapa.posicionar(enemigo,inicio);
+        assertEquals(1, unidadesDondeEstaria.size());
+        assertEquals(unidadesDondeEstaria.get(0), enemigo);
 
-
-        Posicion posNueva =  unMapa.mover(enemigo,inicio,4);
-
-        // posNueva
-        assertEquals(posNueva.X(),0);
-        assertEquals(posNueva.Y(),2);
-        
-        // inicio
-        assertEquals(inicio.X(),0);
-        assertEquals(inicio.Y(),0);
-        
-
+        assertEquals(0, unidadesInicio.size());
     }
-
-     */
 }

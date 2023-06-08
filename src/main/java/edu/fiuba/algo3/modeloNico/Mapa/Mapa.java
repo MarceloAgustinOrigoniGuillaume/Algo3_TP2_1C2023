@@ -61,11 +61,57 @@ public class Mapa {
         return obtenerCelda(coordenada).posicionar(construccion);
     }
 
+    private Pasarela obtenerPasarela(Coordenada coord){
+        return (Pasarela) obtenerCelda(coord);
+    }
+
+    private int indexarPasarela(Coordenada coordenada){
+        int i = 0;
+        while(i < camino.size()){
+            if(camino.get(i).equals(coordenada)){
+                return i;
+            }
+            i+=1;
+        }
+
+        return -1;
+    }
+
 
 
     // mover
-    public void moverEnemigos(){
+    private int moverIndex(int index, int cantidad){
+        index+= cantidad;
+        if(index>=camino.size()){
+            index = camino.size()-1;
+        }
+        return index;
+    }
 
+    public void moverEnemigos(){
+        ArrayList<Unidad> unidadesPasarela;
+        Pasarela pasarela;
+        int indice = camino.size()-2; // ante ultima pasarela
+
+        while(indice >= 0){
+            pasarela = obtenerPasarela(camino.get(indice));
+            unidadesPasarela = pasarela.obtenerUnidades();
+            pasarela.sacarTodos();
+
+            for (Unidad unidad: unidadesPasarela){
+                obtenerPasarela(
+                    camino.get(moverIndex(indice,unidad.velocidad()))).posicionar(unidad);
+            }
+            indice-=1;
+        }
+    }
+
+    public ArrayList<Unidad> obtenerUnidades(Coordenada coordenada){
+        if(indexarPasarela(coordenada) == -1){
+            return new ArrayList<>();
+        }
+
+        return obtenerPasarela(coordenada).obtenerUnidades();
     }
     
     public void posicionarInicio(Unidad enemigo){
