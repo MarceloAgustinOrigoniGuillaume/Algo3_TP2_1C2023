@@ -27,6 +27,15 @@ public class Tierra implements Celda {
         return false;
 
 	}
+
+    public void atacar(SistemaVida target){
+
+        if(construccion != null){
+            construccion.atacar(target);
+        }
+    }
+
+
     /*
     public GameEntity obtener(){
     	return construccion;

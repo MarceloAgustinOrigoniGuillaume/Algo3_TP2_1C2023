@@ -36,4 +36,14 @@ public class Pasarela implements Celda{
     	unidades.clear();
     }
 
+
+    public void atacar(SistemaVida target){
+
+        for(Unidad unidad : unidades){
+            unidad.atacar(target);
+
+        }
+    }
+
+
 }

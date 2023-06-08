@@ -1,14 +1,34 @@
 package edu.fiuba.algo3.modeloNico.Enemigo;
 
 import edu.fiuba.algo3.modeloNico.Enemigo.Enemigo;
+import edu.fiuba.algo3.modeloNico.Celdas.SistemaVida;
 
 public class Hormiga implements Enemigo {
+
+	private int vida;
+	public Hormiga(){
+		vida = 1;
+	}
 
 	public int velocidad(){
 		return 1;
 	}
 
-	public int ataque(){
-		return 1;
+	public void atacar(SistemaVida target){
+		target.recibirAtaque(1); // hace uno de dmg
 	}
+
+    public boolean estaMuerto(){
+        return vida <= 0;
+    }
+
+
+	public void recibirAtaque(int damege) {
+        vida = vida- damege;
+        // Aca capaz, queda mejor si la vida-damage =< 0 entonces que le pase un mensaje a juego o estado jugando que se termino el juego.
+        if(estaMuerto()){
+            vida = 0;
+        }
+    }
+
 }

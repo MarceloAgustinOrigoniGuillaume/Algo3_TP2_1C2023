@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modeloNico;
 
 import edu.fiuba.algo3.modeloNico.Defensas.Estructura;
+import edu.fiuba.algo3.modeloNico.Celdas.SistemaVida;
 
-public class Jugador {
+public class Jugador implements SistemaVida{
     private int vida;
     private int creditos;
 

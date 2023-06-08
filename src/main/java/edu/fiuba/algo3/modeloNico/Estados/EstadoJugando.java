@@ -40,8 +40,7 @@ public class EstadoJugando implements EstadoJuego {
 
         while(!jugador.estaMuerto() && ind < enemigos.size()){
 
-            jugador.recibirAtaque(enemigos.get(ind).ataque());
-
+            enemigos.get(ind).atacar(jugador);
             ind+=1;
         }
 

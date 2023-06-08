@@ -14,6 +14,7 @@ public class Mapa {
 
     private Celda[][] matrizDeCeldas;
     private ArrayList<Coordenada> camino;
+    private ArrayList<Coordenada> defensas;
 
 
     private void agregarCelda(ConvertidorParcela convertidor){
@@ -46,7 +47,8 @@ public class Mapa {
 
     	// inicializas
     	matrizDeCeldas = new Celda[height][width];
-    	camino = new ArrayList();
+        camino = new ArrayList();
+        defensas = new ArrayList();
 
     	// cargas lector
         while(lector.haySiguiente()){
@@ -58,7 +60,12 @@ public class Mapa {
     }
 
     public boolean posicionar(Coordenada coordenada,Construccion construccion){
-        return obtenerCelda(coordenada).posicionar(construccion);
+        if(obtenerCelda(coordenada).posicionar(construccion)){
+            defensas.add(coordenada);
+            return true;
+        }
+
+        return false;
     }
 
     private Pasarela obtenerPasarela(Coordenada coord){
@@ -105,6 +112,17 @@ public class Mapa {
             indice-=1;
         }
     }
+
+
+    public void ataquenDefensas(){
+        //int indice = 0; // ultima defensa
+
+        //while(indice < defensas.size()){
+            //indice+=1;
+        //}
+    }
+
+
 
     public ArrayList<Unidad> obtenerUnidades(Coordenada coordenada){
         if(indexarPasarela(coordenada) == -1){

@@ -1,5 +1,4 @@
 package edu.fiuba.algo3.modeloNico.Celdas;
 
-public interface Construccion{
-	
+public interface Construccion extends Ataque{
 }

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modeloNico.Celdas;
 
-public interface Unidad{
+public interface Unidad extends Ataque,SistemaVida{
 	int velocidad();
-	int ataque();
 }

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modeloNico.Defensas;
 
+import edu.fiuba.algo3.modeloNico.Celdas.SistemaVida;
+
 public class TorreBlanca extends Defensa {
 
 
@@ -17,6 +19,11 @@ public class TorreBlanca extends Defensa {
     public int costo() {
         return 10;
     }
+
+    public void atacar(SistemaVida target){
+        target.recibirAtaque(1); // hace uno de dmg
+    }
+
 
 }
 
