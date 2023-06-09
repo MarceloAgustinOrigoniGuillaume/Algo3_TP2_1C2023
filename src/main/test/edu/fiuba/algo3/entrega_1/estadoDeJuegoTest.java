@@ -1,16 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EstadoJuego;
-import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.moduloLector.ConvertidorOleada;
-import edu.fiuba.algo3.modelo.moduloLector.Lector;
-import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
-import edu.fiuba.algo3.modelo.moduloEnemigos.Enemigos;
-import org.junit.jupiter.api.Test;
+//import edu.fiuba.algo3.modelo.Mapa.Posicion;
+//import edu.fiuba.algo3.modelo.Enemigos.Enemigos;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class estadoDeJuegoTest {
     /*

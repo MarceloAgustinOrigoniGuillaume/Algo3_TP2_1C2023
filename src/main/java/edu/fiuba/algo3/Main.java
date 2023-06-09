@@ -1,11 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modeloNico.Celdas.*;
-import edu.fiuba.algo3.modeloNico.Enemigo.Arania;
-import edu.fiuba.algo3.modeloNico.Enemigo.Enemigo;
-import edu.fiuba.algo3.modeloNico.Enemigo.Hormiga;
-import edu.fiuba.algo3.modeloNico.Juego;
-import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Celdas.*;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;

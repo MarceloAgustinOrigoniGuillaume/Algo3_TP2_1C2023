@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.entrega2;
 
 
-import edu.fiuba.algo3.modeloNico.Jugador;
-import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
-import edu.fiuba.algo3.modelo.moduloDefensas.TorreBlanca;
-import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada;
-import edu.fiuba.algo3.modeloNico.Enemigo.Hormiga;
-import edu.fiuba.algo3.modeloNico.Enemigo.Arania;
-import edu.fiuba.algo3.modeloNico.Celdas.Coordenada;
-import javafx.geometry.Pos;
+import edu.fiuba.algo3.modelo.Jugador;
+//import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
+//import edu.fiuba.algo3.modelo.moduloDefensas.TorreBlanca;
+//import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada;
+import edu.fiuba.algo3.modelo.Enemigo.Hormiga;
+import edu.fiuba.algo3.modelo.Enemigo.Arania;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

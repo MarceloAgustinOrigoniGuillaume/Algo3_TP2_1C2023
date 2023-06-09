@@ -1,12 +1,10 @@
 package edu.fiuba.algo3.entrega2;
 
-import edu.fiuba.algo3.modelo.moduloLector.ConvertidorParcela;
-import edu.fiuba.algo3.modelo.moduloLector.LectorMapa;
-import edu.fiuba.algo3.modeloNico.Defensas.TorrePlateada;
-import edu.fiuba.algo3.modeloNico.Defensas.TorreBlanca;
-import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
+import edu.fiuba.algo3.modelo.Lector.LectorMapa;
+import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
-import org.mockito.exceptions.base.MockitoException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;

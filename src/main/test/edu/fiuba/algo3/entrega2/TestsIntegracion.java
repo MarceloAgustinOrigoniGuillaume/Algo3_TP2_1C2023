@@ -1,13 +1,12 @@
 package edu.fiuba.algo3.entrega2;
 
-import edu.fiuba.algo3.modeloNico.Defensas.TorreBlanca;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import edu.fiuba.algo3.modeloNico.Juego;
-import edu.fiuba.algo3.modeloNico.Jugador;
+import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.Jugador;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
