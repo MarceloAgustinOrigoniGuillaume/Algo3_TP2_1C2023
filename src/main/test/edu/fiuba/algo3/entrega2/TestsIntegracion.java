@@ -26,7 +26,7 @@ public class TestsIntegracion {
         Juego juego = new Juego("src/main/resorces/mapa.json","src/main/resorces/enemigos.json");
         juego.iniciarJuego();
         int i =0;
-        while(juego.estanEnJuego() && i >20){
+        while(juego.estanEnJuego() && i >100){
             juego.pasarTurno();
             i++;
         };
