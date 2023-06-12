@@ -2,15 +2,14 @@ package edu.fiuba.algo3.entrega2;
 
 
 //import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
-import edu.fiuba.algo3.modelo.moduloLector.LectorMapa;
-import edu.fiuba.algo3.modeloNico.Defensas.TorrePlateada;
-import edu.fiuba.algo3.modeloNico.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.moduloLector.ConvertidorParcela;
-import edu.fiuba.algo3.modeloNico.Celdas.Coordenada;
-import edu.fiuba.algo3.modeloNico.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Lector.LectorMapa;
+import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
 
-import edu.fiuba.algo3.modeloNico.Enemigo.Hormiga;
-import edu.fiuba.algo3.modeloNico.Jugador;
+import edu.fiuba.algo3.modelo.Enemigo.Hormiga;
 //import edu.fiuba.algo3.modelo.moduloLector.Lector;
 
 import java.util.ArrayList;
