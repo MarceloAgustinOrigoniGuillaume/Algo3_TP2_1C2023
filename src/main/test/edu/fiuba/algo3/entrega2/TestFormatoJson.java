@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega2;
 
 import edu.fiuba.algo3.modelo.Lector.Lector;
+import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import edu.fiuba.algo3.modelo.Lector.LectorEnemigo;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import org.json.simple.parser.ParseException;
@@ -106,6 +107,33 @@ public class TestFormatoJson {
                 cantidad += 1;
             }
         });
+    }
+
+    @Test
+    public void pruebaDaCaminableEnLugaresCorrectos () throws Exception{
+        Lector lector = new LectorMapa("src/main/resorces/test/mapa_corto.json",4,3);
+        ConvertidorParcela element;
+
+        int[][] camino = new int[5][2];
+        int indice = 0;
+        // camino
+        camino[0] = new int[]{2,1};
+        camino[1] = new int[]{2,2};
+        camino[2] = new int[]{2,3};
+        camino[3] = new int[]{3,3};
+        camino[4] = new int[]{4,3};
+
+        while (lector.haySiguiente()) {
+
+             element= (ConvertidorParcela) lector.siguienteElemento();
+
+            if ( element.esCaminable() ){
+                assertEquals(camino[indice][1],element.fila());
+                assertEquals(camino[indice][0],element.columna());
+                indice += 1;
+            }
+        }
+
     }
 
 }
