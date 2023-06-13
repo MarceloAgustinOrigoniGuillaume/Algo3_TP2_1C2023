@@ -35,6 +35,7 @@ public class Turno{
 
 
 		// instancia enemigos.
+		//System.out.println("INSTANCIANDO OLEADA "+String.valueOf(turno));
 		ArrayList<Enemigo> enemigos = oleadas.instanciar(turno);
 		
 		for (Enemigo enemigo: enemigos){

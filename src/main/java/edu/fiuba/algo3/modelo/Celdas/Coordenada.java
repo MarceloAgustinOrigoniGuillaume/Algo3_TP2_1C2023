@@ -33,7 +33,10 @@ public class Coordenada {
         return diffX+ diffY;
     }
 
-
+    @Override
+    public String toString() {
+        return String.valueOf(x())+","+String.valueOf(y());
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

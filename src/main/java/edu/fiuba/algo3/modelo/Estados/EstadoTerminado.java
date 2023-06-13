@@ -14,6 +14,7 @@ public class EstadoTerminado implements EstadoJuego {
     @Override
     public void ejecutarEstado() {
     	// no hace nada por ahora , solo para saber que esta terminado
+        //System.out.println("--------->Ejecutar estado, terminado");
 
     }
 }

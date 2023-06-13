@@ -20,6 +20,8 @@ public class EstadoJugando implements EstadoJuego {
 
     @Override
     public void ejecutarEstado() {
+        //System.out.println("--------->Ejecutar estado, jugando, turno "+String.valueOf(turno.turnoActual()));
+
        // verificar si puede matar a jugador
         Jugador jugador = juego.obtenerJugador();
         Mapa mapa =juego.obtenerMapa();
@@ -27,6 +29,7 @@ public class EstadoJugando implements EstadoJuego {
         // verificar si no pueden hacer suficiente dmg?
         if(juego.obtenerOleadas().noHayMasOleadas(turno.turnoActual())
             && mapa.cantidadDmgPosible()< jugador.obtenerVida()){ 
+            //System.out.println("--------->Juego finalizo, enemigos no podian matar jugador");
             
             juego.terminarJuego();
 
@@ -39,6 +42,7 @@ public class EstadoJugando implements EstadoJuego {
     		juego.obtenerOleadas()
     		);
 
+        //System.out.println("--------->REVISANDO ENEMIGOS FINAL");
         ArrayList<Unidad> enemigos = mapa.popUnidadesFinal();
         int ind = 0;
 
@@ -47,8 +51,10 @@ public class EstadoJugando implements EstadoJuego {
             jugador.recibirAtaque(enemigos.get(ind).ataque());
             ind+=1;
         }
+        //System.out.println("--------->REVISANDO ENEMIGOS FINAL--> muerto? "+String.valueOf(jugador.obtenerVida()));
 
         if(jugador.estaMuerto()){
+            //System.out.println("--------->Juego finalizo, jugador murio");
             juego.terminarJuego();
         }
     }

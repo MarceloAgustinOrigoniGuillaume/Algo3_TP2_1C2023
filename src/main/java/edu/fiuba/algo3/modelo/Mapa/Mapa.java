@@ -26,6 +26,7 @@ public class Mapa {
 
         if (convertidor.esCaminable()){
         	camino.add(celda.posicion());
+            //System.out.println("SE AGREGO CAMINO ... pos : "+String.valueOf(celda.posicion().x())+","+String.valueOf(celda.posicion().y()));
             //System.out.println("(*Pasarela SET MAPA "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" == "+celda.getClass());
         } else{
 	        //System.out.println("->(CELDA SET MAPA "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" == "+celda.getClass());
@@ -99,8 +100,14 @@ public class Mapa {
         ArrayList<Unidad> unidadesPasarela;
         Pasarela pasarela;
         int indice = camino.size()-2; // ante ultima pasarela
-
+        Coordenada pos = camino.get(indice);
         while(indice >= 0){
+
+            pos = camino.get(indice);
+            
+            //System.out.println("--->MOVIENDO ENEMIGOS DE  ... pos : "+String.valueOf(pos.x())+","+String.valueOf(pos.y()));
+
+
             pasarela = obtenerPasarela(camino.get(indice));
             unidadesPasarela = pasarela.obtenerUnidades();
             pasarela.sacarTodos();
@@ -111,6 +118,14 @@ public class Mapa {
             }
             indice-=1;
         }
+
+
+        int cant = obtenerPasarela(camino.get(camino.size()-1)).obtenerUnidades().size();
+
+        //System.out.println("--->EN FINAL HABIA MOVIDO  : "+String.valueOf(cant));
+        cant = obtenerPasarela(camino.get(camino.size()-2)).obtenerUnidades().size();
+        //System.out.println("--->Ante ultima TIENE  : "+String.valueOf(cant));
+
     }
 
 
@@ -143,6 +158,8 @@ public class Mapa {
             indice+=1;
         }
 
+        //System.out.println("-->MURIERON Un total de "+String.valueOf(enemigosMuertos.size())+"ENEMIGOS");
+
         return enemigosMuertos;
     }
 
@@ -157,6 +174,7 @@ public class Mapa {
     }
     
     public void posicionarInicio(Unidad enemigo){
+        //System.out.println("SE ESTA POSICIONANDO ENEMIGO INICIO "+enemigo.toString());
         obtenerCelda(camino.get(0)).posicionar(enemigo);
     }
 
@@ -166,6 +184,15 @@ public class Mapa {
         ArrayList<Unidad> unidadesPasarela = pos_final.obtenerUnidades();
 
         pos_final.sacarTodos();
+
+        /*
+        if(unidadesPasarela.size() >0){
+            System.out.println("SE PIDIO SACAR ENEMIGOS FINAL HABIA: "+String.valueOf(unidadesPasarela.size()));            
+        } else{
+            Coordenada cord = camino.get(camino.size()-1);
+            System.out.println("SE PIDIO SACAR ENEMIGOS FINAL HABIA:0 , nadie... pos : "+String.valueOf(cord.x())+","+String.valueOf(cord.y()));
+        }
+        */
 
         return unidadesPasarela;
     }
