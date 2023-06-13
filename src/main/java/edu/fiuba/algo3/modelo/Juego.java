@@ -30,7 +30,6 @@ public class Juego {
     public void iniciarJuego() {
         this.estadoDeJuego = new EstadoJugando(this);
         this.estaJugando = true;
-        estadoDeJuego.ejecutarEstado();
     }
 
     public void terminarJuego() {
@@ -72,6 +71,7 @@ public class Juego {
         }
 
         jugador.costear(estructura);
+        //System.out.println("-->Posiciono defensa "+pos.toString()+" creditos jugador "+String.valueOf(jugador.obtenerCreditos()));
         return true;
 
 
@@ -79,9 +79,14 @@ public class Juego {
 
 
     public void pasarTurno() {
+        //System.out.println("JUEGO PASAR TURNO, EJECUTANDO ESTADO");
         estadoDeJuego.ejecutarEstado();
     }
     public boolean estanEnJuego(){
         return estaJugando;
+    }
+
+    public boolean ganoJugador(){
+        return !estanEnJuego() && !jugador.estaMuerto();
     }
 }

@@ -24,14 +24,15 @@ public class Oleadas {
 	}
 
 	public ArrayList<Enemigo> instanciar(int turno){
+		// el indice seria uno menos... turno 1 instancia oleada 0...
 		if(noHayMasOleadas(turno)){
 			return new ArrayList<>();
 		}
 
-		return oleadas.get(turno).instanciar();
+		return oleadas.get(turno-1).instanciar();
 	}
 
 	public boolean noHayMasOleadas(int turno){
-		return turno>= oleadas.size();
+		return turno-1>= oleadas.size(); // not (turno-1 < size)
 	}
 }
