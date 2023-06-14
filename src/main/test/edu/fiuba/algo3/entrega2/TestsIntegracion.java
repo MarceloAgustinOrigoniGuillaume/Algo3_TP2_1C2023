@@ -20,7 +20,9 @@ import java.util.ArrayList;
 public class TestsIntegracion {
     @Test
     public void verficarSeCreaJugadorCorrectamente() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa.json","src/main/resorces/enemigos.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa.json","src/main/resources/archivos-json/" +
+                "enemigos.json");
         Jugador jugador = juego.obtenerJugador();
         assertEquals(100,jugador.obtenerCreditos());
         assertEquals(20,jugador.obtenerVida());
@@ -28,7 +30,9 @@ public class TestsIntegracion {
     }
     @Test
     public void verficarPasarTurnosMapaCatedra() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa.json","src/main/resorces/enemigos.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa.json","src/main/resources/archivos-json/" +
+                "enemigos.json");
         juego.iniciarJuego();
         int i =0;
         while(juego.estanEnJuego() && i <100){
@@ -46,7 +50,9 @@ public class TestsIntegracion {
 
     @Test
     public void verificarJuegoSoloSeIniciaCuandoSeInicia() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa.json","src/main/resorces/enemigos.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa.json","src/main/resources/archivos-json/" +
+                "enemigos.json");
         juego.iniciarJuego();
         int i =0;
         
@@ -57,7 +63,9 @@ public class TestsIntegracion {
 
     @Test
     public void verificarPasarTurnoYCreaEnemigos() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa_sencillo.json","src/main/resorces/enemigos_sencillo_no_mata.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa_sencillo.json","src/main/resources/archivos-json/" +
+                "enemigos_sencillo_no_mata.json");
         juego.iniciarJuego();
 
         ArrayList<Unidad> unidadesInicio;
@@ -75,7 +83,9 @@ public class TestsIntegracion {
 
     @Test
     public void verificarPasan2TurnosCreaYMueveEnemigos() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa_sencillo.json","src/main/resorces/enemigos_sencillo_no_mata.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa_sencillo.json","src/main/resources/archivos-json/" +
+                "enemigos_sencillo_no_mata.json");
         juego.iniciarJuego();
 
         ArrayList<Unidad> unidadesInicio;
@@ -98,7 +108,9 @@ public class TestsIntegracion {
 
     @Test
     public void verificarPasan6TurnosHormigasInicialesLleganFinal() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa_sencillo.json","src/main/resorces/enemigos_sencillo_no_mata.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa_sencillo.json","src/main/resources/archivos-json/" +
+                "enemigos_sencillo_no_mata.json");
         juego.iniciarJuego();
         //System.out.println("PASO DE 6 TURNOS");
 
@@ -128,7 +140,9 @@ public class TestsIntegracion {
 
     @Test
     public void verificarPasan13TurnosEnemigosMatanJugador() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa_sencillo.json","src/main/resorces/enemigos_sencillo_no_mata.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa_sencillo.json","src/main/resources/archivos-json/" +
+                "enemigos_sencillo_no_mata.json");
         juego.iniciarJuego();
         //System.out.println("PASO DE 12 TURNOS Juego termino");
 
@@ -153,7 +167,9 @@ public class TestsIntegracion {
 
     @Test
     public void verificarPasan13ConUnaTorrePlateadaTurno2JugadorGana() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa_sencillo.json","src/main/resorces/enemigos_sencillo_no_mata.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa_sencillo.json","src/main/resources/archivos-json/" +
+                "enemigos_sencillo_no_mata.json");
         juego.iniciarJuego();
         //System.out.println("PASO DE 12 TURNOS Juego termino, con defensa");
 
@@ -185,7 +201,9 @@ public class TestsIntegracion {
 
     @Test
     public void verificarPasanConUnaTorrePlateadaTurno2NoActivaPor2Turnos() throws IOException, ParseException {
-        Juego juego = new Juego("src/main/resorces/mapa_sencillo.json","src/main/resorces/enemigos_sencillo_no_mata.json");
+        Juego juego = new Juego("src/main/resources/archivos-json/" +
+                "mapa_sencillo.json","src/main/resources/archivos-json/" +
+                "enemigos_sencillo_no_mata.json");
         juego.iniciarJuego();
         //System.out.println("Paso 2 con defensa");
 

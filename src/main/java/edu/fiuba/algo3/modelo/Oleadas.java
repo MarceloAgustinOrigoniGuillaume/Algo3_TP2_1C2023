@@ -20,7 +20,6 @@ public class Oleadas {
         	agregarOleada((Oleada)(lector.siguienteElemento().obtener()));
         }
 
-
 	}
 
 	public ArrayList<Enemigo> instanciar(int turno){

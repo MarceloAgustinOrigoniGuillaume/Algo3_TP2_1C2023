@@ -22,13 +22,9 @@ public class Rocosa implements Celda {
     }
     public void atacar(SistemaVida target){
     }
-    
 
-    /*
-    public GameEntity obtener(){
-    	return null;
+    @Override
+    public String toString(){
+        return "Rocosa";
     }
-    */
-
-
 }

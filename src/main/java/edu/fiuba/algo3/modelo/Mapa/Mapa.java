@@ -1,14 +1,10 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Celdas.*;
-import edu.fiuba.algo3.modelo.Celdas.*;
-
-
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
-
 import java.util.ArrayList;
-
 
 public class Mapa {
 
@@ -22,29 +18,23 @@ public class Mapa {
     	Celda celda = (Celda)convertidor.obtener();
         matrizDeCeldas[convertidor.fila()-1][convertidor.columna()-1] = celda;
 
-
-
         if (convertidor.esCaminable()){
         	camino.add(celda.posicion());
-            //System.out.println("SE AGREGO CAMINO ... pos : "+String.valueOf(celda.posicion().x())+","+String.valueOf(celda.posicion().y()));
-            //System.out.println("(*Pasarela SET MAPA "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" == "+celda.getClass());
-        } else{
-	        //System.out.println("->(CELDA SET MAPA "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" == "+celda.getClass());
+            //Logger.info("Se agrego camino, en posicion:"+String.valueOf(celda.posicion().x())+","+String.valueOf(celda.posicion().y()));
+            //Logger.info("Se agrega pasarela al mapa, en posicion: "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" u la celda es "+celda.toString());
+        } else {
+            //Logger.info("Coloco la celda en el mapa, en posicion: "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" y la celda es "+celda.toString());
         }
-
     }
 
     private Celda obtenerCelda(Coordenada coordenada){
-        //System.out.println("-->SE OBTUVO "+String.valueOf(coordenada.x())+","+String.valueOf(coordenada.y())+" == "+(matrizDeCeldas[coordenada.y()-1][coordenada.x()-1]).getClass());
+        //Logger.info("Se obtuvo"+String.valueOf(coordenada.x())+","+String.valueOf(coordenada.y())+" == "+(matrizDeCeldas[coordenada.y()-1][coordenada.x()-1]).getClass()); DEBUGGEAR
 
         return matrizDeCeldas[coordenada.y()-1][coordenada.x()-1];
-
     }
 
 
-
     public Mapa(LectorMapa lector ,int width, int height) throws Exception {
-        
 
     	// inicializas
     	matrizDeCeldas = new Celda[height][width];
@@ -55,9 +45,7 @@ public class Mapa {
         while(lector.haySiguiente()){
         	agregarCelda((ConvertidorParcela)(lector.siguienteElemento()));
         }
-
-        //System.out.println("Total camino length "+String.valueOf(camino.size()));
-
+        //Logger.info("Cantidad de Pasarelas Actual"+String.valueOf(camino.size())); DEBBUGEAR
     }
 
     public boolean posicionar(Coordenada coordenada, Construccion construccion){
@@ -65,7 +53,6 @@ public class Mapa {
             defensas.add(coordenada);
             return true;
         }
-
         return false;
     }
 
@@ -81,10 +68,8 @@ public class Mapa {
             }
             i+=1;
         }
-
         return -1;
     }
-
 
 
     // mover
@@ -104,9 +89,8 @@ public class Mapa {
         while(indice >= 0){
 
             pos = camino.get(indice);
-            
-            //System.out.println("--->MOVIENDO ENEMIGOS DE  ... pos : "+String.valueOf(pos.x())+","+String.valueOf(pos.y()));
 
+            Logger.info("Se mueve enemigo a posicion: "+String.valueOf(pos.x())+","+String.valueOf(pos.y()));
 
             pasarela = obtenerPasarela(camino.get(indice));
             unidadesPasarela = pasarela.obtenerUnidades();
@@ -118,16 +102,13 @@ public class Mapa {
             }
             indice-=1;
         }
-
-
         int cant = obtenerPasarela(camino.get(camino.size()-1)).obtenerUnidades().size();
 
-        //System.out.println("--->EN FINAL HABIA MOVIDO  : "+String.valueOf(cant));
+        //System.out.println("--->EN FINAL HABIA MOVIDO  : "+String.valueOf(cant)); DEBBUGEAR
         cant = obtenerPasarela(camino.get(camino.size()-2)).obtenerUnidades().size();
-        //System.out.println("--->Ante ultima TIENE  : "+String.valueOf(cant));
+        //System.out.println("--->Ante ultima TIENE  : "+String.valueOf(cant)); DEBUGGEAR
 
     }
-
 
     public ArrayList<Unidad> accionarDefensas(){
         int indice = 0; // ultima defensa
@@ -137,15 +118,17 @@ public class Mapa {
         ArrayList<Unidad> enemigosMuertos = new ArrayList<>();
         while(indice < defensas.size()){
 
-            // no es ideal este casteo ja...
+            // ES IDEAL este casteo
             celdaActual = (Tierra) obtenerCelda(defensas.get(indice));
 
+            Logger.info("La defensa de la posicion: "+celdaActual.posicion().toString()+"\n" );
 
             enRango = celdaActual.obtenerEnRango(camino);
 
             for (Coordenada target: enRango){
                 pasarelaTarget = obtenerPasarela(target);
                 for(Unidad enemigo: pasarelaTarget.obtenerUnidades()){
+                    Logger.info("Ataca a enemigo en: "+target.toString()+"\n");
                     celdaActual.atacar(enemigo);
 
                     if(enemigo.estaMuerto()){
@@ -157,24 +140,19 @@ public class Mapa {
 
             indice+=1;
         }
-
-        //System.out.println("-->MURIERON Un total de "+String.valueOf(enemigosMuertos.size())+"ENEMIGOS");
-
+        Logger.info("Murieron un total de "+String.valueOf(enemigosMuertos.size())+" ENEMIGOS");
         return enemigosMuertos;
     }
-
-
 
     public ArrayList<Unidad> obtenerUnidades(Coordenada coordenada){
         if(indexarPasarela(coordenada) == -1){
             return new ArrayList<>();
         }
-
         return obtenerPasarela(coordenada).obtenerUnidades();
     }
     
     public void posicionarInicio(Unidad enemigo){
-        //System.out.println("SE ESTA POSICIONANDO ENEMIGO INICIO "+enemigo.toString());
+        Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
         obtenerCelda(camino.get(0)).posicionar(enemigo);
     }
 
@@ -193,7 +171,6 @@ public class Mapa {
             System.out.println("SE PIDIO SACAR ENEMIGOS FINAL HABIA:0 , nadie... pos : "+String.valueOf(cord.x())+","+String.valueOf(cord.y()));
         }
         */
-
         return unidadesPasarela;
     }
 
@@ -208,12 +185,26 @@ public class Mapa {
             }
             indice-=1;
         }
-
         return dmg;
-
     }
 
+    @Override
+    public String toString(){
 
+        String columna = "{";
+        for(int y = 0; y < 15; y++){
 
+            String fila = "{";
+            for(int x = 0; x < 15; x++){
+
+                fila += matrizDeCeldas[y][x].toString();
+                fila += " ";
+            }
+            fila += "}";
+            columna += fila+"\n";
+
+        }
+        return columna;
+    }
 
 }

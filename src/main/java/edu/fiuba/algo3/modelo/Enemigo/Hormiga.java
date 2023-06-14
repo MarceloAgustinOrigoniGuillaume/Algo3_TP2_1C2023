@@ -20,7 +20,6 @@ public class Hormiga implements Enemigo {
         return vida <= 0;
     }
 
-
 	public void recibirAtaque(int damege) {
         vida = vida- damege;
         // Aca capaz, queda mejor si la vida-damage =< 0 entonces que le pase un mensaje a juego o estado jugando que se termino el juego.
@@ -37,4 +36,8 @@ public class Hormiga implements Enemigo {
     	return new Hormiga();
     }
 
+    @Override
+    public String toString(){
+        return "Hormiga";
+    }
 }

@@ -27,7 +27,6 @@ public class Tierra implements Celda {
             return true;
 		}
         return false;
-
 	}
 
     public void atacar(SistemaVida target){
@@ -48,12 +47,8 @@ public class Tierra implements Celda {
 
     }
 
-
-    /*
-    public GameEntity obtener(){
-    	return construccion;
+    @Override
+    public String toString(){
+        return "Tierra";
     }
-    */
-
-
 }
