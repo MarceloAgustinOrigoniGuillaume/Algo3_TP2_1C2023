@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Estados;
 
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import edu.fiuba.algo3.modelo.Juego;
@@ -29,23 +30,21 @@ public class EstadoInicial implements EstadoJuego {
         this.juego = juego;
         this.jsonMapa = jsonMapa;
         this.jsonEnemigos = jsonEnemigos;
-    
-        //juego.asignarMapa(mapa);
+
     }
 
     @Override
     public void ejecutarEstado() {
 
         try{
+
             // reinicia el estado de Juego
 	        LectorMapa lector = new LectorMapa(jsonMapa,WIDTH_MAP,HEIGHT_MAP);
-
             juego.asignarMapa(new Mapa(lector, WIDTH_MAP,HEIGHT_MAP));
-            
             LectorEnemigo lectorEnemigos = new LectorEnemigo(jsonEnemigos);
-
             juego.asignarOleadas(new Oleadas(lectorEnemigos));
 
+            Logger.info(juego.obtenerMapa().toString());
 
         } catch (Exception e){
         	System.out.println("ERROR "+e.toString());

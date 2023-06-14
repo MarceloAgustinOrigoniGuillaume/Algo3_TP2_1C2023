@@ -37,8 +37,6 @@ public class Juego {
         this.estaJugando = false;
     }
 
-
-
     public void asignarMapa(Mapa mapa){
         this.mapa = mapa;
     }
@@ -46,21 +44,17 @@ public class Juego {
     public void asignarOleadas(Oleadas oleadas){
 
         this.oleadas = oleadas;
-
     }
-
     public Jugador obtenerJugador(){
         return jugador;
     }
     public Mapa obtenerMapa(){
         return mapa;
     }
-
     public Oleadas obtenerOleadas(){
+
         return oleadas;
     }
-
-
     public boolean posicionar(Estructura estructura, Coordenada pos){
         if(!jugador.puedeCostear(estructura)){
             return false;
@@ -73,10 +67,7 @@ public class Juego {
         jugador.costear(estructura);
         //System.out.println("-->Posiciono defensa "+pos.toString()+" creditos jugador "+String.valueOf(jugador.obtenerCreditos()));
         return true;
-
-
     }
-
 
     public void pasarTurno() {
         //System.out.println("JUEGO PASAR TURNO, EJECUTANDO ESTADO");

@@ -15,7 +15,6 @@ public class Pasarela implements Celda{
     	return coordenada;
     }
 
-
     public boolean posicionar(Unidad entidad){
     	
     	unidades.add(entidad);
@@ -48,5 +47,9 @@ public class Pasarela implements Celda{
         }
     }
 
+    @Override
+    public String toString(){
+        return "Pasarela";
+    }
 
 }
