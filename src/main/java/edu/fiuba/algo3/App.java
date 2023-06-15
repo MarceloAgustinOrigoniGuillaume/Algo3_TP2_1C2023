@@ -39,13 +39,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         try{
-            //Ventana scene = new Ventana(INITIAL_WIDTH, INITIAL_HEIGHT);//new Scene(new MenuInicio(), );
-            Parent vista = Resources.getVista("inicioVistas");//FXMLLoader.load(getClass().getResource("/vistas/inicioVistas.fxml"));//Resources.getVista("inicioVistas");
-            if(vista == null){
-                //Logger.Log(">>NO PUDO INICIAR LA APP");
-                throw  new Exception("Vista instanciada fue null");
-            }
-            Scene scene = new Scene( vista,INITIAL_WIDTH, INITIAL_HEIGHT);
+            Ventana scene = new Ventana(INITIAL_WIDTH, INITIAL_HEIGHT);//new Scene(new MenuInicio(), );
 
             stage.setScene(scene);
             stage.show();

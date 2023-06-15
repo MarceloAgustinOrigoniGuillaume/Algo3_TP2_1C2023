@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vistas;
 
 
 
+import edu.fiuba.algo3.Resources;
 import edu.fiuba.algo3.controladores.ControladorJuego;
 import edu.fiuba.algo3.Logger;
 
@@ -38,11 +39,35 @@ public class MenuInicio extends VBox implements Vista {
 	}
 
 	private void init(){
+		setAlignment(Pos.CENTER);
 
+		Parent view = Resources.getVista("inicioVistas");
+		if(view == null){
+			Logger.Log("ERROR LOADING MENU INICIO ... view was 'inicioVistas' null");
+			return;
+		}
+		getChildren().add(view);
+
+		TextField textFieldNombre = (TextField) view.lookup("#editNombreUsuario");
+		Button button  = (Button) view.lookup("#btnIniciarJuego");
+
+		button.setOnAction( (ActionEvent event)->{
+			String nombreJugador = textFieldNombre.getText();
+			if(!validarNombreJugador(nombreJugador)){
+				Logger.Log("Nombre invalido '"+nombreJugador+"'");
+				return;
+			}
+
+			new ControladorJuego().empezarJuego(getScene(),nombreJugador);
+		} );
+
+		/*
+
+		// anterior
         setAlignment(Pos.CENTER);
         Label label = new Label(titulo);
         TextField textFieldNombre = new TextField();
-        Button button = new Button();		
+        Button button = new Button();
 
         button.setText(label_button);
         getChildren().add(label);
@@ -50,16 +75,7 @@ public class MenuInicio extends VBox implements Vista {
         getChildren().add(textFieldNombre);
         getChildren().add(button);
 
-        button.setOnAction( (ActionEvent event)->{
-        	String nombreJugador = textFieldNombre.getText();
-        	if(!validarNombreJugador(nombreJugador)){
-        		Logger.Log("Nombre invalido '"+nombreJugador+"'");
-        		return;
-        	}
-
-        	new ControladorJuego().empezarJuego(getScene(),nombreJugador);
-        } );
-
+		 */
 
 	}
 
