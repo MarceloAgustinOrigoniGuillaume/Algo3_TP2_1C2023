@@ -42,9 +42,15 @@ public class Pasarela implements Celda{
         unidades.remove(unidad);
     }
 
-    public ArrayList<Unidad> atacar(ArrayList<Unidad> unidades){
+    public ArrayList<Unidad> atacar(ArrayList<Unidad> unidades) {
         return null;
     }
+
+    @Override
+    public void sacarUnidad(Unidad unidad) {
+        sacar(unidad);
+    }
+
 
     @Override
     public String toString(){

@@ -59,4 +59,10 @@ public class Tierra implements Celda {
     public String toString(){
         return "Tierra";
     }
+
+    @Override
+    public void sacarUnidad(Unidad unidad) {
+
+    }
+
 }

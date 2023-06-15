@@ -227,4 +227,13 @@ public class Mapa {
         return columna;
     }
 
+
+    public void mover(Unidad unidad, Coordenada desde,Coordenada hasta){
+        obtenerCelda(desde).sacarUnidad(unidad);
+        obtenerCelda(hasta).posicionar(unidad);
+    }
+    public Coordenada posicionFinal(){
+        return camino.get(camino.size()-1);
+    }
+
 }
