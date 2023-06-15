@@ -23,6 +23,7 @@ public class ControladorJuego extends Controlador{
 
 	public boolean empezarJuego(Scene ventana, String nombreJugador){
 		try{
+			Logger.Log("Empezando juego con jugador '"+nombreJugador+"'");
 			DatosModelo.empezarJuegoActual();
 		} catch(Exception ex){
 			Logger.Log("Error at empezar Juego "+ex.toString());

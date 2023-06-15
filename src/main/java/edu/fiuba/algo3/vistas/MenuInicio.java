@@ -41,9 +41,9 @@ public class MenuInicio extends VBox implements Vista {
 	private void init(){
 		setAlignment(Pos.CENTER);
 
-		Parent view = Resources.getVista("inicioVistas");
+		Parent view = Resources.getVista("menu_inicio");
 		if(view == null){
-			Logger.Log("ERROR LOADING MENU INICIO ... view was 'inicioVistas' null");
+			Logger.Log("ERROR LOADING MENU INICIO ... view was 'menu_inicio' null");
 			return;
 		}
 		getChildren().add(view);
