@@ -11,9 +11,8 @@ public class Ventana extends Scene{
 	public Ventana(int width, int height) throws Exception{
 
 		// iniciar juego lo que hace es iniciar, y devuelva la pantalla inicial...
-		super(new ControladorJuego().iniciarJuego(
-			"src/main/resources/archivos-json/mapa.json","src/main/resources/archivos-json/enemigos.json")
-			, width,height);
+		super(new ControladorJuego().iniciarJuego(Resources.getJsonPath("mapa"),
+						Resources.getJsonPath("enemigos")), width,height);
 	}
 
 
