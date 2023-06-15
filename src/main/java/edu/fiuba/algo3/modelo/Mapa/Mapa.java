@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Celdas.*;
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import java.util.ArrayList;

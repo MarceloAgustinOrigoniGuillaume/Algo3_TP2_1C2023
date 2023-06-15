@@ -37,7 +37,6 @@ public class EstadoInicial implements EstadoJuego {
     public void ejecutarEstado() {
 
         try{
-
             // reinicia el estado de Juego
 	        LectorMapa lector = new LectorMapa(jsonMapa,WIDTH_MAP,HEIGHT_MAP);
             juego.asignarMapa(new Mapa(lector, WIDTH_MAP,HEIGHT_MAP));

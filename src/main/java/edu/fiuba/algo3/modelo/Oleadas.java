@@ -13,13 +13,14 @@ public class Oleadas {
 	private void agregarOleada(Oleada oleada){
 		oleadas.add(oleada);
 	}
+
+
 	public Oleadas(LectorEnemigo lector) throws Exception {
 		oleadas = new ArrayList();
     	// cargas lector
         while(lector.haySiguiente()){
         	agregarOleada((Oleada)(lector.siguienteElemento().obtener()));
         }
-
 	}
 
 	public ArrayList<Enemigo> instanciar(int turno){
@@ -27,7 +28,6 @@ public class Oleadas {
 		if(noHayMasOleadas(turno)){
 			return new ArrayList<>();
 		}
-
 		return oleadas.get(turno-1).instanciar();
 	}
 

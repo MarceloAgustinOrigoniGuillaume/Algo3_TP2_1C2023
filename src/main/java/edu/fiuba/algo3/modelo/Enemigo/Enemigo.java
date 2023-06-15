@@ -2,8 +2,11 @@ package edu.fiuba.algo3.modelo.Enemigo;
 
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
 
-public interface Enemigo extends Unidad{
+public interface Enemigo extends Unidad {
 	Enemigo copiar();
+
+	void incrementarContadorDePasos();
+
 }
 
 /*

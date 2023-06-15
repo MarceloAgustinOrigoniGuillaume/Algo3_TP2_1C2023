@@ -38,9 +38,7 @@ public class EstadoJugando implements EstadoJuego {
         }
 
     	// jugar turno...
-    	turno.jugarTurno(mapa,jugador,
-    		juego.obtenerOleadas()
-    		);
+    	turno.jugarTurno(mapa,jugador, juego.obtenerOleadas());
 
         //System.out.println("--------->REVISANDO ENEMIGOS FINAL"); DEBBUGUEAR
         ArrayList<Unidad> enemigos = mapa.popUnidadesFinal();

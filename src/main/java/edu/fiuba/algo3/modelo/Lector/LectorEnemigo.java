@@ -22,7 +22,6 @@ public class LectorEnemigo  implements Lector{
 
     }
 
-
     private Hashtable<String,Integer> convertToHash(JSONObject enemigos){
         Hashtable<String,Integer> oleada = new Hashtable<String,Integer>();
         
@@ -38,7 +37,6 @@ public class LectorEnemigo  implements Lector{
 
     @Override
     public Convertidor siguienteElemento() throws Exception {
-
 
     	JSONObject obj = (JSONObject)iterador.next();
 

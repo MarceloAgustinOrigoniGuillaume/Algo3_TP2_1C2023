@@ -5,14 +5,21 @@ import edu.fiuba.algo3.Logger;
 public class Arania implements Enemigo {
 
 	private int vida;
+    private int velocidad = 2;
+
 	public Arania(){
-		vida = 2;
+		this.vida = 2;
 	}
 
 
 	public int velocidad(){
-		return 2;
+        return this.velocidad;
 	}
+
+    @Override
+    public void reducirVelocidad() {
+        this.velocidad = (int)Math.floor(this.velocidad / 2);
+    }
 
     public int ataque(){
         return 2;
@@ -23,14 +30,11 @@ public class Arania implements Enemigo {
         return vida <= 0;
     }
 
+    @Override
+    public void recibirAtaque(int danioRecibido) {
+        this.vida = this.vida - danioRecibido;
+        Logger.info("El daño recibido es: "+danioRecibido);
 
-	public void recibirAtaque(int damege) {
-        vida = vida- damege;
-        Logger.info("El daño recibido es: "+damege);
-        // Aca capaz, queda mejor si la vida-damage =< 0 entonces que le pase un mensaje a juego o estado jugando que se termino el juego.
-        if(estaMuerto()){
-            vida = 0;
-        }
     }
 
     public int creditosDados(){
@@ -42,6 +46,11 @@ public class Arania implements Enemigo {
     	return new Arania();
     }
 
+
+    @Override
+    public void incrementarContadorDePasos(){
+
+    }
     @Override
     public String toString(){
         return "Araña";
