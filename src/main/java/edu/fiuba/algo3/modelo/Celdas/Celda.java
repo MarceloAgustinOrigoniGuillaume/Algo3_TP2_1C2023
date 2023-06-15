@@ -9,7 +9,8 @@ public interface Celda {
     boolean posicionar(Construccion construccion);
     boolean posicionar(Unidad unidad);
     void sacarTodos();
-    ArrayList<Unidad>  atacar(ArrayList<Unidad> unidades);
 
+    ArrayList<Unidad>  atacar(ArrayList<Unidad> unidades);
     void sacarUnidad(Unidad unidad);
+
 }
