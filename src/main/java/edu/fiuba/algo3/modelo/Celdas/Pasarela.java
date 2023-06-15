@@ -42,12 +42,8 @@ public class Pasarela implements Celda{
         unidades.remove(unidad);
     }
 
-
-    public void atacar(SistemaVida target){
-
-        for(Unidad unidad : unidades){
-            target.recibirAtaque(unidad.ataque());
-        }
+    public ArrayList<Unidad> atacar(ArrayList<Unidad> unidades){
+        return null;
     }
 
     @Override

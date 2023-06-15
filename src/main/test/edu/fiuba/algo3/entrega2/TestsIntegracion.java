@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega2;
 
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Resources;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class TestsIntegracion {
     @Test
     public void verficarSeCreaJugadorCorrectamente() throws IOException, ParseException {
-        Juego juego = new Juego(Resources.getJsonPath("test/mapa"),Resources.getJsonPath("test/enemigos"));
+        Juego juego = new Juego(Resources.getJsonPath("mapa"),Resources.getJsonPath("enemigos"));
         Jugador jugador = juego.obtenerJugador();
         assertEquals(100,jugador.obtenerCreditos());
         assertEquals(20,jugador.obtenerVida());
@@ -29,7 +30,7 @@ public class TestsIntegracion {
     }
     @Test
     public void verficarPasarTurnosMapaCatedra() throws IOException, ParseException {
-        Juego juego = new Juego(Resources.getJsonPath("test/mapa"),Resources.getJsonPath("test/enemigos"));
+        Juego juego = new Juego(Resources.getJsonPath("mapa"),Resources.getJsonPath("enemigos"));
         juego.iniciarJuego();
         int i =0;
         while(juego.estanEnJuego() && i <100){
@@ -165,17 +166,17 @@ public class TestsIntegracion {
             juego.pasarTurno();
             juego.posicionar(new TorrePlateada(), new Coordenada(3,2));
 
-            for(int i = 0; i<7 ; i++){
+            for(int i = 0; i<9 ; i++){
                 juego.pasarTurno();
             }            
         } catch(Exception ex){
             ex.printStackTrace();
         }
-        
+
+        System.out.println("------> TEST ESTE ... LA VIDA DEL JUGADOR ERA "+String.valueOf(juego.obtenerJugador().obtenerVida()));
+        System.out.println("-------> TESTE ESTE ... Creditos DEL JUGADOR ERAN "+String.valueOf(juego.obtenerJugador().obtenerCreditos()));
         assertEquals(false, juego.estanEnJuego());
-        //System.out.println("LA VIDA DEL JUGADOR ERA "+String.valueOf(juego.obtenerJugador().obtenerVida()));
-        //System.out.println("Creditos DEL JUGADOR ERAN "+String.valueOf(juego.obtenerJugador().obtenerCreditos()));
-        assertEquals(true, juego.ganoJugador()); 
+        assertEquals(true, juego.ganoJugador());
         
         //assertEquals(0, juego.obtenerJugador().obtenerVida()); // dmg de 4 hormigas
         //TODO corregir el test para que termine el juego
@@ -188,14 +189,14 @@ public class TestsIntegracion {
     public void verificarPasanConUnaTorrePlateadaTurno2NoActivaPor2Turnos() throws IOException, ParseException, ParseException {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"), Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
-        //System.out.println("Paso 2 con defensa");
+        System.out.println("-------------------->Paso 2 con defensa");
 
         ArrayList<Unidad> unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);
         try{
 
             juego.pasarTurno();
-            //juego.posicionar(new TorrePlateada(), new Coordenada(3,2));
+            juego.posicionar(new TorrePlateada(), new Coordenada(3,2));
             juego.pasarTurno();
 
         } catch(Exception ex){
@@ -206,8 +207,7 @@ public class TestsIntegracion {
         
         assertEquals(true, juego.estanEnJuego());
         //System.out.println("T_----------------MAXIMO DMG "+String.valueOf(juego.obtenerMapa().cantidadDmgPosible()));
-        //assertEquals(80, juego.obtenerJugador().obtenerCreditos()); // creditos tras la compra
-        assertEquals(100, juego.obtenerJugador().obtenerCreditos()); // creditos tras la NO compra
+        assertEquals(80, juego.obtenerJugador().obtenerCreditos()); // creditos tras la compra
         assertEquals(6,juego.obtenerMapa().cantidadDmgPosible()); // dmg de 6 hormigas instanciadas
     }
 

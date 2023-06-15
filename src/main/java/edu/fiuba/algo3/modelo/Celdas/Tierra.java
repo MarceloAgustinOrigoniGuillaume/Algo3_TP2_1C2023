@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
@@ -31,11 +32,11 @@ public class Tierra implements Celda {
         return false;
 	}
 
-    public void atacar(SistemaVida target){
-
-        if(construccion != null){
-            target.recibirAtaque(construccion.ataque());
+    public ArrayList<Unidad> atacar(ArrayList<Unidad> unidades){
+        if(construccion == null){
+            return null;
         }
+        return construccion.accionar(unidades);
     }
 
 
