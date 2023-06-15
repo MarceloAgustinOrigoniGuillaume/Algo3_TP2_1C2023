@@ -7,5 +7,6 @@ public interface Celda {
     boolean posicionar(Construccion construccion);
     boolean posicionar(Unidad unidad);
     void sacarTodos();
+    void sacarUnidad(Unidad unidad);
     void atacar(SistemaVida target);
 }

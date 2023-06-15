@@ -42,6 +42,10 @@ public class Pasarela implements Celda{
         unidades.remove(unidad);
     }
 
+    @Override
+    public void sacarUnidad(Unidad unidad) {
+        sacar(unidad);
+    }
 
     public void atacar(SistemaVida target){
 
