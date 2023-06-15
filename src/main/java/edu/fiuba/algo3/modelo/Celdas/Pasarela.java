@@ -43,10 +43,10 @@ public class Pasarela implements Celda{
     }
 
 
-    public void atacar(SistemaVida target, Mapa mapa){
+    public void atacar(SistemaVida target){
 
         for(Unidad unidad : unidades){
-            target.recibirAtaque(unidad.ataque(mapa));
+            target.recibirAtaque(unidad.ataque());
         }
     }
 

@@ -60,10 +60,10 @@ public class Lechuza implements Enemigo {
         }
 
         @Override
-        public int ataque(Mapa mapa) {
+        public int ataque() {
 
             //Lechuza le dice a mapa que destruya una de las torres.
-            mapa.atacarPrimeraTorre();
+            //mapa.atacarPrimeraTorre();
 
             return 0;
 

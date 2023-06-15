@@ -17,15 +17,16 @@ public class Oleada{
 
 		aInstanciar = new ArrayList<>();
 		if(!instanciacion.containsKey(HORMIGA_LABEL)){
-			throw new Exception("No tenia label Hormiga");
+			throw new Exception("No tenia label 'hormiga' para Hormigas");
 		}
 		if (!instanciacion.containsKey(ARANIA_LABEL)){
-			throw new Exception("No tenia label Arania");
+			throw new Exception("No tenia el label 'arana' para Aranias");
 		}
 
-		if (!instanciacion.containsKey(TOPO_LABEL)){
-			throw new Exception("No tenia label Arania");
-		}
+		//if (!instanciacion.containsKey(TOPO_LABEL)){
+
+			//throw new Exception("No tenia label 'Topo' para topos");
+		//}
 
 		int cantidad = instanciacion.get(HORMIGA_LABEL);
 		if(cantidad > 0){
@@ -37,7 +38,7 @@ public class Oleada{
 			aInstanciar.add(new Instanciador(new Arania(), cantidad));
 		}
 
-		cantidad = instanciacion.get(TOPO_LABEL);
+		cantidad = instanciacion.containsKey(TOPO_LABEL)? instanciacion.get(TOPO_LABEL) : 0;
 		if(cantidad > 0){
 			aInstanciar.add(new Instanciador(new Topo(turnoActual), cantidad));
 		}

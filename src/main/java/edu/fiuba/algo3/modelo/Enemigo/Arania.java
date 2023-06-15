@@ -22,7 +22,7 @@ public class Arania implements Enemigo {
         this.velocidad = (int)Math.floor(this.velocidad / 2);
     }
 
-    public int ataque(Mapa mapa){
+    public int ataque(){
         return 2;
 		//target.recibirAtaque(2); // hace dos de dmg
 	}

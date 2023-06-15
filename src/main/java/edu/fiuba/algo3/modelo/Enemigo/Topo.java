@@ -70,5 +70,5 @@ public class Topo implements Enemigo{
                 return 5;
             }
             return 2;
-    }
+        }
 }

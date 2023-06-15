@@ -8,9 +8,11 @@ public interface Enemigo extends Unidad {
 
 	void incrementarContadorDePasos();
 
+
     int ataque(Mapa mapa);
 
 	int ataque();
+
 }
 
 /*
