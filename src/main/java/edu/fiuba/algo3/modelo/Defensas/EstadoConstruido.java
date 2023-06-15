@@ -17,6 +17,9 @@ public class EstadoConstruido implements EstadoEstructura{
         for(Unidad enemigo: enemigos){
             Logger.info("Defensa ataca a enemigo en: "+enemigo.toString()+"\n");
 
+            if (defensa.getClass().equals(new Trampa().getClass()) && !enemigo.toString().equals("Lechuza")) {
+                enemigo.reducirVelocidad();
+            }
             enemigo.recibirAtaque(defensa.ataque());
 
             if(enemigo.estaMuerto()){
