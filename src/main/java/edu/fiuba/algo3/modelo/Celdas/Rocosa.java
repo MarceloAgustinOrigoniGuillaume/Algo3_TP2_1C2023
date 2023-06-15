@@ -32,6 +32,11 @@ public class Rocosa implements Celda {
     }
 
     @Override
+    public void sacarUnidad(Unidad unidad) {
+
+    }
+
+    @Override
     public String toString(){
         return "Rocosa";
     }
