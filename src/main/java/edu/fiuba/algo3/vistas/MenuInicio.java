@@ -6,6 +6,7 @@ import edu.fiuba.algo3.controladores.ControladorJuego;
 import edu.fiuba.algo3.Logger;
 
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -25,6 +26,8 @@ public class MenuInicio extends VBox implements Vista {
 	private final static String label_button = "Iniciar Juego";
 
 	public MenuInicio(){
+
+		//FXMLLoader.load()
         super();
         init();
 	}

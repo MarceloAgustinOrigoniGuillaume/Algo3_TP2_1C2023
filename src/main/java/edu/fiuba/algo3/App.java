@@ -20,8 +20,10 @@ import edu.fiuba.algo3.vistas.MenuInicio;
  */
 public class App extends Application {
 
-    public static final int INITIAL_WIDTH = 1124;
-    public static final int INITIAL_HEIGHT = 600;
+
+
+    public static final int INITIAL_WIDTH = 640;
+    public static final int INITIAL_HEIGHT = 640;
 
 
     public static void run(String[] args) {
@@ -36,7 +38,7 @@ public class App extends Application {
     public void start(Stage stage) {
         try{
 
-            Ventana scene = new Ventana(640, 640);//new Scene(new MenuInicio(), );
+            Ventana scene = new Ventana(INITIAL_WIDTH, INITIAL_HEIGHT);//new Scene(new MenuInicio(), );
             stage.setScene(scene);
             stage.show();
         } catch(Exception ex){
