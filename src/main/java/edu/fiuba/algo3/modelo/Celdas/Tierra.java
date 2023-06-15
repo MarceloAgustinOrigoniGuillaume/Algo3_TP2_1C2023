@@ -31,10 +31,10 @@ public class Tierra implements Celda {
         return false;
 	}
 
-    public void atacar(SistemaVida target, Mapa mapa){
+    public void atacar(SistemaVida target){
 
         if(construccion != null){
-            target.recibirAtaque(construccion.ataque()) ;
+            target.recibirAtaque(construccion.ataque());
         }
     }
 

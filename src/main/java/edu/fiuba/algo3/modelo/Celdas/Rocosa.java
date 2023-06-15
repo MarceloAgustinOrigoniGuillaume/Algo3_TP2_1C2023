@@ -22,7 +22,7 @@ public class Rocosa implements Celda {
     public boolean posicionar(Construccion entidad){
     	return false;
     }
-    public void atacar(SistemaVida target, Mapa mapa){
+    public void atacar(SistemaVida target){
     }
 
 

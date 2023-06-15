@@ -51,7 +51,7 @@ public class Hormiga implements Enemigo {
     }
 
     @Override
-    public int ataque(Mapa mapa) {
+    public int ataque() {
         return 1;
     }
 }

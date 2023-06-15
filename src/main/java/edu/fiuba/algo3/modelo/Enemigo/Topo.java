@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Topo implements Enemigo{
 
@@ -64,5 +65,5 @@ public class Topo implements Enemigo{
                 return 5;
             }
             return 2;
-    }
+        }
 }
