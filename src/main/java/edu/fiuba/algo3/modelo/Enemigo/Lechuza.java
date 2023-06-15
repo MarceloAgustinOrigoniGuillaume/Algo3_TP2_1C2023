@@ -54,7 +54,12 @@ public class Lechuza implements Enemigo {
 
         }
 
-        @Override
+    @Override
+    public int ataque(Mapa mapa) {
+        return 0;
+    }
+
+    @Override
         public String toString(){
             return "Lechuza";
         }

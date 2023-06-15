@@ -222,8 +222,4 @@ public class Mapa {
         }
         return columna;
     }
-
-    public String obtenerTerreno(int x, int y) {
-        return obtenerCelda(new Coordenada(x, y)).toString();
-    }
 }

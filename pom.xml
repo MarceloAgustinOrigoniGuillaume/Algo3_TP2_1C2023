@@ -17,6 +17,12 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
             <version>${javafx-version}</version>
@@ -53,11 +59,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
         </dependency>
     </dependencies>
     <profiles>
@@ -129,13 +130,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-version}</version>
                 <configuration>
-                    <argLine>${argLine} -XX:MaxPermSize=256m</argLine>
+                    <argLine>${argLine}</argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.2</version>
+                <version>0.8.8</version>
                 <executions>
                     <execution>
                         <goals>

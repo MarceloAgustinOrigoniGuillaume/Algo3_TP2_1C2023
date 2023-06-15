@@ -46,6 +46,11 @@ public class Hormiga implements Enemigo {
     }
 
     @Override
+    public int ataque(Mapa mapa) {
+        return 0;
+    }
+
+    @Override
     public String toString(){
         return "Hormiga";
     }

@@ -53,12 +53,12 @@ public class ViewMapa extends HBox {
                 lbl.setMinHeight(TILE_SIZE);
                 
                 if ("Tierra".equals(tipo)){
-                    lbl.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD,null,null)));
+                    lbl.setBackground(new Background(new BackgroundFill(Color.rgb(94, 157, 52),null,null)));
                 } else if("Pasarela".equals(tipo)){
-                    lbl.setBackground(new Background(new BackgroundFill(Color.DARKGRAY,null,null)));
+                    lbl.setBackground(new Background(new BackgroundFill(Color.rgb(166, 166, 166),null,null)));
 
                 } else{
-                    lbl.setBackground(new Background(new BackgroundFill(Color.AQUA,null,null)));
+                    lbl.setBackground(new Background(new BackgroundFill(Color.rgb(105, 70, 5),null,null)));
                 }
 
                 column.getChildren().add(lbl);

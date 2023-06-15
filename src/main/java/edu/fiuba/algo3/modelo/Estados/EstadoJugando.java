@@ -46,7 +46,7 @@ public class EstadoJugando implements EstadoJuego {
 
         while(!jugador.estaMuerto() && ind < enemigos.size()){
 
-            jugador.recibirAtaque(enemigos.get(ind).ataque(mapa));
+            jugador.recibirAtaque(enemigos.get(ind).ataque());
             ind+=1;
         }
         Logger.info("Vida actual de jugador: "+String.valueOf(jugador.obtenerVida()));

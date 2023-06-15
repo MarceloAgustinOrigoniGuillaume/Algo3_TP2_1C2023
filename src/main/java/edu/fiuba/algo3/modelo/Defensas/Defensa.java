@@ -20,4 +20,6 @@ public abstract class Defensa implements Estructura {
     }
 
     public abstract int ataque();
+
+    public abstract int ataque(Mapa mapa);
 }

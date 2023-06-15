@@ -52,6 +52,12 @@ public class Arania implements Enemigo {
     public void incrementarContadorDePasos(){
 
     }
+
+    @Override
+    public int ataque(Mapa mapa) {
+        return 0;
+    }
+
     @Override
     public String toString(){
         return "Araña";
