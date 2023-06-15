@@ -13,12 +13,12 @@ public class ControladorJuego extends Controlador{
 
 
 	public Vista menuInicial(){
-		return new MenuInicio(juego);
+		return new MenuInicio();
 	}
 
 	public Vista iniciarJuego(){
 		juego.iniciarJuego();
-		return new MenuInicio(juego);
+		return new MenuInicio();
 	}
 
 }
