@@ -1,6 +1,8 @@
 package edu.fiuba.algo3;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,15 +39,21 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         try{
+            //Ventana scene = new Ventana(INITIAL_WIDTH, INITIAL_HEIGHT);//new Scene(new MenuInicio(), );
+            Parent vista = Resources.getVista("inicioVistas");//FXMLLoader.load(getClass().getResource("/vistas/inicioVistas.fxml"));//Resources.getVista("inicioVistas");
+            if(vista == null){
+                //Logger.Log(">>NO PUDO INICIAR LA APP");
+                throw  new Exception("Vista instanciada fue null");
+            }
+            Scene scene = new Scene( vista,INITIAL_WIDTH, INITIAL_HEIGHT);
 
-            Ventana scene = new Ventana(INITIAL_WIDTH, INITIAL_HEIGHT);//new Scene(new MenuInicio(), );
             stage.setScene(scene);
             stage.show();
         } catch(Exception ex){
             Logger.Log("Error at initing the game... "+ex.toString());
             ex.printStackTrace();
+            stage.close();
         }
-
     }
 
     public static void main(String[] args) {

@@ -4,14 +4,31 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="btnBoton" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fmxl.vistas.InicioVistas">
+<!-- onAction="#iniciarPartida"  fx:controller="vistas." -->
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<VBox fx:id="btnBoton" prefHeight="640.0" prefWidth="640.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="imprimirMapa" layoutX="206.0" layoutY="265.0" mnemonicParsing="false" onAction="#iniciarPartida" prefHeight="81.0" prefWidth="159.0" text="Iniciar Partida" />
+
       <ImageView fitHeight="150.0" fitWidth="217.0" layoutX="198.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+         <!--
          <image>
-            <Image url="@../../../../../../Downloads/Logo.png" />
+            <Image url="@../" />
+         </image>
+         -->
+         <image>
          </image>
       </ImageView>
+
+      <Label text="Algo Defense"/>
+
+      <VBox fx:id="initContainer" spacing="1">
+         <Label text="Antes de empezar, cual es tu nombre? (minimo 6 caracteres)"/>
+         <TextField fx:id="nombreUsuario" />
+         <Button fx:id="iniciarJuego" layoutX="206.0" layoutY="265.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="159.0" text="Iniciar Partida" />
+      </VBox>
+
    </children>
-</AnchorPane>
+</VBox>
