@@ -42,16 +42,13 @@ public class Pasarela implements Celda{
         unidades.remove(unidad);
     }
 
-    @Override
-    public void sacarUnidad(Unidad unidad) {
-        sacar(unidad);
+    public ArrayList<Unidad> atacar(ArrayList<Unidad> unidades){
+        return null;
     }
 
-    public void atacar(SistemaVida target){
-
-        for(Unidad unidad : unidades){
-            target.recibirAtaque(unidad.ataque());
-        }
+    @Override
+    public void sacarUnidad(Unidad unidad) {
+        return;
     }
 
     @Override

@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+
+import java.util.ArrayList;
 
 public class EstadoConstruyendo implements EstadoEstructura{
     private int turnosRestantes;
@@ -17,15 +20,15 @@ public class EstadoConstruyendo implements EstadoEstructura{
     }
 
     @Override
-    public void ejecutarMetodo(Defensa defensa, Mapa mapa){
+    public ArrayList<Unidad> ejecutarMetodo(Defensa defensa, ArrayList<Unidad> enemigos){
 
         this.turnosRestantes = this.turnosRestantes - 1;
-        boolean haFinalizado = hanFinalizadoLosTurnos();
 
-        if(haFinalizado == true){
+        if(hanFinalizadoLosTurnos()){
             defensa.finalizarConstruccion();
         }
 
+        return null;
     }
 
     @Override

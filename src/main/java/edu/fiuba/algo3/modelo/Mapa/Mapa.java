@@ -125,9 +125,9 @@ public class Mapa {
     public ArrayList<Unidad> accionarDefensas(){
         int indice = 0; // ultima defensa
         Tierra celdaActual;
-        Pasarela pasarelaTarget;
         ArrayList<Coordenada> enRango;
         ArrayList<Unidad> enemigosMuertos = new ArrayList<>();
+        ArrayList<Unidad> enemigosMuertosPasarela = new ArrayList<>();
         while(indice < defensas.size()){
 
             // ES IDEAL este casteo
@@ -136,18 +136,22 @@ public class Mapa {
             Logger.info("La defensa de la posicion: "+celdaActual.posicion().toString()+"\n" );
 
             enRango = celdaActual.obtenerEnRango(camino);
-
-            for (Coordenada target: enRango){
-                pasarelaTarget = obtenerPasarela(target);
-                for(Unidad enemigo: pasarelaTarget.obtenerUnidades()){
-                    Logger.info("Ataca a enemigo en: "+target.toString()+"\n");
-                    celdaActual.atacar(enemigo);
-
-                    if(enemigo.estaMuerto()){
-                        pasarelaTarget.sacar(enemigo);
-                        enemigosMuertos.add(enemigo);
-                    }
+            Pasarela target = obtenerPasarela(camino.get(0));
+            int ind= -1;
+            while(ind < enRango.size()-1 && enemigosMuertosPasarela != null) {
+                for (Unidad enemigo : enemigosMuertosPasarela) {
+                    target.sacar(enemigo);
                 }
+                enemigosMuertos.addAll(enemigosMuertosPasarela);
+
+                ind += 1;
+
+                target = obtenerPasarela(enRango.get(ind));
+                enemigosMuertosPasarela = celdaActual.atacar(target.obtenerUnidades());
+
+            }
+            if(enemigosMuertosPasarela != null){
+                enemigosMuertos.addAll(enemigosMuertosPasarela);
             }
 
             indice+=1;

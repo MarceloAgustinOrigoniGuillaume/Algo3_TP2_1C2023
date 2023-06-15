@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import java.util.ArrayList;
 
 public class Rocosa implements Celda {
 
@@ -30,7 +30,9 @@ public class Rocosa implements Celda {
     public void sacarTodos(){
 
     }
-
+    public ArrayList<Unidad> atacar(ArrayList<Unidad> unidades){
+        return null;
+    }
     @Override
     public void sacarUnidad(Unidad unidad) {
 

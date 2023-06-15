@@ -1,10 +1,13 @@
 package edu.fiuba.algo3.entrega2;
 
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -18,7 +21,7 @@ public class sistemaConstruccionTest {
         Posible separacion de test al verificar cada turno
         */
 
-        assertEquals(torrePlateada.finalizoContruccion(),false);
+        assertEquals(torrePlateada.estaActiva(),false);
 
         /*
         Recien para despues lo del Mock, al verificar que esten operativas
@@ -36,8 +39,9 @@ public class sistemaConstruccionTest {
 
         Mapa unMapa = new Mapa(mockLector,1,1);
 
-        torrePlateada.accionar(unMapa);
-        assertEquals(torrePlateada.finalizoContruccion(),false);
+        ArrayList<Unidad> enemigos = new ArrayList<>();
+        torrePlateada.accionar(enemigos);
+        assertEquals(torrePlateada.estaActiva(),false);
 
 
         /*
@@ -55,13 +59,12 @@ public class sistemaConstruccionTest {
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
         Mapa unMapa = new Mapa(mockLector,1,1);
+        ArrayList<Unidad> enemigos = new ArrayList<>();
+        torrePlateada.accionar(enemigos);
+        torrePlateada.accionar(enemigos);
+        torrePlateada.accionar(enemigos);
 
-        torrePlateada.accionar(unMapa);
-        torrePlateada.accionar(unMapa);
-        torrePlateada.accionar(unMapa);
-
-
-        assertEquals(torrePlateada.finalizoContruccion(),true);
+        assertEquals(torrePlateada.estaActiva(),true);
     }}
 
 //    @Test
@@ -79,7 +82,7 @@ public class sistemaConstruccionTest {
 //            SistConstruccion.activarEstructuras(mock);
 //        }
 //
-//        assertEquals(enContruccion.finalizoContruccion(),true);
+//        assertEquals(enContruccion.estaActiva(),true);
 //        verify(mock,times(1)).agregar(torrePlateada);
 //    }
 //}
