@@ -5,17 +5,30 @@ package edu.fiuba.algo3;
         private static final Logger unicaInstancia = new Logger();
 
         private static boolean loggerActivado = true;
+        private static boolean loggerTests = true;
 
         private Logger() {
         }
 
-       public static Logger obtener() {
+        public void setTestsMode(boolean activo){
+            loggerTests = activo;
+        }
+
+
+        public static void setTestMode(boolean activo){
+            Logger.obtener().setTestsMode(activo);       
+        }
+
+        public static Logger obtener() {
             return unicaInstancia;
         }
 
         public static void info(String unString){
-            Logger.obtener().log(unString);
+            if(loggerTests){
+                Logger.obtener().log(unString);
+            }
         }
+
 
         public void toggle(boolean bool){
             loggerActivado = bool;
@@ -25,4 +38,10 @@ package edu.fiuba.algo3;
             if (loggerActivado)
                 System.out.println(mensajeLogeado);
         }
+
+
+        public static void Log(String unString) {
+            Logger.obtener().log(unString);
+        }
+
     }

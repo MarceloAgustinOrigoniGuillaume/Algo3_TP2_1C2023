@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vistas;
 
 
+import javafx.scene.Parent;
 
 
-public abstract class Vista {
-
-	abstract public String obtenerDescripcion();	
+public interface Vista{
+	Parent obtener();
 }
