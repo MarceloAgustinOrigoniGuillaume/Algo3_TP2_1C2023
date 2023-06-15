@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+
 import java.util.ArrayList;
 
 public class Pasarela implements Celda{
@@ -31,6 +33,7 @@ public class Pasarela implements Celda{
     	return new ArrayList<>(unidades);
     }
 
+    @Override
     public void sacarTodos(){
         unidades.clear();
     }
@@ -40,10 +43,10 @@ public class Pasarela implements Celda{
     }
 
 
-    public void atacar(SistemaVida target){
+    public void atacar(SistemaVida target, Mapa mapa){
 
         for(Unidad unidad : unidades){
-            target.recibirAtaque(unidad.ataque());
+            target.recibirAtaque(unidad.ataque(mapa));
         }
     }
 

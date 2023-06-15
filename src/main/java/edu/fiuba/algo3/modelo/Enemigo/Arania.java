@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Arania implements Enemigo {
 
@@ -21,7 +22,7 @@ public class Arania implements Enemigo {
         this.velocidad = (int)Math.floor(this.velocidad / 2);
     }
 
-    public int ataque(){
+    public int ataque(Mapa mapa){
         return 2;
 		//target.recibirAtaque(2); // hace dos de dmg
 	}

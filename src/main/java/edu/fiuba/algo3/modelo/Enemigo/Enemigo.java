@@ -1,12 +1,14 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public interface Enemigo extends Unidad {
 	Enemigo copiar();
 
 	void incrementarContadorDePasos();
 
+    int ataque(Mapa mapa);
 }
 
 /*
