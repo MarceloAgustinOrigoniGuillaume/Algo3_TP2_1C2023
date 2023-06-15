@@ -13,8 +13,7 @@ public class ConvertidorOleada implements Convertidor {
         this.aInstanciar = aInstanciar;
     }
 
-
     public Object obtener() throws Exception {
-        return new Oleada(aInstanciar);// instanciar Oleada
+        return new Oleada(aInstanciar, Integer.parseInt(turno));// instanciar Oleada
     }
 }

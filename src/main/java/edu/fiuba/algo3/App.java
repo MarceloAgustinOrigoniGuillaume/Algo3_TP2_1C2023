@@ -4,8 +4,16 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+
+import javafx.scene.layout.FlowPane;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+
+import edu.fiuba.algo3.vistas.MenuInicio;
+//import edu.fiuba.algo3.vistas.Ventana;
+
 
 /**
  * JavaFX App
@@ -20,38 +28,26 @@ public class App extends Application {
         launch();
     }
 
-    /*
-    @Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+    public void setMapScene(){
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.se
-        stage.setScene(scene);
-
-        StackPane layout = new StackPane();
-        label.setText("Texto de la etiqueta");
-
-        //layout.getChildren().add(label);
-
-        Button button = new Button();
-        button.setText("Texto del botón");
-        layout.getChildren().add(button);
-
-        stage.show();
     }
 
-     */
+    @Override
+    public void start(Stage stage) {
+        try{
+
+            Ventana scene = new Ventana(640, 640);//new Scene(new MenuInicio(), );
+            stage.setScene(scene);
+            stage.show();
+        } catch(Exception ex){
+            Logger.Log("Error at initing the game... "+ex.toString());
+            ex.printStackTrace();
+        }
+
+    }
 
     public static void main(String[] args) {
         launch();
     }
 
-
-    @Override
-    public void start(Stage stage) throws Exception {
-
-    }
 }

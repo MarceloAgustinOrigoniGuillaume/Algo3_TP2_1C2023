@@ -22,7 +22,6 @@ public class Turno{
 	public void jugarTurno(Mapa mapa,Jugador jugador, Oleadas oleadas){
 
 
-
 		// move enemigos
 		mapa.moverEnemigos();
 

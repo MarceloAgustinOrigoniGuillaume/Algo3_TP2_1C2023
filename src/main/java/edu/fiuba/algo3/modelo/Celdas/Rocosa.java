@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+
 public class Rocosa implements Celda {
 
     private Coordenada coordenada;
@@ -20,7 +22,13 @@ public class Rocosa implements Celda {
     public boolean posicionar(Construccion entidad){
     	return false;
     }
-    public void atacar(SistemaVida target){
+    public void atacar(SistemaVida target, Mapa mapa){
+    }
+
+
+    @Override
+    public void sacarTodos(){
+
     }
 
     @Override

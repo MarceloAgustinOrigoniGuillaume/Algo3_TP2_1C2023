@@ -18,4 +18,6 @@ public abstract class Defensa implements Estructura {
     public boolean finalizoContruccion() {
         return estadoActual.estaActivo();
     }
+
+    public abstract int ataque();
 }

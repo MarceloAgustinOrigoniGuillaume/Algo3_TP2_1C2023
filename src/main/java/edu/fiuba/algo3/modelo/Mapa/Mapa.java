@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Celdas.*;
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import java.util.ArrayList;
@@ -110,6 +111,17 @@ public class Mapa {
 
     }
 
+    //Pre: -
+    //Post: (Cuando la lechuza llega al jugador) saca la primera de las defensas creadas.
+    public void atacarPrimeraTorre(){
+
+        Coordenada coordenadaBuscada = defensas.get(0);
+        Celda celdaBuscada = obtenerCelda(coordenadaBuscada);
+        celdaBuscada.sacarTodos();
+        defensas.remove(0);
+
+    }
+
     public ArrayList<Unidad> accionarDefensas(){
         int indice = 0; // ultima defensa
         Tierra celdaActual;
@@ -129,7 +141,7 @@ public class Mapa {
                 pasarelaTarget = obtenerPasarela(target);
                 for(Unidad enemigo: pasarelaTarget.obtenerUnidades()){
                     Logger.info("Ataca a enemigo en: "+target.toString()+"\n");
-                    celdaActual.atacar(enemigo);
+                    celdaActual.atacar(enemigo, this);
 
                     if(enemigo.estaMuerto()){
                         pasarelaTarget.sacar(enemigo);
@@ -181,7 +193,7 @@ public class Mapa {
         while(indice >= 0){
 
             for(Unidad unidad : obtenerPasarela(camino.get(indice)).obtenerUnidades()){
-                dmg += unidad.ataque();
+                dmg += unidad.ataque(this);
             }
             indice-=1;
         }
@@ -207,4 +219,7 @@ public class Mapa {
         return columna;
     }
 
+    public String obtenerTerreno(int x, int y) {
+        return obtenerCelda(new Coordenada(x, y)).toString();
+    }
 }

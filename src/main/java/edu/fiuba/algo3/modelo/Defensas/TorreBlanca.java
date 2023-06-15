@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+
 public class TorreBlanca extends Defensa {
 
 
@@ -27,4 +29,8 @@ public class TorreBlanca extends Defensa {
         return 3;
     }
 
+    @Override
+    public int ataque(Mapa mapa) {
+        return 0;
+    }
 }

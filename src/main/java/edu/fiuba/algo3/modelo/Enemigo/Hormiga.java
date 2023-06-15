@@ -1,31 +1,35 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
+import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+
 public class Hormiga implements Enemigo {
 
 	private int vida;
+    private int velocidad = 1;
 	public Hormiga(){
-		vida = 1;
+
+        this.vida = 1;
 	}
 
 	public int velocidad(){
-		return 1;
+
+        return this.velocidad;
 	}
 
-    public int ataque(){
-        return 1;
-		//target.recibirAtaque(1); // hace uno de dmg
-	}
+    @Override
+    public void reducirVelocidad() {
+        this.velocidad = (int)Math.floor(this.velocidad / 2);
+    }
 
     public boolean estaMuerto(){
         return vida <= 0;
     }
 
-	public void recibirAtaque(int damege) {
-        vida = vida- damege;
-        // Aca capaz, queda mejor si la vida-damage =< 0 entonces que le pase un mensaje a juego o estado jugando que se termino el juego.
-        if(estaMuerto()){
-            vida = 0;
-        }
+    @Override
+    public void recibirAtaque(int danioRecibido) {
+        this.vida = this.vida - danioRecibido;
+        Logger.info("El daño recibido es: "+danioRecibido);
     }
 
     public int creditosDados(){
@@ -37,7 +41,17 @@ public class Hormiga implements Enemigo {
     }
 
     @Override
+    public void incrementarContadorDePasos(){
+
+    }
+
+    @Override
     public String toString(){
         return "Hormiga";
+    }
+
+    @Override
+    public int ataque(Mapa mapa) {
+        return 1;
     }
 }
