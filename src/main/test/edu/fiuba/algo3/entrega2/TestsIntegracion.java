@@ -48,7 +48,7 @@ public class TestsIntegracion {
 
     @Test
     public void verificarJuegoSoloSeIniciaCuandoSeInicia() throws IOException, ParseException {
-        Juego juego = new Juego(Resources.getJsonPath("test/mapa"),Resources.getJsonPath("test/enemigos"));
+        Juego juego = new Juego(Resources.getJsonPath("mapa"),Resources.getJsonPath("enemigos"));
         juego.iniciarJuego();
         int i =0;
         
@@ -173,8 +173,8 @@ public class TestsIntegracion {
             ex.printStackTrace();
         }
 
-        System.out.println("------> TEST ESTE ... LA VIDA DEL JUGADOR ERA "+String.valueOf(juego.obtenerJugador().obtenerVida()));
-        System.out.println("-------> TESTE ESTE ... Creditos DEL JUGADOR ERAN "+String.valueOf(juego.obtenerJugador().obtenerCreditos()));
+        //System.out.println("------> TEST ESTE ... LA VIDA DEL JUGADOR ERA "+String.valueOf(juego.obtenerJugador().obtenerVida()));
+        //System.out.println("-------> TESTE ESTE ... Creditos DEL JUGADOR ERAN "+String.valueOf(juego.obtenerJugador().obtenerCreditos()));
         assertEquals(false, juego.estanEnJuego());
         assertEquals(true, juego.ganoJugador());
         
@@ -189,7 +189,7 @@ public class TestsIntegracion {
     public void verificarPasanConUnaTorrePlateadaTurno2NoActivaPor2Turnos() throws IOException, ParseException, ParseException {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"), Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
-        System.out.println("-------------------->Paso 2 con defensa");
+        //System.out.println("-------------------->Paso 2 con defensa");
 
         ArrayList<Unidad> unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);

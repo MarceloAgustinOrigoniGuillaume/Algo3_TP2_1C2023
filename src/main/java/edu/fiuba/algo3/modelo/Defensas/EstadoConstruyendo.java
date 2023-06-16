@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
@@ -23,6 +24,7 @@ public class EstadoConstruyendo implements EstadoEstructura{
     public ArrayList<Unidad> ejecutarMetodo(Defensa defensa, ArrayList<Unidad> enemigos){
 
         this.turnosRestantes = this.turnosRestantes - 1;
+            Logger.info("Defensa Estaba construyendose faltan\n"+String.valueOf(this.turnosRestantes)+" turnos para activarse");
 
         if(hanFinalizadoLosTurnos()){
             defensa.finalizarConstruccion();
