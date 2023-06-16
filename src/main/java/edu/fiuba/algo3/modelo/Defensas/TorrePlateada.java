@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class TorrePlateada extends Defensa {
@@ -29,5 +30,10 @@ public class TorrePlateada extends Defensa {
     @Override
     public int ataque(Mapa mapa) {
         return 0;
+    }
+
+    @Override
+    public void atacar(Unidad enemigo) {
+        enemigo.recibirAtaque(2);
     }
 }

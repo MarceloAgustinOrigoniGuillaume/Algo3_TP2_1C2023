@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Trampa extends Defensa {
@@ -22,6 +23,11 @@ public class Trampa extends Defensa {
     @Override
     public int ataque(Mapa mapa) {
         return 0;
+    }
+
+    @Override
+    public void atacar(Unidad enemigo) {
+        enemigo.reducirVelocidad();
     }
 
     @Override

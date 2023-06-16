@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class TorreBlanca extends Defensa {
@@ -21,7 +22,7 @@ public class TorreBlanca extends Defensa {
     }
 
     public int ataque(){
-        return 2;
+        return 1;
         //target.recibirAtaque(1); // hace uno de dmg
     }
 
@@ -32,5 +33,10 @@ public class TorreBlanca extends Defensa {
     @Override
     public int ataque(Mapa mapa) {
         return 0;
+    }
+
+    @Override
+    public void atacar(Unidad enemigo) {
+        enemigo.recibirAtaque(1);
     }
 }
