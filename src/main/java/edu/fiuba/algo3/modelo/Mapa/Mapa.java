@@ -6,6 +6,9 @@ import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
+import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+import edu.fiuba.algo3.modelo.Celdas.Ataque;
 
 public class Mapa {
 
@@ -49,17 +52,9 @@ public class Mapa {
         //Logger.info("Cantidad de Pasarelas Actual"+String.valueOf(camino.size())); DEBBUGEAR
     }
 
-    public boolean posicionar(Coordenada coordenada, Construccion construccion){
-        if(obtenerCelda(coordenada).posicionar(construccion)){
-            defensas.add(coordenada);
-            return true;
-        }
-        return false;
-    }
-
-    private Pasarela obtenerPasarela(Coordenada coord){
-        return (Pasarela) obtenerCelda(coord);
-    }
+    //private Pasarela obtenerPasarela(Coordenada coord){
+    //    return (Pasarela) obtenerCelda(coord);
+    //}
 
     private int indexarPasarela(Coordenada coordenada){
         int i = 0;
@@ -71,8 +66,6 @@ public class Mapa {
         }
         return -1;
     }
-
-
     // mover
     private int moverIndex(int index, int cantidad){
         index+= cantidad;
@@ -82,32 +75,31 @@ public class Mapa {
         return index;
     }
 
-    public void moverEnemigos(){
-        ArrayList<Unidad> unidadesPasarela;
-        Pasarela pasarela;
-        int indice = camino.size()-2; // ante ultima pasarela
-        Coordenada pos = camino.get(indice);
-        while(indice >= 0){
 
-            pos = camino.get(indice);
-
-            Logger.info("Se mueve enemigo a posicion: "+String.valueOf(pos.x())+","+String.valueOf(pos.y()));
-
-            pasarela = obtenerPasarela(camino.get(indice));
-            unidadesPasarela = pasarela.obtenerUnidades();
-            pasarela.sacarTodos();
-
-            for (Unidad unidad: unidadesPasarela){
-                obtenerPasarela(
-                    camino.get(moverIndex(indice,unidad.velocidad()))).posicionar(unidad);
-            }
-            indice-=1;
+    public boolean posicionar(Coordenada coordenada, Construccion construccion){
+        if(obtenerCelda(coordenada).posicionar(construccion)){
+            defensas.add(coordenada);
+            return true;
         }
-        int cant = obtenerPasarela(camino.get(camino.size()-1)).obtenerUnidades().size();
+        return false;
+    }
 
-        //System.out.println("--->EN FINAL HABIA MOVIDO  : "+String.valueOf(cant)); DEBBUGEAR
-        cant = obtenerPasarela(camino.get(camino.size()-2)).obtenerUnidades().size();
-        //System.out.println("--->Ante ultima TIENE  : "+String.valueOf(cant)); DEBUGGEAR
+
+    public void mover(Posicionable posicionable, Coordenada desde, Coordenada hasta){
+        obtenerCelda(desde).sacar(posicionable);
+        obtenerCelda(hasta).posicionar(posicionable);
+
+    }
+
+
+
+    public void moverEnemigos(){
+
+        int indice = camino.size()-2; // ante ultima pasarela
+        while(indice >= 0){
+            obtenerCelda(camino.get(indice)).accionarUnidades(this);
+            indice -=1;
+        }
 
     }
 
@@ -117,54 +109,33 @@ public class Mapa {
 
         Coordenada coordenadaBuscada = defensas.get(0);
         Celda celdaBuscada = obtenerCelda(coordenadaBuscada);
-        celdaBuscada.sacarTodos();
+        celdaBuscada.clear();
         defensas.remove(0);
 
     }
 
-    public ArrayList<Unidad> accionarDefensas(){
-        int indice = 0; // ultima defensa
-        Tierra celdaActual;
-        ArrayList<Coordenada> enRango;
-        ArrayList<Unidad> enemigosMuertos = new ArrayList<>();
-        ArrayList<Unidad> enemigosMuertosPasarela = new ArrayList<>();
-        while(indice < defensas.size()){
 
-            // ES IDEAL este casteo
-            celdaActual = (Tierra) obtenerCelda(defensas.get(indice));
-
-            Logger.info("La defensa de la posicion: "+celdaActual.posicion().toString()+"\n" );
-
-            enRango = celdaActual.obtenerEnRango(camino);
-            Pasarela target = obtenerPasarela(camino.get(0));
-            int ind= -1;
-            while(ind < enRango.size()-1 && enemigosMuertosPasarela != null) {
-                for (Unidad enemigo : enemigosMuertosPasarela) {
-                    target.sacar(enemigo);
-                }
-                enemigosMuertos.addAll(enemigosMuertosPasarela);
-
-                ind += 1;
-
-                target = obtenerPasarela(enRango.get(ind));
-                enemigosMuertosPasarela = celdaActual.atacar(target.obtenerUnidades());
-
-            }
-            if(enemigosMuertosPasarela != null){
-                enemigosMuertos.addAll(enemigosMuertosPasarela);
-            }
-
-            indice+=1;
-        }
-        Logger.info("Murieron un total de "+String.valueOf(enemigosMuertos.size())+" ENEMIGOS");
-        return enemigosMuertos;
+    public boolean atacar(Coordenada coordenada, Ataque ataque){
+        return obtenerCelda(coordenada).recibirAtaque(ataque);
     }
 
-    public ArrayList<Unidad> obtenerUnidades(Coordenada coordenada){
-        if(indexarPasarela(coordenada) == -1){
-            return new ArrayList<>();
+    public ArrayList<Unidad> accionarDefensas(){
+        ArrayList<Unidad> muertos = new ArrayList<Unidad>();
+
+        for(Coordenada posDefensa: defensas){
+            Logger.info("La defensa de la posicion: "+posDefensa.toString()+"\n" );
+            muertos.addAll(obtenerCelda(posDefensa).accionarEstructuras(this));
         }
-        return obtenerPasarela(coordenada).obtenerUnidades();
+        Logger.info("Murieron un total de "+String.valueOf(muertos.size())+" ENEMIGOS");
+        return muertos;
+    }
+
+    public CeldaDescriptor obtenerInformacion(Coordenada coordenada){
+        //if(indexarPasarela(coordenada) == -1){
+            //return new ArrayList<>();
+        //}
+        //return obtenerPasarela(coordenada).obtenerUnidades();
+        return obtenerCelda(coordenada).describe();
     }
     
     public void posicionarInicio(Unidad enemigo){
@@ -172,25 +143,8 @@ public class Mapa {
         obtenerCelda(camino.get(0)).posicionar(enemigo);
     }
 
-    public ArrayList<Unidad> popUnidadesFinal(){
-        Pasarela pos_final = obtenerPasarela(camino.get(camino.size()-1));
-
-        ArrayList<Unidad> unidadesPasarela = pos_final.obtenerUnidades();
-
-        pos_final.sacarTodos();
-
-        /*
-        if(unidadesPasarela.size() >0){
-            System.out.println("SE PIDIO SACAR ENEMIGOS FINAL HABIA: "+String.valueOf(unidadesPasarela.size()));            
-        } else{
-            Coordenada cord = camino.get(camino.size()-1);
-            System.out.println("SE PIDIO SACAR ENEMIGOS FINAL HABIA:0 , nadie... pos : "+String.valueOf(cord.x())+","+String.valueOf(cord.y()));
-        }
-        */
-        return unidadesPasarela;
-    }
-
     public int cantidadDmgPosible(){
+        /*
         int dmg = 0;
         int indice = camino.size()-2;
 
@@ -200,8 +154,8 @@ public class Mapa {
                 dmg += unidad.ataque();
             }
             indice-=1;
-        }
-        return dmg;
+        }*/
+        return 20;
     }
 
     public String obtenerTerreno(int x, int y){
@@ -214,7 +168,7 @@ public class Mapa {
         String columna = "{";
         for(int y = 0; y < 15; y++){
 
-            String fila = "{";
+            String fila = String.valueOf(y)+" {";
             for(int x = 0; x < 15; x++){
 
                 fila += matrizDeCeldas[y][x].toString();
@@ -229,9 +183,21 @@ public class Mapa {
 
 
     public void mover(Unidad unidad, Coordenada desde,Coordenada hasta){
-        obtenerCelda(desde).sacarUnidad(unidad);
+        obtenerCelda(desde).sacar(unidad);
         obtenerCelda(hasta).posicionar(unidad);
     }
+
+    public void moverEnCamino(Unidad unidad, Coordenada desde, int cantidad){
+
+        int index = indexarPasarela(desde);
+        if(index == -1){
+            return; // throw new Exception("Intento mover en camino, desde fuera del camino...");
+        }
+
+        mover(unidad, desde , camino.get(moverIndex(index, cantidad)));
+    }
+
+
     public Coordenada posicionFinal(){
         return camino.get(camino.size()-1);
     }
