@@ -1,45 +1,23 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
 import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesTerreno;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-public class Rocosa implements Celda {
+public class Rocosa extends Celda {
 
-    private Coordenada coordenada;
+    public final static String ROCOSA_TYPE = "Rocosa";
 
     public Rocosa(Coordenada coordenada){
-    	this.coordenada = coordenada;
+        super(coordenada, new HabitantesTerreno());
     }
 
-    public Coordenada posicion(){
-    	return coordenada;
-    }
-
-
-    public boolean posicionar(Unidad entidad){
-    	return false;
-    }
-
-    public boolean posicionar(Construccion entidad){
-    	return false;
-    }
-    public void atacar(SistemaVida target){
-    }
-
-
-    @Override
-    public void sacarTodos(){
-
-    }
-    public ArrayList<Unidad> atacar(ArrayList<Unidad> unidades){
+    public ArrayList<Unidad> accionarEstructuras(Mapa mapa){
         return null;
-    }
-    @Override
-    public void sacarUnidad(Unidad unidad) {
-
     }
 
     @Override
     public String toString(){
-        return "Rocosa";
+        return ROCOSA_TYPE;
     }
 }

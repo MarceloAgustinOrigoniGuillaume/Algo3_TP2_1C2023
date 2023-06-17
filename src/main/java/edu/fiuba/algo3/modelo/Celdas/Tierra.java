@@ -4,65 +4,23 @@ import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesTierra;
 
-public class Tierra implements Celda {
+public class Tierra extends Celda {
 
-	private Construccion construccion;
-    private Coordenada coordenada;
-
-
+    public final static String TIERRA_TYPE = "Rocosa";
+	
     public Tierra(Coordenada coordenada){
-    	this.coordenada = coordenada;
-	    construccion = null;
+        super(coordenada, new HabitantesTierra());
     }
 
-    public Coordenada posicion(){
-    	return coordenada;
-    }
-
-    public boolean posicionar(Unidad entidad){
-    	return false;
-    }
-
-    public boolean posicionar(Construccion entidad){
-		if (construccion == null) {
-			construccion = entidad;
-            return true;
-		}
-        return false;
-	}
-
-    public ArrayList<Unidad> atacar(ArrayList<Unidad> unidades){
-        if(construccion == null){
-            return null;
-        }
-        return construccion.accionar(unidades);
-    }
-
-
-    public ArrayList<Coordenada> obtenerEnRango(ArrayList<Coordenada> targets){
-        if(construccion != null){
-
-            return coordenada.obtenerEnRango(targets, construccion.obtenerRango());
-        }
-
-        return new ArrayList<Coordenada>();
-
-    }
-
-    @Override
-    public void sacarTodos(){
-        this.construccion = null;
+    public ArrayList<Unidad> accionarEstructuras(Mapa mapa){
+        return habitantes.accionarEstructuras(mapa, this.posicion());
     }
 
     @Override
     public String toString(){
-        return "Tierra";
-    }
-
-    @Override
-    public void sacarUnidad(Unidad unidad) {
-
+        return TIERRA_TYPE;
     }
 
 }

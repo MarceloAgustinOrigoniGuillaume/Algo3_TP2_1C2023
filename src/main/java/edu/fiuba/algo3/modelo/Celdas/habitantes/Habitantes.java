@@ -2,9 +2,13 @@ package edu.fiuba.algo3.modelo.Celdas.habitantes;
 
 import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Celdas.Ataque;
 import edu.fiuba.algo3.modelo.Celdas.Construccion;
 import edu.fiuba.algo3.modelo.Enemigo.EnemigoAereo;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
+
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public abstract class Habitantes {
 
@@ -53,7 +57,37 @@ public abstract class Habitantes {
 
 	//}
 
+	public int cantidadUnidades(){
+		return unidades.size();
+	}
 
+    public void sacar(Posicionable posicionable){
+    	if(unidades.contains(posicionable)){
+    		unidades.remove(posicionable);
+    	}
+    }
+    public void clear(){
+    	unidades.clear();
+    }
+
+
+	public boolean recibirAtaque(Ataque ataque){
+		//ArrayList<Unidad> muertos = new ArrayList<>();
+		// recibilo... todabia sin implementar
+
+		return false;
+	}
+
+
+	public void accionarUnidades(Mapa mapa, Coordenada desde){
+		for(Unidad unidad: new ArrayList<Unidad>(unidades)){
+			unidad.accionar(mapa,desde);
+		}
+	}
+
+	public ArrayList<Unidad> accionarEstructuras(Mapa mapa, Coordenada desde){
+		return null;
+	}
 
 
 }
