@@ -41,6 +41,7 @@ public class EstadoJugando implements EstadoJuego {
     	turno.jugarTurno(mapa,jugador, juego.obtenerOleadas());
 
         //System.out.println("--------->REVISANDO ENEMIGOS FINAL"); DEBBUGUEAR
+        /*
         ArrayList<Unidad> enemigos = mapa.popUnidadesFinal();
         int ind = 0;
 
@@ -49,6 +50,8 @@ public class EstadoJugando implements EstadoJuego {
             jugador.recibirAtaque(enemigos.get(ind).ataque());
             ind+=1;
         }
+        */
+        
         Logger.info("Vida actual de jugador: "+String.valueOf(jugador.obtenerVida()));
 
         if(jugador.estaMuerto()){
