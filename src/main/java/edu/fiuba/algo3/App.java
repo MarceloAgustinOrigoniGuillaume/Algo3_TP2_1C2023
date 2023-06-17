@@ -1,21 +1,7 @@
 package edu.fiuba.algo3;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-
-import javafx.scene.layout.FlowPane;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-
-import edu.fiuba.algo3.vistas.MenuInicio;
-//import edu.fiuba.algo3.vistas.Ventana;
-
 
 /**
  * JavaFX App

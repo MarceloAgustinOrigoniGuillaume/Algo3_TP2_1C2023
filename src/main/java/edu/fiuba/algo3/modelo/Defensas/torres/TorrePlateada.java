@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.modelo.Defensas;
+package edu.fiuba.algo3.modelo.Defensas.torres;
 
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.modelo.Defensas.EstadoConstruyendo;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class TorrePlateada extends Defensa {

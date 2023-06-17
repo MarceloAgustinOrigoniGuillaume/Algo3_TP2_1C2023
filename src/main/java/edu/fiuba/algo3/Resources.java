@@ -1,6 +1,5 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.vistas.Vista;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 

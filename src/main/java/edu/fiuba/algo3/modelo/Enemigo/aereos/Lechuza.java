@@ -1,10 +1,10 @@
-package edu.fiuba.algo3.modelo.Enemigo;
+package edu.fiuba.algo3.modelo.Enemigo.aereos;
+
 import edu.fiuba.algo3.Logger;
-import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-import java.util.ArrayList;
 
 public class Lechuza extends EnemigoAereo {
 
@@ -40,7 +40,7 @@ public class Lechuza extends EnemigoAereo {
     }
 
     public Enemigo copiar(){
-        return new edu.fiuba.algo3.modelo.Enemigo.Lechuza();
+        return new Lechuza();
     }
 
     @Override

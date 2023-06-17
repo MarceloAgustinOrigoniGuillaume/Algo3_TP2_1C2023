@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Celdas.Ataque;
 import edu.fiuba.algo3.modelo.Celdas.Construccion;
-import edu.fiuba.algo3.modelo.Enemigo.EnemigoAereo;
+import edu.fiuba.algo3.modelo.Enemigo.aereos.EnemigoAereo;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;

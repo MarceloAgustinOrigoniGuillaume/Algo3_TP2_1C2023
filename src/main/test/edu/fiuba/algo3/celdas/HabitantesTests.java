@@ -1,18 +1,13 @@
 package edu.fiuba.algo3.celdas;
 
 
-import edu.fiuba.algo3.modelo.Jugador;
-
 import edu.fiuba.algo3.modelo.Enemigo.Hormiga;
 import edu.fiuba.algo3.modelo.Enemigo.Arania;
-import edu.fiuba.algo3.modelo.Enemigo.Lechuza;
+import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
 import edu.fiuba.algo3.modelo.Enemigo.Topo;
-import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
-import edu.fiuba.algo3.modelo.Defensas.TorreBlanca;
-import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
-
-import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Defensas.torres.TorreBlanca;
+import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 
 import edu.fiuba.algo3.modelo.Celdas.habitantes.*;
 //import edu.fiuba.algo3.modelo.Celdas.terrenos.*;

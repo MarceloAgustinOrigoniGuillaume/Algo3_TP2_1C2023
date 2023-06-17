@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.entrega2;
 
-import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Resources;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
@@ -13,11 +12,9 @@ import edu.fiuba.algo3.modelo.Jugador;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
+import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
-import edu.fiuba.algo3.modelo.Celdas.Unidad;
-import java.util.ArrayList;
 
 
 public class TestsIntegracion {
