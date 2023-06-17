@@ -1,21 +1,24 @@
 package edu.fiuba.algo3.modelo.Enemigo;
-
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-public class Hormiga extends Enemigo {
+import java.util.ArrayList;
 
-	private int vida;
+public class Lechuza extends EnemigoAereo {
+
+    private int vida;
+    private int vidaCambioMovimiento;
     private int velocidad = 1;
-	public Hormiga(){
+    public Lechuza(){
+        super(5, 5);
+    }
 
-        this.vida = 1;
-	}
-
-	public int velocidad(){
+    public int velocidad(){
 
         return this.velocidad;
-	}
+    }
 
     @Override
     public void reducirVelocidad() {
@@ -33,11 +36,11 @@ public class Hormiga extends Enemigo {
     }
 
     public int creditosDados(){
-    	return 1;
+        return 1;
     }
 
     public Enemigo copiar(){
-    	return new Hormiga();
+        return new edu.fiuba.algo3.modelo.Enemigo.Lechuza();
     }
 
     @Override
@@ -47,16 +50,24 @@ public class Hormiga extends Enemigo {
 
     @Override
     public int ataque(Mapa mapa) {
-        return 0;
+    return 0;
     }
 
     @Override
     public String toString(){
-        return "Hormiga";
+        return "Lechuza";
     }
 
     @Override
     public int ataque() {
-        return 1;
+
+            //Lechuza le dice a mapa que destruya una de las torres.
+            //mapa.atacarPrimeraTorre();
+
+        return 0;
+    }
+
+    public void atacar(Jugador jugador, Mapa mapa){
+        mapa.atacarPrimeraTorre();
     }
 }

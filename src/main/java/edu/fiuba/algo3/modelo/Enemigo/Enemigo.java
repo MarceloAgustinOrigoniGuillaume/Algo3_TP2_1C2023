@@ -3,8 +3,26 @@ package edu.fiuba.algo3.modelo.Enemigo;
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.Logger;
 
 public abstract class Enemigo implements Unidad {
+
+	protected int vida;
+	public Enemigo(int vida){
+		this.vida = vida;
+	}
+
+
+    public boolean estaMuerto(){
+        return vida <= 0;
+    }
+
+    public void recibirAtaque(int danioRecibido) {
+        this.vida = this.vida - danioRecibido;
+        Logger.info(" El daño recibido es: "+danioRecibido);
+
+    }
+
 	public abstract Enemigo copiar();
 
     public boolean posicionarEn(Habitantes habitantes){
@@ -14,9 +32,13 @@ public abstract class Enemigo implements Unidad {
 	public abstract void incrementarContadorDePasos();
 
 
-    public abstract int ataque(Mapa mapa);
+    public int ataque(Mapa mapa){
+    	return 0;
+    }
 
-	public abstract int ataque();
+	public int ataque(){
+		return 0;
+	}
 
 }
 

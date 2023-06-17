@@ -2,6 +2,9 @@ package edu.fiuba.algo3.modelo.Celdas.habitantes;
 
 import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Celdas.Construccion;
+import edu.fiuba.algo3.modelo.Enemigo.EnemigoAereo;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
 
 public abstract class Habitantes {
 
@@ -27,11 +30,22 @@ public abstract class Habitantes {
 
 
 
+	// por default solo se puede guardar Unidades en pasarela
+
+	public boolean guardar(Unidad unidad){
+		return guardaUnidad(unidad); 
+	}
+
+	public boolean guardar(EnemigoAereo aereo){
+		return guardaUnidad(aereo); 
+	}
+
+	public boolean guardar(Construccion construccion){
+		return false; // por default Habitantes no podria guardar nada... cada implementacion sobreescribira
+	}
 
 
-
-
-	public boolean guardar(Posicionable posicionable){
+	public boolean guardar(Trampa trampa){
 		return false; // por default Habitantes no podria guardar nada... cada implementacion sobreescribira
 	}
 

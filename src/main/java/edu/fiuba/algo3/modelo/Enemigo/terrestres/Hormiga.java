@@ -3,17 +3,15 @@ package edu.fiuba.algo3.modelo.Enemigo;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-public class Arania extends Enemigo {
+public class Hormiga extends Enemigo {
 
-	private int vida;
-    private int velocidad = 2;
-
-	public Arania(){
-		this.vida = 2;
+    private int velocidad = 1;
+	public Hormiga(){
+        super(1);
 	}
 
-
 	public int velocidad(){
+
         return this.velocidad;
 	}
 
@@ -22,31 +20,14 @@ public class Arania extends Enemigo {
         this.velocidad = (int)Math.floor(this.velocidad / 2);
     }
 
-    public int ataque(){
-        return 2;
-		//target.recibirAtaque(2); // hace dos de dmg
-	}
-
-    public boolean estaMuerto(){
-        return vida <= 0;
-    }
-
-    @Override
-    public void recibirAtaque(int danioRecibido) {
-        this.vida = this.vida - danioRecibido;
-        Logger.info("El daño recibido es: "+danioRecibido);
-
-    }
 
     public int creditosDados(){
-    	return 6;
+    	return 1;
     }
-
 
     public Enemigo copiar(){
-    	return new Arania();
+    	return new Hormiga();
     }
-
 
     @Override
     public void incrementarContadorDePasos(){
@@ -60,7 +41,11 @@ public class Arania extends Enemigo {
 
     @Override
     public String toString(){
-        return "Araña";
+        return "Hormiga";
     }
 
+    @Override
+    public int ataque() {
+        return 1;
+    }
 }

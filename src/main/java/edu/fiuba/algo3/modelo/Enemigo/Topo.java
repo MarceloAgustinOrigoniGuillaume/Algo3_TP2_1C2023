@@ -11,8 +11,9 @@ public class Topo extends Enemigo{
         private int contadorMovimientos;
 
         public Topo(int turnoActual){
+            super(1);
+
             this.turno = turnoActual;
-            this.vida = 1;
             this.velocidad = 1;
             this.contadorMovimientos = 0;
         }

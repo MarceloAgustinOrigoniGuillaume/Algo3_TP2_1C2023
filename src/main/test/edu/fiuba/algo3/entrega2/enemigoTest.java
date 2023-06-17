@@ -20,7 +20,7 @@ public class enemigoTest {
 
         enemigo.recibirAtaque(1);
 
-		assertEquals(enemigo.estaMuerto(),false);        
+		assertEquals(false, enemigo.estaMuerto());        
     }
 
 	@Test
