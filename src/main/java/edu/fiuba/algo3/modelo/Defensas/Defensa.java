@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
@@ -28,4 +29,9 @@ public abstract class Defensa implements Estructura {
     public abstract int ataque(Mapa mapa);
 
     public abstract void atacar(Unidad enemigo);
+
+
+    public boolean posicionarEn(Habitantes habitantes){
+        return habitantes.guardar(this);
+    }
 }

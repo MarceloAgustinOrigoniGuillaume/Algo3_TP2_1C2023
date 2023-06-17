@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
 
-public class Lechuza implements Enemigo {
+public class Lechuza extends Enemigo {
 
         private int vida;
         private int vidaCambioMovimiento;

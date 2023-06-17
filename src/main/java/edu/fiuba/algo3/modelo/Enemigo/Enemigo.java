@@ -2,16 +2,21 @@ package edu.fiuba.algo3.modelo.Enemigo;
 
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 
-public interface Enemigo extends Unidad {
-	Enemigo copiar();
+public abstract class Enemigo implements Unidad {
+	public abstract Enemigo copiar();
 
-	void incrementarContadorDePasos();
+    public boolean posicionarEn(Habitantes habitantes){
+        return habitantes.guardar(this);
+    }
+
+	public abstract void incrementarContadorDePasos();
 
 
-    int ataque(Mapa mapa);
+    public abstract int ataque(Mapa mapa);
 
-	int ataque();
+	public abstract int ataque();
 
 }
 

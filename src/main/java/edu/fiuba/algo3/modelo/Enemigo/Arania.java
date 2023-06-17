@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.Enemigo;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-public class Arania implements Enemigo {
+public class Arania extends Enemigo {
 
 	private int vida;
     private int velocidad = 2;
