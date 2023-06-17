@@ -5,16 +5,13 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Topo extends Enemigo{
 
-        private int vida;
         private int turno;
-        private int velocidad ;
         private int contadorMovimientos;
 
         public Topo(int turnoActual){
-            super(1);
+            super(1, 1); // vida , velocidad
 
             this.turno = turnoActual;
-            this.velocidad = 1;
             this.contadorMovimientos = 0;
         }
 

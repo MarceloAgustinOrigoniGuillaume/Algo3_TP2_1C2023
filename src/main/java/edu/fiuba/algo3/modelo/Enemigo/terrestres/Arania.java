@@ -5,16 +5,10 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Arania extends Enemigo {
 
-    private int velocidad = 2;
-
 	public Arania(){
-        super(2);
+        super(2,2); // vida, velocidad
 	}
 
-
-	public int velocidad(){
-        return this.velocidad;
-	}
 
     @Override
     public void reducirVelocidad() {

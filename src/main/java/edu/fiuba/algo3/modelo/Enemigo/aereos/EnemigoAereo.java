@@ -10,11 +10,9 @@ import java.util.ArrayList;
 public abstract class EnemigoAereo extends Enemigo {
 
     private int vidaCambioMovimiento;
-    private int velocidad;
     public EnemigoAereo(int vida, int velocidad){
-        super(vida);
+        super(vida, velocidad);
         this.vidaCambioMovimiento= vida/2;
-        this.velocidad = velocidad;
     }
 
     public boolean posicionarEn(Habitantes habitantes){
@@ -53,10 +51,6 @@ public abstract class EnemigoAereo extends Enemigo {
 
     }
 
-    public int velocidad(){
-        return this.velocidad;
-    }
-
     @Override
     public void reducirVelocidad() {
         this.velocidad = (int)Math.floor(this.velocidad / 2);
@@ -78,7 +72,7 @@ public abstract class EnemigoAereo extends Enemigo {
     }
 
 
-    public void moverse(Mapa mapa, Coordenada posicion){
+    protected void moverse(Mapa mapa, Coordenada posicion){
         Coordenada meta = mapa.posicionFinal();
         mapa.mover(this,posicion,movimientoAereo(posicion, meta));
     }

@@ -5,15 +5,10 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Hormiga extends Enemigo {
 
-    private int velocidad = 1;
 	public Hormiga(){
-        super(1);
+        super(1,1); // vida , velocidad
 	}
 
-	public int velocidad(){
-
-        return this.velocidad;
-	}
 
     @Override
     public void reducirVelocidad() {
