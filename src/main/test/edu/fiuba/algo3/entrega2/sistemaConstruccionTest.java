@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega2;
 
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
@@ -39,8 +40,7 @@ public class sistemaConstruccionTest {
 
         Mapa unMapa = new Mapa(mockLector,1,1);
 
-        ArrayList<Unidad> enemigos = new ArrayList<>();
-        torrePlateada.accionar(enemigos);
+        torrePlateada.accionar(unMapa, new Coordenada(1,1));
         assertEquals(torrePlateada.estaActiva(),false);
 
 
@@ -59,10 +59,9 @@ public class sistemaConstruccionTest {
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
         Mapa unMapa = new Mapa(mockLector,1,1);
-        ArrayList<Unidad> enemigos = new ArrayList<>();
-        torrePlateada.accionar(enemigos);
-        torrePlateada.accionar(enemigos);
-        torrePlateada.accionar(enemigos);
+        torrePlateada.accionar(unMapa, new Coordenada(1,1));
+        torrePlateada.accionar(unMapa, new Coordenada(1,1));
+        torrePlateada.accionar(unMapa, new Coordenada(1,1));
 
         assertEquals(torrePlateada.estaActiva(),true);
     }}

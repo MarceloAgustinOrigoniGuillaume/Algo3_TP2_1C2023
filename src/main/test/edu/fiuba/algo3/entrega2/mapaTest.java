@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 public class mapaTest {
     
@@ -106,10 +107,10 @@ public class mapaTest {
 
         unMapa.posicionarInicio(enemigo);
 
-        ArrayList<Unidad> unidades = unMapa.obtenerUnidades(new Coordenada(1,1));
+        CeldaDescriptor unidades = unMapa.obtenerInformacion(new Coordenada(1,1));
 
-        assertEquals(1, unidades.size());
-        assertEquals(unidades.get(0), enemigo);        
+        assertEquals(1, unidades.cantidadEnemigos());
+        // assertEquals(unidades.get(0), enemigo);        
 
     }
 
@@ -133,13 +134,13 @@ public class mapaTest {
 
         unMapa.moverEnemigos();
 
-        ArrayList<Unidad> unidadesInicio = unMapa.obtenerUnidades(new Coordenada(1,1));
-        ArrayList<Unidad> unidadesDondeEstaria = unMapa.obtenerUnidades(new Coordenada(1,2));
+        CeldaDescriptor unidadesInicio = unMapa.obtenerInformacion(new Coordenada(1,1));
+        CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,2));
 
-        assertEquals(1, unidadesDondeEstaria.size());
-        assertEquals(unidadesDondeEstaria.get(0), enemigo);
+        assertEquals(1, unidadesDondeEstaria.cantidadEnemigos());
+        // assertEquals(unidadesDondeEstaria.get(0), enemigo);
 
-        assertEquals(0, unidadesInicio.size());
+        assertEquals(0, unidadesInicio.cantidadEnemigos());
     }
 
     @Test
@@ -163,13 +164,13 @@ public class mapaTest {
         unMapa.moverEnemigos();
         unMapa.moverEnemigos();
 
-        ArrayList<Unidad> unidadesInicio = unMapa.obtenerUnidades(new Coordenada(1,2));
-        ArrayList<Unidad> unidadesDondeEstaria = unMapa.obtenerUnidades(new Coordenada(1,3));
+        CeldaDescriptor unidadesInicio = unMapa.obtenerInformacion(new Coordenada(1,2));
+        CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,3));
 
-        assertEquals(1, unidadesDondeEstaria.size());
-        assertEquals(unidadesDondeEstaria.get(0), enemigo);
+        assertEquals(1, unidadesDondeEstaria.cantidadEnemigos());
+        // assertEquals(unidadesDondeEstaria.get(0), enemigo);
 
-        assertEquals(0, unidadesInicio.size());
+        assertEquals(0, unidadesInicio.cantidadEnemigos());
     }
 
     @Test
@@ -198,12 +199,12 @@ public class mapaTest {
         unMapa.moverEnemigos();
 
 
-        ArrayList<Unidad> unidadesInicio = unMapa.obtenerUnidades(new Coordenada(1,2));
-        ArrayList<Unidad> unidadesDondeEstaria = unMapa.obtenerUnidades(new Coordenada(1,3));
+        CeldaDescriptor unidadesInicio = unMapa.obtenerInformacion(new Coordenada(1,2));
+        CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,3));
 
-        assertEquals(1, unidadesDondeEstaria.size());
-        assertEquals(unidadesDondeEstaria.get(0), enemigo);
+        assertEquals(1, unidadesDondeEstaria.cantidadEnemigos());
+        // assertEquals(unidadesDondeEstaria.get(0), enemigo);
 
-        assertEquals(0, unidadesInicio.size());
+        assertEquals(0, unidadesInicio.cantidadEnemigos());
     }
 }

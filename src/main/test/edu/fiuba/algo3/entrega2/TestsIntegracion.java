@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import java.util.ArrayList;
 
@@ -62,15 +63,15 @@ public class TestsIntegracion {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
 
-        ArrayList<Unidad> unidadesInicio;
+        CeldaDescriptor unidadesInicio;
         Coordenada posActual = new Coordenada(2,1);
         int i =0;
         
         juego.pasarTurno();
-        unidadesInicio = juego.obtenerMapa().obtenerUnidades(posActual);
+        unidadesInicio = juego.obtenerMapa().obtenerInformacion(posActual);
         
         assertEquals(true, juego.estanEnJuego());
-        assertEquals(4, unidadesInicio.size());
+        assertEquals(4, unidadesInicio.cantidadEnemigos());
 
         //TODO corregir el test para que termine el juego
     }
@@ -80,20 +81,20 @@ public class TestsIntegracion {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
 
-        ArrayList<Unidad> unidadesInicio;
-        ArrayList<Unidad> unidadesSiguiente;
+        CeldaDescriptor unidadesInicio;
+        CeldaDescriptor unidadesSiguiente;
         Coordenada posActual = new Coordenada(2,1);
         Coordenada posSiguiente = new Coordenada(2,2);
         int i =0;
         
         juego.pasarTurno();
         juego.pasarTurno();
-        unidadesInicio = juego.obtenerMapa().obtenerUnidades(posActual);
-        unidadesSiguiente = juego.obtenerMapa().obtenerUnidades(posSiguiente);
+        unidadesInicio = juego.obtenerMapa().obtenerInformacion(posActual);
+        unidadesSiguiente = juego.obtenerMapa().obtenerInformacion(posSiguiente);
         
         assertEquals(true, juego.estanEnJuego());
-        assertEquals(2, unidadesInicio.size());
-        assertEquals(4, unidadesSiguiente.size());
+        assertEquals(2, unidadesInicio.cantidadEnemigos());
+        assertEquals(4, unidadesSiguiente.cantidadEnemigos());
 
         //TODO corregir el test para que termine el juego
     }
@@ -104,7 +105,7 @@ public class TestsIntegracion {
         juego.iniciarJuego();
         //System.out.println("PASO DE 6 TURNOS");
 
-        ArrayList<Unidad> unidadesFinal;
+        CeldaDescriptor unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);
         //int i =0;
         
@@ -115,11 +116,11 @@ public class TestsIntegracion {
         juego.pasarTurno();
         juego.pasarTurno();
 
-        unidadesFinal = juego.obtenerMapa().obtenerUnidades(posSiguiente);
+        unidadesFinal = juego.obtenerMapa().obtenerInformacion(posSiguiente);
         
         // llegaron 4 hormigas
         assertEquals(true, juego.estanEnJuego());
-        assertEquals(0,unidadesFinal.size());
+        assertEquals(0,unidadesFinal.cantidadEnemigos());
         assertEquals(16, juego.obtenerJugador().obtenerVida()); // dmg de 4 hormigas
         //System.out.println("T_----------------TEST 6 turnos");
 
@@ -134,7 +135,7 @@ public class TestsIntegracion {
         juego.iniciarJuego();
         //System.out.println("PASO DE 12 TURNOS Juego termino");
 
-        ArrayList<Unidad> unidadesFinal;
+        CeldaDescriptor unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);
         try{
             for(int i = 0; i<12 ; i++){
@@ -159,7 +160,7 @@ public class TestsIntegracion {
         juego.iniciarJuego();
         //System.out.println("PASO DE 12 TURNOS Juego termino, con defensa");
 
-        ArrayList<Unidad> unidadesFinal;
+        CeldaDescriptor unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);
         try{
 
@@ -191,7 +192,7 @@ public class TestsIntegracion {
         juego.iniciarJuego();
         //System.out.println("-------------------->Paso 2 con defensa");
 
-        ArrayList<Unidad> unidadesFinal;
+        CeldaDescriptor unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);
         try{
 
