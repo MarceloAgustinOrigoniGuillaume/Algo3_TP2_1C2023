@@ -1,13 +1,14 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
-import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 
 public interface EstadoEstructura {
 
-    public ArrayList<Unidad> ejecutarMetodo(Defensa defensa, ArrayList<Unidad> enemigos);
+    public ArrayList<Unidad> ejecutarMetodo(Defensa defensa, Mapa mapa, Coordenada posicion);
 
     public boolean estaActivo();
 

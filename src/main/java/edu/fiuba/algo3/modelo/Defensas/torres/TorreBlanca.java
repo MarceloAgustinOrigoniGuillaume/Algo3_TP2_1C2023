@@ -7,9 +7,8 @@ public class TorreBlanca extends Defensa {
 
 
     public TorreBlanca(int turnosParaConstruccion) {
-
-        this.turnosParaConstruccion = turnosParaConstruccion;
-        this.estadoActual = new EstadoConstruyendo(turnosParaConstruccion);
+        //this.turnosParaConstruccion = turnosParaConstruccion;
+        super(new EstadoConstruyendo(turnosParaConstruccion));
     }
 
     public TorreBlanca() {
@@ -29,14 +28,9 @@ public class TorreBlanca extends Defensa {
     public int obtenerRango(){
         return 3;
     }
-
-    @Override
-    public int ataque(Mapa mapa) {
-        return 0;
-    }
-
     @Override
     public void atacar(Unidad enemigo) {
-        enemigo.recibirAtaque(1);
+        enemigo.recibirAtaque(ataque());
     }
+
 }

@@ -6,9 +6,10 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 public class TorrePlateada extends Defensa {
 
     public TorrePlateada(int turnosParaConstruccion) {
+        super(new EstadoConstruyendo(turnosParaConstruccion));
 
-        this.turnosParaConstruccion = turnosParaConstruccion;
-        this.estadoActual = new EstadoConstruyendo(turnosParaConstruccion);
+        //this.estadoActual = new EstadoConstruyendo(turnosParaConstruccion);
+        //this.turnosParaConstruccion = turnosParaConstruccion;
     }
     public TorrePlateada() {
         this(2);
@@ -28,12 +29,7 @@ public class TorrePlateada extends Defensa {
     }
 
     @Override
-    public int ataque(Mapa mapa) {
-        return 0;
-    }
-
-    @Override
     public void atacar(Unidad enemigo) {
-        enemigo.recibirAtaque(2);
+        enemigo.recibirAtaque(ataque());
     }
 }

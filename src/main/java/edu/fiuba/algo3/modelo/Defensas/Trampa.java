@@ -7,8 +7,7 @@ import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 public class Trampa extends Defensa {
 
     public Trampa() {
-        this.turnosParaConstruccion = 0;
-        this.estadoActual = new EstadoConstruido();
+        super(new EstadoConstruido());
     }
 
     public boolean posicionarEn(Habitantes habitantes){
@@ -25,10 +24,6 @@ public class Trampa extends Defensa {
         return 25;
     }
 
-    @Override
-    public int ataque(Mapa mapa) {
-        return 0;
-    }
 
     @Override
     public void atacar(Unidad enemigo) {

@@ -4,11 +4,16 @@ import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 
 public abstract class Defensa implements Estructura {
 
     protected EstadoEstructura estadoActual;
-    protected int turnosParaConstruccion;
+    //protected int turnosParaConstruccion;
+
+    public Defensa(EstadoEstructura estado_inicial){
+        estadoActual = estado_inicial;
+    }
 
     public void finalizarConstruccion(){
 
@@ -16,17 +21,17 @@ public abstract class Defensa implements Estructura {
 
     }
 
-    public ArrayList<Unidad> accionar(ArrayList<Unidad> enemigos){
-        return estadoActual.ejecutarMetodo(this, enemigos);
+    public ArrayList<Unidad> accionar(Mapa mapa , Coordenada posicion){
+        return estadoActual.ejecutarMetodo(this, mapa, posicion);
     }
 
     public boolean estaActiva() {
         return estadoActual.estaActivo();
     }
 
-    public abstract int ataque();
+    public abstract int obtenerRango();
 
-    public abstract int ataque(Mapa mapa);
+    public abstract int ataque();
 
     public abstract void atacar(Unidad enemigo);
 
