@@ -27,7 +27,7 @@ public class ViewMapa extends HBox {
 
     public static int TILE_SIZE = 41;
     public interface TileResources{
-        String tileAt(int x, int y);
+        ViewCelda tileAt(int x, int y);
     }
 	public ViewMapa(int columns, int rows,TileResources resource){
         super();
@@ -46,6 +46,8 @@ public class ViewMapa extends HBox {
             //column.setBackground(new Background(new BackgroundFill(Color.BLACK,null,null)));
             for(int y = rows; y>0;y--){
 
+                column.getChildren().add(resource.tileAt(x,y));
+                /*
                 tipo = resource.tileAt(x,y);
                 lbl = new Label("");
                 //lbl.setPadding(new Insets(10,10,10,10));
@@ -61,7 +63,9 @@ public class ViewMapa extends HBox {
                     lbl.setBackground(new Background(new BackgroundFill(Color.rgb(105, 70, 5),null,null)));
                 }
 
+
                 column.getChildren().add(lbl);
+                */
             }
 
             getChildren().add(column);

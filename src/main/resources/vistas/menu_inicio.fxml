@@ -14,11 +14,11 @@
    <children>
 
       <ImageView fitHeight="150.0" fitWidth="217.0"  pickOnBounds="true" preserveRatio="true">
-         <!--
+         
          <image>
-            <Image url="@../" />
+            <Image url="file:src/main/resources/images/background2.jpg" />
          </image>
-         -->
+         
          <image>
          </image>
       </ImageView>

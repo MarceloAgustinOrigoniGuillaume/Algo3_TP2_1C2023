@@ -1,6 +1,8 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 public class DatosModelo{
 	private static final DatosModelo unicaInstancia = new DatosModelo();
@@ -27,8 +29,8 @@ public class DatosModelo{
 		unicaInstancia.juego.iniciarJuego();
 	}
 
-	public static String obtenerTerrenoEn(int x,int y){
-		return unicaInstancia.juego.obtenerMapa().obtenerTerreno(x,y);
+	public static CeldaDescriptor obtenerTerrenoEn(int x,int y){
+		return unicaInstancia.juego.obtenerMapa().obtenerInformacion(new Coordenada(x,y));
 	}
 
 
