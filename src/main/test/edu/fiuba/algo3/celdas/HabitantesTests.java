@@ -27,9 +27,54 @@ public class HabitantesTests {
         Unidad enemigo = new Hormiga();
 
         assertEquals(true , enemigo.posicionarEn(habs));
-
+        assertEquals(1, habs.cantidadUnidades());
 
     }
+
+    @Test
+    public void verificarHabitantesPasarelaAgregaHormigaYTopo() {
+        Habitantes habs = new HabitantesPasarela();
+
+        Unidad enemigo = new Hormiga();
+        Unidad enemigo2 = new Topo(0);
+        enemigo.posicionarEn(habs);
+        assertEquals(true , enemigo2.posicionarEn(habs));
+        assertEquals(2, habs.cantidadUnidades());
+
+    }
+
+    @Test
+    public void verificarHabitantesPasarelaQuitaHormiga() {
+        Habitantes habs = new HabitantesPasarela();
+
+        Unidad enemigo = new Hormiga();
+        Unidad enemigo2 = new Topo(0);
+        enemigo.posicionarEn(habs);
+        enemigo2.posicionarEn(habs);
+
+        habs.sacar(enemigo);
+
+        //assertEquals(true , );
+        assertEquals(1, habs.cantidadUnidades());
+
+    }
+
+    @Test
+    public void verificarHabitantesPasarelaQuitaTrampaPuedePonerOtra() {
+        Habitantes habs = new HabitantesPasarela();
+
+        Construccion trampa = new Trampa();
+
+        assertEquals(true , trampa.posicionarEn(habs));
+        assertEquals(false , trampa.posicionarEn(habs));
+        habs.sacar(trampa);
+
+        trampa = new Trampa();
+
+        assertEquals(true , trampa.posicionarEn(habs));
+
+    }
+
 
     @Test
     public void verificarHabitantesPasarelaGuardaLechuza() {
