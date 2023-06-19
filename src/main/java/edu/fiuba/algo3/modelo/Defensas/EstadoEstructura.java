@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 
 public interface EstadoEstructura {
 
-    public ArrayList<Unidad> ejecutarMetodo(Defensa defensa, Mapa mapa, Coordenada posicion);
+    public void ejecutarMetodo(Defensa defensa, Mapa mapa, Coordenada posicion);
 
     public boolean estaActivo();
 

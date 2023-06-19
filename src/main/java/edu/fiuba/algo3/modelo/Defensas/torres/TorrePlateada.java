@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Defensas.torres;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Defensas.EstadoConstruyendo;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public class TorrePlateada extends Defensa {
 
@@ -29,7 +30,7 @@ public class TorrePlateada extends Defensa {
     }
 
     @Override
-    public void atacar(Unidad enemigo) {
+    public void atacar(Enemigo enemigo) {
         enemigo.recibirAtaque(ataque());
     }
 }

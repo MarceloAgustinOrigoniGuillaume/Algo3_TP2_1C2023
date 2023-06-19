@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public class Trampa extends Defensa {
 
@@ -23,8 +24,8 @@ public class Trampa extends Defensa {
     }
 
     @Override
-    public void atacar(Unidad enemigo) {
-        enemigo.reducirVelocidad();
+    public void atacar(Enemigo enemigo) {
+        //enemigo.reducirVelocidad();
     }
 
     @Override

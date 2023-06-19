@@ -21,7 +21,7 @@ public class EstadoConstruyendo implements EstadoEstructura{
     }
 
     @Override
-    public ArrayList<Unidad> ejecutarMetodo(Defensa defensa, Mapa mapa, Coordenada coordenada){
+    public void ejecutarMetodo(Defensa defensa, Mapa mapa, Coordenada coordenada){
 
         this.turnosRestantes = this.turnosRestantes - 1;
             Logger.info("Defensa Estaba construyendose faltan\n"+String.valueOf(this.turnosRestantes)+" turnos para activarse");
@@ -29,8 +29,6 @@ public class EstadoConstruyendo implements EstadoEstructura{
         if(hanFinalizadoLosTurnos()){
             defensa.finalizarConstruccion();
         }
-
-        return new ArrayList<>();
     }
 
     @Override

@@ -1,9 +1,13 @@
 package edu.fiuba.algo3.modelo.Defensas;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
+
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+
+
 
 public abstract class Defensa implements Estructura {
 
@@ -20,8 +24,8 @@ public abstract class Defensa implements Estructura {
 
     }
 
-    public ArrayList<Unidad> accionar(Mapa mapa , Coordenada posicion){
-        return estadoActual.ejecutarMetodo(this, mapa, posicion);
+    public void accionar(Mapa mapa , Coordenada posicion){
+        estadoActual.ejecutarMetodo(this, mapa, posicion);
     }
 
     public boolean estaActiva() {
@@ -32,7 +36,7 @@ public abstract class Defensa implements Estructura {
 
     public abstract int ataque();
 
-    public abstract void atacar(Unidad enemigo);
+    public abstract void atacar(Enemigo enemigo);
 
 
     public boolean posicionarEn(Habitantes habitantes){
