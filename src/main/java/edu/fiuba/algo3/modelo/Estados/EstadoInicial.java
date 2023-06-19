@@ -34,21 +34,15 @@ public class EstadoInicial implements EstadoJuego {
     }
 
     @Override
-    public void ejecutarEstado() {
+    public void ejecutarEstado() throws Exception{
+        // reinicia el estado de Juego
 
-        try{
-            // reinicia el estado de Juego
-	        LectorMapa lector = new LectorMapa(jsonMapa,WIDTH_MAP,HEIGHT_MAP);
-            juego.asignarMapa(new Mapa(lector, WIDTH_MAP,HEIGHT_MAP));
-            LectorEnemigo lectorEnemigos = new LectorEnemigo(jsonEnemigos);
-            juego.asignarOleadas(new Oleada(lectorEnemigos));
+        LectorMapa lector = new LectorMapa(jsonMapa,WIDTH_MAP,HEIGHT_MAP);
+        
+        juego.asignarMapa(new Mapa(lector, WIDTH_MAP,HEIGHT_MAP));
+        LectorEnemigo lectorEnemigos = new LectorEnemigo(jsonEnemigos);
+        juego.asignarOleadas(new Oleada(lectorEnemigos));
 
-            Logger.info(juego.obtenerMapa().toString());
-
-        } catch (Exception e){
-        	System.out.println("ERROR "+e.toString());
-        }
-
-
+        Logger.info(juego.obtenerMapa().toString());
     }
 }

@@ -19,7 +19,7 @@ import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 public class IntegracionTests {
     @Test
-    public void verficarSeCreaJugadorCorrectamente() throws IOException, ParseException {
+    public void verficarSeCreaJugadorCorrectamente() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("mapa"),Resources.getJsonPath("enemigos"));
         Jugador jugador = juego.obtenerJugador();
         assertEquals(100,jugador.obtenerCreditos());
@@ -27,7 +27,7 @@ public class IntegracionTests {
 
     }
     @Test
-    public void verficarPasarTurnosMapaCatedra() throws IOException, ParseException {
+    public void verficarPasarTurnosMapaCatedra() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("mapa"),Resources.getJsonPath("enemigos"));
         juego.iniciarJuego();
         int i =0;
@@ -45,7 +45,7 @@ public class IntegracionTests {
 
 
     @Test
-    public void verificarJuegoSoloSeIniciaCuandoSeInicia() throws IOException, ParseException {
+    public void verificarJuegoSoloSeIniciaCuandoSeInicia() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("mapa"),Resources.getJsonPath("enemigos"));
         juego.iniciarJuego();
         int i =0;
@@ -56,7 +56,7 @@ public class IntegracionTests {
 
 
     @Test
-    public void verificarPasarTurnoYCreaEnemigos() throws IOException, ParseException {
+    public void verificarPasarTurnoYCreaEnemigos() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
 
@@ -74,7 +74,7 @@ public class IntegracionTests {
     }
 
     @Test
-    public void verificarPasan2TurnosCreaYMueveEnemigos() throws IOException, ParseException {
+    public void verificarPasan2TurnosCreaYMueveEnemigos() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
 
@@ -97,7 +97,7 @@ public class IntegracionTests {
     }
 
     @Test
-    public void verificarPasan6TurnosHormigasInicialesLleganFinal() throws IOException, ParseException {
+    public void verificarPasan6TurnosHormigasInicialesLleganFinal() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
         //System.out.println("PASO DE 6 TURNOS");
@@ -127,7 +127,7 @@ public class IntegracionTests {
 
 
     @Test
-    public void verificarPasan13TurnosEnemigosMatanJugador() throws IOException, ParseException {
+    public void verificarPasan13TurnosEnemigosMatanJugador() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
         //System.out.println("PASO DE 12 TURNOS Juego termino");
@@ -152,7 +152,7 @@ public class IntegracionTests {
 
 
     @Test
-    public void verificarPasan13ConUnaTorrePlateadaTurno2JugadorGana() throws IOException, ParseException {
+    public void verificarPasan13ConUnaTorrePlateadaTurno2JugadorGana() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
         //System.out.println("PASO DE 12 TURNOS Juego termino, con defensa");
@@ -184,7 +184,7 @@ public class IntegracionTests {
 
 
     @Test
-    public void verificarPasanConUnaTorrePlateadaTurno2NoActivaPor2Turnos() throws IOException, ParseException, ParseException {
+    public void verificarPasanConUnaTorrePlateadaTurno2NoActivaPor2Turnos() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"), Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
         //System.out.println("-------------------->Paso 2 con defensa");

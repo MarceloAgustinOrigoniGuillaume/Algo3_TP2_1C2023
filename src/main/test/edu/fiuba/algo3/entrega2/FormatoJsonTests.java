@@ -49,7 +49,7 @@ public class FormatoJsonTests {
     }
 
     @Test
-    public void formatoValidoDeMapaJuego() throws IOException, ParseException {
+    public void formatoValidoDeMapaJuego() throws Exception {
         
         Juego juego = new Juego(Resources.getJsonPath("mapa"),Resources.getJsonPath("enemigos"));
 

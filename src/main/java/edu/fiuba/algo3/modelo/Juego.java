@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Estados.EstadoJuego;
 import edu.fiuba.algo3.modelo.Estados.EstadoJugando;
 import edu.fiuba.algo3.modelo.Estados.EstadoTerminado;
 import org.json.simple.parser.ParseException;
+import edu.fiuba.algo3.Logger;
 
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ public class Juego {
     private boolean estaJugando;
     //La clase oleadas almacena un vector de enemigos.
 
-    public Juego(String jsonMapa,String jsonEnemigos) throws IOException, ParseException {
+    public Juego(String jsonMapa,String jsonEnemigos) throws Exception {
         jugador = new Jugador();
         this.estadoDeJuego = new EstadoInicial(this,jsonMapa,jsonEnemigos);
         estadoDeJuego.ejecutarEstado();
@@ -70,7 +71,13 @@ public class Juego {
 
     public void pasarTurno() {
         //System.out.println("JUEGO PASAR TURNO, EJECUTANDO ESTADO");
-        estadoDeJuego.ejecutarEstado();
+        try{
+            estadoDeJuego.ejecutarEstado();
+        } catch(Exception ex){
+            // ocurrio un error...
+            Logger.Log("Error at pasarTurno "+ex.toString());
+            ex.printStackTrace();
+        }
     }
     public boolean estanEnJuego(){
         return estaJugando;
