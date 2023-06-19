@@ -24,11 +24,12 @@ public class Turno{
 		mapa.moverEnemigos();
 
 		// defensas atacan mapa
-		ArrayList<Enemigo> enemigosMuertos = mapa.accionarDefensas();
+		
+		mapa.accionarDefensas();
 
-		for (Enemigo muerto : enemigosMuertos){
-			jugador.ganoCreditos(muerto.creditosDados());
-		}
+		//for (Enemigo muerto : enemigosMuertos){
+		//	jugador.ganoCreditos(muerto.creditosDados());
+		//}
 		// instancia enemigos.
 		ArrayList<Enemigo> enemigos = oleada.instanciar(turno);
 		

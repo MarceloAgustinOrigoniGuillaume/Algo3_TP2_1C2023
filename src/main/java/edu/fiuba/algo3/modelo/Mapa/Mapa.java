@@ -119,15 +119,14 @@ public class Mapa {
         return obtenerCelda(coordenada).recibirAtaque(ataque);
     }
 
-    public ArrayList<Enemigo> accionarDefensas(){
-        ArrayList<Enemigo> muertos = new ArrayList<Enemigo>();
+    public void accionarDefensas(){
+        //ArrayList<Enemigo> muertos = new ArrayList<Enemigo>();
 
         for(Coordenada posDefensa: defensas){
-            Logger.info("La defensa de la posicion: "+posDefensa.toString()+"\n" );
-            muertos.addAll(obtenerCelda(posDefensa).accionarEstructuras(this));
+            Logger.info("Se acciono defensa de la posicion: "+posDefensa.toString()+"\n" );
+            obtenerCelda(posDefensa).accionarEstructuras(this);
         }
-        Logger.info("Murieron un total de "+String.valueOf(muertos.size())+" ENEMIGOS");
-        return muertos;
+        //return muertos;
     }
 
     public CeldaDescriptor obtenerInformacion(Coordenada coordenada){
