@@ -15,7 +15,7 @@ import edu.fiuba.algo3.modelo.Juego;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestFormatoJson {
+public class FormatoJsonTests {
     @Test
     public void formatoValidoDeEnemigos() throws Exception {
         

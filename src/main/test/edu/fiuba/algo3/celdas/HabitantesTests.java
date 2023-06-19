@@ -3,6 +3,7 @@ package edu.fiuba.algo3.celdas;
 
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 import edu.fiuba.algo3.modelo.Enemigo.Arania;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
 import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
@@ -23,7 +24,7 @@ public class HabitantesTests {
     public void verificarHabitantesPasarelaGuardaHormiga() {
         Habitantes habs = new HabitantesPasarela();
 
-        Unidad enemigo = new Hormiga();
+        Enemigo enemigo = new Hormiga();
 
         assertEquals(true , enemigo.posicionarEn(habs));
         assertEquals(1, habs.cantidadUnidades());
@@ -34,8 +35,8 @@ public class HabitantesTests {
     public void verificarHabitantesPasarelaAgregaHormigaYTopo() {
         Habitantes habs = new HabitantesPasarela();
 
-        Unidad enemigo = new Hormiga();
-        Unidad enemigo2 = new Topo(0);
+        Enemigo enemigo = new Hormiga();
+        Enemigo enemigo2 = new Topo(0);
         enemigo.posicionarEn(habs);
         assertEquals(true , enemigo2.posicionarEn(habs));
         assertEquals(2, habs.cantidadUnidades());
@@ -46,8 +47,8 @@ public class HabitantesTests {
     public void verificarHabitantesPasarelaQuitaHormiga() {
         Habitantes habs = new HabitantesPasarela();
 
-        Unidad enemigo = new Hormiga();
-        Unidad enemigo2 = new Topo(0);
+        Enemigo enemigo = new Hormiga();
+        Enemigo enemigo2 = new Topo(0);
         enemigo.posicionarEn(habs);
         enemigo2.posicionarEn(habs);
 
@@ -79,7 +80,7 @@ public class HabitantesTests {
     public void verificarHabitantesPasarelaGuardaLechuza() {
         Habitantes habs = new HabitantesPasarela();
 
-        Unidad enemigo = new Lechuza();
+        Enemigo enemigo = new Lechuza();
 
         assertEquals(true , enemigo.posicionarEn(habs));
 
@@ -90,7 +91,7 @@ public class HabitantesTests {
     public void verificarHabitantesPasarelaGuardaArania() {
         Habitantes habs = new HabitantesPasarela();
 
-        Unidad enemigo = new Arania();
+        Enemigo enemigo = new Arania();
 
         assertEquals(true , enemigo.posicionarEn(habs));
 
@@ -101,7 +102,7 @@ public class HabitantesTests {
     public void verificarHabitantesPasarelaGuardaTopo() {
         Habitantes habs = new HabitantesPasarela();
 
-        Unidad enemigo = new Topo(0);
+        Enemigo enemigo = new Topo(0);
 
         assertEquals(true , enemigo.posicionarEn(habs));
 
@@ -137,10 +138,10 @@ public class HabitantesTests {
     public void verificarHabitantesTierraNOGuardaEnemigosMenosLechuza() {
         Habitantes habs = new HabitantesTierra();
 
-        Unidad enemigo = new Arania();
-        Unidad hormiga = new Hormiga();
-        Unidad topo = new Topo(0);
-        Unidad lechuza = new Lechuza();
+        Enemigo enemigo = new Arania();
+        Enemigo hormiga = new Hormiga();
+        Enemigo topo = new Topo(0);
+        Enemigo lechuza = new Lechuza();
 
 
         assertEquals(false , enemigo.posicionarEn(habs));
@@ -154,10 +155,10 @@ public class HabitantesTests {
     public void verificarHabitantesRocosoNOGuardaEnemigosMenosLechuza() {
         Habitantes habs = new HabitantesTerreno();
 
-        Unidad enemigo = new Arania();
-        Unidad hormiga = new Hormiga();
-        Unidad topo = new Topo(0);
-        Unidad lechuza = new Lechuza();
+        Enemigo enemigo = new Arania();
+        Enemigo hormiga = new Hormiga();
+        Enemigo topo = new Topo(0);
+        Enemigo lechuza = new Lechuza();
 
 
         assertEquals(false , enemigo.posicionarEn(habs));

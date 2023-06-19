@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class JugadorTest {
+public class JugadorTests {
         @Test
         public void verificarQueJugadorEmpiezaConVidaYCreditosCorrespondientes() {
             Jugador jugador = new Jugador();

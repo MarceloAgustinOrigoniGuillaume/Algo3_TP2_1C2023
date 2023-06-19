@@ -17,7 +17,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
-public class mapaTest {
+public class MapaTests {
     
     @Test
     public void VerificarSePuedaConstruirDefensasSobreTierra() throws Exception {

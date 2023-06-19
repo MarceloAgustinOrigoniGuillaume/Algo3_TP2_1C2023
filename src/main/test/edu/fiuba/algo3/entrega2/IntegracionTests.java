@@ -17,7 +17,7 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 
-public class TestsIntegracion {
+public class IntegracionTests {
     @Test
     public void verficarSeCreaJugadorCorrectamente() throws IOException, ParseException {
         Juego juego = new Juego(Resources.getJsonPath("mapa"),Resources.getJsonPath("enemigos"));
