@@ -21,6 +21,11 @@ import javafx.geometry.Pos;
 
 import javafx.scene.Parent;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BackgroundPosition;
 
 public class MenuInicio extends VBox implements Vista {
 	private final static String titulo = "AlgoDefense";
@@ -39,6 +44,8 @@ public class MenuInicio extends VBox implements Vista {
 	}
 
 	private void init(){
+		
+		setBackground(Resources.getBckImage("background1.jpg"));
 		setAlignment(Pos.CENTER);
 
 		Parent view = Resources.getVista("menu_inicio");

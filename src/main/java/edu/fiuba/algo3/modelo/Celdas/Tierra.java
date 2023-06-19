@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesTierra;
 
 public class Tierra extends Celda {
 
-    public final static String TIERRA_TYPE = "Rocosa";
+    public final static String TIERRA_TYPE = "Tierra";
 	
     public Tierra(Coordenada coordenada){
         super(coordenada, new HabitantesTierra());

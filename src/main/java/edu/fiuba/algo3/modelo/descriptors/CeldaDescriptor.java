@@ -13,4 +13,9 @@ public class CeldaDescriptor{
 	public int cantidadEnemigos(){
 		return cantidadEnemigos;
 	}
+
+
+	public String tipo(){
+		return terreno;
+	}
 }
