@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Celdas.habitantes;
 
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
-import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public class HabitantesPasarela extends HabitantesConstruccion {
 
@@ -10,7 +10,7 @@ public class HabitantesPasarela extends HabitantesConstruccion {
 		return super.guardaConstruccion(trampa);
 	}
 
-	public boolean guardar(Unidad unidad){ // pasarela puede guardar cualquier unidad
+	public boolean guardar(Enemigo unidad){ // pasarela puede guardar cualquier unidad
 		return super.guardaUnidad(unidad);
 	}
 }

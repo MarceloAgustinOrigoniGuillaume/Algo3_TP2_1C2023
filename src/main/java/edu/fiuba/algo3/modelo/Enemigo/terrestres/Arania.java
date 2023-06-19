@@ -1,43 +1,27 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
-import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Enemigo.terrestres.EnemigoTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-public class Arania extends Enemigo {
+import java.util.Random;
+
+public class Arania extends EnemigoTerrestre implements Monetizable{
 
 	public Arania(){
-        super(2,2); // vida, velocidad
+        super(2,2);
 	}
 
-
     @Override
-    public void reducirVelocidad() {
-        this.velocidad = (int)Math.floor(this.velocidad / 2);
+    public int creditosDados(){
+        return new Random().nextInt(10);
     }
 
     public int ataque(){
         return 2;
-		//target.recibirAtaque(2); // hace dos de dmg
 	}
-
-    public int creditosDados(){
-    	return 6;
-    }
-
 
     public Enemigo copiar(){
     	return new Arania();
-    }
-
-
-    @Override
-    public void incrementarContadorDePasos(){
-
-    }
-
-    @Override
-    public int ataque(Mapa mapa) {
-        return 0;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public abstract class Celda {
     	habitantes.clear();
     }
 
-    public abstract ArrayList<Unidad> accionarEstructuras(Mapa mapa);
+    public abstract ArrayList<Enemigo> accionarEstructuras(Mapa mapa);
     
     public  void accionarUnidades(Mapa mapa){
         habitantes.accionarUnidades(mapa, coordenada);

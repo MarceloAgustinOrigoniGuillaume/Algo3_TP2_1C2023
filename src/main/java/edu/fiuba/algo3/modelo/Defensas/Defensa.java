@@ -1,5 +1,4 @@
 package edu.fiuba.algo3.modelo.Defensas;
-import edu.fiuba.algo3.modelo.Celdas.Unidad;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 

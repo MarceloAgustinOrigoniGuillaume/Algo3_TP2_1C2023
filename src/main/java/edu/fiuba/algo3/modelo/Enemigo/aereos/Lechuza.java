@@ -1,32 +1,37 @@
 package edu.fiuba.algo3.modelo.Enemigo.aereos;
 
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 
-public class Lechuza extends EnemigoAereo {
+public class Lechuza extends EnemigoAereo implements Monetizable {
 
     private int vida;
     private int vidaCambioMovimiento;
-    private int velocidad = 1;
+    private int velocidad;
+    private EstadoMovimiento estadoMovimiento;
+
     public Lechuza(){
-        super(5, 5);
+        super(5,5);
+        this.estadoMovimiento = new EstadoMovimientoInicial(this);
+        this.vidaCambioMovimiento= vida/2;
     }
 
     public int velocidad(){
-
         return this.velocidad;
     }
 
-    @Override
-    public void reducirVelocidad() {
-        this.velocidad = (int)Math.floor(this.velocidad / 2);
-    }
+    protected void moverse(Mapa mapa, Coordenada posicion){
 
-    public boolean estaMuerto(){
-        return vida <= 0;
+        if(vida <= vidaCambioMovimiento){
+            this.estadoMovimiento = new EstadoMovimientoDiagonal(this);
+        }
+
+        (this.estadoMovimiento).ejecutarEstado( mapa, posicion);
     }
 
     @Override
@@ -35,22 +40,15 @@ public class Lechuza extends EnemigoAereo {
         Logger.info("El daño recibido es: "+danioRecibido);
     }
 
+    //Pre: -
+    //Post: La lechuza, de momento, no dice que de creditos al jugador.
+    @Override
     public int creditosDados(){
-        return 1;
+        return 0;
     }
 
     public Enemigo copiar(){
         return new Lechuza();
-    }
-
-    @Override
-    public void incrementarContadorDePasos(){
-
-    }
-
-    @Override
-    public int ataque(Mapa mapa) {
-    return 0;
     }
 
     @Override
@@ -60,14 +58,19 @@ public class Lechuza extends EnemigoAereo {
 
     @Override
     public int ataque() {
-
-            //Lechuza le dice a mapa que destruya una de las torres.
-            //mapa.atacarPrimeraTorre();
-
+        // este ataque es para calcular el maximo dmg posible.
+        // Lechuza no hace dmg al jugado... 0
         return 0;
     }
 
     public void atacar(Jugador jugador, Mapa mapa){
         mapa.atacarPrimeraTorre();
     }
+
+
+    protected Coordenada movimientoAereo(Coordenada desde, Coordenada hasta){
+
+        return desde;
+    }
+
 }

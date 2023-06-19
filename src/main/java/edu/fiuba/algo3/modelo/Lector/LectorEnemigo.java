@@ -38,11 +38,11 @@ public class LectorEnemigo  implements Lector{
     @Override
     public Convertidor siguienteElemento() throws Exception {
 
-    	JSONObject obj = (JSONObject)iterador.next();
+    	JSONObject parseadoJson = (JSONObject)iterador.next();
 
-    	Hashtable<String,Integer> oleada = convertToHash((JSONObject) obj.get("enemigos"));
+    	Hashtable<String,Integer> oleada = convertToHash((JSONObject) parseadoJson.get("enemigos"));
 
-        return new ConvertidorOleada(obj.get("turno").toString(), oleada);//new ConvertidorEnemigo((JSONObject) iterador.next());
+        return new ConvertidorOleada(parseadoJson.get("turno").toString(), oleada);//new ConvertidorEnemigo((JSONObject) iterador.next());
     }
 
     @Override

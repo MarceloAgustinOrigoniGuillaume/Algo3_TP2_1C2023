@@ -4,7 +4,7 @@ import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.Oleadas;
+import edu.fiuba.algo3.modelo.Oleada;
 
 
 
@@ -41,7 +41,7 @@ public class EstadoInicial implements EstadoJuego {
 	        LectorMapa lector = new LectorMapa(jsonMapa,WIDTH_MAP,HEIGHT_MAP);
             juego.asignarMapa(new Mapa(lector, WIDTH_MAP,HEIGHT_MAP));
             LectorEnemigo lectorEnemigos = new LectorEnemigo(jsonEnemigos);
-            juego.asignarOleadas(new Oleadas(lectorEnemigos));
+            juego.asignarOleadas(new Oleada(lectorEnemigos));
 
             Logger.info(juego.obtenerMapa().toString());
 

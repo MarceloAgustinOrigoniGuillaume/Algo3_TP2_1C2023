@@ -8,9 +8,6 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 //import edu.fiuba.algo3.modeloNico.Oleadas;
 import edu.fiuba.algo3.modelo.Turnos.Turno;
 
-import java.util.ArrayList;
-import edu.fiuba.algo3.modelo.Celdas.Unidad;
-
 public class EstadoJugando implements EstadoJuego {
     Juego juego;
     Turno turno;

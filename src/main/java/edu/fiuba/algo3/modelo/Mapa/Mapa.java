@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Celdas.*;
-import edu.fiuba.algo3.modelo.Celdas.Unidad;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import java.util.ArrayList;
@@ -119,8 +119,8 @@ public class Mapa {
         return obtenerCelda(coordenada).recibirAtaque(ataque);
     }
 
-    public ArrayList<Unidad> accionarDefensas(){
-        ArrayList<Unidad> muertos = new ArrayList<Unidad>();
+    public ArrayList<Enemigo> accionarDefensas(){
+        ArrayList<Enemigo> muertos = new ArrayList<Enemigo>();
 
         for(Coordenada posDefensa: defensas){
             Logger.info("La defensa de la posicion: "+posDefensa.toString()+"\n" );
@@ -138,7 +138,7 @@ public class Mapa {
         return obtenerCelda(coordenada).describe();
     }
     
-    public void posicionarInicio(Unidad enemigo){
+    public void posicionarInicio(Enemigo enemigo){
         Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
         obtenerCelda(camino.get(0)).posicionar(enemigo);
     }
@@ -182,12 +182,12 @@ public class Mapa {
     }
 
 
-    public void mover(Unidad unidad, Coordenada desde,Coordenada hasta){
+    public void mover(Enemigo unidad, Coordenada desde,Coordenada hasta){
         obtenerCelda(desde).sacar(unidad);
         obtenerCelda(hasta).posicionar(unidad);
     }
 
-    public void moverEnCamino(Unidad unidad, Coordenada desde, int cantidad){
+    public void moverEnCamino(Enemigo unidad, Coordenada desde, int cantidad){
 
         int index = indexarPasarela(desde);
         if(index == -1){

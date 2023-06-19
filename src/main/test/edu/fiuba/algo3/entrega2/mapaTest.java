@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 
-import edu.fiuba.algo3.modelo.Enemigo.Hormiga;
+import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 //import edu.fiuba.algo3.modelo.moduloLector.Lector;
 
 import org.junit.jupiter.api.Test;

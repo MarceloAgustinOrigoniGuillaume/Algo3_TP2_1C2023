@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Estados.EstadoInicial;
 import edu.fiuba.algo3.modelo.Estados.EstadoJuego;
 import edu.fiuba.algo3.modelo.Estados.EstadoJugando;
 import edu.fiuba.algo3.modelo.Estados.EstadoTerminado;
-import edu.fiuba.algo3.modelo.Oleadas;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ public class Juego {
     private EstadoJuego estadoDeJuego;
     private Mapa mapa;
     private Jugador jugador;
-    private Oleadas oleadas;
+    private Oleada oleada;
 
     private boolean estaJugando;
     //La clase oleadas almacena un vector de enemigos.
@@ -41,9 +40,9 @@ public class Juego {
         this.mapa = mapa;
     }
 
-    public void asignarOleadas(Oleadas oleadas){
+    public void asignarOleadas(Oleada oleada){
 
-        this.oleadas = oleadas;
+        this.oleada = oleada;
     }
     public Jugador obtenerJugador(){
         return jugador;
@@ -51,9 +50,9 @@ public class Juego {
     public Mapa obtenerMapa(){
         return mapa;
     }
-    public Oleadas obtenerOleadas(){
+    public Oleada obtenerOleadas(){
 
-        return oleadas;
+        return oleada;
     }
     public boolean posicionar(Estructura estructura, Coordenada pos){
         if(!jugador.puedeCostear(estructura)){
