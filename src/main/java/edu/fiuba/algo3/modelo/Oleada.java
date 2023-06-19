@@ -26,14 +26,14 @@ public class Oleada {
 		}
 		ArrayList<Enemigo> enemigosNuevos = new ArrayList<>();
 
-		for(Instanciador instanciador : oleadas.get(turno)){
+		for(Instanciador instanciador : oleadas.get(turno-1)){
 			instanciador.agregarInstanciasA(enemigosNuevos);
 		}
 		return enemigosNuevos;
 	}
 
 	public boolean noHayMasOleadas(int turno){
-		return turno>= oleadas.size();
+		return turno> oleadas.size();
 	}
 
 }

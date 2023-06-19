@@ -116,6 +116,12 @@ public class Mapa {
     //Post: Actualiza los habitantes de las coordenadas recibidas.
     private void actualizarPosicionEnemigo(Enemigo unidad, Coordenada desde, Coordenada hasta){
         obtenerCelda(desde).sacar(unidad);
+
+        if(hasta == posicionFinal()){
+            Logger.Log("Enemigo "+unidad.toString()+" llego al final.. "+hasta.toString());
+            // No se posiciona, ya que son "bombas"
+            return;
+        }
         obtenerCelda(hasta).posicionar(unidad);
     }
 
@@ -175,6 +181,8 @@ public class Mapa {
             Logger.info("Se acciono defensa de la posicion: "+posDefensa.toString()+"\n" );
             obtenerCelda(posDefensa).accionarEstructuras(this);
         }
+
+
         //return muertos;
     }
 

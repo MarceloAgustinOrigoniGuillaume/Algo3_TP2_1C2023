@@ -22,7 +22,7 @@ public class Turno{
 
 	public boolean jugarTurno(Mapa mapa,Jugador jugador, Oleada oleada){
 
-		// move enemigos
+		// move enemigos y que ataquen al jugador.
 		mapa.accionarEnemigos(jugador);
 
 		if(jugador.estaMuerto()){

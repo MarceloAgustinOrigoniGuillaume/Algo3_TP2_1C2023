@@ -50,11 +50,13 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     //Pre: -
     //Post: -
     protected void atacarObjeto(Jugador jugador, Mapa mapa) {
-        if((this.turno) % 2 == 0){
-            jugador.recibirAtaque(this.ataqueMaximo);
-            return;
+    
+        int ataque = this.ataqueMaximo;
+        if((this.turno) % 2 != 0){
+            ataque = 2;
         }
-        jugador.recibirAtaque(2);
+
+        jugador.recibirAtaque(ataque);
     }
 
     //Pre: -

@@ -117,8 +117,8 @@ public class IntegracionTests {
         
         // llegaron 4 hormigas
         assertEquals(true, juego.estanEnJuego());
-        assertEquals(0,unidadesFinal.cantidadEnemigos());
         assertEquals(16, juego.obtenerJugador().obtenerVida()); // dmg de 4 hormigas
+        assertEquals(0,unidadesFinal.cantidadEnemigos());
         //System.out.println("T_----------------TEST 6 turnos");
 
 
@@ -130,7 +130,6 @@ public class IntegracionTests {
     public void verificarPasan13TurnosEnemigosMatanJugador() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
-        //System.out.println("PASO DE 12 TURNOS Juego termino");
 
         CeldaDescriptor unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);
@@ -155,7 +154,7 @@ public class IntegracionTests {
     public void verificarPasan13ConUnaTorrePlateadaTurno2JugadorGana() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
-        //System.out.println("PASO DE 12 TURNOS Juego termino, con defensa");
+        System.out.println("PASO DE 12 TURNOS Juego termino, con defensa");
 
         CeldaDescriptor unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);

@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 public class MapaTests {
@@ -161,15 +163,17 @@ public class MapaTests {
 
         unMapa.posicionarInicio(enemigo);
 
-        Jugador jugador = new Jugador();
+        Jugador mockJugador = mock(Jugador.class);
 
-        unMapa.accionarEnemigos(jugador);
-        unMapa.accionarEnemigos(jugador);
+        unMapa.accionarEnemigos(mockJugador);
+        unMapa.accionarEnemigos(mockJugador);
 
         CeldaDescriptor unidadesInicio = unMapa.obtenerInformacion(new Coordenada(1,2));
         CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,3));
 
-        assertEquals(1, unidadesDondeEstaria.cantidadEnemigos());
+
+        verify(mockJugador, times(1)).recibirAtaque(1);
+        assertEquals(0, unidadesDondeEstaria.cantidadEnemigos());
         // assertEquals(unidadesDondeEstaria.get(0), enemigo);
 
         assertEquals(0, unidadesInicio.cantidadEnemigos());
@@ -178,7 +182,7 @@ public class MapaTests {
     @Test
     public void VerificarEnemigosSeMuevenSoloPorPasarelasHastaElFinal() throws Exception {
         LectorMapa mockLector = mock(LectorMapa.class);
-        Jugador jugador = new Jugador();
+        Jugador mockJugador = mock(Jugador.class);
 
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
                                                     .thenReturn(new ConvertidorParcela(1,2,"Pasarela"))
@@ -194,17 +198,24 @@ public class MapaTests {
 
         unMapa.posicionarInicio(enemigo);
 
-        unMapa.accionarEnemigos(jugador);
-        unMapa.accionarEnemigos(jugador);
-        unMapa.accionarEnemigos(jugador);
-        unMapa.accionarEnemigos(jugador);
-        unMapa.accionarEnemigos(jugador);
-        unMapa.accionarEnemigos(jugador);
+        unMapa.accionarEnemigos(mockJugador);
+        enemigo = new Hormiga();//new Jugador()
+        unMapa.posicionarInicio(enemigo);
+
+        unMapa.accionarEnemigos(mockJugador);
+        unMapa.accionarEnemigos(mockJugador);
+        unMapa.accionarEnemigos(mockJugador);
+        unMapa.accionarEnemigos(mockJugador);
+        unMapa.accionarEnemigos(mockJugador);
 
         CeldaDescriptor unidadesInicio = unMapa.obtenerInformacion(new Coordenada(1,2));
         CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,3));
 
-        assertEquals(1, unidadesDondeEstaria.cantidadEnemigos());
+
+
+        verify(mockJugador, times(2)).recibirAtaque(1);
+
+        assertEquals(0, unidadesDondeEstaria.cantidadEnemigos());
         // assertEquals(unidadesDondeEstaria.get(0), enemigo);
 
         assertEquals(0, unidadesInicio.cantidadEnemigos());
