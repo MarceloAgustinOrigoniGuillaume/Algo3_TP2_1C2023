@@ -11,11 +11,6 @@ public class Rocosa extends Celda {
     public Rocosa(Coordenada coordenada){
         super(coordenada, new HabitantesTerreno());
     }
-
-    public ArrayList<Unidad> accionarEstructuras(Mapa mapa){
-        return null;
-    }
-
     @Override
     public String toString(){
         return ROCOSA_TYPE;

@@ -7,5 +7,4 @@ import java.util.ArrayList;
 public interface Construccion extends Ataque,Posicionable{
 	int obtenerRango();
 	boolean estaActiva();
-	ArrayList<Unidad> accionar(Mapa mapa, Coordenada desde);
 }

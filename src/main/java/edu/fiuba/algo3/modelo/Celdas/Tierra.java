@@ -14,10 +14,6 @@ public class Tierra extends Celda {
         super(coordenada, new HabitantesTierra());
     }
 
-    public ArrayList<Unidad> accionarEstructuras(Mapa mapa){
-        return habitantes.accionarEstructuras(mapa, this.posicion());
-    }
-
     @Override
     public String toString(){
         return TIERRA_TYPE;

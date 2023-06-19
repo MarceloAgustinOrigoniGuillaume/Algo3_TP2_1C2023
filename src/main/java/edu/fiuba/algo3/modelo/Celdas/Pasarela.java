@@ -13,10 +13,6 @@ public class Pasarela extends Celda{
         super(coordenada, new HabitantesPasarela());
     }
 
-    public ArrayList<Unidad> accionarEstructuras(Mapa mapa){
-        return habitantes.accionarEstructuras(mapa, this.posicion());
-    }
-
 
     @Override
     public String toString(){

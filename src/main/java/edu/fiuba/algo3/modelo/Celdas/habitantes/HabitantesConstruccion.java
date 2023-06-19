@@ -41,11 +41,10 @@ public abstract class HabitantesConstruccion extends Habitantes{
 		return true;
 	}
 
-	public ArrayList<Unidad> accionarEstructuras(Mapa mapa, Coordenada desde){
+	public void accionarEstructuras(Mapa mapa, Coordenada desde){
 		if(construccionGuardada != null){
-			return construccionGuardada.accionar(mapa,desde);
+			construccionGuardada.accionar(mapa,desde);
 		}
-		return null;
 	}
 
 	public boolean recibirAtaque(Ataque ataque){

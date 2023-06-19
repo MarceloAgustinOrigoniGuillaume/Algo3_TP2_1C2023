@@ -18,15 +18,15 @@ public abstract class Habitantes {
 	// por lo que la logica de su guardado ira aca...
 	// no asi con construcciones, rocoso no necesitaria eso. Por eso se creo HabitantesConstruccion
 
-	private ArrayList<Unidad> unidades;
+	private ArrayList<Enemigo> unidades;
 
 	public Habitantes(){
 		unidades = new ArrayList<>();
 	}
 
-	// se observa  que Habitantes guarda cualquier unidad si una implementacion
+	// se observa  que Habitantes guarda cualquier Enemigo si una implementacion
 	// le dice guarda. La implementacion se encarga de filtrar quien puede.
-	protected boolean guardaUnidad(Unidad unidad){ 
+	protected boolean guardaUnidad(Enemigo unidad){ 
 		unidades.add(unidad);
 		return true;
 	}
@@ -73,7 +73,7 @@ public abstract class Habitantes {
 
 
 	public boolean recibirAtaque(Ataque ataque){
-		//ArrayList<Unidad> muertos = new ArrayList<>();
+		//ArrayList<Enemigo> muertos = new ArrayList<>();
 		// recibilo... todabia sin implementar
 
 		return false;
@@ -81,13 +81,13 @@ public abstract class Habitantes {
 
 
 	public void accionarUnidades(Mapa mapa, Coordenada desde){
-		for(Unidad unidad: new ArrayList<Unidad>(unidades)){
+		for(Enemigo unidad: new ArrayList<Enemigo>(unidades)){
 			unidad.accionar(mapa,desde);
 		}
 	}
 
-	public ArrayList<Unidad> accionarEstructuras(Mapa mapa, Coordenada desde){
-		return null;
+	public void accionarEstructuras(Mapa mapa, Coordenada desde){
+		
 	}
 
 

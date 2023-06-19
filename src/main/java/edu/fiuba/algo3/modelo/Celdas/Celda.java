@@ -26,6 +26,10 @@ public abstract class Celda {
     	return posicionable.posicionarEn(habitantes);
     }
 
+    public void accionarEstructuras(Mapa mapa){
+        habitantes.accionarEstructuras(mapa, this.posicion());
+    }
+
     public void sacar(Posicionable posicionable){
     	habitantes.sacar(posicionable);
     }
@@ -34,8 +38,6 @@ public abstract class Celda {
     	habitantes.clear();
     }
 
-    public abstract ArrayList<Enemigo> accionarEstructuras(Mapa mapa);
-    
     public  void accionarUnidades(Mapa mapa){
         habitantes.accionarUnidades(mapa, coordenada);
     }
