@@ -18,25 +18,25 @@ public abstract class Habitantes {
 	// por lo que la logica de su guardado ira aca...
 	// no asi con construcciones, rocoso no necesitaria eso. Por eso se creo HabitantesConstruccion
 
-	private ArrayList<Enemigo> unidades;
+	private ArrayList<Enemigo> enemigos;
 
 	public Habitantes(){
-		unidades = new ArrayList<>();
+		enemigos = new ArrayList<>();
 	}
 
 	// se observa  que Habitantes guarda cualquier Enemigo si una implementacion
 	// le dice guarda. La implementacion se encarga de filtrar quien puede.
 	protected boolean guardaUnidad(Enemigo unidad){ 
-		unidades.add(unidad);
+		enemigos.add(unidad);
 		return true;
 	}
 
+	public boolean guardar(Trampa trampa){
+		return false; // por default Habitantes no podria guardar nada... cada implementacion sobreescribira
+	}
 
-
-
-
-	// por default solo se puede guardar Unidades en pasarela
-
+	//Pre: Por default solo se puede guardar Unidades en pasarela.
+	//Post: -
 	public boolean guardar(Enemigo unidad){
 		return guardaUnidad(unidad); 
 	}
@@ -45,30 +45,24 @@ public abstract class Habitantes {
 		return guardaUnidad(aereo); 
 	}
 
+
+	//Pre: Por default Habitantes no podria guardar nada... cada implementacion sobreescribirá.
+	//Post: -
 	public boolean guardar(Construccion construccion){
-		return false; // por default Habitantes no podria guardar nada... cada implementacion sobreescribira
+		return false;
 	}
-
-
-	public boolean guardar(Trampa trampa){
-		return false; // por default Habitantes no podria guardar nada... cada implementacion sobreescribira
-	}
-
-	//public ArrayList<Posicionable> atacadosPor(){
-
-	//}
 
 	public int cantidadUnidades(){
-		return unidades.size();
+		return enemigos.size();
 	}
 
     public void sacar(Posicionable posicionable){
-    	if(unidades.contains(posicionable)){
-    		unidades.remove(posicionable);
+    	if(enemigos.contains(posicionable)){
+    		enemigos.remove(posicionable);
     	}
     }
     public void clear(){
-    	unidades.clear();
+    	enemigos.clear();
     }
 
 
@@ -79,10 +73,9 @@ public abstract class Habitantes {
 		return false;
 	}
 
-
-	public void accionarUnidades(Mapa mapa, Coordenada desde){
-		for(Enemigo unidad: new ArrayList<Enemigo>(unidades)){
-			unidad.accionar(mapa,desde);
+	public void moverUnidades(Mapa mapa, Coordenada desde){
+		for(Enemigo enemigo: new ArrayList<Enemigo>(enemigos)){
+			enemigo.accionar(mapa,desde);
 		}
 	}
 

@@ -38,8 +38,8 @@ public abstract class Celda {
     	habitantes.clear();
     }
 
-    public  void accionarUnidades(Mapa mapa){
-        habitantes.accionarUnidades(mapa, coordenada);
+    public  void moverUnidades(Mapa mapa){
+        habitantes.moverUnidades(mapa, coordenada);
     }
 
     public boolean recibirAtaque(Ataque ataque){

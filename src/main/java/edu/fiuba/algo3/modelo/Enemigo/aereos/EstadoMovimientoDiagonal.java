@@ -39,6 +39,6 @@ public class EstadoMovimientoDiagonal implements EstadoMovimiento{
             restantePorMover-=1;
             y_nuevo+=1;
         }
-        mapa.mover(this.enemigo, posicion, new Coordenada(x_nuevo,y_nuevo));
+        mapa.moverEnCaminoAereo(this.enemigo, posicion, new Coordenada(x_nuevo,y_nuevo));
     }
 }

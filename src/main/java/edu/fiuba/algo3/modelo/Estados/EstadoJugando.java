@@ -18,19 +18,19 @@ public class EstadoJugando implements EstadoJuego {
 
     @Override
     public void ejecutarEstado() {
+
         Logger.info("Se ejecuta el turno: "+String.valueOf(turno.turnoActual()));
 
-       // verificar si puede matar a jugador
+       //Obtengo el jugador y el mapa.
         Jugador jugador = juego.obtenerJugador();
         Mapa mapa =juego.obtenerMapa();
 
-        // verificar si no pueden hacer suficiente dmg?
+        // verificar si los enemigos actuales pueden eliminar al jugador.
         if(juego.obtenerOleadas().noHayMasOleadas(turno.turnoActual())
             && mapa.cantidadDmgPosible()< jugador.obtenerVida()){
             Logger.info("Finalizo el juegos. Los enemigos restantes no pueden matar al jugador");
             
             juego.terminarJuego();
-
             return;
         }
 

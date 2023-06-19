@@ -13,17 +13,19 @@ import edu.fiuba.algo3.modelo.Celdas.Ataque;
 public class Mapa {
 
     private Celda[][] matrizDeCeldas;
-    private ArrayList<Coordenada> camino;
+    private ArrayList<Coordenada> caminoTerrestre;
+    private ArrayList<Coordenada> caminoAereo;
     private ArrayList<Coordenada> defensas;
 
 
+
     private void agregarCelda(ConvertidorParcela convertidor) throws Exception {
-       	// [y == height][x == width]
+
     	Celda celda = (Celda)convertidor.obtener();
         matrizDeCeldas[convertidor.fila()-1][convertidor.columna()-1] = celda;
 
         if (convertidor.esCaminable()){
-        	camino.add(celda.posicion());
+        	caminoTerrestre.add(celda.posicion());
             //Logger.info("Se agrego camino, en posicion:"+String.valueOf(celda.posicion().x())+","+String.valueOf(celda.posicion().y()));
             //Logger.info("Se agrega pasarela al mapa, en posicion: "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" u la celda es "+celda.toString());
         } else {
@@ -32,8 +34,6 @@ public class Mapa {
     }
 
     private Celda obtenerCelda(Coordenada coordenada){
-        //Logger.info("Se obtuvo"+String.valueOf(coordenada.x())+","+String.valueOf(coordenada.y())+" == "+(matrizDeCeldas[coordenada.y()-1][coordenada.x()-1]).getClass()); DEBUGGEAR
-
         return matrizDeCeldas[coordenada.y()-1][coordenada.x()-1];
     }
 
@@ -42,24 +42,20 @@ public class Mapa {
 
     	// inicializas
     	matrizDeCeldas = new Celda[height][width];
-        camino = new ArrayList();
+        caminoTerrestre = new ArrayList();
+        caminoAereo = new ArrayList<>();
         defensas = new ArrayList();
 
     	// cargas lector
         while(lector.haySiguiente()){
         	agregarCelda((ConvertidorParcela)(lector.siguienteElemento()));
         }
-        //Logger.info("Cantidad de Pasarelas Actual"+String.valueOf(camino.size())); DEBBUGEAR
     }
-
-    //private Pasarela obtenerPasarela(Coordenada coord){
-    //    return (Pasarela) obtenerCelda(coord);
-    //}
 
     private int indexarPasarela(Coordenada coordenada){
         int i = 0;
-        while(i < camino.size()){
-            if(camino.get(i).equals(coordenada)){
+        while(i < caminoTerrestre.size()){
+            if(caminoTerrestre.get(i).equals(coordenada)){
                 return i;
             }
             i+=1;
@@ -69,8 +65,8 @@ public class Mapa {
     // mover
     private int moverIndex(int index, int cantidad){
         index+= cantidad;
-        if(index>=camino.size()){
-            index = camino.size()-1;
+        if(index>=caminoTerrestre.size()){
+            index = caminoTerrestre.size()-1;
         }
         return index;
     }
@@ -84,36 +80,60 @@ public class Mapa {
         return false;
     }
 
-
-    public void mover(Posicionable posicionable, Coordenada desde, Coordenada hasta){
-        obtenerCelda(desde).sacar(posicionable);
-        obtenerCelda(hasta).posicionar(posicionable);
-
+    //Pre: -
+    //Post: Actualiza los habitantes de las coordenadas recibidas.
+    private void actualizarPosicionEnemigo(Enemigo unidad, Coordenada desde, Coordenada hasta){
+        obtenerCelda(desde).sacar(unidad);
+        obtenerCelda(hasta).posicionar(unidad);
     }
 
+    //Pre: -
+    //Post: Obtiene la coordenada en la que te moverias segun el camino y delega el actualizar la coordenada.
+    public void moverEnCaminoAereo(Enemigo unidad, Coordenada desde,Coordenada hasta){
 
+        if(caminoAereo.contains(desde)){
+            caminoAereo.remove(desde);
+        }
+        if(!caminoTerrestre.contains(hasta)){
+            caminoAereo.add(hasta);
+        }
+        actualizarPosicionEnemigo(unidad, desde, hasta);
+    }
 
+    //Pre: -
+    //Post: Obtiene la coordenada en la que te moverias segun el camino y delega el actualizar la coordenada.
+    public void moverEnCaminoTerrestre(Enemigo unidad, Coordenada desde, int cantidad){
+        int index = indexarPasarela(desde);
+        if(index == -1){
+            return;
+        }
+        actualizarPosicionEnemigo(unidad, desde, caminoTerrestre.get(moverIndex(index, cantidad)));
+    }
+
+    //Pre: -
+    //Post: Itera todas las posiciones en donde hay enemigos y les dice que se mueva.
     public void moverEnemigos(){
+        int indice = caminoTerrestre.size()-2; // ante ultima pasarela
+        int indice2 = 0;
 
-        int indice = camino.size()-2; // ante ultima pasarela
         while(indice >= 0){
-            obtenerCelda(camino.get(indice)).accionarUnidades(this);
+            obtenerCelda(caminoTerrestre.get(indice)).moverUnidades(this);
             indice -=1;
         }
-
+        while(indice2 < caminoAereo.size()){
+            obtenerCelda(caminoAereo.get(indice)).moverUnidades(this);
+            indice2 += 1;
+        }
     }
 
     //Pre: -
     //Post: (Cuando la lechuza llega al jugador) saca la primera de las defensas creadas.
     public void atacarPrimeraTorre(){
-
         Coordenada coordenadaBuscada = defensas.get(0);
         Celda celdaBuscada = obtenerCelda(coordenadaBuscada);
         celdaBuscada.clear();
         defensas.remove(0);
-
     }
-
 
     public boolean atacar(Coordenada coordenada, Ataque ataque){
         return obtenerCelda(coordenada).recibirAtaque(ataque);
@@ -139,17 +159,17 @@ public class Mapa {
     
     public void posicionarInicio(Enemigo enemigo){
         Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
-        obtenerCelda(camino.get(0)).posicionar(enemigo);
+        obtenerCelda(caminoTerrestre.get(0)).posicionar(enemigo);
     }
 
     public int cantidadDmgPosible(){
         /*
         int dmg = 0;
-        int indice = camino.size()-2;
+        int indice = caminoTerrestre.size()-2;
 
         while(indice >= 0){
 
-            for(Unidad unidad : obtenerPasarela(camino.get(indice)).obtenerUnidades()){
+            for(Unidad unidad : obtenerPasarela(caminoTerrestre.get(indice)).obtenerUnidades()){
                 dmg += unidad.ataque();
             }
             indice-=1;
@@ -175,30 +195,11 @@ public class Mapa {
             }
             fila += "}";
             columna += fila+"\n";
-
         }
         return columna;
     }
 
-
-    public void mover(Enemigo unidad, Coordenada desde,Coordenada hasta){
-        obtenerCelda(desde).sacar(unidad);
-        obtenerCelda(hasta).posicionar(unidad);
-    }
-
-    public void moverEnCamino(Enemigo unidad, Coordenada desde, int cantidad){
-
-        int index = indexarPasarela(desde);
-        if(index == -1){
-            return; // throw new Exception("Intento mover en camino, desde fuera del camino...");
-        }
-
-        mover(unidad, desde , camino.get(moverIndex(index, cantidad)));
-    }
-
-
     public Coordenada posicionFinal(){
-        return camino.get(camino.size()-1);
+        return caminoTerrestre.get(caminoTerrestre.size()-1);
     }
-
 }

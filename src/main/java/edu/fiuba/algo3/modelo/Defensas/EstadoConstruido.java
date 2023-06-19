@@ -8,16 +8,12 @@ import java.util.ArrayList;
 
 public class EstadoConstruido implements EstadoEstructura{
 
-
     @Override
     public void ejecutarMetodo(Defensa defensa, Mapa mapa, Coordenada coordenada){
-        coordenada.iterarEnRango( defensa.obtenerRango() , (Coordenada target)->{
-            return mapa.atacar(coordenada, defensa);
-        });
-
-
-        
+        coordenada.iterarEnRango( defensa.obtenerRango(),(Coordenada target)->
+        { return mapa.atacar(coordenada, defensa);});
     }
+
     public boolean estaActivo(){
         return true;
     }

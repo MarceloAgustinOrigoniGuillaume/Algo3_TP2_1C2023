@@ -1,22 +1,17 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.Enemigo.Arania;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.instanciacion.Instanciador;
-import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
-import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 import edu.fiuba.algo3.modelo.Lector.LectorEnemigo;
-
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Oleada {
-
 	private ArrayList<ArrayList<Instanciador>> oleadas;
 
 	private void agregaroleadas(ArrayList<Instanciador> instanciador){
 		oleadas.add(instanciador);
 	}
+
 	public Oleada(LectorEnemigo lector) throws Exception {
 		oleadas = new ArrayList();
 		// cargas lector
@@ -29,13 +24,11 @@ public class Oleada {
 		if(noHayMasOleadas(turno)){
 			return new ArrayList<>();
 		}
-
 		ArrayList<Enemigo> enemigosNuevos = new ArrayList<>();
 
 		for(Instanciador instanciador : oleadas.get(turno)){
 			instanciador.agregarInstanciasA(enemigosNuevos);
 		}
-
 		return enemigosNuevos;
 	}
 

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigo.subterraneos;
 
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -14,6 +15,14 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
         super(1, 1);
         this.turno = turnoActual;
         this.contadorMovimientos = 0;
+    }
+
+    //Pre: -
+    // Post: -
+    @Override
+    public void moverse(Mapa mapa, Coordenada posicion) {
+        incrementarContadorDePasos();
+        super.moverse(mapa, posicion);
     }
 
     //Pre: -
@@ -49,15 +58,19 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     public boolean estaMuerto() {
         return false;
     }
+
     //Pre: -
-    // Post: -
+    //Post: Se usa para calcular si es posible que el jugador pierda a partir de los enemigos actuales. Topo hace como mucho 5 de daño.
     @Override
     public int ataque() {
-        if((this.turno)%2 == 0){
+        /*if((this.turno)%2 == 0){
             return 5;
         }
         return 2;
+         */
+        return 5;
     }
+
     //Pre: -
     // Post: -
     @Override
@@ -69,7 +82,6 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     public Enemigo copiar() {
         return new Topo(this.turno);
     }
-
 
 }
 

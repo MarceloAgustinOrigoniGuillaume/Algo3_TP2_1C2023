@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.EnemigoTerrestre;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
-
 import java.util.Random;
 
 public class Arania extends EnemigoTerrestre implements Monetizable{
@@ -16,6 +14,8 @@ public class Arania extends EnemigoTerrestre implements Monetizable{
         return new Random().nextInt(10);
     }
 
+    //Pre: -
+    //Post: Se usa para calcular si es posible que el jugador pierda a partir de los enemigos actuales. Araña hace daño 2.
     public int ataque(){
         return 2;
 	}
