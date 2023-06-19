@@ -7,12 +7,14 @@ import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import edu.fiuba.algo3.modelo.Enemigo.instanciacion.Instanciador;
 import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
+import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
 
 public class ConvertidorOleada implements Convertidor {
 
 	public static final String HORMIGA_LABEL = "hormiga";
 	public static final String ARANIA_LABEL = "arana";
 	public static final String TOPO_LABEL = "topo";
+	public static final String LECHUZA_LABEL = "lechuza";
 
 
 
@@ -31,7 +33,13 @@ public class ConvertidorOleada implements Convertidor {
 			throw new Exception("No tenia label Arania");
 		}
 		if (!aInstanciar.containsKey(TOPO_LABEL)){
-			throw new Exception("No tenia label Topo");
+			//throw new Exception("No tenia label "+TOPO_LABEL);
+			aInstanciar.put(TOPO_LABEL, 0);
+		}
+
+		if (!aInstanciar.containsKey(LECHUZA_LABEL)){
+			//throw new Exception("No tenia label "+LECHUZA_LABEL);
+			aInstanciar.put(LECHUZA_LABEL, 0);
 		}
 
 
@@ -52,10 +60,17 @@ public class ConvertidorOleada implements Convertidor {
 			enemigosInstanciar.add(new Instanciador(new Arania(), cantidad));
 		}
 
+		cantidad = aInstanciar.get(LECHUZA_LABEL);
+		if(cantidad > 0){
+			enemigosInstanciar.add(new Instanciador(new Lechuza(), cantidad));
+		}
+
 		cantidad = aInstanciar.get(TOPO_LABEL);
 		if(cantidad > 0){
 			enemigosInstanciar.add(new Instanciador(new Topo(turno), cantidad));
 		}
+
+
 
 		return enemigosInstanciar;
 
