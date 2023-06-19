@@ -16,6 +16,12 @@ public class EstadoJugando implements EstadoJuego {
         turno = new Turno();
     }
 
+    //Pre: -
+    //Post: Devuelve true si los ultimos enemigos son capaces de hacer suficiente daño para eliminar al jugador.
+    private boolean terminoElJuego(Juego juego, Jugador jugador, Turno turno, Mapa mapa ){
+        return juego.obtenerOleadas().noHayMasOleadas(turno.turnoActual()) && mapa.cantidadDamagePosible() < jugador.obtenerVida();
+    }
+
     @Override
     public void ejecutarEstado() {
 
@@ -26,34 +32,16 @@ public class EstadoJugando implements EstadoJuego {
         Mapa mapa =juego.obtenerMapa();
 
         // verificar si los enemigos actuales pueden eliminar al jugador.
-        if(juego.obtenerOleadas().noHayMasOleadas(turno.turnoActual())
-            && mapa.cantidadDmgPosible()< jugador.obtenerVida()){
+        if(terminoElJuego(this.juego, jugador, this.turno, mapa)){
             Logger.info("Finalizo el juegos. Los enemigos restantes no pueden matar al jugador");
-            
             juego.terminarJuego();
             return;
         }
-
     	// jugar turno...
-    	turno.jugarTurno(mapa,jugador, juego.obtenerOleadas());
-
-        //System.out.println("--------->REVISANDO ENEMIGOS FINAL"); DEBBUGUEAR
-        /*
-        ArrayList<Unidad> enemigos = mapa.popUnidadesFinal();
-        int ind = 0;
-
-        while(!jugador.estaMuerto() && ind < enemigos.size()){
-
-            jugador.recibirAtaque(enemigos.get(ind).ataque());
-            ind+=1;
-        }
-        */
-        
-        Logger.info("Vida actual de jugador: "+String.valueOf(jugador.obtenerVida()));
-
-        if(jugador.estaMuerto()){
-            Logger.info("Los enemigos mataron al jugador. Fin del juego");
+        if(!turno.jugarTurno(mapa,jugador, juego.obtenerOleadas())){
             juego.terminarJuego();
+            return;
         }
+        Logger.info("Vida actual de jugador: "+String.valueOf(jugador.obtenerVida()));
     }
 }

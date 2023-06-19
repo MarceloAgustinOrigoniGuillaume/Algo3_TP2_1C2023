@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
-import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
@@ -22,10 +22,15 @@ public abstract class Celda {
     	return coordenada;
     }
 
-    public boolean posicionar(Posicionable posicionable){
-    	return posicionable.posicionarEn(habitantes);
+    //Pre: -
+    //Post: -
+    public int obtenerDamagePosible(int contadorActual){
+        return this.habitantes.obtenerDamagePosible(contadorActual);
     }
 
+    public boolean posicionar(Posicionable posicionable){ //PROVISORIO
+    	return posicionable.posicionarEn(habitantes);
+    }
     public void accionarEstructuras(Mapa mapa){
         habitantes.accionarEstructuras(mapa, this.posicion());
     }
@@ -34,23 +39,21 @@ public abstract class Celda {
     	habitantes.sacar(posicionable);
     }
 
-    public void clear(){
-    	habitantes.clear();
+    public  void moverUnidades(Mapa mapa, Jugador jugador){
+        habitantes.moverUnidades(mapa, jugador,coordenada);
     }
 
-    public  void moverUnidades(Mapa mapa){
-        habitantes.moverUnidades(mapa, coordenada);
-    }
-
-    public boolean recibirAtaque(Ataque ataque){
+    public boolean recibirAtaque(Defensa ataque){
     	return habitantes.recibirAtaque(ataque);
+    }
+
+    public void clear(){
+        habitantes.clear();
     }
 
     public CeldaDescriptor describe(){
     	return new CeldaDescriptor( this.toString() , habitantes.cantidadUnidades());
     }
 
-    //ArrayList<Unidad>  atacar(ArrayList<Unidad> unidades);
-    //void sacarUnidad(Unidad unidad);
 
 }

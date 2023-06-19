@@ -3,8 +3,7 @@ package edu.fiuba.algo3.modelo.Lector;
 import java.util.Map;
 import java.util.ArrayList;
 
-import edu.fiuba.algo3.modelo.Enemigo.Arania;
-import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import edu.fiuba.algo3.modelo.Enemigo.instanciacion.Instanciador;
 import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;

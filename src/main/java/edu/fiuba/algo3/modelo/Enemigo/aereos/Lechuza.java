@@ -25,12 +25,12 @@ public class Lechuza extends EnemigoAereo implements Monetizable {
         return this.velocidad;
     }
 
-    public void moverse(Mapa mapa, Coordenada posicion){
+    public boolean moverse(Mapa mapa, Coordenada posicion){
 
         if(vida <= vidaCambioMovimiento){
             this.estadoMovimiento = new EstadoMovimientoDiagonal(this);
         }
-            (this.estadoMovimiento).ejecutarEstado( mapa, posicion);
+        return (this.estadoMovimiento).ejecutarEstado( mapa, posicion);
     }
 
     @Override
@@ -58,13 +58,13 @@ public class Lechuza extends EnemigoAereo implements Monetizable {
     //Pre: -
     //Post: Se usa para calcular si es posible que el jugador pierda a partir de los enemigos actuales. Lechuza no hace daño.
     @Override
-    public int ataque() {
+    public int ataqueMaximo() {
         return 0;
     }
 
-    public void atacar(Jugador jugador, Mapa mapa){
+    //Pre: -
+    //Post: -
+    protected void atacarObjeto(Jugador jugador, Mapa mapa){
         mapa.atacarPrimeraTorre();
     }
-
-
 }

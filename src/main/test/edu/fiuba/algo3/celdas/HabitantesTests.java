@@ -2,7 +2,7 @@ package edu.fiuba.algo3.celdas;
 
 
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
-import edu.fiuba.algo3.modelo.Enemigo.Arania;
+import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
 import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;

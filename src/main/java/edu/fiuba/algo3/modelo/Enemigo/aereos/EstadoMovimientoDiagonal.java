@@ -10,7 +10,7 @@ public class EstadoMovimientoDiagonal implements EstadoMovimiento{
         this.enemigo = enemigo;
     }
     @Override
-    public void ejecutarEstado(Mapa mapa, Coordenada posicion) {
+    public boolean ejecutarEstado(Mapa mapa, Coordenada posicion) {
 
         Coordenada meta = mapa.posicionFinal();
         Coordenada desde = posicion;
@@ -39,6 +39,9 @@ public class EstadoMovimientoDiagonal implements EstadoMovimiento{
             restantePorMover-=1;
             y_nuevo+=1;
         }
-        mapa.moverEnCaminoAereo(this.enemigo, posicion, new Coordenada(x_nuevo,y_nuevo));
+        Coordenada coordenadaEsperada =  new Coordenada(x_nuevo,y_nuevo);
+        mapa.moverEnCaminoAereo(this.enemigo, posicion, coordenadaEsperada);
+
+        return(meta == coordenadaEsperada);
     }
 }

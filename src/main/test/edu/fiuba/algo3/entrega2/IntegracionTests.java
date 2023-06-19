@@ -206,7 +206,7 @@ public class IntegracionTests {
         assertEquals(true, juego.estanEnJuego());
         //System.out.println("T_----------------MAXIMO DMG "+String.valueOf(juego.obtenerMapa().cantidadDmgPosible()));
         assertEquals(80, juego.obtenerJugador().obtenerCreditos()); // creditos tras la compra
-        assertEquals(6,juego.obtenerMapa().cantidadDmgPosible()); // dmg de 6 hormigas instanciadas
+        assertEquals(6,juego.obtenerMapa().cantidadDamagePosible()); // dmg de 6 hormigas instanciadas
     }
 
 

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Celdas.Ataque;
 import edu.fiuba.algo3.modelo.Celdas.SistemaVida;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
 
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
@@ -31,8 +32,8 @@ public abstract class Enemigo implements Ataque, SistemaVida, Posicionable, Mone
 
     //Pre: -
     // Post: Le dice a los enemigos que se muevan.
-    public void moverse(Mapa mapa, Coordenada posicion){
-        mapa.moverEnCaminoTerrestre(this,posicion, velocidad);
+    public boolean moverse(Mapa mapa, Coordenada posicion){
+        return mapa.moverEnCaminoTerrestre(this,posicion, velocidad);
     }
 
     //Pre: -
@@ -48,10 +49,17 @@ public abstract class Enemigo implements Ataque, SistemaVida, Posicionable, Mone
         return habitantes.guardar(this);
     }
 
-    public void accionar(Mapa mapa, Coordenada coordenada){
+    protected abstract void atacarObjeto(Jugador jugador, Mapa mapa);
+
+    public void accionar(Mapa mapa, Jugador jugador, Coordenada coordenada){
         // ESTE METODO ES EL DE LA INTERFAZ DE POSICIONABLE
         // NO LO SAQUEN SOLO PORQUE AHORA SOLO MUEVA
         // EN ALGUN MOMENTO DEBERA ATACAR
-        moverse(mapa,coordenada);
+
+        //ESE MOMENTO ES AHORA!!!!!!!!!!!!!!!!!!!!!!!!
+
+        if(moverse(mapa,coordenada)){
+            atacarObjeto(jugador, mapa);
+        }
     }
 }

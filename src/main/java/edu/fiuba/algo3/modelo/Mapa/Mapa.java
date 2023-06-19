@@ -2,22 +2,57 @@ package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Celdas.*;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import java.util.ArrayList;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
-import edu.fiuba.algo3.modelo.Celdas.Ataque;
 
 public class Mapa {
 
+    private interface EjecutarMetodoConCeldas{
+       boolean ejecutarMetodoConCeldas(Celda celda);
+    }
+
+    private class Contador implements EjecutarMetodoConCeldas{
+        int damageTotal;
+        @Override
+        public boolean ejecutarMetodoConCeldas(Celda celda) {
+            this.damageTotal = celda.obtenerDamagePosible(damageTotal);
+            return true;
+        }
+    }
     private Celda[][] matrizDeCeldas;
     private ArrayList<Coordenada> caminoTerrestre;
     private ArrayList<Coordenada> caminoAereo;
     private ArrayList<Coordenada> defensas;
 
 
+    //Pre: -
+    //Post: Es un iterador interno que se encarga de recorrer todas las coordenadas del camino terrestre y aereo.
+    private void iteradorDeCeldas(EjecutarMetodoConCeldas visitarCelda){
+
+        int indice = caminoTerrestre.size()-2; // ante ultima pasarela
+        int indice2 = 0;
+        Celda celdaActual;
+
+        while(indice >= 0){
+            celdaActual = obtenerCelda(caminoTerrestre.get(indice));
+            if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual)){
+                return;
+            }
+            indice -=1;
+        }
+        while(indice2 < caminoAereo.size()){
+            celdaActual = obtenerCelda(caminoAereo.get(indice));
+            if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual)){
+                return;
+            }
+            indice2 += 1;
+        }
+    }
 
     private void agregarCelda(ConvertidorParcela convertidor) throws Exception {
 
@@ -37,9 +72,7 @@ public class Mapa {
         return matrizDeCeldas[coordenada.y()-1][coordenada.x()-1];
     }
 
-
     public Mapa(LectorMapa lector ,int width, int height) throws Exception {
-
     	// inicializas
     	matrizDeCeldas = new Celda[height][width];
         caminoTerrestre = new ArrayList();
@@ -71,7 +104,6 @@ public class Mapa {
         return index;
     }
 
-
     public boolean posicionar(Coordenada coordenada, Construccion construccion){
         if(obtenerCelda(coordenada).posicionar(construccion)){
             defensas.add(coordenada);
@@ -102,28 +134,25 @@ public class Mapa {
 
     //Pre: -
     //Post: Obtiene la coordenada en la que te moverias segun el camino y delega el actualizar la coordenada.
-    public void moverEnCaminoTerrestre(Enemigo unidad, Coordenada desde, int cantidad){
+    public boolean moverEnCaminoTerrestre(Enemigo unidad, Coordenada desde, int cantidad){
         int index = indexarPasarela(desde);
+        int indiceFinal = 0;
+
         if(index == -1){
-            return;
+            return false;
         }
-        actualizarPosicionEnemigo(unidad, desde, caminoTerrestre.get(moverIndex(index, cantidad)));
+        indiceFinal = moverIndex(index, cantidad);
+        actualizarPosicionEnemigo(unidad, desde, caminoTerrestre.get(indiceFinal));
+        return (indiceFinal == caminoTerrestre.size()-1);
     }
 
     //Pre: -
     //Post: Itera todas las posiciones en donde hay enemigos y les dice que se mueva.
-    public void moverEnemigos(){
-        int indice = caminoTerrestre.size()-2; // ante ultima pasarela
-        int indice2 = 0;
-
-        while(indice >= 0){
-            obtenerCelda(caminoTerrestre.get(indice)).moverUnidades(this);
-            indice -=1;
-        }
-        while(indice2 < caminoAereo.size()){
-            obtenerCelda(caminoAereo.get(indice)).moverUnidades(this);
-            indice2 += 1;
-        }
+    public void accionarEnemigos(Jugador jugador){
+        iteradorDeCeldas((Celda celdaActual)->{
+            celdaActual.moverUnidades(this, jugador);
+            return true;}
+        );
     }
 
     //Pre: -
@@ -135,7 +164,7 @@ public class Mapa {
         defensas.remove(0);
     }
 
-    public boolean atacar(Coordenada coordenada, Ataque ataque){
+    public boolean atacar(Coordenada coordenada, Defensa ataque){
         return obtenerCelda(coordenada).recibirAtaque(ataque);
     }
 
@@ -150,10 +179,6 @@ public class Mapa {
     }
 
     public CeldaDescriptor obtenerInformacion(Coordenada coordenada){
-        //if(indexarPasarela(coordenada) == -1){
-            //return new ArrayList<>();
-        //}
-        //return obtenerPasarela(coordenada).obtenerUnidades();
         return obtenerCelda(coordenada).describe();
     }
     
@@ -162,34 +187,28 @@ public class Mapa {
         obtenerCelda(caminoTerrestre.get(0)).posicionar(enemigo);
     }
 
-    public int cantidadDmgPosible(){
-        /*
-        int dmg = 0;
-        int indice = caminoTerrestre.size()-2;
+    //Pre: -
+    //Post: Le mandamos al iterador(interno) de celdas un contador para que almacene en el el daño de los enemigos.
+    public int cantidadDamagePosible(){
+        Contador contador = new Contador();
+        iteradorDeCeldas(contador);
 
-        while(indice >= 0){
-
-            for(Unidad unidad : obtenerPasarela(caminoTerrestre.get(indice)).obtenerUnidades()){
-                dmg += unidad.ataque();
-            }
-            indice-=1;
-        }*/
-        return 20;
+        return contador.damageTotal;
     }
 
     public String obtenerTerreno(int x, int y){
         return obtenerCelda(new Coordenada(x,y)).toString();
     }
 
+    //Pre: -
+    //Post: Imprime por pantalla el mapa.
     @Override
     public String toString(){
 
         String columna = "{";
         for(int y = 0; y < 15; y++){
-
             String fila = String.valueOf(y)+" {";
             for(int x = 0; x < 15; x++){
-
                 fila += matrizDeCeldas[y][x].toString();
                 fila += " ";
             }
@@ -199,6 +218,8 @@ public class Mapa {
         return columna;
     }
 
+    //Pre: -
+    //Post: -
     public Coordenada posicionFinal(){
         return caminoTerrestre.get(caminoTerrestre.size()-1);
     }

@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Turnos;
 
 import java.util.ArrayList;
+
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Oleada;
@@ -18,24 +20,25 @@ public class Turno{
 		return turno;
 	}
 
-	public void jugarTurno(Mapa mapa,Jugador jugador, Oleada oleada){
+	public boolean jugarTurno(Mapa mapa,Jugador jugador, Oleada oleada){
 
 		// move enemigos
-		mapa.moverEnemigos();
+		mapa.accionarEnemigos(jugador);
+
+		if(jugador.estaMuerto()){
+			Logger.info("Los enemigos mataron al jugador. Fin del juego");
+			return false;
+		}
 
 		// defensas atacan mapa
-		
 		mapa.accionarDefensas();
 
-		//for (Enemigo muerto : enemigosMuertos){
-		//	jugador.ganoCreditos(muerto.creditosDados());
-		//}
-		// instancia enemigos.
 		ArrayList<Enemigo> enemigos = oleada.instanciar(turno);
 		
 		for (Enemigo enemigo: enemigos){
 			mapa.posicionarInicio(enemigo);
 		}
 		turno+=1;
+		return true;
 	}
 }

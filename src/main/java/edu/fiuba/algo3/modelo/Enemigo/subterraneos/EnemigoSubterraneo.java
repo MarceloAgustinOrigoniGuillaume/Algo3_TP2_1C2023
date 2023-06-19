@@ -3,8 +3,20 @@ package edu.fiuba.algo3.modelo.Enemigo.subterraneos;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public abstract class EnemigoSubterraneo extends Enemigo {
-    public EnemigoSubterraneo(int vida, int velocidad) {
+
+    protected int ataqueMaximo;
+    public EnemigoSubterraneo(int vida, int velocidad, int ataqueMaximo) {
         super(vida, velocidad);
+        this.ataqueMaximo = ataqueMaximo;
     }
+
+    //Pre: -
+    //Post: Se usa para calcular si es posible que el jugador pierda a partir de los enemigos actuales.
+    @Override
+    public int ataqueMaximo() {
+        return this.ataqueMaximo;
+    }
+
+
 
 }

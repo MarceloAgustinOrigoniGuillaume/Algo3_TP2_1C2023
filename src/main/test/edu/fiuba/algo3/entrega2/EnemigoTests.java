@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Jugador;
 //import edu.fiuba.algo3.modelo.moduloDefensas.TorreBlanca;
 //import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
-import edu.fiuba.algo3.modelo.Enemigo.Arania;
+import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

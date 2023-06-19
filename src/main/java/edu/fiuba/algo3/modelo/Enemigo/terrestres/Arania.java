@@ -1,12 +1,13 @@
-package edu.fiuba.algo3.modelo.Enemigo;
+package edu.fiuba.algo3.modelo.Enemigo.terrestres;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 
-import edu.fiuba.algo3.modelo.Enemigo.terrestres.EnemigoTerrestre;
 import java.util.Random;
 
-public class Arania extends EnemigoTerrestre implements Monetizable{
+public class Arania extends EnemigoTerrestre implements Monetizable {
 
 	public Arania(){
-        super(2,2);
+        super(2,2, 2);
 	}
 
     @Override

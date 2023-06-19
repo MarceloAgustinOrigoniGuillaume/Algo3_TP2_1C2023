@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega2;
 
 
 //import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -129,7 +130,9 @@ public class MapaTests {
 
         unMapa.posicionarInicio(enemigo);
 
-        unMapa.moverEnemigos();
+        Jugador jugador = new Jugador();
+
+        unMapa.accionarEnemigos(jugador);
 
         CeldaDescriptor unidadesInicio = unMapa.obtenerInformacion(new Coordenada(1,1));
         CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,2));
@@ -158,8 +161,10 @@ public class MapaTests {
 
         unMapa.posicionarInicio(enemigo);
 
-        unMapa.moverEnemigos();
-        unMapa.moverEnemigos();
+        Jugador jugador = new Jugador();
+
+        unMapa.accionarEnemigos(jugador);
+        unMapa.accionarEnemigos(jugador);
 
         CeldaDescriptor unidadesInicio = unMapa.obtenerInformacion(new Coordenada(1,2));
         CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,3));
@@ -173,6 +178,7 @@ public class MapaTests {
     @Test
     public void VerificarEnemigosSeMuevenSoloPorPasarelasHastaElFinal() throws Exception {
         LectorMapa mockLector = mock(LectorMapa.class);
+        Jugador jugador = new Jugador();
 
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
                                                     .thenReturn(new ConvertidorParcela(1,2,"Pasarela"))
@@ -188,13 +194,12 @@ public class MapaTests {
 
         unMapa.posicionarInicio(enemigo);
 
-        unMapa.moverEnemigos();
-        unMapa.moverEnemigos();
-        unMapa.moverEnemigos();
-        unMapa.moverEnemigos();
-        unMapa.moverEnemigos();
-        unMapa.moverEnemigos();
-
+        unMapa.accionarEnemigos(jugador);
+        unMapa.accionarEnemigos(jugador);
+        unMapa.accionarEnemigos(jugador);
+        unMapa.accionarEnemigos(jugador);
+        unMapa.accionarEnemigos(jugador);
+        unMapa.accionarEnemigos(jugador);
 
         CeldaDescriptor unidadesInicio = unMapa.obtenerInformacion(new Coordenada(1,2));
         CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,3));

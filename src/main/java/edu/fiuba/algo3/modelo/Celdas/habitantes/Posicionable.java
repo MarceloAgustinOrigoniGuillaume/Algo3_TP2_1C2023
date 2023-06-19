@@ -6,5 +6,4 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 
 public interface Posicionable{
 	boolean posicionarEn(Habitantes habitantes);
-	void accionar(Mapa mapa, Coordenada desde);
 }

@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.modelo.Celdas.habitantes;
 
-import java.util.ArrayList;
-
 import edu.fiuba.algo3.modelo.Celdas.Construccion;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Celdas.Ataque;
 
 public abstract class HabitantesConstruccion extends Habitantes{
 
@@ -47,7 +45,7 @@ public abstract class HabitantesConstruccion extends Habitantes{
 		}
 	}
 
-	public boolean recibirAtaque(Ataque ataque){
+	public boolean recibirAtaque(Defensa ataque){
 		if(construccionGuardada != null){
 			// intenta defensa reciba ataque?
 			

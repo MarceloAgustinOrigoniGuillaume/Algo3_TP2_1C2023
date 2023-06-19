@@ -4,6 +4,7 @@ import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Topo extends EnemigoSubterraneo implements Monetizable {
@@ -12,7 +13,7 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     private int contadorMovimientos;
 
     public Topo(int turnoActual){
-        super(1, 1);
+        super(1, 1, 5);
         this.turno = turnoActual;
         this.contadorMovimientos = 0;
     }
@@ -20,9 +21,10 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     //Pre: -
     // Post: -
     @Override
-    public void moverse(Mapa mapa, Coordenada posicion) {
+    public boolean moverse(Mapa mapa, Coordenada posicion) {
         incrementarContadorDePasos();
         super.moverse(mapa, posicion);
+        return false;
     }
 
     //Pre: -
@@ -46,6 +48,16 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     }
 
     //Pre: -
+    //Post: -
+    protected void atacarObjeto(Jugador jugador, Mapa mapa) {
+        if((this.turno) % 2 == 0){
+            jugador.recibirAtaque(this.ataqueMaximo);
+            return;
+        }
+        jugador.recibirAtaque(2);
+    }
+
+    //Pre: -
     // Post: Al no poder ser matado, el topo nunca da creditos.
     @Override
     public int creditosDados() {
@@ -57,18 +69,6 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     @Override
     public boolean estaMuerto() {
         return false;
-    }
-
-    //Pre: -
-    //Post: Se usa para calcular si es posible que el jugador pierda a partir de los enemigos actuales. Topo hace como mucho 5 de daño.
-    @Override
-    public int ataque() {
-        /*if((this.turno)%2 == 0){
-            return 5;
-        }
-        return 2;
-         */
-        return 5;
     }
 
     //Pre: -
