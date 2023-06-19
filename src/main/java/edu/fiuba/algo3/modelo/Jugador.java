@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Defensas.Estructura;
 import edu.fiuba.algo3.modelo.Celdas.SistemaVida;
+import edu.fiuba.algo3.Logger;
 
 public class Jugador implements SistemaVida{
     private int vida;
@@ -55,7 +56,10 @@ public class Jugador implements SistemaVida{
     }
 
     public void recibirAtaque(int damege) {
+        Logger.Log("jugador recibio damage "+String.valueOf(damege));
+
         vida = vida- damege;
+ 
         // Aca capaz, queda mejor si la vida-damage =< 0 entonces que le pase un mensaje a juego o estado jugando que se termino el juego.
         if(estaMuerto()){
             vida = 0;
