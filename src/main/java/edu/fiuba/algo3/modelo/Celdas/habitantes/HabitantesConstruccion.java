@@ -21,7 +21,6 @@ public abstract class HabitantesConstruccion extends Habitantes{
     		construccionGuardada = null;
     		return;
     	}
-
     	super.sacar(posicionable);
     }
 
@@ -29,12 +28,10 @@ public abstract class HabitantesConstruccion extends Habitantes{
     	construccionGuardada = null;
     }
 
-
 	protected boolean guardaConstruccion(Construccion construccion){
 		if(!hayEspacio()){
 			return false;
 		}
-
 		construccionGuardada = construccion;
 		return true;
 	}
@@ -48,11 +45,7 @@ public abstract class HabitantesConstruccion extends Habitantes{
 	public boolean recibirAtaque(Defensa ataque){
 		if(construccionGuardada != null){
 			// intenta defensa reciba ataque?
-			
 		}
-
 		return super.recibirAtaque(ataque);
 	}
-
-
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigo.terrestres;
 
+import edu.fiuba.algo3.modelo.Billetera;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 
@@ -11,7 +12,10 @@ public class Hormiga extends EnemigoTerrestre implements Monetizable {
 
     @Override
     public int creditosDados(){
-    	return 1;
+
+        Billetera billetera = Billetera.getInstance();
+        billetera.agregarCreditos(1);
+        return 1;
     }
 
     public Enemigo copiar(){

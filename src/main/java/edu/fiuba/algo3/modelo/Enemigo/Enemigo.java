@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
+import edu.fiuba.algo3.modelo.Billetera;
 import edu.fiuba.algo3.modelo.Celdas.Ataque;
 import edu.fiuba.algo3.modelo.Celdas.SistemaVida;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
@@ -42,6 +43,9 @@ public abstract class Enemigo implements Ataque, SistemaVida, Posicionable, Mone
 
     public void recibirAtaque(int danioRecibido) {
         this.vida = this.vida - danioRecibido;
+        if(this.vida == 0){
+            this.creditosDados();
+        }
         Logger.info(" El daño recibido es: "+danioRecibido);
     }
 
@@ -52,12 +56,6 @@ public abstract class Enemigo implements Ataque, SistemaVida, Posicionable, Mone
     protected abstract void atacarObjeto(Jugador jugador, Mapa mapa);
 
     public void accionar(Mapa mapa, Jugador jugador, Coordenada coordenada){
-        // ESTE METODO ES EL DE LA INTERFAZ DE POSICIONABLE
-        // NO LO SAQUEN SOLO PORQUE AHORA SOLO MUEVA
-        // EN ALGUN MOMENTO DEBERA ATACAR
-
-        //ESE MOMENTO ES AHORA!!!!!!!!!!!!!!!!!!!!!!!!
-
         if(moverse(mapa,coordenada)){
             atacarObjeto(jugador, mapa);
         }

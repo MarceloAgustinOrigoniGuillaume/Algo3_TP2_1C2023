@@ -33,6 +33,7 @@ public class Turno{
 		// defensas atacan mapa
 		mapa.accionarDefensas();
 
+
 		ArrayList<Enemigo> enemigos = oleada.instanciar(turno);
 		
 		for (Enemigo enemigo: enemigos){

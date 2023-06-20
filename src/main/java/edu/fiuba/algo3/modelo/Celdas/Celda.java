@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Celdas;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;

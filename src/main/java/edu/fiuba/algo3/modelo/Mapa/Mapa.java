@@ -170,20 +170,17 @@ public class Mapa {
         defensas.remove(0);
     }
 
-    public boolean atacar(Coordenada coordenada, Defensa ataque){
-        return obtenerCelda(coordenada).recibirAtaque(ataque);
+    //Pre: -
+    //Post: Desde las defenses se le dice a mapa que quiere atacar a determinada coordenada.
+    public boolean atacar(Coordenada coordenada, Defensa defensa){
+        return obtenerCelda(coordenada).recibirAtaque(defensa);
     }
 
     public void accionarDefensas(){
-        //ArrayList<Enemigo> muertos = new ArrayList<Enemigo>();
-
         for(Coordenada posDefensa: defensas){
             Logger.info("Se acciono defensa de la posicion: "+posDefensa.toString()+"\n" );
             obtenerCelda(posDefensa).accionarEstructuras(this);
         }
-
-
-        //return muertos;
     }
 
     public CeldaDescriptor obtenerInformacion(Coordenada coordenada){
@@ -200,7 +197,6 @@ public class Mapa {
     public int cantidadDamagePosible(){
         Contador contador = new Contador();
         iteradorDeCeldas(contador);
-
         return contador.damageTotal;
     }
 
@@ -209,7 +205,7 @@ public class Mapa {
     }
 
     //Pre: -
-    //Post: Imprime por pantalla el mapa.
+    //Post: Devuelve una matriz de celdas (El mapa).
     @Override
     public String toString(){
 

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigo.subterraneos;
 
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Billetera;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
@@ -55,7 +56,6 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
         if((this.turno) % 2 != 0){
             ataque = 2;
         }
-
         jugador.recibirAtaque(ataque);
     }
 
@@ -63,6 +63,9 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     // Post: Al no poder ser matado, el topo nunca da creditos.
     @Override
     public int creditosDados() {
+
+        Billetera billetera = Billetera.getInstance();
+        billetera.agregarCreditos(0);
         return 0;
     }
 

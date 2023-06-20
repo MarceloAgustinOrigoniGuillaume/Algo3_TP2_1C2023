@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.EnemigoAereo;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
-
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -35,7 +34,6 @@ public abstract class Habitantes {
 	public boolean guardar(Trampa trampa){
 		return false; // por default Habitantes no podria guardar nada... cada implementacion sobreescribira
 	}
-
 	//Pre: Por default solo se puede guardar Unidades en pasarela.
 	//Post: -
 	public boolean guardar(Enemigo unidad){
@@ -45,7 +43,7 @@ public abstract class Habitantes {
 		return guardaUnidad(aereo); 
 	}
 
-	//Pre: Por default Habitantes no podria guardar nada... cada implementacion sobreescribirá.
+	//Pre: Por default Habitantes no podria guardar nada, cada implementacion sobreescribirá.
 	//Post: -
 	public boolean guardar(Construccion construccion){
 		return false;
@@ -86,8 +84,6 @@ public abstract class Habitantes {
 		}
 		return contadorActual;
 	}
-
-
 	public void accionarEstructuras(Mapa mapa, Coordenada desde){
 		
 	}

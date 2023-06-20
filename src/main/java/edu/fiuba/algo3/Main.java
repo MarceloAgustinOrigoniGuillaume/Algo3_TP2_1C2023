@@ -1,10 +1,7 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.Celdas.*;
-import javafx.scene.layout.StackPane;
+
 import org.json.simple.parser.ParseException;
-import edu.fiuba.algo3.vistas.*;
-import edu.fiuba.algo3.Controladores.*;
 import java.io.IOException;
 
 public class Main {

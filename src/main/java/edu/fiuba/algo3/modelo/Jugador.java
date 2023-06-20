@@ -6,15 +6,18 @@ import edu.fiuba.algo3.Logger;
 
 public class Jugador implements SistemaVida{
     private int vida;
-    private int creditos;
-
+    private Billetera creditos;
     private String nombre;
+
     public Jugador(){
         vida=20;
-        creditos=100;
+        Billetera billetera = Billetera.getInstance();
+        billetera.restablecerCreditos();
+        billetera.agregarCreditos(100);
     }
     public int obtenerCreditos() {
-        return creditos;
+        Billetera billetera = Billetera.getInstance();
+        return billetera.obtenerCreditos();
     }
 
     public int obtenerVida() {
@@ -33,22 +36,16 @@ public class Jugador implements SistemaVida{
     }
 
     public boolean puedeCostear(Estructura enConstruccion) {
-        return (creditos >= enConstruccion.costo());
+        Billetera billetera = Billetera.getInstance();
+        return (billetera.obtenerCreditos() >= enConstruccion.costo());
     }
 
     public void costear(Estructura enConstruccion) {
+        Billetera billetera = Billetera.getInstance();
         if(!puedeCostear(enConstruccion)){
-            /*
-            la idea esta que devuelva un error;
-             */
            return;
         }
-        creditos -= enConstruccion.costo();
-    }
-
-
-    public void ganoCreditos(int creditos){
-        this.creditos+= creditos;
+        billetera.reducirCreditos(enConstruccion.costo());
     }
 
     public boolean estaMuerto(){
@@ -57,7 +54,6 @@ public class Jugador implements SistemaVida{
 
     public void recibirAtaque(int damege) {
         Logger.Log("jugador recibio damage "+String.valueOf(damege));
-
         vida = vida- damege;
  
         // Aca capaz, queda mejor si la vida-damage =< 0 entonces que le pase un mensaje a juego o estado jugando que se termino el juego.

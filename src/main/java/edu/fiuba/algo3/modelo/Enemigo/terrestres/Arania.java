@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo.Enemigo.terrestres;
+import edu.fiuba.algo3.modelo.Billetera;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 
@@ -12,7 +13,12 @@ public class Arania extends EnemigoTerrestre implements Monetizable {
 
     @Override
     public int creditosDados(){
-        return new Random().nextInt(10);
+
+        Billetera billetera = Billetera.getInstance();
+        int valorCreditos = new Random().nextInt(10);
+
+        billetera.agregarCreditos(valorCreditos);
+        return valorCreditos;
     }
 
     //Pre: -
