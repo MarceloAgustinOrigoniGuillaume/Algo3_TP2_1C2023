@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Defensas.Trampa;
 
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 
 public abstract class HabitantesConstruccion{
 
@@ -47,4 +48,11 @@ public abstract class HabitantesConstruccion{
 		}
 	}
 
+	public DefensaDescriptor describir() {
+
+		if(this.construccionGuardada != null){
+			return new DefensaDescriptor(this.construccionGuardada.toString());
+		}
+		return null;
+	}
 }

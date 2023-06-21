@@ -50,8 +50,6 @@ public class Resources {
             e.printStackTrace();
             return null;
         }
-        //loader.setLocation(new URL());
-        //FXMLLoader.load();
 
         return view;
 

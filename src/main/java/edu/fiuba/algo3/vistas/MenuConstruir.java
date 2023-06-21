@@ -58,15 +58,11 @@ public class MenuConstruir extends VBox {
         }
         getChildren().add(view);
 
-        //Button botonDeArrastre = new Button();
 
         Button button  = (Button) view.lookup("#buttonTorreBlanca");
         button.setOnAction( (ActionEvent event)->{
             new ControladorConstruccion().seleccionarConstruccion("TorreBlanca", ventana);
         });
-
-       // EventHandler<? super MouseDragEvent> eventHandler = null;
-        //button.setOnMouseDragOver(eventHandler);
 
         Button button2  = (Button) view.lookup("#buttonTorrePlateada");
         button.setOnAction( (ActionEvent event)->{
@@ -78,9 +74,6 @@ public class MenuConstruir extends VBox {
         button.setOnAction( (ActionEvent event)->{
             new ControladorConstruccion().seleccionarConstruccion("Trampa", ventana);
         });
-
-
-
     }
     public Parent obtener(){
         return this;

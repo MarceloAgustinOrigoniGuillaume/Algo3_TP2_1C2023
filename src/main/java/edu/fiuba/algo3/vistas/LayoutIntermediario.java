@@ -4,8 +4,8 @@ import edu.fiuba.algo3.DatosModelo;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Ventana;
 import edu.fiuba.algo3.controladores.ControladorConstruccion;
-import edu.fiuba.algo3.controladores.ControladorJuego;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
@@ -71,9 +71,11 @@ public class LayoutIntermediario extends AnchorPane {
         if(pudoConstruir == true){
             Logger.info("Se pudo construir");
             getChildren().remove(this.defensasDrag);
+            celda.ponerDefensa(new DefensaDescriptor(defensasDrag.toString()));
             this.defensasDrag = null;
         }else{
             Logger.info("NO SE pudo construir");
         }
+
     }
 }

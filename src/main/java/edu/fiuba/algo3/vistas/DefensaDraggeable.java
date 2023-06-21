@@ -13,7 +13,6 @@ public class DefensaDraggeable extends Label {
         setLayoutY(0);
     }
 
-
     public Defensa obtenerDefensa() {
         return defensa;
     }

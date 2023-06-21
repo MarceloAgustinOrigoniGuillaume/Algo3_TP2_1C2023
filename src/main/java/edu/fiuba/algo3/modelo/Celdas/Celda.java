@@ -44,6 +44,6 @@ public abstract class Celda {
     //Pre: -
     //Post: Describe a la celda para la ui... pone todos los datos necesarios
     public CeldaDescriptor describe(){
-        return new CeldaDescriptor( this.toString() , habitantes.cantidadUnidades());
+        return new CeldaDescriptor( this.toString() , habitantes.cantidadUnidades(), construcciones.describir());
     }
 }
