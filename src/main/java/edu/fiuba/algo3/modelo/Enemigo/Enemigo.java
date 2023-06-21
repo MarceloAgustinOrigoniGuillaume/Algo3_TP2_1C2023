@@ -4,9 +4,10 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.SistemaCreditos;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.modelo.Celdas.Celda;
+import edu.fiuba.algo3.modelo.Celdas.Posicionable;
 
-public abstract class Enemigo implements Ataque {
+public abstract class Enemigo implements Ataque, Posicionable {
 
 
     protected int velocidad;
@@ -62,8 +63,8 @@ public abstract class Enemigo implements Ataque {
     // Post: -
     public abstract Enemigo copiar();
 
-    public boolean posicionarEn(Habitantes habitantes){
-        return habitantes.guardar(this);
+    public boolean posicionarEn(Celda celda){
+        return celda.enemigos().guardar(this);
     }
 
     protected abstract void atacarObjeto(Jugador jugador, Mapa mapa);

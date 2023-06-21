@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Enemigo.aereos;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.modelo.Enemigo.EnemigoConVida;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.modelo.Celdas.Celda;
 
 public abstract class EnemigoAereo extends EnemigoConVida {//implements Monetizable {
 
@@ -10,8 +10,8 @@ public abstract class EnemigoAereo extends EnemigoConVida {//implements Monetiza
         super(vida, velocidad);
     }
 
-    public boolean posicionarEn(Habitantes habitantes){
-        return habitantes.guardar(this);
+    public boolean posicionarEn(Celda celda){
+        return celda.enemigos().guardar(this);
     }
 
 

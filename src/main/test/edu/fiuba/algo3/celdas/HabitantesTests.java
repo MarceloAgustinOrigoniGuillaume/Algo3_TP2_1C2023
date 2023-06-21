@@ -25,38 +25,38 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class HabitantesTests {
     @Test
     public void verificarHabitantesPasarelaGuardaHormiga() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
         Enemigo enemigo = new Hormiga();
 
-        assertEquals(true , enemigo.posicionarEn(pasarela.enemigos()));
+        assertEquals(true , enemigo.posicionarEn(pasarela));
         assertEquals(1, pasarela.enemigos().cantidadUnidades());
 
     }
 
     @Test
     public void verificarHabitantesPasarelaAgregaHormigaYTopo() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
         Enemigo enemigo = new Hormiga();
         Enemigo enemigo2 = new Topo(0);
 
 
-        enemigo.posicionarEn(pasarela.enemigos());
-        assertEquals(true , enemigo2.posicionarEn(pasarela.enemigos()));
+        enemigo.posicionarEn(pasarela);
+        assertEquals(true , enemigo2.posicionarEn(pasarela));
         assertEquals(2, pasarela.enemigos().cantidadUnidades());
     }
 
     @Test
     public void verificarHabitantesPasarelaQuitaHormiga() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
         Enemigo enemigo = new Hormiga();
         Enemigo enemigo2 = new Topo(0);
 
 
-        enemigo.posicionarEn(pasarela.enemigos());
-        enemigo2.posicionarEn(pasarela.enemigos());
+        enemigo.posicionarEn(pasarela);
+        enemigo2.posicionarEn(pasarela);
 
         pasarela.enemigos().sacar(enemigo);
 
@@ -66,28 +66,28 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesPasarelaQuitaTrampaPuedePonerOtra() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
         Construccion trampa = new Trampa();
 
-        assertEquals(true , trampa.posicionarEn(pasarela.defensas()));
-        assertEquals(false , trampa.posicionarEn(pasarela.defensas()));
+        assertEquals(true , trampa.posicionarEn(pasarela));
+        assertEquals(false , trampa.posicionarEn(pasarela));
         pasarela.defensas().clear();
 
         trampa = new Trampa();
 
-        assertEquals(true , trampa.posicionarEn(pasarela.defensas()));
+        assertEquals(true , trampa.posicionarEn(pasarela));
 
     }
 
 
     @Test
     public void verificarHabitantesPasarelaGuardaLechuza() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
         Enemigo enemigo = new Lechuza();
 
-        assertEquals(true , enemigo.posicionarEn(pasarela.enemigos()));
+        assertEquals(true , enemigo.posicionarEn(pasarela));
         assertEquals(1, pasarela.enemigos().cantidadUnidades());
 
 
@@ -95,11 +95,11 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesPasarelaGuardaArania() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
         Enemigo enemigo = new Arania();
 
-        assertEquals(true , enemigo.posicionarEn(pasarela.enemigos()));
+        assertEquals(true , enemigo.posicionarEn(pasarela));
         assertEquals(1, pasarela.enemigos().cantidadUnidades());
 
 
@@ -107,11 +107,11 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesPasarelaGuardaTopo() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
         Enemigo enemigo = new Topo(1);
 
-        assertEquals(true , enemigo.posicionarEn(pasarela.enemigos()));
+        assertEquals(true , enemigo.posicionarEn(pasarela));
         assertEquals(1, pasarela.enemigos().cantidadUnidades());
 
 
@@ -119,24 +119,24 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesPasarelaGuardaTrampa() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
         Construccion construccion = new Trampa();
 
-        assertEquals(true , construccion.posicionarEn(pasarela.defensas()));
+        assertEquals(true , construccion.posicionarEn(pasarela));
 
     }
 
     @Test
     public void verificarHabitantesPasarelaNOGuardaTorres() {
-        Pasarela pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela(new Coordenada(1,1));
 
 
         Construccion cons = new TorreBlanca();
         Construccion cons2 = new TorrePlateada();
 
-        assertEquals(false , cons.posicionarEn(pasarela.defensas()));
-        assertEquals(false , cons2.posicionarEn(pasarela.defensas()));
+        assertEquals(false , cons.posicionarEn(pasarela));
+        assertEquals(false , cons2.posicionarEn(pasarela));
 
     }
 
@@ -150,10 +150,10 @@ public class HabitantesTests {
         Enemigo lechuza = new Lechuza();
 
 
-        assertEquals(false , enemigo.posicionarEn(celda.enemigos()));
-        assertEquals(false , hormiga.posicionarEn(celda.enemigos()));
-        assertEquals(false , topo.posicionarEn(celda.enemigos()));
-        assertEquals(true , lechuza.posicionarEn(celda.enemigos()));
+        assertEquals(false , enemigo.posicionarEn(celda));
+        assertEquals(false , hormiga.posicionarEn(celda));
+        assertEquals(false , topo.posicionarEn(celda));
+        assertEquals(true , lechuza.posicionarEn(celda));
 
 
     }
@@ -169,10 +169,10 @@ public class HabitantesTests {
         Enemigo lechuza = new Lechuza();
 
 
-        assertEquals(false , enemigo.posicionarEn(celda.enemigos()));
-        assertEquals(false , hormiga.posicionarEn(celda.enemigos()));
-        assertEquals(false , topo.posicionarEn(celda.enemigos()));
-        assertEquals(true , lechuza.posicionarEn(celda.enemigos()));
+        assertEquals(false , enemigo.posicionarEn(celda));
+        assertEquals(false , hormiga.posicionarEn(celda));
+        assertEquals(false , topo.posicionarEn(celda));
+        assertEquals(true , lechuza.posicionarEn(celda));
     }
 
 
@@ -186,12 +186,12 @@ public class HabitantesTests {
         Construccion cons2 = new TorrePlateada();
         Construccion cons3 = new Trampa();
 
-        assertEquals(true , cons.posicionarEn(celda.defensas()));
-        assertEquals(false , cons3.posicionarEn(celda.defensas()));
+        assertEquals(true , cons.posicionarEn(celda));
+        assertEquals(false , cons3.posicionarEn(celda));
 
         celda = new Tierra(new Coordenada(1,1));
 
-        assertEquals(true , cons2.posicionarEn(celda.defensas()));
+        assertEquals(true , cons2.posicionarEn(celda));
 
 
 
@@ -205,8 +205,8 @@ public class HabitantesTests {
         Construccion cons = new TorreBlanca();
         Construccion cons2 = new TorrePlateada();
 
-        assertEquals(true , cons.posicionarEn(celda.defensas()));
-        assertEquals(false , cons2.posicionarEn(celda.defensas()));
+        assertEquals(true , cons.posicionarEn(celda));
+        assertEquals(false , cons2.posicionarEn(celda));
     }
 
 
@@ -219,9 +219,9 @@ public class HabitantesTests {
         Construccion cons2 = new TorrePlateada();
         Construccion cons3 = new Trampa();
 
-        assertEquals(false , cons.posicionarEn(celda.defensas()));
-        assertEquals(false , cons2.posicionarEn(celda.defensas()));
-        assertEquals(false , cons3.posicionarEn(celda.defensas()));
+        assertEquals(false , cons.posicionarEn(celda));
+        assertEquals(false , cons2.posicionarEn(celda));
+        assertEquals(false , cons3.posicionarEn(celda));
 
     }
 

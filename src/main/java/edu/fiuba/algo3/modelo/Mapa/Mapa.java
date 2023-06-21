@@ -133,7 +133,7 @@ public class Mapa {
     }
 
     public boolean posicionar(Coordenada coordenada, Construccion construccion){
-        if(construccion.posicionarEn(obtenerCelda(coordenada).defensas())){
+        if(construccion.posicionarEn(obtenerCelda(coordenada))){
             defensas.add(coordenada);
             return true;
         }
@@ -151,7 +151,7 @@ public class Mapa {
             return;
         }
 
-        unidad.posicionarEn(obtenerCelda(hasta).enemigos());
+        unidad.posicionarEn(obtenerCelda(hasta));
     }
 
     //Pre: -
@@ -258,7 +258,7 @@ public class Mapa {
     
     public void posicionarInicio(Enemigo enemigo){
         Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
-        enemigo.posicionarEn(obtenerCelda(caminoTerrestre.get(0)).enemigos());
+        enemigo.posicionarEn(obtenerCelda(caminoTerrestre.get(0)));
     }
 
     //Pre: -
