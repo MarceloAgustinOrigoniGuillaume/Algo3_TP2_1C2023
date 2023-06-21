@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Celdas;
+package edu.fiuba.algo3.modelo.Enemigo;
 
 public interface Ataque{
 

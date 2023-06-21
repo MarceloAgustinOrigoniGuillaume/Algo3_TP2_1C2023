@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 
-public class Lechuza extends EnemigoAereo implements Monetizable {
+public class Lechuza extends EnemigoAereo {
 
     private int vida;
     private int vidaCambioMovimiento;

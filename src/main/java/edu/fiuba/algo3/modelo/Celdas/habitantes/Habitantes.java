@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Celdas.habitantes;
 
 import java.util.ArrayList;
 
-import edu.fiuba.algo3.modelo.Celdas.Construccion;
+import edu.fiuba.algo3.modelo.Defensas.Construccion;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.EnemigoAereo;

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Celdas.habitantes;
 
-import edu.fiuba.algo3.modelo.Celdas.Construccion;
+import edu.fiuba.algo3.modelo.Defensas.Construccion;
 
 public class HabitantesTierra extends HabitantesTerreno {
 

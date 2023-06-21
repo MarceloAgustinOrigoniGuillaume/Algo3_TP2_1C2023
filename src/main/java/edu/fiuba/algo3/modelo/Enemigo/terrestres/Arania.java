@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo.Enemigo.terrestres;
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Billetera;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 
 import java.util.Random;
 
-public class Arania extends EnemigoTerrestre implements Monetizable {
+public class Arania extends EnemigoTerrestre {
 
 	public Arania(){
         super(2,2, 2);
@@ -31,6 +32,13 @@ public class Arania extends EnemigoTerrestre implements Monetizable {
     	return new Arania();
     }
 
+    public void recibirAtaque(int danioRecibido) {
+        this.vida = this.vida - danioRecibido;
+        if(this.vida == 0){
+            this.creditosDados();
+        }
+        Logger.info(" El daño recibido es: "+danioRecibido);
+    }
     @Override
     public String toString(){
         return "Araña";

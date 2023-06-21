@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-public class Topo extends EnemigoSubterraneo implements Monetizable {
+public class Topo extends EnemigoSubterraneo {
 
     private int turno;
     private int contadorMovimientos;
@@ -60,27 +60,9 @@ public class Topo extends EnemigoSubterraneo implements Monetizable {
     }
 
     //Pre: -
-    // Post: Al no poder ser matado, el topo nunca da creditos.
-    @Override
-    public int creditosDados() {
-
-        Billetera billetera = Billetera.getInstance();
-        billetera.agregarCreditos(0);
-        return 0;
-    }
-
-    //Pre: -
     // Post: El topo nunca muere, hace un daño a la torre al llegar y desaparece.
-    @Override
     public boolean estaMuerto() {
         return false;
-    }
-
-    //Pre: -
-    // Post: -
-    @Override
-    public void recibirAtaque(int danioRecibido) {
-        Logger.info("El daño recibido es: 0");
     }
     
     @Override

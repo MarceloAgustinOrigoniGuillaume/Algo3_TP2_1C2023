@@ -13,7 +13,7 @@ import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.*;
 //import edu.fiuba.algo3.modelo.Celdas.terrenos.*;
 
-import edu.fiuba.algo3.modelo.Celdas.Construccion;
+import edu.fiuba.algo3.modelo.Defensas.Construccion;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

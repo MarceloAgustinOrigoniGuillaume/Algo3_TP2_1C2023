@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Defensas.Estructura;
-import edu.fiuba.algo3.modelo.Celdas.SistemaVida;
+import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.Logger;
 
 public class Jugador implements SistemaVida{
