@@ -8,7 +8,10 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Celdas.Celda;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 
+import javax.security.auth.DestroyFailedException;
 
 
 public abstract class Defensa implements Estructura {
@@ -24,7 +27,6 @@ public abstract class Defensa implements Estructura {
 
         this.estadoActual = new EstadoConstruido();
         Logger.info("Defensa termino construccion, siguiente turno ataca.");
-
     }
 
     public void accionar(Mapa mapa , Coordenada posicion){
@@ -41,8 +43,11 @@ public abstract class Defensa implements Estructura {
 
     public abstract boolean atacar(ArrayList<Enemigo> enemigo);
 
-
     public boolean posicionarEn(Celda celda){
         return celda.defensas().guardar(this);
+    }
+
+    public DefensaDescriptor describe(){
+        return new DefensaDescriptor(this.toString());
     }
 }

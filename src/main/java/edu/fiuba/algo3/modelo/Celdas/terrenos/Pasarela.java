@@ -12,7 +12,6 @@ public class Pasarela extends Celda{
         super(coordenada, new Habitantes(true), new ConstruccionesPasarela());
     }
 
-
     @Override
     public String toString(){
         return PASARELA_TYPE;

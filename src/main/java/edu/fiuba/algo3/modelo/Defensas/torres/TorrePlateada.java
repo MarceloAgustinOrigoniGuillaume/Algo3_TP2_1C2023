@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class TorrePlateada extends Defensa {
 
+    public final static String TORRE_TYPE = "TorrePlateada";
+
     public TorrePlateada(int turnosParaConstruccion) {
         super(new EstadoConstruyendo(turnosParaConstruccion));
 
@@ -40,5 +42,10 @@ public class TorrePlateada extends Defensa {
             }
         }
         return true;
+    }
+
+    @Override
+    public String toString(){
+        return TORRE_TYPE;
     }
 }

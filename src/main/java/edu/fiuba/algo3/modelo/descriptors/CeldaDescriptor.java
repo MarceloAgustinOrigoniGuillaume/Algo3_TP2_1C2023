@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.descriptors;
 
 
 public class CeldaDescriptor{
-
 	private String terreno;
 	private int cantidadEnemigos;
 	public CeldaDescriptor(String terreno, int cantidadEnemigos){
@@ -13,7 +12,6 @@ public class CeldaDescriptor{
 	public int cantidadEnemigos(){
 		return cantidadEnemigos;
 	}
-
 
 	public String tipo(){
 		return terreno;

@@ -7,43 +7,33 @@ import edu.fiuba.algo3.Controladores.ControladorJuego;
 import edu.fiuba.algo3.Logger;
 
 
-import javafx.fxml.FXMLLoader;
+import edu.fiuba.algo3.Ventana;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javafx.scene.layout.VBox;
 
 import javafx.event.ActionEvent;
 
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 
 import javafx.scene.Parent;
-
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.BackgroundPosition;
 
 public class MenuInicio extends VBox implements Vista {
 	private final static String titulo = "AlgoDefense";
 	private final static String label_button = "Iniciar Juego";
 
-	public MenuInicio(){
-
+	public MenuInicio(Ventana ventana){
 		//FXMLLoader.load()
         super();
-        init();
+        init(ventana);
 	}
-
 
 	private boolean validarNombreJugador(String nombre){
 		return nombre.length() >= 6;
 	}
 
-	private void init(){
+	private void init(Ventana ventana){
 		
 		setBackground(Resources.getBckImage("background1.jpg"));
 		setAlignment(Pos.CENTER);
@@ -65,7 +55,8 @@ public class MenuInicio extends VBox implements Vista {
 				return;
 			}
 
-			new ControladorJuego().empezarJuego(getScene(),nombreJugador);
+			new ControladorJuego().empezarJuego(ventana, nombreJugador);
+
 		} );
 
 		/*

@@ -46,6 +46,4 @@ public abstract class Celda {
     public CeldaDescriptor describe(){
         return new CeldaDescriptor( this.toString() , habitantes.cantidadUnidades());
     }
-
-
 }
