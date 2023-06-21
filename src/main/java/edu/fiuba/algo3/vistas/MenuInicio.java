@@ -3,7 +3,7 @@ package edu.fiuba.algo3.vistas;
 
 
 import edu.fiuba.algo3.Resources;
-import edu.fiuba.algo3.Controladores.ControladorJuego;
+import edu.fiuba.algo3.controladores.ControladorJuego;
 import edu.fiuba.algo3.Logger;
 
 

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controladores;
 
-import edu.fiuba.algo3.Controladores.Controlador;
 import edu.fiuba.algo3.Ventana;
 import edu.fiuba.algo3.vistas.*;
 import edu.fiuba.algo3.DatosModelo;

@@ -1,6 +1,8 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.controladores.ControladorJuego;
 import edu.fiuba.algo3.vistas.IntermediarioLayoutBasico;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import edu.fiuba.algo3.vistas.Vista;
@@ -17,7 +19,7 @@ public class Ventana extends Scene{
 		this.view = new IntermediarioLayoutBasico();
 		setRoot(this.view);
 
-		new edu.fiuba.algo3.Controladores.ControladorJuego().iniciarJuego(Resources.getJsonPath("mapa"),
+		new ControladorJuego().iniciarJuego(Resources.getJsonPath("mapa"),
 				Resources.getJsonPath("enemigos"), this);
 
 		//setRoot(new IntermediarioLayoutBasico());
