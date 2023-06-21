@@ -36,8 +36,9 @@ public class ViewCelda extends StackPane {
 
     private void handleClick(MouseEvent event){
         Logger.Log("CLICKED ON TILE....");
+        //Llama al click listener
         event.consume();
-    }
+}
 
 	private void init(String tipo, int cantidadEnemigos){
 

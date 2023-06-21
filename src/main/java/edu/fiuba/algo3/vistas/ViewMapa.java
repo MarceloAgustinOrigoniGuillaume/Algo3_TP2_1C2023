@@ -67,9 +67,7 @@ public class ViewMapa extends HBox {
                 column.getChildren().add(lbl);
                 */
             }
-
             getChildren().add(column);
-
         }
 	}	
 }

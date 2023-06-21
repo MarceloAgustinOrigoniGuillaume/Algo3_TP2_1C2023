@@ -1,38 +1,29 @@
 package edu.fiuba.algo3.vistas;
 
-
-
-import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.Logger;
-
-
+import edu.fiuba.algo3.Ventana;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-
 import javafx.scene.Parent;
-
-import javafx.event.ActionEvent;
-
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-
-
 
 public class ViewJuego extends StackPane implements Vista {
 
     //private Parent ultimo;
 
-	public ViewJuego(ViewMapa mapaDelJuego){
+	public ViewJuego(ViewMapa mapaDelJuego, Ventana ventana){
 
         super();
-        init(mapaDelJuego);
+        init(mapaDelJuego, ventana);
 	}
 
-	private void init(ViewMapa mapaDelJuego){
-        getChildren().add(mapaDelJuego);
-        mapaDelJuego.setAlignment(Pos.CENTER);
+	private void init(ViewMapa mapaDelJuego, Ventana ventana){
+
+		BorderPane borderPane = new BorderPane();
+		borderPane.setCenter(mapaDelJuego);
+		borderPane.setTop((new MenuConstrucciones(ventana)).obtener());
+
+		getChildren().add(borderPane);
 	}
 
 	public Parent obtener(){

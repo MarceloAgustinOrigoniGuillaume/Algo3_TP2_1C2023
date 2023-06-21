@@ -1,39 +1,39 @@
 package edu.fiuba.algo3.vistas;
 
-
-
 import edu.fiuba.algo3.Resources;
-import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.Ventana;
+import edu.fiuba.algo3.controladores.ControladorConstruccion;
 import edu.fiuba.algo3.Logger;
-
-
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.paint.Color;
-
 import javafx.event.ActionEvent;
-
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 
 public class MenuConstrucciones extends HBox {
 
-	public MenuConstrucciones(){
+	public MenuConstrucciones(Ventana ventana){
         super();
-        init();
+        init(ventana);
 	}
 
-	private void init(){
+	private void init(Ventana ventana){
+
         Parent view = Resources.getVista("menu_construcciones");
+        if(view == null){
+            Logger.Log("ERROR LOADING MENU CONSTRUCCIONES ... view was 'menu_construcciones' null");
+            return;
+        }
         getChildren().add(view);
-        
-	}	
+
+        Button button  = (Button) view.lookup("#buttonConstruir");
+        button.setOnAction( (ActionEvent event)->{
+            new edu.fiuba.algo3.Controladores.ControladorJuego().mostrarOpciones(ventana);
+        });
+    }
+
+    public Parent obtener(){
+        return this;
+    }
 }

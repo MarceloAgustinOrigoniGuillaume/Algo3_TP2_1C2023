@@ -2,13 +2,11 @@ package edu.fiuba.algo3.Controladores;
 
 
 import edu.fiuba.algo3.Controladores.Controlador;
+import edu.fiuba.algo3.Ventana;
 import edu.fiuba.algo3.modelo.Juego;
 
+import edu.fiuba.algo3.vistas.*;
 import javafx.scene.Scene;
-import edu.fiuba.algo3.vistas.MenuInicio;
-import edu.fiuba.algo3.vistas.ViewMapa;
-import edu.fiuba.algo3.vistas.ViewCelda;
-import edu.fiuba.algo3.vistas.ViewJuego;
 import edu.fiuba.algo3.DatosModelo;
 import edu.fiuba.algo3.Logger;
 
@@ -19,13 +17,13 @@ public class ControladorJuego extends Controlador {
 	public ControladorJuego() {
 	}
 
-	public MenuInicio iniciarJuego(String jsonMapa, String jsonEnemigos) throws Exception{
+	public void iniciarJuego(String jsonMapa, String jsonEnemigos, Ventana ventana) throws Exception{
 		DatosModelo.nuevoJuego(jsonMapa, jsonEnemigos);
 
-		return new MenuInicio();
+		ventana.setVista(new MenuInicio(ventana));
 	}
 
-	public boolean empezarJuego(Scene ventana, String nombreJugador){
+	public boolean empezarJuego(Ventana ventana, String nombreJugador){
 		try{
 			Logger.Log("Empezando juego con jugador '"+nombreJugador+"'");
 			DatosModelo.empezarJuegoActual();
@@ -40,10 +38,17 @@ public class ControladorJuego extends Controlador {
 
 			return new ViewCelda(datos.tipo(), datos.cantidadEnemigos());
 		});
-		ViewJuego view = new ViewJuego(mapa);
-		ventana.setRoot(view);
+		ViewJuego view = new ViewJuego(mapa, ventana);
+		ventana.setVista(view);
 
+		//new MenuConstrucciones();
 		return true;
 	}
 
+	public void mostrarOpciones(Ventana ventana) {
+
+		//new MenuConstrucciones(ventana);
+		ventana.addPopup(new MenuConstruir(ventana));
+
+	}
 }

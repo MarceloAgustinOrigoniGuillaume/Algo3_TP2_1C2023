@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.Controladores;
+package edu.fiuba.algo3.controladores;
 
 
 import edu.fiuba.algo3.modelo.Juego;
@@ -8,7 +8,7 @@ import edu.fiuba.algo3.vistas.ViewJuego;
 //import edu.fiuba.algo3.vistas.Vista;
 
 
-public class ControladorJugador extends Controlador{
+public class ControladorJugador extends edu.fiuba.algo3.Controladores.Controlador {
 	public ControladorJugador() throws Exception{
 
 	}
