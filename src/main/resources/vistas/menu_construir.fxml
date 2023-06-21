@@ -4,11 +4,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane layoutX="1.0" layoutY="1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" minHeight="-Infinity"  spacing="4" minWidth="-Infinity" prefHeight="80.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-       <HBox />
-   <Button fx:id="buttonTrampa" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="82.0" text="Trampa" />
    <Button fx:id="buttonTorrePlateada" layoutX="122.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="117.0" text="Torre Plateada" />
+      <Button fx:id="buttonTrampa" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="82.0" text="Trampa" />
    <Button fx:id="buttonTorreBlanca" layoutX="260.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="117.0" text="Torre Blanca" />
    </children>
-</AnchorPane>
+</HBox>

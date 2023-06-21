@@ -1,22 +1,24 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.controladores.ControladorJuego;
-import edu.fiuba.algo3.vistas.IntermediarioLayoutBasico;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.vistas.LayoutIntermediario;
 
+import edu.fiuba.algo3.vistas.ViewCelda;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import edu.fiuba.algo3.vistas.Vista;
 
 public class Ventana extends Scene{
 
-	private IntermediarioLayoutBasico view;
+	private LayoutIntermediario view;
 
 	public Ventana(int width, int height) throws Exception{
 
 		// iniciar juego lo que hace es iniciar, y devuelva la pantalla inicial...
-		super(new IntermediarioLayoutBasico(), width,height);
+		super(new LayoutIntermediario(), width,height);
 
-		this.view = new IntermediarioLayoutBasico();
+		this.view = new LayoutIntermediario();
 		setRoot(this.view);
 
 		new ControladorJuego().iniciarJuego(Resources.getJsonPath("mapa"),
@@ -36,4 +38,16 @@ public class Ventana extends Scene{
 		view.setPopup(popup);
 	}
 
+    public void iniciarConstruccionDefensa(Defensa defensa) {
+
+		view.instanciarDefensa(defensa, this);
+		//Parent view = ;
+    }
+
+	public void clickEnCelda(ViewCelda celda){
+		view.clickEnCelda(celda);
+	}
+	public void removePopUp() {
+		view.removePopUp();
+	}
 }

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.Ventana;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.vistas.*;
 import edu.fiuba.algo3.DatosModelo;
 import edu.fiuba.algo3.Logger;
@@ -30,8 +31,11 @@ public class ControladorJuego extends Controlador {
 		ViewMapa mapa = new ViewMapa(DatosModelo.mapa_width,DatosModelo.mapa_height,(int x, int y)->{
 			CeldaDescriptor datos= DatosModelo.obtenerTerrenoEn(x,y);
 
-			return new ViewCelda(datos.tipo(), datos.cantidadEnemigos());
+			ViewCelda celda = new ViewCelda(datos.tipo(), datos.cantidadEnemigos(), new Coordenada(x,y));
+			celda.setOnClick(ventana::clickEnCelda);
+			return celda;
 		});
+
 		ViewJuego view = new ViewJuego(mapa, ventana);
 		ventana.setVista(view);
 

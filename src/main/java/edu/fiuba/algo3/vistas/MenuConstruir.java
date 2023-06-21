@@ -7,15 +7,17 @@ import edu.fiuba.algo3.controladores.ControladorConstruccion;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 
-public class MenuConstruir extends HBox {
+public class MenuConstruir extends VBox {
 
     public MenuConstruir(Ventana ventana){
         super();
@@ -47,6 +49,7 @@ public class MenuConstruir extends HBox {
 
     private void init(Ventana ventana) {
 
+        setAlignment(Pos.CENTER);
         Parent view = Resources.getVista("menu_construir");
 
         if(view == null){
@@ -55,24 +58,25 @@ public class MenuConstruir extends HBox {
         }
         getChildren().add(view);
 
-        Button botonDeArrastre = new Button();
-// EventHandler <? super MouseDragEvent > value
+        //Button botonDeArrastre = new Button();
+
         Button button  = (Button) view.lookup("#buttonTorreBlanca");
         button.setOnAction( (ActionEvent event)->{
-            new ControladorConstruccion().seleccionarConstruccion("TorreBlanca");
+            new ControladorConstruccion().seleccionarConstruccion("TorreBlanca", ventana);
         });
 
-        EventHandler<? super MouseDragEvent> eventHandler = null;
-        button.setOnMouseDragOver(eventHandler);
+       // EventHandler<? super MouseDragEvent> eventHandler = null;
+        //button.setOnMouseDragOver(eventHandler);
 
         Button button2  = (Button) view.lookup("#buttonTorrePlateada");
         button.setOnAction( (ActionEvent event)->{
-            new ControladorConstruccion().seleccionarConstruccion("TorrePlateada");
+            new ControladorConstruccion().seleccionarConstruccion("TorrePlateada", ventana);
+
         });
 
         Button button3  = (Button) view.lookup("#buttonTrampa");
         button.setOnAction( (ActionEvent event)->{
-            new ControladorConstruccion().seleccionarConstruccion("Trampa");
+            new ControladorConstruccion().seleccionarConstruccion("Trampa", ventana);
         });
 
 
