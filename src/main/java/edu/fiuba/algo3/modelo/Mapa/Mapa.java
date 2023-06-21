@@ -11,11 +11,8 @@ import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import java.util.ArrayList;
 
+// posicionar
 public class Mapa {
-
-
-
-
 
     // interfaces externas para notificar cambios.
     public interface OnEnemiesDiedListener{
@@ -36,7 +33,7 @@ public class Mapa {
         int damageTotal;
         @Override
         public boolean ejecutarMetodoConCeldas(Celda celda) {
-            this.damageTotal = celda.obtenerDamagePosible(damageTotal);
+            this.damageTotal = celda.enemigos().obtenerDamagePosible(damageTotal);
             return true;
         }
     }
@@ -136,7 +133,7 @@ public class Mapa {
     }
 
     public boolean posicionar(Coordenada coordenada, Construccion construccion){
-        if(obtenerCelda(coordenada).posicionar(construccion)){
+        if(construccion.posicionarEn(obtenerCelda(coordenada).defensas())){
             defensas.add(coordenada);
             return true;
         }
@@ -146,14 +143,15 @@ public class Mapa {
     //Pre: -
     //Post: Actualiza los habitantes de las coordenadas recibidas.
     private void actualizarPosicionEnemigo(Enemigo unidad, Coordenada desde, Coordenada hasta){
-        obtenerCelda(desde).sacar(unidad);
+        obtenerCelda(desde).enemigos().sacar(unidad);
 
         if(hasta == posicionFinal()){
             Logger.Log("Enemigo "+unidad.toString()+" llego al final.. "+hasta.toString());
             // No se posiciona, ya que son "bombas"
             return;
         }
-        obtenerCelda(hasta).posicionar(unidad);
+
+        unidad.posicionarEn(obtenerCelda(hasta).enemigos());
     }
 
     //Pre: -
@@ -187,7 +185,7 @@ public class Mapa {
     //Post: Itera todas las posiciones en donde hay enemigos y les dice que se mueva.
     public void accionarEnemigos(Jugador jugador){
         iteradorDeCeldas((Celda celdaActual)->{
-            celdaActual.moverUnidades(this, jugador);
+            celdaActual.accionarEnemigos(this, jugador);
             return true;}
         );
     }
@@ -195,20 +193,35 @@ public class Mapa {
     //Pre: -
     //Post: (Cuando la lechuza llega al jugador) saca la primera de las defensas creadas.
     public void atacarPrimeraTorre(){
-        Coordenada coordenadaBuscada = defensas.get(0);
-        Celda celdaBuscada = obtenerCelda(coordenadaBuscada);
-        celdaBuscada.clear();
-        defensas.remove(0);
+
+        int indice =0;
+        Celda celdaBuscada;
+
+        // buscas primer torre.
+        while (indice < defensas.size()){
+            celdaBuscada = obtenerCelda(defensas.get(indice));
+            if(celdaBuscada.defensas().recibirAtaqueLechuza()){ // trampa devolveria false, no se puede quitar.
+                notificarListeners(defensas.get(indice));
+                defensas.remove(indice);
+
+                return; // solo una torre.
+            }
+            indice+=1;
+        }
+
     }
 
-    public void removerConstruccion(Coordenada coordenada){
-        
-        obtenerCelda(coordenada).clear();
-
+    private void notificarListeners(Coordenada coordenada){
         if(listenerCambios != null){
             listenerCambios.cambio(coordenada);
         }
 
+    }
+
+    public void removerConstruccion(Coordenada coordenada){
+        
+        obtenerCelda(coordenada).defensas().clear();
+        notificarListeners(coordenada);
         return;
     }
 
@@ -216,18 +229,17 @@ public class Mapa {
     //Post: Desde las defenses se le dice a mapa que quiere atacar a determinada coordenada.
     public boolean atacar(Coordenada coordenada, Defensa defensa){
         Celda celda = obtenerCelda(coordenada);
-        boolean seguirAtacando = celda.recibirAtaque(defensa);
+        boolean seguirAtacando = celda.enemigos().recibirAtaque(defensa);
 
-        ArrayList<Enemigo> muertos= celda.popMuertos();
+        ArrayList<Enemigo> muertos= celda.enemigos().popMuertos();
 
         if(muertos.size() > 0){
+
 
             acreditadorMuertos.acreditarMuertos(muertos);
             
             // notify observers celda cambio.
-            if(listenerCambios != null){
-                listenerCambios.cambio(coordenada);
-            }
+            notificarListeners(coordenada);
         }
 
         return seguirAtacando;
@@ -246,7 +258,7 @@ public class Mapa {
     
     public void posicionarInicio(Enemigo enemigo){
         Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
-        obtenerCelda(caminoTerrestre.get(0)).posicionar(enemigo);
+        enemigo.posicionarEn(obtenerCelda(caminoTerrestre.get(0)).enemigos());
     }
 
     //Pre: -
@@ -255,10 +267,6 @@ public class Mapa {
         Contador contador = new Contador();
         iteradorDeCeldas(contador);
         return contador.damageTotal;
-    }
-
-    public String obtenerTerreno(int x, int y){
-        return obtenerCelda(new Coordenada(x,y)).toString();
     }
 
     //Pre: -

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesConstruccion;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ public class Trampa extends Defensa {
         super(new EstadoConstruido());
     }
 
-    public boolean posicionarEn(Habitantes habitantes){
+    public boolean posicionarEn(HabitantesConstruccion habitantes){
         return habitantes.guardar(this);
     }
 

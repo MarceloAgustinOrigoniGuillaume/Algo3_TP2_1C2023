@@ -1,17 +1,16 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
 import edu.fiuba.algo3.Logger;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-import java.util.ArrayList;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesTierra;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.ConstruccionesTierra;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 
 public class Tierra extends Celda {
 
     public final static String TIERRA_TYPE = "Tierra";
 	
     public Tierra(Coordenada coordenada){
-        super(coordenada, new HabitantesTierra());
+        super(coordenada, new Habitantes(false), new ConstruccionesTierra());
     }
 
     @Override

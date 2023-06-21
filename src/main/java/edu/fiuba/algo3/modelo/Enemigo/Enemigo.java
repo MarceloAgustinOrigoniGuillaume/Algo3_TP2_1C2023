@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
-
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.SistemaCreditos;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 
-public abstract class Enemigo implements Ataque, Posicionable {
+public abstract class Enemigo implements Ataque {
 
 
     protected int velocidad;

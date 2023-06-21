@@ -1,63 +1,50 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
-import edu.fiuba.algo3.modelo.Defensas.Defensa;
-import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.modelo.Jugador;
+
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
-import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
-import java.util.ArrayList;
+
+import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesConstruccion;
 
 public abstract class Celda {
 
     private Coordenada coordenada;
     protected Habitantes habitantes;
+    protected HabitantesConstruccion construcciones;
 
-    public Celda(Coordenada pos, Habitantes habitantes){
-    	this.coordenada = pos;
-    	this.habitantes = habitantes;
+    public Celda(Coordenada pos, Habitantes habitantes,HabitantesConstruccion construcciones){
+        this.coordenada = pos;
+        this.habitantes = habitantes;
+        this.construcciones = construcciones;
     }
 
     public Coordenada posicion(){
-    	return coordenada;
+        return coordenada;
+    }
+
+
+    public Habitantes enemigos(){
+        return habitantes;
+    }
+
+    public HabitantesConstruccion defensas(){
+        return construcciones;
+    }
+
+    public void accionarEstructuras(Mapa mapa){
+        construcciones.accionarEstructuras(mapa, this.posicion());
+    }
+
+    public  void accionarEnemigos(Mapa mapa, Jugador jugador){
+        habitantes.accionarEnemigos(mapa, jugador, this.posicion());
     }
 
     //Pre: -
-    //Post: -
-    public int obtenerDamagePosible(int contadorActual){
-        return this.habitantes.obtenerDamagePosible(contadorActual);
-    }
-
-    public boolean posicionar(Posicionable posicionable){ //PROVISORIO
-    	return posicionable.posicionarEn(habitantes);
-    }
-    public void accionarEstructuras(Mapa mapa){
-        habitantes.accionarEstructuras(mapa, this.posicion());
-    }
-
-    public void sacar(Posicionable posicionable){
-    	habitantes.sacar(posicionable);
-    }
-
-    public  void moverUnidades(Mapa mapa, Jugador jugador){
-        habitantes.moverUnidades(mapa, jugador,coordenada);
-    }
-
-    public ArrayList<Enemigo> popMuertos(){
-        return habitantes.popMuertos();
-    }
-
-    public boolean recibirAtaque(Defensa ataque){
-        return habitantes.recibirAtaque(ataque);
-    }
-
-    public void clear(){
-        habitantes.clear();
-    }
-
+    //Post: Describe a la celda para la ui... pone todos los datos necesarios
     public CeldaDescriptor describe(){
-    	return new CeldaDescriptor( this.toString() , habitantes.cantidadUnidades());
+        return new CeldaDescriptor( this.toString() , habitantes.cantidadUnidades());
     }
 
 

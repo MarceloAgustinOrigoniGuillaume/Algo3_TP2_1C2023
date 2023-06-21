@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.modelo.Defensas;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesConstruccion;
 
 import java.util.ArrayList;
 import edu.fiuba.algo3.Logger;
@@ -41,7 +41,7 @@ public abstract class Defensa implements Estructura {
     public abstract boolean atacar(ArrayList<Enemigo> enemigo);
 
 
-    public boolean posicionarEn(Habitantes habitantes){
+    public boolean posicionarEn(HabitantesConstruccion habitantes){
         return habitantes.guardar(this);
     }
 }

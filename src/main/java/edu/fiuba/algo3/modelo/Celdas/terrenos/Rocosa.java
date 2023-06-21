@@ -1,15 +1,15 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
-import java.util.ArrayList;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesTerreno;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
+
+import edu.fiuba.algo3.modelo.Celdas.habitantes.ConstruccionesRocoso;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 
 public class Rocosa extends Celda {
 
     public final static String ROCOSA_TYPE = "Rocoso";
 
     public Rocosa(Coordenada coordenada){
-        super(coordenada, new HabitantesTerreno());
+        super(coordenada, new Habitantes(false), new ConstruccionesRocoso());
     }
     @Override
     public String toString(){
