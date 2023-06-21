@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public class TorreBlanca extends Defensa {
 
-
+    public final static String TORRE_TYPE = "TorreBlanca";
     public TorreBlanca(int turnosParaConstruccion) {
         //this.turnosParaConstruccion = turnosParaConstruccion;
         super(new EstadoConstruyendo(turnosParaConstruccion));
@@ -32,6 +32,11 @@ public class TorreBlanca extends Defensa {
     @Override
     public void atacar(Enemigo enemigo) {
         enemigo.recibirAtaque(ataque());
+    }
+
+    @Override
+    public String toString(){
+        return TORRE_TYPE;
     }
 
 }

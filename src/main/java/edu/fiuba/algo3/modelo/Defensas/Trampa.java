@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public class Trampa extends Defensa {
+    public final static String TRAMPA_TYPE = "Trampa";
 
     public Trampa() {
         super(new EstadoConstruido());
@@ -27,9 +28,13 @@ public class Trampa extends Defensa {
     public void atacar(Enemigo enemigo) {
         //enemigo.reducirVelocidad();
     }
-
     @Override
     public int ataque() {
         return 0;
+    }
+
+    @Override
+    public String toString(){
+        return TRAMPA_TYPE;
     }
 }

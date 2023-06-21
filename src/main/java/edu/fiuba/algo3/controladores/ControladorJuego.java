@@ -1,15 +1,10 @@
-package edu.fiuba.algo3.Controladores;
-
+package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.Controladores.Controlador;
 import edu.fiuba.algo3.Ventana;
-import edu.fiuba.algo3.modelo.Juego;
-
 import edu.fiuba.algo3.vistas.*;
-import javafx.scene.Scene;
 import edu.fiuba.algo3.DatosModelo;
 import edu.fiuba.algo3.Logger;
-
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 

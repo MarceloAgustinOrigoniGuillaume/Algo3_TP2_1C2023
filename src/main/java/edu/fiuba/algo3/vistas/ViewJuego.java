@@ -28,6 +28,5 @@ public class ViewJuego extends StackPane implements Vista {
 
 	public Parent obtener(){
 		return this;
-        //return "";
 	}
 }

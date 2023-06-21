@@ -29,7 +29,7 @@ public class MenuConstrucciones extends HBox {
 
         Button button  = (Button) view.lookup("#buttonConstruir");
         button.setOnAction( (ActionEvent event)->{
-            new edu.fiuba.algo3.Controladores.ControladorJuego().mostrarOpciones(ventana);
+            new edu.fiuba.algo3.controladores.ControladorJuego().mostrarOpciones(ventana);
         });
     }
 

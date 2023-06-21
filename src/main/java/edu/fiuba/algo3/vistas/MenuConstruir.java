@@ -4,10 +4,13 @@ import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Resources;
 import edu.fiuba.algo3.Ventana;
 import edu.fiuba.algo3.controladores.ControladorConstruccion;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
@@ -18,21 +21,49 @@ public class MenuConstruir extends HBox {
         super();
         init(ventana);
     }
+    private void moverObjeto(Button boton){
+
+        boton.setOnMousePressed(event -> {
+            // Inicia el arrastre del botón
+            boton.startFullDrag();
+        });
+
+        boton.setOnMouseDragged(event -> {
+            // Mueve el botón a la posición del cursor del mouse
+            boton.setLayoutX(event.getX() - boton.getWidth() / 2);
+            boton.setLayoutY(event.getY() - boton.getHeight() / 2);
+        });
+
+        boton.setOnMouseReleased(event -> {
+            // Lógica para soltar el botón en el área deseada
+            double mouseX = event.getSceneX();
+            double mouseY = event.getSceneY();
+
+            // Realiza la acción deseada con las coordenadas mouseX y mouseY
+
+            //Posiciona la torrer en esa ubicacion
+        });
+    }
+
     private void init(Ventana ventana) {
 
         Parent view = Resources.getVista("menu_construir");
-        if(view == null){
-        Logger.Log("ERROR LOADING ESTRUCTURAS ... view was 'estructuras' null");
-        return;
-        }
 
+        if(view == null){
+            Logger.Log("ERROR LOADING ESTRUCTURAS ... view was 'estructuras' null");
+            return;
+        }
         getChildren().add(view);
 
+        Button botonDeArrastre = new Button();
+// EventHandler <? super MouseDragEvent > value
         Button button  = (Button) view.lookup("#buttonTorreBlanca");
         button.setOnAction( (ActionEvent event)->{
-
-        new ControladorConstruccion().seleccionarConstruccion("TorreBlanca");
+            new ControladorConstruccion().seleccionarConstruccion("TorreBlanca");
         });
+
+        EventHandler<? super MouseDragEvent> eventHandler = null;
+        button.setOnMouseDragOver(eventHandler);
 
         Button button2  = (Button) view.lookup("#buttonTorrePlateada");
         button.setOnAction( (ActionEvent event)->{
@@ -43,6 +74,8 @@ public class MenuConstruir extends HBox {
         button.setOnAction( (ActionEvent event)->{
             new ControladorConstruccion().seleccionarConstruccion("Trampa");
         });
+
+
 
     }
     public Parent obtener(){

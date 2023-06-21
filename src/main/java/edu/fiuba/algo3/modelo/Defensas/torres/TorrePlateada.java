@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public class TorrePlateada extends Defensa {
 
+    public final static String TORRE_TYPE = "TorrePlateada";
+
     public TorrePlateada(int turnosParaConstruccion) {
         super(new EstadoConstruyendo(turnosParaConstruccion));
 
@@ -32,5 +34,10 @@ public class TorrePlateada extends Defensa {
     @Override
     public void atacar(Enemigo enemigo) {
         enemigo.recibirAtaque(ataque());
+    }
+
+    @Override
+    public String toString(){
+        return TORRE_TYPE;
     }
 }
