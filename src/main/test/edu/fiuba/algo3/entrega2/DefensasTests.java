@@ -8,14 +8,15 @@ import edu.fiuba.algo3.modelo.Defensas.torres.TorreBlanca;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Jugador;
 
 
 import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
 import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
-import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,7 +48,7 @@ public class DefensasTests {
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1);
+        Mapa unMapa = new Mapa(mockLector,1,1,new Jugador());
 
         torrePlateada.accionar(unMapa, new Coordenada(1,1));
         assertEquals(torrePlateada.estaActiva(),false);
@@ -67,7 +68,7 @@ public class DefensasTests {
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1);
+        Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
         torrePlateada.accionar(unMapa, new Coordenada(1,1));
         torrePlateada.accionar(unMapa, new Coordenada(1,1));
         torrePlateada.accionar(unMapa, new Coordenada(1,1));

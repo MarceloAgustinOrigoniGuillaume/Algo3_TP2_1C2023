@@ -32,7 +32,7 @@ public class MapaTests {
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1);
+        Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
 
         assertEquals(true, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
     }
@@ -46,7 +46,7 @@ public class MapaTests {
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Rocoso"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1);
+        Mapa unMapa = new Mapa(mockLector,1,1,new Jugador());
 
         assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
         
@@ -61,7 +61,7 @@ public class MapaTests {
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1);
+        Mapa unMapa = new Mapa(mockLector,1,1,new Jugador());
 
         assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
         
@@ -80,7 +80,7 @@ public class MapaTests {
         when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1);
+        Mapa unMapa = new Mapa(mockLector,1,1,new Jugador());
         unMapa.posicionar(new Coordenada(1,1),torrePlateada);
 
         assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
@@ -101,7 +101,7 @@ public class MapaTests {
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
                                                .thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,4);
+        Mapa unMapa = new Mapa(mockLector,1,4,new Jugador());
         Hormiga enemigo = new Hormiga();//new Jugador()
 
 
@@ -126,7 +126,7 @@ public class MapaTests {
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
                                                .thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,4);
+        Mapa unMapa = new Mapa(mockLector,1,4,new Jugador());
         Hormiga enemigo = new Hormiga();//new Jugador()
 
 
@@ -157,7 +157,7 @@ public class MapaTests {
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
                                                .thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,4);
+        Mapa unMapa = new Mapa(mockLector,1,4,new Jugador());
         Hormiga enemigo = new Hormiga();//new Jugador()
 
 
@@ -192,7 +192,7 @@ public class MapaTests {
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true)
                                                .thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,4);
+        Mapa unMapa = new Mapa(mockLector,1,4,mockJugador);
         Hormiga enemigo = new Hormiga();//new Jugador()
 
 

@@ -4,19 +4,34 @@ import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Celdas.*;
 import edu.fiuba.algo3.modelo.Defensas.Construccion;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
-import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
-import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import java.util.ArrayList;
 
 public class Mapa {
 
+
+
+
+
+    // interfaces externas para notificar cambios.
+    public interface OnEnemiesDiedListener{
+        void acreditarMuertos(ArrayList<Enemigo> muertos);
+    }
+
+    public interface OnHabitantesChangedListener {
+        void cambio(Coordenada coordenada);
+    }
+
+
+
+    // interfaces internas para contar dmg.
     private interface EjecutarMetodoConCeldas{
        boolean ejecutarMetodoConCeldas(Celda celda);
     }
-
     private class Contador implements EjecutarMetodoConCeldas{
         int damageTotal;
         @Override
@@ -25,10 +40,38 @@ public class Mapa {
             return true;
         }
     }
-    private Celda[][] matrizDeCeldas;
+
+
+    // referencias de coordenadas para accionar segun lo debido
     private ArrayList<Coordenada> caminoTerrestre;
     private ArrayList<Coordenada> caminoAereo;
     private ArrayList<Coordenada> defensas;
+
+
+    private Celda[][] matrizDeCeldas;
+
+
+    private OnEnemiesDiedListener acreditadorMuertos;
+    private OnHabitantesChangedListener listenerCambios = null;
+
+
+    public void setListenerCambiosCeldas(OnHabitantesChangedListener listenerCambios){
+            this.listenerCambios = listenerCambios;
+    }
+
+    public Mapa(LectorMapa lector ,int width, int height, OnEnemiesDiedListener acreditador) throws Exception {
+        // inicializas
+        acreditadorMuertos = acreditador;
+        matrizDeCeldas = new Celda[height][width];
+        caminoTerrestre = new ArrayList();
+        caminoAereo = new ArrayList<>();
+        defensas = new ArrayList();
+
+        // cargas lector
+        while(lector.haySiguiente()){
+            agregarCelda((ConvertidorParcela)(lector.siguienteElemento()));
+        }
+    }
 
 
     //Pre: -
@@ -71,19 +114,6 @@ public class Mapa {
 
     private Celda obtenerCelda(Coordenada coordenada){
         return matrizDeCeldas[coordenada.y()-1][coordenada.x()-1];
-    }
-
-    public Mapa(LectorMapa lector ,int width, int height) throws Exception {
-    	// inicializas
-    	matrizDeCeldas = new Celda[height][width];
-        caminoTerrestre = new ArrayList();
-        caminoAereo = new ArrayList<>();
-        defensas = new ArrayList();
-
-    	// cargas lector
-        while(lector.haySiguiente()){
-        	agregarCelda((ConvertidorParcela)(lector.siguienteElemento()));
-        }
     }
 
     private int indexarPasarela(Coordenada coordenada){
@@ -172,6 +202,13 @@ public class Mapa {
     }
 
     public void removerConstruccion(Coordenada coordenada){
+        
+        obtenerCelda(coordenada).clear();
+
+        if(listenerCambios != null){
+            listenerCambios.cambio(coordenada);
+        }
+
         return;
     }
 
@@ -184,15 +221,14 @@ public class Mapa {
         ArrayList<Enemigo> muertos= celda.popMuertos();
 
         if(muertos.size() > 0){
-            for (Enemigo muerto: muertos){
-                Logger.Log("---->Se deberia acreditar al enemigo "+muerto.toString());
-            }
 
+            acreditadorMuertos.acreditarMuertos(muertos);
+            
             // notify observers celda cambio.
-            Logger.Log("---->Habitantes de "+coordenada.toString()+" cambiaron...");            
+            if(listenerCambios != null){
+                listenerCambios.cambio(coordenada);
+            }
         }
-
-
 
         return seguirAtacando;
     }

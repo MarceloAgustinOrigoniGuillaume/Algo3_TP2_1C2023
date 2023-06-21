@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.Enemigo.terrestres;
 
 import edu.fiuba.algo3.Logger;
-import edu.fiuba.algo3.modelo.Billetera;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
+import edu.fiuba.algo3.modelo.SistemaCreditos;
 
 public class Hormiga extends EnemigoTerrestre {
 
@@ -12,16 +11,9 @@ public class Hormiga extends EnemigoTerrestre {
 	}
 
     @Override
-    public int creditosDados(){
-
-        Billetera billetera = Billetera.getInstance();
-        if(billetera.agregarHormigaMatada() > 10) {
-            billetera.agregarCreditos(2);
-            return 2;
-        }
-        billetera.agregarCreditos(1);
-        return 1;
-    }
+    public void acreditarseEn(SistemaCreditos sistema){
+        sistema.acreditarHormiga(1);
+    }    
 
     @Override
     public String toString(){

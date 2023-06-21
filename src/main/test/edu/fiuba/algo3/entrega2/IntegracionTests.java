@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega2;
 
 import edu.fiuba.algo3.Resources;
-import edu.fiuba.algo3.modelo.Billetera;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 

@@ -2,11 +2,10 @@ package edu.fiuba.algo3.modelo.Enemigo.terrestres;
 
 import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.modelo.Enemigo.EnemigoConVida;
-import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-public abstract class EnemigoTerrestre extends EnemigoConVida implements Monetizable {
+public abstract class EnemigoTerrestre extends EnemigoConVida {
 
     private int ataqueMaximo;
 
@@ -25,16 +24,6 @@ public abstract class EnemigoTerrestre extends EnemigoConVida implements Monetiz
     public void reducirVelocidad(){
         this.velocidad = (int)Math.floor(this.velocidad / 2);
     }
-
-    @Override
-    public void recibirAtaque(int danioRecibido) {
-        super.recibirAtaque(danioRecibido);
-
-        if(estaMuerto()){ // agregamos los creditos...
-            creditosDados();
-        }
-    }
-
 
     //Pre: -
     //Post: -

@@ -1,16 +1,22 @@
 package edu.fiuba.algo3.entrega2;
 
 
-import edu.fiuba.algo3.modelo.Billetera;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.SistemaCreditos;
 //import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
 //import edu.fiuba.algo3.modelo.moduloDefensas.TorreBlanca;
 //import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
+import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
+import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+
 
 public class EnemigoTests {
 	@Test
@@ -44,29 +50,65 @@ public class EnemigoTests {
 
 		assertEquals(enemigo.estaMuerto(),true);        
     }
+
+
     @Test
-    public void verificarQueJugadorGaneCreditosCorrespondientesAlMatarSpider() {
+    public void verificarQueJugadorNoGaneCreditosMatarLechuza() {
 
-        Jugador jugador = new Jugador();
-        Arania enemigo = new Arania();
+        Enemigo enemigo = new Lechuza();
+        SistemaCreditos mockCreditosJugador = mock(SistemaCreditos.class);
+        
 
-        enemigo.recibirAtaque(2);
-        //assertTrue(jugador.obtenerCreditos() > 100);
-        //assertTrue(jugador.obtenerCreditos() <=110);
+        enemigo.acreditarseEn(mockCreditosJugador);
+
+        verify(mockCreditosJugador, times(0)).acreditarHormiga(any(Integer.class));
+        verify(mockCreditosJugador, times(0)).acreditarArania(any(Integer.class));
 
     }
+
+
     @Test
-    public void verificarQueJugadorGaneCreditosCorrespondientesAlMatarHormifa() {
+    public void verificarQueJugadorNoGaneCreditosMatarTopo() {
 
-        Billetera billetera = Billetera.getInstance();
-        billetera.restablecerCreditos();
+        Enemigo enemigo = new Topo(1);
+        SistemaCreditos mockCreditosJugador = mock(SistemaCreditos.class);
+        
 
-        Jugador jugador = new Jugador();
+        enemigo.acreditarseEn(mockCreditosJugador);
 
-        Hormiga enemigo = new Hormiga();
+        verify(mockCreditosJugador, times(0)).acreditarHormiga(any(Integer.class));
+        verify(mockCreditosJugador, times(0)).acreditarArania(any(Integer.class));
 
-        enemigo.recibirAtaque(1);
-        assertTrue(jugador.obtenerCreditos() ==101);
+    }
+
+
+
+    @Test
+    public void verificarQueJugadorGaneCreditosCorrespondientesAlMatarHormiga() {
+
+        Enemigo enemigo = new Hormiga();
+        SistemaCreditos mockCreditosJugador = mock(SistemaCreditos.class);
+        
+
+        enemigo.acreditarseEn(mockCreditosJugador);
+
+        verify(mockCreditosJugador, times(1)).acreditarHormiga(1);
+        verify(mockCreditosJugador, times(0)).acreditarArania(any(Integer.class));
+
+    }
+
+
+    @Test
+    public void verificarQueJugadorGaneCreditosCorrespondientesAlMatarArania() {
+
+        Enemigo enemigo = new Arania();
+        SistemaCreditos mockCreditosJugador = mock(SistemaCreditos.class);
+        
+
+        enemigo.acreditarseEn(mockCreditosJugador);
+
+        verify(mockCreditosJugador, times(0)).acreditarHormiga(1);
+        verify(mockCreditosJugador, times(1)).acreditarArania(any(Integer.class));
 
     }
 

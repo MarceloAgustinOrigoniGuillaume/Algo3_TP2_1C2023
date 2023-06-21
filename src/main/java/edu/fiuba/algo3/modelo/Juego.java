@@ -23,6 +23,7 @@ public class Juego {
 
     public Juego(String jsonMapa,String jsonEnemigos) throws Exception {
         jugador = new Jugador();
+
         this.estadoDeJuego = new EstadoInicial(this,jsonMapa,jsonEnemigos);
         estadoDeJuego.ejecutarEstado();
     }

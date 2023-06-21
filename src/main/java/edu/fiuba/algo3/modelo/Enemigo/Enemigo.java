@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Enemigo;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
 
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.SistemaCreditos;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
@@ -28,11 +29,6 @@ public abstract class Enemigo implements Ataque, Posicionable {
         return false;
     }
 
-    public boolean estaMuerto(){
-        return false;
-    }
-
-
     // por default si es atacado por trampa... Si... se podria
     // hacer un triple dispatch para cumplir perfectamente con 
     // segregacion de interfaz, vale la pena? no lo creo.
@@ -40,6 +36,21 @@ public abstract class Enemigo implements Ataque, Posicionable {
         this.velocidad = this.velocidad/2; // reducir velocidad
         return true;
     }
+
+    // se necesita este metodo para verificar si el enemigo ha de
+    // desaparecer de habitantes...
+    public boolean estaMuerto(){
+        return false;
+    }
+
+    // para acreditarse... lo default es que no de creditos.
+    // se necesita este metodo para el double dispatch
+    public void acreditarseEn(SistemaCreditos sistema){
+        return;
+    }    
+
+
+
 
 
 

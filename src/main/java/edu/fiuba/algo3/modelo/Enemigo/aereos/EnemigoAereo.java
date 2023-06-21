@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.Enemigo.aereos;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.modelo.Enemigo.EnemigoConVida;
-import edu.fiuba.algo3.modelo.Enemigo.Monetizable;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 
 public abstract class EnemigoAereo extends EnemigoConVida {//implements Monetizable {

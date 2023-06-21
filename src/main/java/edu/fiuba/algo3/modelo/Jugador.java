@@ -1,29 +1,51 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Defensas.Estructura;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.Logger;
+import java.util.ArrayList;
 
-public class Jugador implements SistemaVida{
+public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
     private int vida;
-    private Billetera creditos;
     private String nombre;
+    private SistemaCreditos creditos;
 
     public Jugador(){
         vida=20;
-        Billetera billetera = Billetera.getInstance();
-        billetera.restablecerCreditos();
-        billetera.agregarCreditos(100);
+        creditos = new SistemaCreditos(100);
     }
+
+
+
+
+
+
+    // delegacion de creditos
+    public void acreditarMuertos(ArrayList<Enemigo> muertos){
+        for(Enemigo enemigo: muertos) {
+            enemigo.acreditarseEn(creditos);
+        }
+    }
+
+
     public int obtenerCreditos() {
-        Billetera billetera = Billetera.getInstance();
-        return billetera.obtenerCreditos();
+        return creditos.obtenerCreditos();
     }
 
-    public int obtenerVida() {
-        return vida;
+
+    public boolean puedeCostear(Estructura enConstruccion) {
+        return creditos.puedeCostear(enConstruccion);
     }
 
+    public void costear(Estructura enConstruccion) {
+        creditos.costear(enConstruccion);
+    }
+
+
+
+    // nombre
     public void asignarNombre(String nombre) {
         verificarNombre(nombre);
         this.nombre = nombre;
@@ -35,17 +57,12 @@ public class Jugador implements SistemaVida{
         }
     }
 
-    public boolean puedeCostear(Estructura enConstruccion) {
-        Billetera billetera = Billetera.getInstance();
-        return (billetera.obtenerCreditos() >= enConstruccion.costo());
-    }
 
-    public void costear(Estructura enConstruccion) {
-        Billetera billetera = Billetera.getInstance();
-        if(!puedeCostear(enConstruccion)){
-           return;
-        }
-        billetera.reducirCreditos(enConstruccion.costo());
+
+    // recibir ataques.... 
+
+    public int obtenerVida() {
+        return vida;
     }
 
     public boolean estaMuerto(){
