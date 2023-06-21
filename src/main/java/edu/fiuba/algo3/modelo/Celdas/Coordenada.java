@@ -7,6 +7,10 @@ import java.lang.Math;
 
 public class Coordenada {
 
+    public interface Iterador{
+        boolean actOn(Coordenada coord);
+    }
+
     private final int coordenadaX;
     private final int coordenadaY;
 
@@ -14,6 +18,28 @@ public class Coordenada {
         this.coordenadaX = x;
         this.coordenadaY = y;
     }
+
+    public void iterarEnRango(int rango, Iterador iterador){
+        int x_inicial = Math.max(coordenadaX-rango, 0);
+        int y_inicial = Math.max(coordenadaY-rango, 0);
+
+        int x_final = coordenadaX + rango;
+        int y_final = coordenadaY + rango;
+
+
+        int x = x_inicial;
+        int y = y_inicial;
+
+        while(x <= x_final && y <= y_final && iterador.actOn(new Coordenada(x,y))){
+            x+=1;
+            if(x > x_final){
+                x = x_inicial;
+                y+=1;
+            }
+
+        }
+    }
+
 
     public ArrayList<Coordenada> obtenerEnRango(ArrayList<Coordenada> coordenadas, int rango){
         ArrayList<Coordenada> enRango = new ArrayList<>();
@@ -33,7 +59,10 @@ public class Coordenada {
         return diffX+ diffY;
     }
 
-
+    @Override
+    public String toString() {
+        return String.valueOf(x())+","+String.valueOf(y());
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
