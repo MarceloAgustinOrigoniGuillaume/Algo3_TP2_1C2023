@@ -14,7 +14,7 @@ public class Topo extends EnemigoSubterraneo {
     private int contadorMovimientos;
 
     public Topo(int turnoActual){
-        super(1, 1, 5);
+        super(1, 5);
         this.turno = turnoActual;
         this.contadorMovimientos = 0;
     }
