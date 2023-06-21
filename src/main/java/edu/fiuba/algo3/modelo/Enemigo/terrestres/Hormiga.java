@@ -14,6 +14,10 @@ public class Hormiga extends EnemigoTerrestre implements Monetizable {
     public int creditosDados(){
 
         Billetera billetera = Billetera.getInstance();
+        if(billetera.agregarHormigaMatada() > 10) {
+            billetera.agregarCreditos(2);
+            return 2;
+        }
         billetera.agregarCreditos(1);
         return 1;
     }
