@@ -5,8 +5,8 @@ import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 public abstract class EnemigoSubterraneo extends Enemigo {
 
     protected int ataqueMaximo;
-    public EnemigoSubterraneo(int vida, int velocidad, int ataqueMaximo) {
-        super(vida, velocidad);
+    public EnemigoSubterraneo(int velocidad, int ataqueMaximo) {
+        super(velocidad);
         this.ataqueMaximo = ataqueMaximo;
     }
 

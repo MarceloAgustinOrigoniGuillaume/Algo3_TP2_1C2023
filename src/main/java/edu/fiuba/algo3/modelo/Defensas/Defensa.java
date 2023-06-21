@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Defensas;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 
 import java.util.ArrayList;
+import edu.fiuba.algo3.Logger;
 
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
@@ -21,6 +22,7 @@ public abstract class Defensa implements Estructura {
     public void finalizarConstruccion(){
 
         this.estadoActual = new EstadoConstruido();
+        Logger.info("Defensa termino construccion, siguiente turno ataca.");
 
     }
 
@@ -36,7 +38,7 @@ public abstract class Defensa implements Estructura {
 
     public abstract int ataque();
 
-    public abstract void atacar(Enemigo enemigo);
+    public abstract boolean atacar(ArrayList<Enemigo> enemigo);
 
 
     public boolean posicionarEn(Habitantes habitantes){

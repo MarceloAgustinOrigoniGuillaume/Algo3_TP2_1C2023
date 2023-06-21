@@ -10,12 +10,12 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Topo extends EnemigoSubterraneo {
 
-    private int turno;
+    private int turnoInicial;
     private int contadorMovimientos;
 
     public Topo(int turnoActual){
-        super(1, 1, 5);
-        this.turno = turnoActual;
+        super(1, 5);
+        this.turnoInicial = turnoActual;
         this.contadorMovimientos = 0;
     }
 
@@ -24,15 +24,13 @@ public class Topo extends EnemigoSubterraneo {
     @Override
     public boolean moverse(Mapa mapa, Coordenada posicion) {
         incrementarContadorDePasos();
-        super.moverse(mapa, posicion);
-        return false;
+        return super.moverse(mapa, posicion);
     }
 
     //Pre: -
     // Post: -
     public void incrementarContadorDePasos() {
         this.contadorMovimientos++;
-        this.turno++;
     }
 
     //Pre: -
@@ -53,21 +51,16 @@ public class Topo extends EnemigoSubterraneo {
     protected void atacarObjeto(Jugador jugador, Mapa mapa) {
     
         int ataque = this.ataqueMaximo;
-        if((this.turno) % 2 != 0){
+        if((this.turnoInicial+this.contadorMovimientos) % 2 != 0){
             ataque = 2;
         }
-        jugador.recibirAtaque(ataque);
-    }
 
-    //Pre: -
-    // Post: El topo nunca muere, hace un daño a la torre al llegar y desaparece.
-    public boolean estaMuerto() {
-        return false;
+        jugador.recibirAtaque(ataque);
     }
     
     @Override
     public Enemigo copiar() {
-        return new Topo(this.turno);
+        return new Topo(this.turnoInicial);
     }
 
 }

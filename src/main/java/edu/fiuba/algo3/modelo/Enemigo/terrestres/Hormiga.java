@@ -23,20 +23,13 @@ public class Hormiga extends EnemigoTerrestre {
         return 1;
     }
 
-    public Enemigo copiar(){
-        return new Hormiga();
-    }
-
-    public void recibirAtaque(int danioRecibido) {
-        this.vida = this.vida - danioRecibido;
-        if(this.vida == 0){
-            this.creditosDados();
-        }
-        Logger.info(" El daño recibido es: "+danioRecibido);
-    }
     @Override
     public String toString(){
         return "Hormiga";
     }
 
+
+    public Enemigo copiar(){
+        return new Hormiga();
+    }
 }

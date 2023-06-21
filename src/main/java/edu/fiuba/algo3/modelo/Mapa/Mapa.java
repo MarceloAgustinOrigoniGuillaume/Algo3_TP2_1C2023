@@ -171,10 +171,30 @@ public class Mapa {
         defensas.remove(0);
     }
 
+    public void removerConstruccion(Coordenada coordenada){
+        return;
+    }
+
     //Pre: -
     //Post: Desde las defenses se le dice a mapa que quiere atacar a determinada coordenada.
     public boolean atacar(Coordenada coordenada, Defensa defensa){
-        return obtenerCelda(coordenada).recibirAtaque(defensa);
+        Celda celda = obtenerCelda(coordenada);
+        boolean seguirAtacando = celda.recibirAtaque(defensa);
+
+        ArrayList<Enemigo> muertos= celda.popMuertos();
+
+        if(muertos.size() > 0){
+            for (Enemigo muerto: muertos){
+                Logger.Log("---->Se deberia acreditar al enemigo "+muerto.toString());
+            }
+
+            // notify observers celda cambio.
+            Logger.Log("---->Habitantes de "+coordenada.toString()+" cambiaron...");            
+        }
+
+
+
+        return seguirAtacando;
     }
 
     public void accionarDefensas(){

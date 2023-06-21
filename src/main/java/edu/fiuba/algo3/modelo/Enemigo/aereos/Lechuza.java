@@ -11,9 +11,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Lechuza extends EnemigoAereo {
 
-    private int vida;
     private int vidaCambioMovimiento;
-    private int velocidad;
     private EstadoMovimiento estadoMovimiento;
 
     public Lechuza(){
@@ -22,16 +20,13 @@ public class Lechuza extends EnemigoAereo {
         this.vidaCambioMovimiento= vida/2;
     }
 
-    public int velocidad(){
-        return this.velocidad;
-    }
-
     public boolean moverse(Mapa mapa, Coordenada posicion){
 
         if(vida <= vidaCambioMovimiento){
+            vidaCambioMovimiento = 0; // que solo pase una vez.
             this.estadoMovimiento = new EstadoMovimientoDiagonal(this);
         }
-        return (this.estadoMovimiento).ejecutarEstado( mapa, posicion);
+        return (this.estadoMovimiento).ejecutarEstado(mapa, posicion);
     }
 
     @Override
@@ -40,14 +35,6 @@ public class Lechuza extends EnemigoAereo {
         Logger.info("El daño recibido es: "+danioRecibido);
     }
 
-    //Pre: -
-    //Post: La lechuza, de momento, no dice que de creditos al jugador.
-    @Override
-    public int creditosDados(){
-        Billetera billetera = Billetera.getInstance();
-        billetera.agregarCreditos(0);
-        return 0;
-    }
 
     public Enemigo copiar(){
         return new Lechuza();

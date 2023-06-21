@@ -30,7 +30,7 @@ public class Coordenada {
         int x = x_inicial;
         int y = y_inicial;
 
-        while(x <= x_final && y_inicial <= y_final && iterador.actOn(new Coordenada(x,y))){            
+        while(x <= x_final && y <= y_final && iterador.actOn(new Coordenada(x,y))){
             x+=1;
             if(x > x_final){
                 x = x_inicial;

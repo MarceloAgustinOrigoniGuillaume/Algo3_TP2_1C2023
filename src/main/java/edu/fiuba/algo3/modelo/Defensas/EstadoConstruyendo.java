@@ -24,10 +24,11 @@ public class EstadoConstruyendo implements EstadoEstructura{
     public void ejecutarMetodo(Defensa defensa, Mapa mapa, Coordenada coordenada){
 
         this.turnosRestantes = this.turnosRestantes - 1;
-            Logger.info("Defensa Estaba construyendose faltan\n"+String.valueOf(this.turnosRestantes)+" turnos para activarse");
 
         if(hanFinalizadoLosTurnos()){
             defensa.finalizarConstruccion();
+        } else{
+            Logger.info("Defensa Estaba construyendose faltan\n"+String.valueOf(this.turnosRestantes)+" turnos para activarse");
         }
     }
 

@@ -63,11 +63,24 @@ public abstract class Habitantes {
     }
 
 
+    // dice a la defensa que ataque a los enemigos,
 	public boolean recibirAtaque(Defensa ataque){
-		//ArrayList<Enemigo> muertos = new ArrayList<>();
-		// recibilo... todabia sin implementar
+		return ataque.atacar(enemigos);
+	}
 
-		return false;
+	// se fija quien esta muerto, los remueve y los devuelve
+	public ArrayList<Enemigo> popMuertos(){
+
+		ArrayList<Enemigo> muertos = new ArrayList<>();
+		for (Enemigo enemigo: new ArrayList<Enemigo>(enemigos)){
+
+			if(enemigo.estaMuerto()){
+				muertos.add(enemigo);
+				enemigos.remove(enemigo);
+			}
+		}
+
+		return muertos;
 	}
 
 	public void moverUnidades(Mapa mapa, Jugador jugador, Coordenada desde){

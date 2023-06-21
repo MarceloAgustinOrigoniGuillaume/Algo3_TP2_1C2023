@@ -22,26 +22,13 @@ public class Arania extends EnemigoTerrestre {
         return valorCreditos;
     }
 
-    //Pre: -
-    //Post: Se usa para calcular si es posible que el jugador pierda a partir de los enemigos actuales. Araña hace daño 2.
-    public int ataque(){
-        return 2;
-	}
 
-    public Enemigo copiar(){
-    	return new Arania();
-    }
-
-    public void recibirAtaque(int danioRecibido) {
-        this.vida = this.vida - danioRecibido;
-        if(this.vida == 0){
-            this.creditosDados();
-        }
-        Logger.info(" El daño recibido es: "+danioRecibido);
-    }
     @Override
     public String toString(){
         return "Araña";
     }
 
+    public Enemigo copiar(){
+    	return new Arania();
+    }
 }

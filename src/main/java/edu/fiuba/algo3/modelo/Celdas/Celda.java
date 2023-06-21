@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Posicionable;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import java.util.ArrayList;
 
 public abstract class Celda {
 
@@ -42,8 +44,12 @@ public abstract class Celda {
         habitantes.moverUnidades(mapa, jugador,coordenada);
     }
 
+    public ArrayList<Enemigo> popMuertos(){
+        return habitantes.popMuertos();
+    }
+
     public boolean recibirAtaque(Defensa ataque){
-    	return habitantes.recibirAtaque(ataque);
+        return habitantes.recibirAtaque(ataque);
     }
 
     public void clear(){

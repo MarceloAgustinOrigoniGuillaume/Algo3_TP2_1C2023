@@ -7,10 +7,10 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 
-public abstract class Enemigo implements Ataque, Posicionable, Movible {
+public abstract class Enemigo implements Ataque, Posicionable {
 
 
-    public int velocidad;
+    protected int velocidad;
 
     public Enemigo(int velocidad){
         this.velocidad = velocidad;
@@ -22,6 +22,25 @@ public abstract class Enemigo implements Ataque, Posicionable, Movible {
     }
     //Pre: -
     //Post: -
+
+    // No es atacado por torre
+    public boolean atacadoPorTorre(int dmg){
+        return false;
+    }
+
+    public boolean estaMuerto(){
+        return false;
+    }
+
+
+    // por default si es atacado por trampa... Si... se podria
+    // hacer un triple dispatch para cumplir perfectamente con 
+    // segregacion de interfaz, vale la pena? no lo creo.
+    public boolean atacadoPorTrampa(){
+        this.velocidad = this.velocidad/2; // reducir velocidad
+        return true;
+    }
+
 
 
     //Pre: -
