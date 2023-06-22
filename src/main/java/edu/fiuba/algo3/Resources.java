@@ -27,6 +27,19 @@ public class Resources {
         return new Image(getImgPath(image),w,h, true, true);
     }
 
+    public static Image getImg(String image, int w, int h, boolean preserve){
+        return new Image(getImgPath(image),w,h, preserve, true);
+    }
+
+    public static Background getBckImage(String image, int w, int h){
+        BackgroundImage bkImage= new BackgroundImage(getImg(image,w,h,false),
+        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+          BackgroundSize.DEFAULT);
+
+
+        return new Background(bkImage);
+    }
+
 
     public static Background getBckImage(String image){
         BackgroundImage bkImage= new BackgroundImage(getImg(image),

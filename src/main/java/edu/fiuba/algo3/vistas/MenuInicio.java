@@ -35,7 +35,9 @@ public class MenuInicio extends VBox implements Vista {
 
 	private void init(Ventana ventana){
 		
-		setBackground(Resources.getBckImage("background1.jpg"));
+		setPrefWidth(640);
+		setPrefHeight(680);
+		setBackground(Resources.getBckImage("background2.jpg", 640,680));
 		setAlignment(Pos.CENTER);
 
 		Parent view = Resources.getVista("menu_inicio");
