@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.EnemigoAereo;
+import edu.fiuba.algo3.modelo.descriptors.EnemigosDescriptor;
 
 
 public class Habitantes {
@@ -104,4 +105,14 @@ public class Habitantes {
 		return contadorActual;
 	}
 
+	public EnemigosDescriptor describir(){
+		EnemigosDescriptor descriptor = new EnemigosDescriptor();
+
+		for(Enemigo enemigo : enemigos){
+			descriptor.agregarEnemigo(enemigo);
+		}
+
+		return descriptor;
+
+	}
 }

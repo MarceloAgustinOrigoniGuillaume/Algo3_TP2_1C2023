@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Celdas.Celda;
 import edu.fiuba.algo3.modelo.Celdas.Posicionable;
+import edu.fiuba.algo3.modelo.descriptors.EnemigoDescriptor;
 
 public abstract class Enemigo implements Ataque, Posicionable {
 
@@ -50,7 +51,7 @@ public abstract class Enemigo implements Ataque, Posicionable {
 
 
 
-
+    public abstract EnemigoDescriptor describir();
 
 
     //Pre: -

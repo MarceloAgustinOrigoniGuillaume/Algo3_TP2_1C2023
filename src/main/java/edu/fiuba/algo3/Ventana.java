@@ -13,6 +13,13 @@ public class Ventana extends Scene{
 
 	private LayoutIntermediario view;
 
+	public void resetToInitial(){
+
+		this.view.resetConstruccion();
+		new ControladorJuego().iniciarJuego(Resources.getJsonPath("mapa"),
+				Resources.getJsonPath("enemigos"), this);		
+	}
+
 	public Ventana(int width, int height) throws Exception{
 
 		// iniciar juego lo que hace es iniciar, y devuelva la pantalla inicial...
@@ -21,8 +28,7 @@ public class Ventana extends Scene{
 		this.view = new LayoutIntermediario();
 		setRoot(this.view);
 
-		new ControladorJuego().iniciarJuego(Resources.getJsonPath("mapa"),
-				Resources.getJsonPath("enemigos"), this);
+		resetToInitial();
 
 		//setRoot(new IntermediarioLayoutBasico());
 	}
@@ -44,8 +50,8 @@ public class Ventana extends Scene{
 		//Parent view = ;
     }
 
-	public void clickEnCelda(ViewCelda celda){
-		view.clickEnCelda(celda);
+	public boolean clickEnCelda(ViewCelda celda){
+		return view.clickEnCelda(celda);
 	}
 	public void removePopUp() {
 		view.removePopUp();

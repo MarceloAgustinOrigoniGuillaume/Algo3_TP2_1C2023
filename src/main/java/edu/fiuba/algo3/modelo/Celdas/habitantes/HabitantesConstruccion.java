@@ -51,8 +51,8 @@ public abstract class HabitantesConstruccion{
 	public DefensaDescriptor describir() {
 
 		if(this.construccionGuardada != null){
-			return new DefensaDescriptor(this.construccionGuardada.toString());
+			return new DefensaDescriptor(this.construccionGuardada.toString(), this.construccionGuardada.estaActiva());
 		}
-		return null;
+		return new DefensaDescriptor();
 	}
 }

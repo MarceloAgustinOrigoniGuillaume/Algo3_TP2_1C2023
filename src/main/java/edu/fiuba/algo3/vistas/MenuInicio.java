@@ -48,6 +48,18 @@ public class MenuInicio extends VBox implements Vista {
 		TextField textFieldNombre = (TextField) view.lookup("#editNombreUsuario");
 		Button button  = (Button) view.lookup("#btnIniciarJuego");
 
+
+
+		textFieldNombre.setOnAction( (ActionEvent event)->{
+			String nombreJugador = textFieldNombre.getText();
+			if(!validarNombreJugador(nombreJugador)){
+				Logger.Log("Nombre invalido '"+nombreJugador+"'");
+				return;
+			}
+
+			new ControladorJuego().empezarJuego(ventana, nombreJugador);
+
+		});
 		button.setOnAction( (ActionEvent event)->{
 			String nombreJugador = textFieldNombre.getText();
 			if(!validarNombreJugador(nombreJugador)){

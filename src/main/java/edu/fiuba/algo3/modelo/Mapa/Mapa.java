@@ -20,7 +20,7 @@ public class Mapa {
     }
 
     public interface OnHabitantesChangedListener {
-        void cambio(Coordenada coordenada);
+        void cambio(Coordenada coordenada, CeldaDescriptor celda);
     }
 
 
@@ -135,6 +135,8 @@ public class Mapa {
     public boolean posicionar(Coordenada coordenada, Construccion construccion){
         if(construccion.posicionarEn(obtenerCelda(coordenada))){
             defensas.add(coordenada);
+
+            notificarCeldaCambio(coordenada);
             return true;
         }
         return false;
@@ -160,6 +162,7 @@ public class Mapa {
 
         if(caminoAereo.contains(desde)){
             caminoAereo.remove(desde);
+            notificarCeldaCambio(desde);
         }
         if(!caminoTerrestre.contains(hasta)){
             caminoAereo.add(hasta);
@@ -188,6 +191,13 @@ public class Mapa {
             celdaActual.accionarEnemigos(this, jugador);
             return true;}
         );
+
+        // hagamosla sencilla para notificar, por ahora almenos
+        iteradorDeCeldas((Celda celdaActual)->{
+            notificarCeldaCambio(celdaActual);
+            return true;
+        });
+
     }
 
     //Pre: -
@@ -201,7 +211,7 @@ public class Mapa {
         while (indice < defensas.size()){
             celdaBuscada = obtenerCelda(defensas.get(indice));
             if(celdaBuscada.defensas().recibirAtaqueLechuza()){ // trampa devolveria false, no se puede quitar.
-                notificarListeners(defensas.get(indice));
+                notificarCeldaCambio(defensas.get(indice));
                 defensas.remove(indice);
 
                 return; // solo una torre.
@@ -211,23 +221,31 @@ public class Mapa {
 
     }
 
-    private void notificarListeners(Coordenada coordenada){
+    private void notificarCeldaCambio(Celda celda){
         if(listenerCambios != null){
-            listenerCambios.cambio(coordenada);
+            listenerCambios.cambio(celda.posicion(), celda.describe());
         }
 
+    }
+
+    // publico para que alguien externo... defensa avise si termino
+    // la construccion
+    public void notificarCeldaCambio(Coordenada coordenada){
+        notificarCeldaCambio(obtenerCelda(coordenada));
     }
 
     public void removerConstruccion(Coordenada coordenada){
         
         obtenerCelda(coordenada).defensas().clear();
-        notificarListeners(coordenada);
+        notificarCeldaCambio(coordenada);
         return;
     }
 
     //Pre: -
     //Post: Desde las defenses se le dice a mapa que quiere atacar a determinada coordenada.
     public boolean atacar(Coordenada coordenada, Defensa defensa){
+        //Logger.info(defensa.toString()+" atacando a : "+coordenada.toString());
+
         Celda celda = obtenerCelda(coordenada);
         boolean seguirAtacando = celda.enemigos().recibirAtaque(defensa);
 
@@ -239,7 +257,7 @@ public class Mapa {
             acreditadorMuertos.acreditarMuertos(muertos);
             
             // notify observers celda cambio.
-            notificarListeners(coordenada);
+            notificarCeldaCambio(coordenada);
         }
 
         return seguirAtacando;
@@ -247,7 +265,7 @@ public class Mapa {
 
     public void accionarDefensas(){
         for(Coordenada posDefensa: defensas){
-            Logger.info("Se acciono defensa de la posicion: "+posDefensa.toString()+"\n" );
+            Logger.info("Se acciono defensa de la posicion: "+posDefensa.toString());
             obtenerCelda(posDefensa).accionarEstructuras(this);
         }
     }
@@ -257,7 +275,7 @@ public class Mapa {
     }
     
     public void posicionarInicio(Enemigo enemigo){
-        Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
+        //Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
         enemigo.posicionarEn(obtenerCelda(caminoTerrestre.get(0)));
     }
 

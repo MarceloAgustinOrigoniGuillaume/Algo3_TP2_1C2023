@@ -40,6 +40,13 @@ public class LayoutIntermediario extends AnchorPane {
             this.setRightAnchor(popup, 0.0);
         }
     }
+
+    public void resetConstruccion(){
+        if (defensasDrag != null){
+            defensasDrag = null;
+        }
+
+    }
     public void clearPopup(){
         if(this.popup != null){
             getChildren().remove(this.popup);
@@ -59,11 +66,11 @@ public class LayoutIntermediario extends AnchorPane {
         clearPopup();
     }
 
-    public void clickEnCelda(ViewCelda celda) {
+    public boolean clickEnCelda(ViewCelda celda) {
         if(this.defensasDrag == null){
-            Logger.info("Aca hay una celda de"+celda.toString()+"vacia");
-            return;
+            return false;
         }
+
         boolean pudoConstruir = false;
 
         pudoConstruir = new ControladorConstruccion().posicionarConstruccion(this.defensasDrag.obtenerDefensa(), celda.getCoordenada());
@@ -71,11 +78,12 @@ public class LayoutIntermediario extends AnchorPane {
         if(pudoConstruir == true){
             Logger.info("Se pudo construir");
             getChildren().remove(this.defensasDrag);
-            celda.ponerDefensa(new DefensaDescriptor(defensasDrag.toString()));
+            //celda.ponerDefensa(new DefensaDescriptor(defensasDrag.toString()));
             this.defensasDrag = null;
         }else{
             Logger.info("NO SE pudo construir");
         }
 
+        return true;
     }
 }

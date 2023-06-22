@@ -12,13 +12,20 @@ public class ControladorJuego extends Controlador {
 	public ControladorJuego() {
 	}
 
-	public void iniciarJuego(String jsonMapa, String jsonEnemigos, Ventana ventana) throws Exception{
-		DatosModelo.nuevoJuego(jsonMapa, jsonEnemigos);
+	public void iniciarJuego(String jsonMapa, String jsonEnemigos, Ventana ventana){
+
+		try{
+			DatosModelo.nuevoJuego(jsonMapa, jsonEnemigos);
+		} catch(Exception ex){
+			Logger.Log("ERROR INICIANDO NUEVO JUEGO "+ex.toString());
+			ex.printStackTrace();
+		}
 
 		ventana.setVista(new MenuInicio(ventana));
 	}
 
 	public boolean empezarJuego(Ventana ventana, String nombreJugador){
+		
 		try{
 			Logger.Log("Empezando juego con jugador '"+nombreJugador+"'");
 			DatosModelo.empezarJuegoActual();
@@ -28,15 +35,21 @@ public class ControladorJuego extends Controlador {
 			return false;
 		}
 
-		ViewMapa mapa = new ViewMapa(DatosModelo.mapa_width,DatosModelo.mapa_height,(int x, int y)->{
-			CeldaDescriptor datos= DatosModelo.obtenerTerrenoEn(x,y);
 
-			ViewCelda celda = new ViewCelda(datos.tipo(), datos.cantidadEnemigos(), new Coordenada(x,y));
-			celda.setOnClick(ventana::clickEnCelda);
-			return celda;
+		ViewJugador jugador = new ViewJugador(nombreJugador);
+
+
+
+
+		ViewMapa mapa = new ViewMapa(DatosModelo.mapa_width,DatosModelo.mapa_height,(int x, int y)->{
+			//Logger.Log("Obteniendo ........celda... ");
+			return ControladorMapa.instanciarViewCelda(ventana::clickEnCelda ,
+				 DatosModelo.obtenerTerrenoEn(x,y), x, y);
 		});
 
-		ViewJuego view = new ViewJuego(mapa, ventana);
+		new ControladorMapa().setListenerCeldas(mapa);
+
+		ViewJuego view = new ViewJuego(mapa,jugador, ventana);
 		ventana.setVista(view);
 
 		//new MenuConstrucciones();
@@ -47,6 +60,37 @@ public class ControladorJuego extends Controlador {
 
 		//new MenuConstrucciones(ventana);
 		ventana.addPopup(new MenuConstruir(ventana));
+	}
+
+
+	public void terminarJuego(Ventana ventana){
+
+		// por ahora... vuelve a inicio de juego.
+
+		DatosModelo.terminarJuego();
+		try{
+			ventana.resetToInitial();
+		} catch(Exception ex){
+			Logger.Log("ERROR INICIANDO NUEVO JUEGO "+ex.toString());
+			ex.printStackTrace();
+		}
 
 	}
+
+
+	public void pasarTurno(Ventana ventana){
+
+		// pasas turno
+
+		if(!DatosModelo.pasarTurno()){
+			Logger.Log("----------->HABIA TERMINADO EL JUEGO?");
+			terminarJuego(ventana);
+			return;
+		}
+
+		Logger.Log("Debio actualizar?");
+
+	}
+
+
 }
