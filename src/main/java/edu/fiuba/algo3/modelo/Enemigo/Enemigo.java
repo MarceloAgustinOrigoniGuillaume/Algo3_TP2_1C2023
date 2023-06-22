@@ -32,10 +32,8 @@ public abstract class Enemigo implements Ataque, Posicionable {
     // por default si es atacado por trampa... Si... se podria
     // hacer un triple dispatch para cumplir perfectamente con 
     // segregacion de interfaz, vale la pena? no lo creo.
-    public boolean atacadoPorTrampa(){
-        this.velocidad = this.velocidad/2; // reducir velocidad
-        return true;
-    }
+    public abstract boolean atacadoPorTrampa();
+
 
     // se necesita este metodo para verificar si el enemigo ha de
     // desaparecer de habitantes...

@@ -8,7 +8,7 @@ public class Trampa extends Defensa {
     public final static String TRAMPA_TYPE = "Trampa";
 
     public Trampa() {
-        super(new EstadoConstruido());
+        super(new EstadoTrampa(3));
     }
 
     public boolean posicionarEn(Celda celda){

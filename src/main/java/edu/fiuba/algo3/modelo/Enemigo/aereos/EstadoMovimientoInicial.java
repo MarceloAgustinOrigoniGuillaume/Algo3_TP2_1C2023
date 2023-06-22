@@ -26,11 +26,11 @@ public class EstadoMovimientoInicial implements EstadoMovimiento {
 
         int restantePorMover = (this.enemigo).velocidad();
 
-        while(restantePorMover>0 && x_nuevo<=x_final){
+        while(restantePorMover>0 && x_nuevo<x_final){
             restantePorMover-=1;
             x_nuevo+=1;
         }
-        while(restantePorMover>0 && y_nuevo<=y_final){
+        while(restantePorMover>0 && y_nuevo<y_final){
             restantePorMover-=1;
             y_nuevo+=1;
         }

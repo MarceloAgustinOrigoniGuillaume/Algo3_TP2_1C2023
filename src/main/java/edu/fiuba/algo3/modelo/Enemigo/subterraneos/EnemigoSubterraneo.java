@@ -17,6 +17,11 @@ public abstract class EnemigoSubterraneo extends Enemigo {
         return this.ataqueMaximo;
     }
 
-
-
+    public boolean atacadoPorTrampa() {
+        if (this.velocidad == 1) {
+            return true;
+        }
+        this.velocidad = this.velocidad / 2;
+        return true;
+    }
 }

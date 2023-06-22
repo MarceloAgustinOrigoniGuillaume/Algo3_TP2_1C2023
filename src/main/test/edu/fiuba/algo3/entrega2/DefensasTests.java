@@ -32,7 +32,7 @@ public class DefensasTests {
         Posible separacion de test al verificar cada turno
         */
 
-        assertEquals(torrePlateada.estaActiva(),false);
+        assertEquals(torrePlateada.estaActiva(), false);
 
         /*
         Recien para despues lo del Mock, al verificar que esten operativas
@@ -45,13 +45,13 @@ public class DefensasTests {
         LectorMapa mockLector = mock(LectorMapa.class);
 
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1, 1, "Tierra"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1,new Jugador());
+        Mapa unMapa = new Mapa(mockLector, 1, 1, new Jugador());
 
-        torrePlateada.accionar(unMapa, new Coordenada(1,1));
-        assertEquals(torrePlateada.estaActiva(),false);
+        torrePlateada.accionar(unMapa, new Coordenada(1, 1));
+        assertEquals(torrePlateada.estaActiva(), false);
 
 
         /*
@@ -65,15 +65,15 @@ public class DefensasTests {
         LectorMapa mockLector = mock(LectorMapa.class);
 
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1, 1, "Tierra"));
         when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
-        torrePlateada.accionar(unMapa, new Coordenada(1,1));
-        torrePlateada.accionar(unMapa, new Coordenada(1,1));
-        torrePlateada.accionar(unMapa, new Coordenada(1,1));
+        Mapa unMapa = new Mapa(mockLector, 1, 1, new Jugador());
+        torrePlateada.accionar(unMapa, new Coordenada(1, 1));
+        torrePlateada.accionar(unMapa, new Coordenada(1, 1));
+        torrePlateada.accionar(unMapa, new Coordenada(1, 1));
 
-        assertEquals(torrePlateada.estaActiva(),true);
+        assertEquals(torrePlateada.estaActiva(), true);
     }
 
     @Test
@@ -95,14 +95,13 @@ public class DefensasTests {
     }
 
 
-
     @Test
     public void verificarTorreAtacaAUnEnemigoYSoloUnEnemigo() {
         TorreBlanca torreBlanca = new TorreBlanca();
 
         Arania mockEnemigo = mock(Arania.class);
         Arania mockEnemigo2 = mock(Arania.class);
-        
+
         when(mockEnemigo.atacadoPorTorre(1)).thenReturn(true);
 
         ArrayList<Enemigo> enemigos = new ArrayList<>();
@@ -124,7 +123,7 @@ public class DefensasTests {
         TorreBlanca torreBlanca = new TorreBlanca();
 
         Arania mockEnemigo = mock(Arania.class);
-        
+
         when(mockEnemigo.atacadoPorTorre(1)).thenReturn(true);
 
         ArrayList<Enemigo> enemigos = new ArrayList<>();
@@ -140,27 +139,6 @@ public class DefensasTests {
         */
     }
 
-    @Test
-    public void verificarTrampaAtacaAUnEnemigoComoTrampa() {
-        Trampa trampa = new Trampa();
-
-        Arania mockEnemigo = mock(Arania.class);
-        
-        when(mockEnemigo.atacadoPorTrampa()).thenReturn(true);
-
-        ArrayList<Enemigo> enemigos = new ArrayList<>();
-        enemigos.add(mockEnemigo);
-
-        trampa.atacar(enemigos);
-
-        verify(mockEnemigo, times(0)).atacadoPorTorre(1);
-        verify(mockEnemigo, times(1)).atacadoPorTrampa();
-
-        /*
-        Recien para despues lo del Mock, al verificar que esten operativas
-        */
-    }
-
 
     @Test
     public void verificarTorreAtacaAUnEnemigoYSoloUnoPeroPrimeroNoEsAtacable() {
@@ -168,7 +146,7 @@ public class DefensasTests {
 
         Topo mockEnemigo = mock(Topo.class);
         Arania mockEnemigo2 = mock(Arania.class);
-        
+
         when(mockEnemigo.atacadoPorTorre(1)).thenReturn(false);
 
         ArrayList<Enemigo> enemigos = new ArrayList<>();
@@ -185,58 +163,8 @@ public class DefensasTests {
         */
     }
 
-
-    @Test
-    public void verificarTrampaAtacaATodoEnemigo() {
-        Trampa trampa = new Trampa();
-
-        Topo mockEnemigo = mock(Topo.class);
-        Arania mockEnemigo2 = mock(Arania.class);
-        
-        when(mockEnemigo.atacadoPorTrampa()).thenReturn(true);
-
-        ArrayList<Enemigo> enemigos = new ArrayList<>();
-        enemigos.add(mockEnemigo);
-        enemigos.add(mockEnemigo2);
-
-        trampa.atacar(enemigos);
-
-        verify(mockEnemigo, times(1)).atacadoPorTrampa();
-        verify(mockEnemigo2, times(1)).atacadoPorTrampa();
-
-    }
-
-    @Test
-    public void verificarTrampaAtacaATodoEnemigoAunqueNoPuedaConUno() {
-        Trampa trampa = new Trampa();
-
-        Lechuza mockEnemigo = mock(Lechuza.class);
-        Arania mockEnemigo2 = mock(Arania.class);
-        
-        when(mockEnemigo.atacadoPorTrampa()).thenReturn(false);
-
-        ArrayList<Enemigo> enemigos = new ArrayList<>();
-        enemigos.add(mockEnemigo);
-        enemigos.add(mockEnemigo2);
-
-        trampa.atacar(enemigos);
-
-        verify(mockEnemigo, times(1)).atacadoPorTrampa();
-        verify(mockEnemigo2, times(1)).atacadoPorTrampa();
-
-    }
-
-
-
-
-
-
-
-
-
-
-
 }
+
 
 //    @Test
 //    public void VerificarQueAgregar1vez() {

@@ -31,21 +31,19 @@ public class Topo extends EnemigoSubterraneo {
     //Pre: -
     // Post: -
     public void incrementarContadorDePasos() {
+
         this.contadorMovimientos++;
-    }
-
-    //Pre: -
-    // Post: -
-    public int velocidad(){
-
         if(this.contadorMovimientos > 5 && this.contadorMovimientos <= 10){
             this.velocidad = 2;
         }
         if(this.contadorMovimientos >= 11){
             this.velocidad = 3;
         }
-        return this.velocidad;
     }
+
+    //Pre: -
+    // Post: -
+
 
     //Pre: -
     //Post: -

@@ -14,9 +14,9 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
     private String nombre;
     private SistemaCreditos creditos;
 
-    private modificacion_vida obsver_vida;
+    private modificacion_vida obsver_vida = (String vida)->{};
 
-    private modificacion_creditos observer_creditos;
+    private modificacion_creditos observer_creditos = (String creditos)->{};
 
     public interface modificacion_vida{
         void update_vida(String vida);
@@ -95,9 +95,17 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
     }
 
     public void setObserver_creditos(modificacion_creditos observer_creditos) {
+        if(observer_creditos == null){
+            this.observer_creditos = (String creditos)->{};
+            return;
+        }
         this.observer_creditos = observer_creditos;
     }
     public void setObsver_vida(modificacion_vida obsver_vida){
+        if(obsver_vida == null){
+            this.obsver_vida = (String vida)->{};
+            return;
+        }
         this.obsver_vida = obsver_vida;
     }
 }

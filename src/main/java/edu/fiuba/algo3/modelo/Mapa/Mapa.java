@@ -44,6 +44,9 @@ public class Mapa {
     private ArrayList<Coordenada> caminoAereo;
     private ArrayList<Coordenada> defensas;
 
+    private Integer width;
+
+    private Integer height;
 
     private Celda[][] matrizDeCeldas;
 
@@ -63,6 +66,9 @@ public class Mapa {
         caminoTerrestre = new ArrayList();
         caminoAereo = new ArrayList<>();
         defensas = new ArrayList();
+
+        this.width = width;
+        this.height = height;
 
         // cargas lector
         while(lector.haySiguiente()){
@@ -245,7 +251,9 @@ public class Mapa {
     //Post: Desde las defenses se le dice a mapa que quiere atacar a determinada coordenada.
     public boolean atacar(Coordenada coordenada, Defensa defensa){
         //Logger.info(defensa.toString()+" atacando a : "+coordenada.toString());
-
+        if(coordenada.x()<1 || coordenada.x()>this.width|| coordenada.y()<1 || coordenada.y()> height) {
+            return true;
+        }
         Celda celda = obtenerCelda(coordenada);
         boolean seguirAtacando = celda.enemigos().recibirAtaque(defensa);
 

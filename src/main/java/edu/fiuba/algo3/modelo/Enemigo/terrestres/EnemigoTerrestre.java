@@ -22,6 +22,14 @@ public abstract class EnemigoTerrestre extends EnemigoConVida {
             String.valueOf(velocidad), String.valueOf(vida),"ataca jugador con "+String.valueOf(ataqueMaximo));
     }
 
+    public boolean atacadoPorTrampa(){
+        if(this.velocidad == 1){
+            return true;
+        }
+        this.velocidad = this.velocidad/2;
+        return true;
+    }
+
 
     //Pre: -
     //Post: Se usa para calcular si es posible que el jugador pierda a partir de los enemigos actuales.
