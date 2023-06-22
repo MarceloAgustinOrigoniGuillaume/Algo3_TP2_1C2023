@@ -135,6 +135,8 @@ public class Mapa {
     public boolean posicionar(Coordenada coordenada, Construccion construccion){
         if(construccion.posicionarEn(obtenerCelda(coordenada))){
             defensas.add(coordenada);
+
+            notificarListeners(coordenada);
             return true;
         }
         return false;
@@ -160,6 +162,7 @@ public class Mapa {
 
         if(caminoAereo.contains(desde)){
             caminoAereo.remove(desde);
+            notificarListeners(desde);
         }
         if(!caminoTerrestre.contains(hasta)){
             caminoAereo.add(hasta);
@@ -191,7 +194,7 @@ public class Mapa {
 
         // hagamosla sencilla para notificar, por ahora almenos
         iteradorDeCeldas((Celda celdaActual)->{
-            //notificarListeners(celdaActual);
+            notificarListeners(celdaActual);
             return true;
         });
 
@@ -239,7 +242,7 @@ public class Mapa {
     //Pre: -
     //Post: Desde las defenses se le dice a mapa que quiere atacar a determinada coordenada.
     public boolean atacar(Coordenada coordenada, Defensa defensa){
-        Logger.info(defensa.toString()+" atacando a : "+coordenada.toString());
+        //Logger.info(defensa.toString()+" atacando a : "+coordenada.toString());
 
         Celda celda = obtenerCelda(coordenada);
         boolean seguirAtacando = celda.enemigos().recibirAtaque(defensa);

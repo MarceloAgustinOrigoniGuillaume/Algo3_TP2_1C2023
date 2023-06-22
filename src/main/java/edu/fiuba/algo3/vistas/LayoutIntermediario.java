@@ -45,7 +45,7 @@ public class LayoutIntermediario extends AnchorPane {
         if (defensasDrag != null){
             defensasDrag = null;
         }
-        
+
     }
     public void clearPopup(){
         if(this.popup != null){
@@ -78,7 +78,7 @@ public class LayoutIntermediario extends AnchorPane {
         if(pudoConstruir == true){
             Logger.info("Se pudo construir");
             getChildren().remove(this.defensasDrag);
-            celda.ponerDefensa(new DefensaDescriptor(defensasDrag.toString()));
+            //celda.ponerDefensa(new DefensaDescriptor(defensasDrag.toString()));
             this.defensasDrag = null;
         }else{
             Logger.info("NO SE pudo construir");

@@ -11,7 +11,7 @@ public class App extends Application {
 
 
     public static final int INITIAL_WIDTH = 640;
-    public static final int INITIAL_HEIGHT = 640;
+    public static final int INITIAL_HEIGHT = 680;
 
 
     public static void run(String[] args) {

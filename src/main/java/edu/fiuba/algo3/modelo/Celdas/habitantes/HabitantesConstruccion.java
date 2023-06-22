@@ -53,6 +53,6 @@ public abstract class HabitantesConstruccion{
 		if(this.construccionGuardada != null){
 			return new DefensaDescriptor(this.construccionGuardada.toString());
 		}
-		return null;
+		return new DefensaDescriptor(null);
 	}
 }

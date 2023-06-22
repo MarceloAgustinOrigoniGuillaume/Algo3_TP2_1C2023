@@ -9,7 +9,11 @@ public class DefensaDescriptor {
     public DefensaDescriptor(String defensa){
         this.defensa = defensa;
     }
-    public String tipo(){
-        return defensa;
+    
+    public String rel_image(){
+    	if(this.defensa == null){
+    		return "";
+    	}
+        return "torreeiffel.PNG"; // por ahora siempre la misma ja
     }
 }
