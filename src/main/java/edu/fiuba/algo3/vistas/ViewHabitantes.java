@@ -59,7 +59,7 @@ public class ViewHabitantes extends VBox {
 		}
 		getChildren().add(view);
 
-		Button btnCerrar  = (Button) view.lookup("#buttonCerrar");
+        Button btnCerrar  = (Button) view.lookup("#buttonCerrar");
 		btnCerrar.setOnAction((ActionEvent event)->{
 			ventana.removePopUp();
 		});

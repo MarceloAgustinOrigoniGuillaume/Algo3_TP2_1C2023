@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 
 import javafx.scene.image.ImageView;
 import edu.fiuba.algo3.Resources;
@@ -65,7 +66,7 @@ public class ViewCelda extends StackPane {
     }
 
     public void updateImage(String url_imagen){
-        Logger.Log("UPDATING VIEW CELDA WITH NEW URL "+url_imagen);
+        //Logger.Log("UPDATING VIEW CELDA WITH NEW URL "+url_imagen);
         if(url_celda != url_imagen){
             url_celda = url_imagen;
             imagen.setImage(Resources.getImg(url_imagen, TILE_SIZE, TILE_SIZE));
@@ -73,7 +74,7 @@ public class ViewCelda extends StackPane {
     }
 
     public void updateEnemigos(int cantidadEnemigos){
-        Logger.Log("UPDATING VIEW CELDA WITH ENEMIES"+String.valueOf(cantidadEnemigos));
+        Logger.Log("------>UPDATING  :: "+coordenada.toString()+" VIEW CELDA WITH ENEMIES"+String.valueOf(cantidadEnemigos));
         textoEnemigos.setText(String.valueOf(cantidadEnemigos));
         textoEnemigos.setVisible(cantidadEnemigos != 0);
     }
@@ -87,16 +88,22 @@ public class ViewCelda extends StackPane {
 
 	private void init(String url_imagen, int cantidadEnemigos){
 
-        this.imagen = new ImageView(Resources.getImg(url_imagen, TILE_SIZE, TILE_SIZE));
-        this.textoEnemigos = new Label(String.valueOf(cantidadEnemigos));
+
+        Parent view = Resources.getVista("celda_mapa");
+        if(view == null){
+            getChildren().add(new Label("ERROR view was null"));
+            return;
+        }
+        getChildren().add(view);
+
+
+        this.imagen  = (ImageView) view.lookup("#imagenTerreno");
+        this.textoEnemigos  = (Label) view.lookup("#textoEnemigos");
+
+        updateView(url_imagen,cantidadEnemigos);
 
         imagen.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleClick);
         
-        getChildren().add(imagen);
-        getChildren().add(textoEnemigos);
-
-        textoEnemigos.setVisible(cantidadEnemigos != 0);
-
 	}
 
     public Coordenada getCoordenada(){

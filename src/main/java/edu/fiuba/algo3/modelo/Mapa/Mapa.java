@@ -93,7 +93,7 @@ public class Mapa {
             indice -=1;
         }
         while(indice2 < caminoAereo.size()){
-            celdaActual = obtenerCelda(caminoAereo.get(indice));
+            celdaActual = obtenerCelda(caminoAereo.get(indice2));
             if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual)){
                 return;
             }
@@ -168,12 +168,13 @@ public class Mapa {
 
         if(caminoAereo.contains(desde)){
             caminoAereo.remove(desde);
-            notificarCeldaCambio(desde);
         }
         if(!caminoTerrestre.contains(hasta)){
             caminoAereo.add(hasta);
         }
         actualizarPosicionEnemigo(unidad, desde, hasta);
+
+        notificarCeldaCambio(desde);
     }
 
     //Pre: -
