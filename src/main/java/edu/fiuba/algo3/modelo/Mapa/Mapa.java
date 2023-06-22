@@ -136,7 +136,7 @@ public class Mapa {
         if(construccion.posicionarEn(obtenerCelda(coordenada))){
             defensas.add(coordenada);
 
-            notificarListeners(coordenada);
+            notificarCeldaCambio(coordenada);
             return true;
         }
         return false;
@@ -162,7 +162,7 @@ public class Mapa {
 
         if(caminoAereo.contains(desde)){
             caminoAereo.remove(desde);
-            notificarListeners(desde);
+            notificarCeldaCambio(desde);
         }
         if(!caminoTerrestre.contains(hasta)){
             caminoAereo.add(hasta);
@@ -194,7 +194,7 @@ public class Mapa {
 
         // hagamosla sencilla para notificar, por ahora almenos
         iteradorDeCeldas((Celda celdaActual)->{
-            notificarListeners(celdaActual);
+            notificarCeldaCambio(celdaActual);
             return true;
         });
 
@@ -211,7 +211,7 @@ public class Mapa {
         while (indice < defensas.size()){
             celdaBuscada = obtenerCelda(defensas.get(indice));
             if(celdaBuscada.defensas().recibirAtaqueLechuza()){ // trampa devolveria false, no se puede quitar.
-                notificarListeners(defensas.get(indice));
+                notificarCeldaCambio(defensas.get(indice));
                 defensas.remove(indice);
 
                 return; // solo una torre.
@@ -221,21 +221,23 @@ public class Mapa {
 
     }
 
-    private void notificarListeners(Celda celda){
+    private void notificarCeldaCambio(Celda celda){
         if(listenerCambios != null){
             listenerCambios.cambio(celda.posicion(), celda.describe());
         }
 
     }
 
-    private void notificarListeners(Coordenada coordenada){
-        notificarListeners(obtenerCelda(coordenada));
+    // publico para que alguien externo... defensa avise si termino
+    // la construccion
+    public void notificarCeldaCambio(Coordenada coordenada){
+        notificarCeldaCambio(obtenerCelda(coordenada));
     }
 
     public void removerConstruccion(Coordenada coordenada){
         
         obtenerCelda(coordenada).defensas().clear();
-        notificarListeners(coordenada);
+        notificarCeldaCambio(coordenada);
         return;
     }
 
@@ -255,7 +257,7 @@ public class Mapa {
             acreditadorMuertos.acreditarMuertos(muertos);
             
             // notify observers celda cambio.
-            notificarListeners(coordenada);
+            notificarCeldaCambio(coordenada);
         }
 
         return seguirAtacando;

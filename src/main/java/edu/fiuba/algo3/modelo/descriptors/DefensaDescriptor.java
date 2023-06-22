@@ -6,14 +6,29 @@ public class DefensaDescriptor {
 
     private String defensa;
 
-    public DefensaDescriptor(String defensa){
-        this.defensa = defensa;
+    public DefensaDescriptor(String defensa, boolean estaActiva){
+        if(!estaActiva){
+        	this.defensa = "construccion.jpg";
+        	return;
+        }
+
+        if(defensa == "Trampa"){
+        	this.defensa = "Trampa.jpg";
+        } else{
+        	this.defensa = defensa+".png";
+        }
+
+
     }
-    
+    public DefensaDescriptor(){
+        this.defensa = null;
+    }
+
+
     public String rel_image(){
     	if(this.defensa == null){
     		return "";
     	}
-        return "torreeiffel.PNG"; // por ahora siempre la misma ja
+        return "defensas/"+defensa; // por ahora siempre la misma ja
     }
 }

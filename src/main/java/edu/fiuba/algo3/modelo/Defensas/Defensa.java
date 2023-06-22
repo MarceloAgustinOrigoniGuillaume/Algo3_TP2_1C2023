@@ -48,6 +48,6 @@ public abstract class Defensa implements Estructura {
     }
 
     public DefensaDescriptor describe(){
-        return new DefensaDescriptor(this.toString());
+        return new DefensaDescriptor(this.toString(), estaActiva());
     }
 }

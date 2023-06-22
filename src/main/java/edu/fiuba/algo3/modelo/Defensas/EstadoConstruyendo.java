@@ -27,6 +27,7 @@ public class EstadoConstruyendo implements EstadoEstructura{
 
         if(hanFinalizadoLosTurnos()){
             defensa.finalizarConstruccion();
+            mapa.notificarCeldaCambio(coordenada);
         } else{
             Logger.info("Defensa Estaba construyendose faltan\n"+String.valueOf(this.turnosRestantes)+" turnos para activarse");
         }
