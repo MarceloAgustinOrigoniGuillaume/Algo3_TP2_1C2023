@@ -44,6 +44,9 @@ public class Turno{
 		for (Enemigo enemigo: enemigos){
 			mapa.posicionarInicio(enemigo);
 		}
+
+		mapa.notificarInicioCambio();
+
 		turno+=1;
 		return true;
 	}

@@ -241,6 +241,11 @@ public class Mapa {
         notificarCeldaCambio(obtenerCelda(coordenada));
     }
 
+    public void notificarInicioCambio(){
+        notificarCeldaCambio(caminoTerrestre.get(0));
+    }
+
+
     public void removerConstruccion(Coordenada coordenada){
         
         obtenerCelda(coordenada).defensas().clear();
