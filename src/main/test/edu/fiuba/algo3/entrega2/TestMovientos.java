@@ -81,4 +81,51 @@ public class TestMovientos {
     }
 
 
+    @Test
+    public void verificarDiagonalLechuzaDesdeArranqueAtacaAMapa(){
+        Mapa mockMapa = mock(Mapa.class);
+
+        Lechuza lechuza = new Lechuza();
+        when(mockMapa.posicionFinal()).thenReturn(new Coordenada(15 , 15));
+        lechuza.atacadoPorTorre(3);
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(0,0));
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(5,5));
+
+        verify(mockMapa,times(0)).atacarPrimeraTorre();
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(10,10));
+
+        verify(mockMapa,times(1)).moverEnCaminoAereo(lechuza, new Coordenada(10,10),new Coordenada(15,15));
+        verify(mockMapa,times(1)).atacarPrimeraTorre();
+
+
+
+    }    
+
+    @Test
+    public void verificarQueLechuzaVaPorCatetosYAtacaTorre(){
+        Mapa mockMapa = mock(Mapa.class);
+
+        when(mockMapa.posicionFinal()).thenReturn(new Coordenada(15 , 15));
+        Lechuza lechuza = new Lechuza();
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(0,0));
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(5,0));
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(10,0));
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(15,0));
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(15,5));
+
+        verify(mockMapa,times(0)).atacarPrimeraTorre();
+
+        lechuza.accionar(mockMapa, new Jugador(), new Coordenada(15,10));
+        verify(mockMapa,times(1)).moverEnCaminoAereo(lechuza, new Coordenada(15,10),new Coordenada(15,15));
+        verify(mockMapa,times(1)).atacarPrimeraTorre();
+
+    }
 }

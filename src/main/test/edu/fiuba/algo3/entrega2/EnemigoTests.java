@@ -239,6 +239,4 @@ public class EnemigoTests {
         verify(mockMapa,times(1)).moverEnCaminoAereo(lechuza, new Coordenada(0,0),new Coordenada(5,0));
 
     }
-
-
 }

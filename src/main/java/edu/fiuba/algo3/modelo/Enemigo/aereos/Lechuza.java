@@ -24,6 +24,7 @@ public class Lechuza extends EnemigoAereo {
             vidaCambioMovimiento = 0; // que solo pase una vez.
             this.estadoMovimiento = new EstadoMovimientoDiagonal(this);
         }
+        //Logger.Log("LLEGO A FINAL ?? "+String.valueOf(moviendose));
         return (this.estadoMovimiento).ejecutarEstado(mapa, posicion);
     }
 
@@ -53,6 +54,7 @@ public class Lechuza extends EnemigoAereo {
     //Pre: -
     //Post: -
     protected void atacarObjeto(Jugador jugador, Mapa mapa){
+        Logger.Log("Lechuza esta atacando a la primer torre....");
         mapa.atacarPrimeraTorre();
     }
 }

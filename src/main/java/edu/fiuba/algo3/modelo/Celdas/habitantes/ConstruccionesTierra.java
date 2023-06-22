@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo.Celdas.habitantes;
 import edu.fiuba.algo3.modelo.Defensas.Construccion;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 
+import edu.fiuba.algo3.Logger;
+
 public class ConstruccionesTierra extends HabitantesConstruccion{
 
 	public ConstruccionesTierra(){
@@ -21,6 +23,8 @@ public class ConstruccionesTierra extends HabitantesConstruccion{
 
 	// puede recibir ataques de lechuza
 	public boolean recibirAtaqueLechuza(){
+		clear();
+		Logger.Log("Defensa fue removida?");
 		return true;
 	}
 	

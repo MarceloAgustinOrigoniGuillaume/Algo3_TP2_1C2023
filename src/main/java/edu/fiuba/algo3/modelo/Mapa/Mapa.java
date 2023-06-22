@@ -231,8 +231,10 @@ public class Mapa {
         while (indice < defensas.size()){
             celdaBuscada = obtenerCelda(defensas.get(indice));
             if(celdaBuscada.defensas().recibirAtaqueLechuza()){ // trampa devolveria false, no se puede quitar.
-                notificarCeldaCambio(defensas.get(indice));
+                
+                Logger.Log("-------->Defensa atacada... posicion: "+defensas.get(indice).toString());
                 defensas.remove(indice);
+                notificarCeldaCambio(celdaBuscada);
 
                 return; // solo una torre.
             }

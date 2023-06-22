@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Celdas.Celda;
 import edu.fiuba.algo3.modelo.Celdas.Posicionable;
 import edu.fiuba.algo3.modelo.descriptors.EnemigoDescriptor;
+import edu.fiuba.algo3.Logger;
 
 public abstract class Enemigo implements Ataque, Posicionable {
 
@@ -70,6 +71,7 @@ public abstract class Enemigo implements Ataque, Posicionable {
 
     public void accionar(Mapa mapa, Jugador jugador, Coordenada coordenada){
         if(moverse(mapa,coordenada)){
+            Logger.Log("Enemigo llego al final atacando...");
             atacarObjeto(jugador, mapa);
         }
     }

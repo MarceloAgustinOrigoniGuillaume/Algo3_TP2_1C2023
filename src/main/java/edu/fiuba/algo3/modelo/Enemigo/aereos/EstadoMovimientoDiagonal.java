@@ -42,6 +42,6 @@ public class EstadoMovimientoDiagonal implements EstadoMovimiento{
         Coordenada coordenadaEsperada =  new Coordenada(x_nuevo,y_nuevo);
         mapa.moverEnCaminoAereo(this.enemigo, posicion, coordenadaEsperada);
 
-        return(meta == coordenadaEsperada);
+        return(meta.equals(coordenadaEsperada));
     }
 }
