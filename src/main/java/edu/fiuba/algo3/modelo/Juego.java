@@ -23,7 +23,18 @@ public class Juego {
     private boolean estaJugando;
     //La clase oleadas almacena un vector de enemigos.
 
+
+    private String jsonMapaUsed;
+    private String jsonEnemigosUsed;
+
+    public Juego nuevoJuego() throws Exception{
+        return new Juego(jsonMapaUsed,jsonEnemigosUsed);
+    }
+
     public Juego(String jsonMapa,String jsonEnemigos) throws Exception {
+
+        this.jsonMapaUsed = jsonMapa;
+        this.jsonEnemigosUsed= jsonEnemigos;
         jugador = new Jugador();
 
         this.estadoDeJuego = new EstadoInicial(this,jsonMapa,jsonEnemigos);

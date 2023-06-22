@@ -32,6 +32,24 @@ public class DatosModelo{
 		//nuevoJuego(jsonMapa,jsonEnemigos);
 	}
 
+	private String nombre;
+	public static void setNombreJugador(String jugador){
+		unicaInstancia.nombre = jugador;
+	}
+
+	public static String getNombreJugador(){
+		return unicaInstancia.nombre;
+	}
+
+
+	public static void reiniciarJuego() throws Exception{
+
+		if(unicaInstancia.juego != null){
+			unicaInstancia.juego = unicaInstancia.juego.nuevoJuego();
+		}
+
+		//nuevoJuego(jsonMapa,jsonEnemigos);
+	}
 
 
 	// pasas un turno y devolves si sigue en juego
@@ -74,6 +92,13 @@ public class DatosModelo{
 
 		return null;
 	}
+
+
+	public static boolean ganoJugador(){
+		return unicaInstancia.juego.ganoJugador();
+	}
+
+
 
 	public static void empezarJuegoActual(){
 		if(unicaInstancia.juego == null){

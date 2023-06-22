@@ -29,6 +29,7 @@ public class ControladorJuego extends Controlador {
 		try{
 			Logger.Log("Empezando juego con jugador '"+nombreJugador+"'");
 			DatosModelo.empezarJuegoActual();
+			DatosModelo.setNombreJugador(nombreJugador);
 		} catch(Exception ex){
 			Logger.Log("Error at empezar Juego "+ex.toString());
 			ex.printStackTrace();
@@ -78,18 +79,37 @@ public class ControladorJuego extends Controlador {
 	}
 
 
+
+	public void reiniciarJuego(Ventana ventana){
+
+		// por ahora... vuelve a inicio de juego.
+
+		try{
+			String nombreJugador;
+			DatosModelo.reiniciarJuego();
+			
+			empezarJuego(ventana,DatosModelo.getNombreJugador());
+
+		} catch(Exception ex){
+			Logger.Log("ERROR Re INICIANDO NUEVO JUEGO "+ex.toString());
+			ex.printStackTrace();
+			return;
+		}
+
+	}
+
+
 	public void pasarTurno(Ventana ventana){
 
 		// pasas turno
 
 		if(!DatosModelo.pasarTurno()){
 			Logger.Log("----------->HABIA TERMINADO EL JUEGO?");
-			terminarJuego(ventana);
-			return;
+
+			ventana.setVista(new ViewFinal(ventana, DatosModelo.ganoJugador()));	
+			//terminarJuego(ventana);
+			//return;
 		}
-
-		Logger.Log("Debio actualizar?");
-
 	}
 
 
