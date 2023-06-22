@@ -239,6 +239,8 @@ public class Mapa {
     //Pre: -
     //Post: Desde las defenses se le dice a mapa que quiere atacar a determinada coordenada.
     public boolean atacar(Coordenada coordenada, Defensa defensa){
+        Logger.info(defensa.toString()+" atacando a : "+coordenada.toString());
+
         Celda celda = obtenerCelda(coordenada);
         boolean seguirAtacando = celda.enemigos().recibirAtaque(defensa);
 
@@ -258,7 +260,7 @@ public class Mapa {
 
     public void accionarDefensas(){
         for(Coordenada posDefensa: defensas){
-            Logger.info("Se acciono defensa de la posicion: "+posDefensa.toString()+"\n" );
+            Logger.info("Se acciono defensa de la posicion: "+posDefensa.toString());
             obtenerCelda(posDefensa).accionarEstructuras(this);
         }
     }
@@ -268,7 +270,7 @@ public class Mapa {
     }
     
     public void posicionarInicio(Enemigo enemigo){
-        Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
+        //Logger.info("Se posiciona "+enemigo.toString()+" en el inicio");
         enemigo.posicionarEn(obtenerCelda(caminoTerrestre.get(0)));
     }
 
