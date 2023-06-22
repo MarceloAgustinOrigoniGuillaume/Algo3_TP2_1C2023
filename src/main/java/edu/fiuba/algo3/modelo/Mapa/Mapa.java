@@ -85,19 +85,30 @@ public class Mapa {
         int indice2 = 0;
         Celda celdaActual;
 
+
+        for(Coordenada posicion: new ArrayList<>(caminoAereo)){
+            /*
+            // nunca deberia pasar, ya que se chequea.
+            if(caminoTerrestre.contains(posicion)){
+                caminoAereo.remove(posicion);
+                continue;
+            }
+            */
+
+            celdaActual = obtenerCelda(posicion);
+
+            if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual)){
+                return;
+            }
+        }
+
+
         while(indice >= 0){
             celdaActual = obtenerCelda(caminoTerrestre.get(indice));
             if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual)){
                 return;
             }
             indice -=1;
-        }
-        while(indice2 < caminoAereo.size()){
-            celdaActual = obtenerCelda(caminoAereo.get(indice2));
-            if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual)){
-                return;
-            }
-            indice2 += 1;
         }
     }
 
@@ -166,12 +177,14 @@ public class Mapa {
     //Post: Obtiene la coordenada en la que te moverias segun el camino y delega el actualizar la coordenada.
     public void moverEnCaminoAereo(Enemigo unidad, Coordenada desde,Coordenada hasta){
 
+
         if(caminoAereo.contains(desde)){
             caminoAereo.remove(desde);
         }
         if(!caminoTerrestre.contains(hasta)){
             caminoAereo.add(hasta);
         }
+
         actualizarPosicionEnemigo(unidad, desde, hasta);
 
         notificarCeldaCambio(desde);
