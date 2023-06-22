@@ -29,10 +29,6 @@ public class ControladorJuego extends Controlador {
 		try{
 			Logger.Log("Empezando juego con jugador '"+nombreJugador+"'");
 			DatosModelo.empezarJuegoActual();
-			DatosModelo.pasarTurno();
-			DatosModelo.pasarTurno();
-			DatosModelo.pasarTurno();
-			DatosModelo.pasarTurno();
 		} catch(Exception ex){
 			Logger.Log("Error at empezar Juego "+ex.toString());
 			ex.printStackTrace();

@@ -66,11 +66,11 @@ public class LayoutIntermediario extends AnchorPane {
         clearPopup();
     }
 
-    public void clickEnCelda(ViewCelda celda) {
+    public boolean clickEnCelda(ViewCelda celda) {
         if(this.defensasDrag == null){
-            Logger.info("Aca hay una celda de"+celda.toString()+"vacia");
-            return;
+            return false;
         }
+
         boolean pudoConstruir = false;
 
         pudoConstruir = new ControladorConstruccion().posicionarConstruccion(this.defensasDrag.obtenerDefensa(), celda.getCoordenada());
@@ -84,5 +84,6 @@ public class LayoutIntermediario extends AnchorPane {
             Logger.info("NO SE pudo construir");
         }
 
+        return true;
     }
 }

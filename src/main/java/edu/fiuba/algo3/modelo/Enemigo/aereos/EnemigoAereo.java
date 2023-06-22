@@ -3,6 +3,8 @@ import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.modelo.Enemigo.EnemigoConVida;
 import edu.fiuba.algo3.modelo.Celdas.Celda;
+import edu.fiuba.algo3.modelo.descriptors.EnemigoDescriptor;
+import edu.fiuba.algo3.modelo.descriptors.EnemigoConVidaDescriptor;
 
 public abstract class EnemigoAereo extends EnemigoConVida {//implements Monetizable {
 
@@ -12,6 +14,13 @@ public abstract class EnemigoAereo extends EnemigoConVida {//implements Monetiza
 
     public boolean posicionarEn(Celda celda){
         return celda.enemigos().guardar(this);
+    }
+
+
+    public EnemigoDescriptor describir(){
+        return new EnemigoConVidaDescriptor(this.toString(),
+            "aereo",
+            String.valueOf(velocidad), String.valueOf(vida),"ataca torres");
     }
 
 

@@ -7,16 +7,27 @@ public class CeldaDescriptor{
 	private String terreno;
 	private int cantidadEnemigos;
 	private DefensaDescriptor defensa;
+	private EnemigosDescriptor enemigos;
 
-	public CeldaDescriptor(String terreno, int cantidadEnemigos, DefensaDescriptor defensa){
+	public CeldaDescriptor(String terreno, int cantidadEnemigos, DefensaDescriptor defensa, EnemigosDescriptor enemigos){
 		this.terreno = terreno;
 		this.cantidadEnemigos = cantidadEnemigos;
 		this.defensa = defensa;
+		this.enemigos = enemigos;
 	}
 
 	public int cantidadEnemigos(){
 		return cantidadEnemigos;
 	}
+
+	public DefensaDescriptor defensa(){
+		return defensa;
+	}
+
+	public EnemigosDescriptor enemigos(){
+		return enemigos;
+	}
+
 
 	public String rel_image(){
 

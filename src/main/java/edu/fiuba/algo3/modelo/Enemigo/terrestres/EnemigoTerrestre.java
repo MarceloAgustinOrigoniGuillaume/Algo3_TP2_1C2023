@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.modelo.Enemigo.EnemigoConVida;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.descriptors.EnemigoDescriptor;
+import edu.fiuba.algo3.modelo.descriptors.EnemigoConVidaDescriptor;
 
 public abstract class EnemigoTerrestre extends EnemigoConVida {
 
@@ -13,6 +15,13 @@ public abstract class EnemigoTerrestre extends EnemigoConVida {
         super(vida, velocidad);
         this.ataqueMaximo = ataqueMaximo;
     }
+
+    public EnemigoDescriptor describir(){
+        return new EnemigoConVidaDescriptor(this.toString(),
+            "terrestre",
+            String.valueOf(velocidad), String.valueOf(vida),"ataca jugador con "+String.valueOf(ataqueMaximo));
+    }
+
 
     //Pre: -
     //Post: Se usa para calcular si es posible que el jugador pierda a partir de los enemigos actuales.

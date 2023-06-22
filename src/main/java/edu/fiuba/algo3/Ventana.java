@@ -50,8 +50,8 @@ public class Ventana extends Scene{
 		//Parent view = ;
     }
 
-	public void clickEnCelda(ViewCelda celda){
-		view.clickEnCelda(celda);
+	public boolean clickEnCelda(ViewCelda celda){
+		return view.clickEnCelda(celda);
 	}
 	public void removePopUp() {
 		view.removePopUp();

@@ -4,12 +4,15 @@ package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.Logger;
 
+import edu.fiuba.algo3.Ventana;
 
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import edu.fiuba.algo3.controladores.ControladorHabitantes;
 
 
 import javafx.scene.layout.StackPane;
@@ -52,8 +55,11 @@ public class ViewCelda extends StackPane {
     private void handleClick(MouseEvent event){
         Logger.Log("CLICKED ON TILE....");
 
-        if(clickListener != null){
-            this.clickListener.clickEnCelda(this);
+        if(clickListener == null || !this.clickListener.clickEnCelda(this)){
+            Logger.Log("SHOWING HABITANTES!>>");
+
+
+            new ControladorHabitantes().mostrarHabitantes(((Ventana)(getScene())), coordenada);
         }
         event.consume();
     }
