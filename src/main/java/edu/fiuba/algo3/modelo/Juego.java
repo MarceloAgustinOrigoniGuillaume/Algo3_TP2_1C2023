@@ -18,6 +18,8 @@ public class Juego {
     private Jugador jugador;
     private Oleada oleada;
 
+    private ObserverTurno observerTurno= (String turno)->{};
+
     private boolean estaJugando;
     //La clase oleadas almacena un vector de enemigos.
 
@@ -93,5 +95,21 @@ public class Juego {
 
     public boolean ganoJugador(){
         return !estanEnJuego() && !jugador.estaMuerto();
+    }
+
+    public interface ObserverTurno{
+        void updateTurno(String turno);
+    }
+
+    public void setObserverTurno(ObserverTurno observerTurno) {
+        if(observerTurno == null){
+            this.observerTurno= (String turno)->{};
+            return;
+        }
+        this.observerTurno = observerTurno;
+    }
+
+    public void notificarCambioTurno(int turno){
+        this.observerTurno.updateTurno(String.valueOf(turno));
     }
 }

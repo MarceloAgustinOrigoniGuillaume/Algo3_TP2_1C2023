@@ -51,7 +51,7 @@ public class ControladorJuego extends Controlador {
 
 		ViewJuego view = new ViewJuego(mapa,jugador, ventana);
 		ventana.setVista(view);
-
+		DatosModelo.setObserverTurno(view::updateTurno);
 		//new MenuConstrucciones();
 		return true;
 	}

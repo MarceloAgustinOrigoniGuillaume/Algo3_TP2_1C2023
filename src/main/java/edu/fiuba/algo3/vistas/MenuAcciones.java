@@ -6,6 +6,7 @@ import edu.fiuba.algo3.controladores.ControladorConstruccion;
 import edu.fiuba.algo3.controladores.ControladorJuego;
 import edu.fiuba.algo3.Logger;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.Parent;
 
 public class MenuAcciones extends AnchorPane {
 
+    private Label turno;
 	public MenuAcciones(ViewJugador jugador,Ventana ventana){
         super();
         init(jugador, ventana);
@@ -32,7 +34,11 @@ public class MenuAcciones extends AnchorPane {
 
         this.setLeftAnchor(jugador, 0.0);
         this.setRightAnchor(view, 0.0);
+        this.setTopAnchor(view, 0.0);
+        this.setBottomAnchor(view, 0.0);
         Logger.Log("After everything");
+
+        this.turno = (Label) view.lookup("#TurnoActual");
 
         Button buttonConstruir  = (Button) view.lookup("#buttonConstruir");
         Button buttonPasarTurno  = (Button) view.lookup("#buttonPasarTurno");
@@ -55,6 +61,10 @@ public class MenuAcciones extends AnchorPane {
 
 
 
+    }
+
+    public void setTurno(String turno){
+        this.turno.setText("Turno: "+ turno);
     }
 
     public Parent obtener(){

@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 public class ViewJuego extends StackPane implements Vista {
 
     //private Parent ultimo;
+	private MenuAcciones menuAcciones;
 
 	public ViewJuego(ViewMapa mapaDelJuego, ViewJugador jugador, Ventana ventana){
 
@@ -18,15 +19,20 @@ public class ViewJuego extends StackPane implements Vista {
 	}
 
 	private void init(ViewMapa mapaDelJuego, ViewJugador jugador , Ventana ventana){
-
+		this.menuAcciones = new MenuAcciones(jugador, ventana);
 		BorderPane borderPane = new BorderPane();
 		borderPane.setCenter(mapaDelJuego);
-		borderPane.setTop((new MenuAcciones(jugador, ventana)).obtener());
+		borderPane.setTop(menuAcciones.obtener());
 
 		getChildren().add(borderPane);
 	}
 
 	public Parent obtener(){
 		return this;
+	}
+
+	public void updateTurno(String turno){
+		menuAcciones.setTurno(turno);
+
 	}
 }

@@ -4,8 +4,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Label?>
+<HBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" spacing="5">
   <children>
+      <Label fx:id="TurnoActual" text="Turno : 1"/>
       <Button fx:id="buttonConstruir" layoutY="2.0" prefHeight="15.0" prefWidth="139.0" text="Menu De Estructuras" />
 
       <Button fx:id="buttonPasarTurno" layoutY="2.0" prefHeight="15.0" prefWidth="139.0" text="Pasar turno" />

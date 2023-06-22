@@ -110,4 +110,8 @@ public class DatosModelo{
 		unicaInstancia.juego.obtenerJugador().setObserver_creditos(modificacion_creditos);
 	}
 
+	public  static void setObserverTurno(Juego.ObserverTurno modificacion_turno){
+		unicaInstancia.juego.setObserverTurno(modificacion_turno);
+	}
+
 }

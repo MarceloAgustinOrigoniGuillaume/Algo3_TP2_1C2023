@@ -43,5 +43,8 @@ public class EstadoJugando implements EstadoJuego {
             return;
         }
         Logger.info("Vida actual de jugador: "+String.valueOf(jugador.obtenerVida()));
+        juego.notificarCambioTurno(turno.turnoActual());
     }
+
+
 }
