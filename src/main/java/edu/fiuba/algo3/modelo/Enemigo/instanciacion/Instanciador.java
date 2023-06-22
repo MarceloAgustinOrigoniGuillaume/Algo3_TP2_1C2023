@@ -12,7 +12,7 @@ public class Instanciador{
 		this.cantidad = cantidad;
 	}
 
-	public void agregarInstancias(ArrayList<Enemigo> enemigos){
+	public void agregarInstanciasA(ArrayList<Enemigo> enemigos){
 		for(int i = 0; i< cantidad; i++){
 			enemigos.add(enemigoBase.copiar());
 		}

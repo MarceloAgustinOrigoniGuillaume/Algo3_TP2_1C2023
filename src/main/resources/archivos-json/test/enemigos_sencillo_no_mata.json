@@ -1,0 +1,56 @@
+[
+	{
+		"turno": 1,
+		"enemigos": {
+			"hormiga": 4,
+			"arana": 0
+		}
+		
+	},	
+	{
+		"turno": 2,
+		"enemigos": {
+			"hormiga": 2,
+			"arana": 0
+		}
+		
+	},
+	{
+		"turno": 3,
+		"enemigos": {
+			"hormiga": 2,
+			"arana": 0
+		}
+		
+	},
+	{
+		"turno": 4,
+		"enemigos": {
+			"hormiga": 0,
+			"arana": 0
+		}
+		
+	},	
+	{
+		"turno": 5,
+		"enemigos": {
+			"hormiga": 1,
+			"arana": 0
+		}
+		
+	},	{
+		"turno": 6,
+		"enemigos": {
+			"hormiga": 0,
+			"arana": 0
+		}
+		
+	}, 	{
+		"turno": 7,
+		"enemigos": {
+			"hormiga": 14,
+			"arana": 0
+		}
+		
+	}
+]

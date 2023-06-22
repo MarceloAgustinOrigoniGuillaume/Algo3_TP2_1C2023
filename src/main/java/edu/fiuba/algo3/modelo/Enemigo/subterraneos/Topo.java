@@ -1,0 +1,66 @@
+package edu.fiuba.algo3.modelo.Enemigo.subterraneos;
+
+import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+
+public class Topo extends EnemigoSubterraneo {
+
+    private int turnoInicial;
+    private int contadorMovimientos;
+
+    public Topo(int turnoActual){
+        super(1, 5);
+        this.turnoInicial = turnoActual;
+        this.contadorMovimientos = 0;
+    }
+
+    //Pre: -
+    // Post: -
+    @Override
+    public boolean moverse(Mapa mapa, Coordenada posicion) {
+        incrementarContadorDePasos();
+        return super.moverse(mapa, posicion);
+    }
+
+    //Pre: -
+    // Post: -
+    public void incrementarContadorDePasos() {
+        this.contadorMovimientos++;
+    }
+
+    //Pre: -
+    // Post: -
+    public int velocidad(){
+
+        if(this.contadorMovimientos > 5 && this.contadorMovimientos <= 10){
+            this.velocidad = 2;
+        }
+        if(this.contadorMovimientos >= 11){
+            this.velocidad = 3;
+        }
+        return this.velocidad;
+    }
+
+    //Pre: -
+    //Post: -
+    protected void atacarObjeto(Jugador jugador, Mapa mapa) {
+    
+        int ataque = this.ataqueMaximo;
+        if((this.turnoInicial+this.contadorMovimientos) % 2 != 0){
+            ataque = 2;
+        }
+
+        jugador.recibirAtaque(ataque);
+    }
+    
+    @Override
+    public Enemigo copiar() {
+        return new Topo(this.turnoInicial);
+    }
+
+}
+
+

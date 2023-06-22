@@ -1,9 +1,6 @@
 package edu.fiuba.algo3;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -11,15 +8,32 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+
+
+    public static final int INITIAL_WIDTH = 640;
+    public static final int INITIAL_HEIGHT = 640;
+
+
+    public static void run(String[] args) {
+        launch();
+    }
+
+    public void setMapScene(){
+
+    }
+
     @Override
     public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+        try{
+            Ventana scene = new Ventana(INITIAL_WIDTH, INITIAL_HEIGHT);//new Scene(new MenuInicio(), );
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+            stage.setScene(scene);
+            stage.show();
+        } catch(Exception ex){
+            Logger.Log("Error at initing the game... "+ex.toString());
+            ex.printStackTrace();
+            stage.close();
+        }
     }
 
     public static void main(String[] args) {

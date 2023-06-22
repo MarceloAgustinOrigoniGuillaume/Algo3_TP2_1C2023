@@ -1,10 +1,49 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
-public interface Celda {    
-    Coordenada posicion();
-    boolean posicionar(Construccion construccion);
-    boolean posicionar(Unidad unidad);
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Jugador;
 
-    void atacar(SistemaVida target);
-    //public abstract GameEntity obtener();
+import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+
+import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
+import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesConstruccion;
+
+public abstract class Celda {
+
+    private Coordenada coordenada;
+    protected Habitantes habitantes;
+    protected HabitantesConstruccion construcciones;
+
+    public Celda(Coordenada pos, Habitantes habitantes,HabitantesConstruccion construcciones){
+        this.coordenada = pos;
+        this.habitantes = habitantes;
+        this.construcciones = construcciones;
+    }
+
+    public Coordenada posicion(){
+        return coordenada;
+    }
+
+
+    public Habitantes enemigos(){
+        return habitantes;
+    }
+
+    public HabitantesConstruccion defensas(){
+        return construcciones;
+    }
+
+    public void accionarEstructuras(Mapa mapa){
+        construcciones.accionarEstructuras(mapa, this.posicion());
+    }
+
+    public  void accionarEnemigos(Mapa mapa, Jugador jugador){
+        habitantes.accionarEnemigos(mapa, jugador, this.posicion());
+    }
+
+    //Pre: -
+    //Post: Describe a la celda para la ui... pone todos los datos necesarios
+    public CeldaDescriptor describe(){
+        return new CeldaDescriptor( this.toString() , habitantes.cantidadUnidades(), construcciones.describir());
+    }
 }

@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.modelo.Estados;
 
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 //import edu.fiuba.algo3.modeloNico.Oleadas;
 import edu.fiuba.algo3.modelo.Turnos.Turno;
-
-import java.util.ArrayList;
-import edu.fiuba.algo3.modelo.Celdas.Unidad;
 
 public class EstadoJugando implements EstadoJuego {
     Juego juego;
@@ -18,38 +16,32 @@ public class EstadoJugando implements EstadoJuego {
         turno = new Turno();
     }
 
+    //Pre: -
+    //Post: Devuelve true si los ultimos enemigos son capaces de hacer suficiente daño para eliminar al jugador.
+    private boolean terminoElJuego(Juego juego, Jugador jugador, Turno turno, Mapa mapa ){
+        return juego.obtenerOleadas().noHayMasOleadas(turno.turnoActual()) && mapa.cantidadDamagePosible() < jugador.obtenerVida();
+    }
+
     @Override
     public void ejecutarEstado() {
-       // verificar si puede matar a jugador
+
+        Logger.info("Se ejecuta el turno: "+String.valueOf(turno.turnoActual()));
+
+       //Obtengo el jugador y el mapa.
         Jugador jugador = juego.obtenerJugador();
         Mapa mapa =juego.obtenerMapa();
 
-        // verificar si no pueden hacer suficiente dmg?
-        if(juego.obtenerOleadas().noHayMasOleadas(turno.turnoActual())
-            && mapa.cantidadDmgPosible()< jugador.obtenerVida()){ 
-            
+        // verificar si los enemigos actuales pueden eliminar al jugador.
+        if(terminoElJuego(this.juego, jugador, this.turno, mapa)){
+            Logger.info("Finalizo el juegos. Los enemigos restantes no pueden matar al jugador");
             juego.terminarJuego();
-
             return;
         }
-
-
     	// jugar turno...
-    	turno.jugarTurno(mapa,jugador,
-    		juego.obtenerOleadas()
-    		);
-
-        ArrayList<Unidad> enemigos = mapa.popUnidadesFinal();
-        int ind = 0;
-
-        while(!jugador.estaMuerto() && ind < enemigos.size()){
-
-            jugador.recibirAtaque(enemigos.get(ind).ataque());
-            ind+=1;
-        }
-
-        if(jugador.estaMuerto()){
+        if(!turno.jugarTurno(mapa,jugador, juego.obtenerOleadas())){
             juego.terminarJuego();
+            return;
         }
+        Logger.info("Vida actual de jugador: "+String.valueOf(jugador.obtenerVida()));
     }
 }
