@@ -5,12 +5,26 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.vistas.ViewJugador;
+
 import java.util.ArrayList;
 
 public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
     private int vida;
     private String nombre;
     private SistemaCreditos creditos;
+
+    private modificacion_vida obsver_vida;
+
+    private modificacion_creditos observer_creditos;
+
+    public interface modificacion_vida{
+        void update_vida(String vida);
+    }
+
+    public interface modificacion_creditos{
+        void update_creditos(String Creditos);
+    }
 
     public Jugador(){
         vida=20;
@@ -19,14 +33,12 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
 
 
 
-
-
-
     // delegacion de creditos
     public void acreditarMuertos(ArrayList<Enemigo> muertos){
         for(Enemigo enemigo: muertos) {
             enemigo.acreditarseEn(creditos);
         }
+        observer_creditos.update_creditos(String.valueOf(creditos.obtenerCreditos()));
     }
 
 
@@ -41,6 +53,7 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
 
     public void costear(Estructura enConstruccion) {
         creditos.costear(enConstruccion);
+        observer_creditos.update_creditos(String.valueOf(creditos.obtenerCreditos()));
     }
 
 
@@ -77,5 +90,14 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
         if(estaMuerto()){
             vida = 0;
         }
+
+        obsver_vida.update_vida(String.valueOf(vida));
+    }
+
+    public void setObserver_creditos(modificacion_creditos observer_creditos) {
+        this.observer_creditos = observer_creditos;
+    }
+    public void setObsver_vida(modificacion_vida obsver_vida){
+        this.obsver_vida = obsver_vida;
     }
 }

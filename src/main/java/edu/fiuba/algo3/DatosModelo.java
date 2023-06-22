@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
@@ -101,6 +102,12 @@ public class DatosModelo{
 		}
 		unicaInstancia.juego.obtenerMapa().setListenerCambiosCeldas(listener);
 	}
+	public static void setObserverVida(Jugador.modificacion_vida modificacion_vida){
+		unicaInstancia.juego.obtenerJugador().setObsver_vida(modificacion_vida);
+	}
 
+	public static void setObserverCreditos (Jugador.modificacion_creditos modificacion_creditos){
+		unicaInstancia.juego.obtenerJugador().setObserver_creditos(modificacion_creditos);
+	}
 
 }

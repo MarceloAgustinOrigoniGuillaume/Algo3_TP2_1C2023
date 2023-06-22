@@ -38,8 +38,8 @@ public class ControladorJuego extends Controlador {
 
 		ViewJugador jugador = new ViewJugador(nombreJugador);
 
-
-
+		DatosModelo.setObserverVida(jugador::update_vida);
+		DatosModelo.setObserverCreditos(jugador::update_creditos);
 
 		ViewMapa mapa = new ViewMapa(DatosModelo.mapa_width,DatosModelo.mapa_height,(int x, int y)->{
 			//Logger.Log("Obteniendo ........celda... ");
