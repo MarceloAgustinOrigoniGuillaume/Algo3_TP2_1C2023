@@ -3,6 +3,7 @@ package edu.fiuba.algo3.vistas;
 
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.controladores.ControladorMapa;
 import edu.fiuba.algo3.Logger;
 
 
@@ -23,7 +24,7 @@ import javafx.geometry.Insets;
 
 
 
-public class ViewMapa extends HBox {
+public class ViewMapa extends HBox implements ControladorMapa.ViewCeldaChangedListener{
 
     public static int TILE_SIZE = 41;
     public interface TileResources{
@@ -33,6 +34,12 @@ public class ViewMapa extends HBox {
         super();
         init(columns,rows,resource);
 	}
+
+
+
+    public void cambiarCelda(ViewCelda celda){
+        Logger.Log("DEBERIA ACTUALIZAR LA CELDA "+celda.getCoordenada().toString());
+    }
 
 	private void init(int columns, int rows,TileResources resource){
         VBox column;

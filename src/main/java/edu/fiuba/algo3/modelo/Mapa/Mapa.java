@@ -20,7 +20,7 @@ public class Mapa {
     }
 
     public interface OnHabitantesChangedListener {
-        void cambio(Coordenada coordenada);
+        void cambio(Coordenada coordenada, CeldaDescriptor celda);
     }
 
 
@@ -188,6 +188,13 @@ public class Mapa {
             celdaActual.accionarEnemigos(this, jugador);
             return true;}
         );
+
+        // hagamosla sencilla para notificar, por ahora almenos
+        iteradorDeCeldas((Celda celdaActual)->{
+            //notificarListeners(celdaActual);
+            return true;
+        });
+
     }
 
     //Pre: -
@@ -211,11 +218,15 @@ public class Mapa {
 
     }
 
-    private void notificarListeners(Coordenada coordenada){
+    private void notificarListeners(Celda celda){
         if(listenerCambios != null){
-            listenerCambios.cambio(coordenada);
+            listenerCambios.cambio(celda.posicion(), celda.describe());
         }
 
+    }
+
+    private void notificarListeners(Coordenada coordenada){
+        notificarListeners(obtenerCelda(coordenada));
     }
 
     public void removerConstruccion(Coordenada coordenada){

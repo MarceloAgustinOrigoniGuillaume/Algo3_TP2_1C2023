@@ -65,13 +65,13 @@ public class MenuConstruir extends VBox {
         });
 
         Button button2  = (Button) view.lookup("#buttonTorrePlateada");
-        button.setOnAction( (ActionEvent event)->{
+        button2.setOnAction( (ActionEvent event)->{
             new ControladorConstruccion().seleccionarConstruccion("TorrePlateada", ventana);
 
         });
 
         Button button3  = (Button) view.lookup("#buttonTrampa");
-        button.setOnAction( (ActionEvent event)->{
+        button3.setOnAction( (ActionEvent event)->{
             new ControladorConstruccion().seleccionarConstruccion("Trampa", ventana);
         });
     }

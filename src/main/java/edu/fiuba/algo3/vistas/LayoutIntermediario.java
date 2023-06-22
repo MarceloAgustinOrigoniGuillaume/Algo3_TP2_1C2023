@@ -40,6 +40,13 @@ public class LayoutIntermediario extends AnchorPane {
             this.setRightAnchor(popup, 0.0);
         }
     }
+
+    public void resetConstruccion(){
+        if (defensasDrag != null){
+            defensasDrag = null;
+        }
+        
+    }
     public void clearPopup(){
         if(this.popup != null){
             getChildren().remove(this.popup);

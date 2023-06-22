@@ -11,17 +11,17 @@ public class ViewJuego extends StackPane implements Vista {
 
     //private Parent ultimo;
 
-	public ViewJuego(ViewMapa mapaDelJuego, Ventana ventana){
+	public ViewJuego(ViewMapa mapaDelJuego, ViewJugador jugador, Ventana ventana){
 
         super();
-        init(mapaDelJuego, ventana);
+        init(mapaDelJuego,jugador, ventana);
 	}
 
-	private void init(ViewMapa mapaDelJuego, Ventana ventana){
+	private void init(ViewMapa mapaDelJuego, ViewJugador jugador , Ventana ventana){
 
 		BorderPane borderPane = new BorderPane();
 		borderPane.setCenter(mapaDelJuego);
-		borderPane.setTop((new MenuConstrucciones(ventana)).obtener());
+		borderPane.setTop((new MenuAcciones(jugador, ventana)).obtener());
 
 		getChildren().add(borderPane);
 	}

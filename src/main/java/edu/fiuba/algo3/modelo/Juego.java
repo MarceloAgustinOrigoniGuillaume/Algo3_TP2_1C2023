@@ -29,11 +29,18 @@ public class Juego {
     }
 
     public void iniciarJuego() {
+        Logger.Log("Juego fue iniciado!!");
         this.estadoDeJuego = new EstadoJugando(this);
         this.estaJugando = true;
     }
 
     public void terminarJuego() {
+
+        if(this.estaJugando == false){
+            Logger.Log("Juego YA habia sido terminado, pero quiso terminarse otra vez");
+            return;
+        }
+        Logger.Log("Juego fue terminado!!");
         this.estadoDeJuego = new EstadoTerminado(this);
         this.estaJugando = false;
     }
