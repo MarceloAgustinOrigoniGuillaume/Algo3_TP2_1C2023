@@ -15,9 +15,7 @@ import javax.security.auth.DestroyFailedException;
 
 
 public abstract class Defensa implements Estructura {
-
     protected EstadoEstructura estadoActual;
-    //protected int turnosParaConstruccion;
 
     public Defensa(EstadoEstructura estado_inicial){
         estadoActual = estado_inicial;

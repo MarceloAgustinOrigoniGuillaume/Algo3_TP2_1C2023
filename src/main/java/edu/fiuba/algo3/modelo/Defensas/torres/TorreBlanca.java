@@ -6,29 +6,26 @@ import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import java.util.ArrayList;
 
 public class TorreBlanca extends Defensa {
-
     public final static String TORRE_TYPE = "TorreBlanca";
+
     public TorreBlanca(int turnosParaConstruccion) {
+
         super(new EstadoConstruyendo(turnosParaConstruccion));
     }
-
     public TorreBlanca() {
+
         this(1);
     }
-
     @Override
     public int costo() {
         return 10;
     }
-
     public int ataque(){
         return 1;
     }
-
     public int obtenerRango(){
         return 3;
     }
-
 
     // ataca al primer enemigo que pueda serlo
     // retorna false porque no debe seguir atacando.

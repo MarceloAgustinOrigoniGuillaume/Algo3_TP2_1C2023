@@ -10,19 +10,19 @@ import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesConstruccion;
 
 public abstract class Celda {
 
-    private Coordenada coordenada;
+    //private Coordenada coordenada;
     protected Habitantes habitantes;
     protected HabitantesConstruccion construcciones;
 
     public Celda(Coordenada pos, Habitantes habitantes,HabitantesConstruccion construcciones){
-        this.coordenada = pos;
+        //this.coordenada = pos;
         this.habitantes = habitantes;
         this.construcciones = construcciones;
     }
 
-    public Coordenada posicion(){
-        return coordenada;
-    }
+    //public Coordenada posicion(){
+    //    return coordenada;
+    //}
 
     public Habitantes enemigos(){
         return habitantes;
@@ -32,12 +32,12 @@ public abstract class Celda {
         return construcciones;
     }
 
-    public void accionarEstructuras(Mapa mapa){
-        construcciones.accionarEstructuras(mapa, this.posicion());
+    public void accionarEstructuras(Mapa mapa, Coordenada posicion){
+        construcciones.accionarEstructuras(mapa, posicion);
     }
 
-    public  void accionarEnemigos(Mapa mapa, Jugador jugador){
-        habitantes.accionarEnemigos(mapa, jugador, this.posicion());
+    public  void accionarEnemigos(Mapa mapa, Jugador jugador, Coordenada posicion){
+        habitantes.accionarEnemigos(mapa, jugador, posicion);
     }
 
     //Pre: -

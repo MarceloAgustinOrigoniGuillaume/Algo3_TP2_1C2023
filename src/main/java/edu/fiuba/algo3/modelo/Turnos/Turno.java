@@ -31,11 +31,9 @@ public class Turno{
 			Logger.info("Los enemigos mataron al jugador. Fin del juego");
 			return false;
 		}
-
 		// defensas atacan mapa
 		Logger.info("Accionando Turno: Accionar Defensas");
 		mapa.accionarDefensas();
-
 
 		Logger.info("Accionando Turno: Instanciando Enemigos");
 
@@ -44,7 +42,6 @@ public class Turno{
 		for (Enemigo enemigo: enemigos){
 			mapa.posicionarInicio(enemigo);
 		}
-
 		mapa.notificarInicioCambio();
 
 		turno+=1;

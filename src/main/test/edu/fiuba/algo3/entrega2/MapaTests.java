@@ -212,12 +212,9 @@ public class MapaTests {
         CeldaDescriptor unidadesDondeEstaria = unMapa.obtenerInformacion(new Coordenada(1,3));
 
 
-
         verify(mockJugador, times(2)).recibirAtaque(1);
 
         assertEquals(0, unidadesDondeEstaria.cantidadEnemigos());
-        // assertEquals(unidadesDondeEstaria.get(0), enemigo);
-
         assertEquals(0, unidadesInicio.cantidadEnemigos());
     }
 }
