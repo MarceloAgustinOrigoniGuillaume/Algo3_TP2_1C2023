@@ -3,7 +3,7 @@ package edu.fiuba.algo3.vistas;
 
 
 import edu.fiuba.algo3.Resources;
-import edu.fiuba.algo3.controladores.ControladorJuego;
+import edu.fiuba.algo3.controladores.ControladorVentana;
 import edu.fiuba.algo3.Logger;
 
 
@@ -49,11 +49,11 @@ public class ViewFinal extends VBox implements Vista {
 
 
 		buttonReiniciar.setOnAction( (ActionEvent event)->{
-			new ControladorJuego().reiniciarJuego(ventana);
+			new ControladorVentana().reiniciarJuego(ventana);
 		} );
 
 		buttonVolver.setOnAction( (ActionEvent event)->{
-			new ControladorJuego().terminarJuego(ventana);
+			new ControladorVentana().terminarJuego(ventana);
 		} );
 
 		/*

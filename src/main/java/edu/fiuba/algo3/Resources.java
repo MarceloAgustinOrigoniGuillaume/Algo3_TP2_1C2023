@@ -50,6 +50,30 @@ public class Resources {
         return new Background(bkImage);
     }
 
+
+
+
+    public static <T extends Parent> T getVista(String vista, Object controlador){
+        FXMLLoader loader = new FXMLLoader();
+        T view;
+        try {
+            URL url = getVistaPath(vista);
+            Logger.Log("Loading Vista "+url.toString());
+            loader.setController(controlador); // seteamos el controlador
+            loader.setLocation(url);
+            view = loader.load();
+        } catch (Exception e) {
+            Logger.Log("ERROR while loading vista '"+vista+"' "+e.toString());
+            e.printStackTrace();
+            return null;
+        }
+
+        return view;
+
+    }
+
+
+
     public static <T extends Parent> T getVista(String vista){
         FXMLLoader loader = new FXMLLoader();
         T view;

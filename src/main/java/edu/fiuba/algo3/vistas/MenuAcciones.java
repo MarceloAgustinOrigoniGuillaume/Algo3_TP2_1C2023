@@ -3,7 +3,7 @@ package edu.fiuba.algo3.vistas;
 import edu.fiuba.algo3.Resources;
 import edu.fiuba.algo3.Ventana;
 import edu.fiuba.algo3.controladores.ControladorConstruccion;
-import edu.fiuba.algo3.controladores.ControladorJuego;
+import edu.fiuba.algo3.controladores.ControladorVentana;
 import edu.fiuba.algo3.Logger;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -47,16 +47,16 @@ public class MenuAcciones extends AnchorPane {
 
 
         buttonConstruir.setOnAction( (ActionEvent event)->{
-            new ControladorJuego().mostrarOpciones(ventana);
+            new ControladorVentana().mostrarOpciones(ventana);
         });
 
         buttonAbandonar.setOnAction( (ActionEvent event)->{
-            new ControladorJuego().terminarJuego(ventana);
+            new ControladorVentana().terminarJuego(ventana);
         });
 
         buttonPasarTurno.setOnAction((ActionEvent event)->{
             Logger.Log("------>Pasar turno....");
-            new ControladorJuego().pasarTurno(ventana);
+            new ControladorVentana().pasarTurno(ventana);
         });
 
 
