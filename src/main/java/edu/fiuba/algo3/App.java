@@ -1,6 +1,7 @@
 package edu.fiuba.algo3;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -25,6 +26,7 @@ public class App extends Application {
         try{
             Ventana scene = new Ventana(INITIAL_WIDTH, INITIAL_HEIGHT);//new Scene(new MenuInicio(), );
 
+            stage.getIcons().add(Resources.getImg("icon.png"));
             stage.setScene(scene);
             stage.show();
         } catch(Exception ex){
