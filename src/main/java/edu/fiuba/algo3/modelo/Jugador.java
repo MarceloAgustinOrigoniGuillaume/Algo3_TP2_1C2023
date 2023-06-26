@@ -11,58 +11,36 @@ import java.util.ArrayList;
 
 public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
     private int vida;
-    private String nombre;
     private SistemaCreditos creditos;
-
     private modificacion_vida obsver_vida = (String vida)->{};
-
     private modificacion_creditos observer_creditos = (String creditos)->{};
-
     public interface modificacion_vida{
         void update_vida(String vida);
     }
-
     public interface modificacion_creditos{
         void update_creditos(String Creditos);
     }
-
     public Jugador(){
         vida=20;
         creditos = new SistemaCreditos(100);
     }
-
     public void acreditarMuertos(ArrayList<Enemigo> muertos){ // delegacion de creditos
         for(Enemigo enemigo: muertos) {
             enemigo.acreditarseEn(creditos);
         }
         observer_creditos.update_creditos(String.valueOf(creditos.obtenerCreditos()));
     }
-
     public int obtenerCreditos() {
         return creditos.obtenerCreditos();
     }
 
-
     public boolean puedeCostear(Estructura enConstruccion) {
         return creditos.puedeCostear(enConstruccion);
     }
-
     public void costear(Estructura enConstruccion) {
         creditos.costear(enConstruccion);
         observer_creditos.update_creditos(String.valueOf(creditos.obtenerCreditos()));
     }
-
-    public void asignarNombre(String nombre) { // nombre
-        verificarNombre(nombre);
-        this.nombre = nombre;
-    }
-
-    private void verificarNombre(String nombre) {
-        if (nombre.length() < 6) {
-            throw new RuntimeException(); // Aca tenemos que hacer un error custom.
-        }
-    }
-
     public int obtenerVida() {
         return vida;
     }

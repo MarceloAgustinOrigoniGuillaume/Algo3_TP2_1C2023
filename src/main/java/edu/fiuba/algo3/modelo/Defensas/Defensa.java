@@ -42,7 +42,7 @@ public abstract class Defensa implements Estructura {
     public abstract boolean atacar(ArrayList<Enemigo> enemigo);
 
     public boolean posicionarEn(Celda celda){
-        return celda.defensas().guardar(this);
+        return celda.guardar(this);
     }
 
     public DefensaDescriptor describe(){

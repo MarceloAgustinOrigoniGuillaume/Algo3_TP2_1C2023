@@ -11,7 +11,6 @@ public class Oleada {
 	private void agregaroleadas(ArrayList<Instanciador> instanciador){
 		oleadas.add(instanciador);
 	}
-
 	public Oleada(LectorEnemigo lector) throws Exception {
 		oleadas = new ArrayList();
 		// cargas lector
@@ -33,5 +32,4 @@ public class Oleada {
 	public boolean noHayMasOleadas(int turno){
 		return turno> oleadas.size();
 	}
-
 }

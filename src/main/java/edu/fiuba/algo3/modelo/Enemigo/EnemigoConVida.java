@@ -32,5 +32,4 @@ public abstract class EnemigoConVida extends Enemigo implements SistemaVida {
             Logger.info(this.toString()+" murio ");
         }
     }
-
 }

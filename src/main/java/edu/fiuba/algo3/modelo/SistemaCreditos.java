@@ -7,8 +7,8 @@ import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public class SistemaCreditos{
     private int creditos;
-
     private int hormigas_muertas;
+
     public SistemaCreditos(int cantidad_inicial){
         hormigas_muertas = 0;
         creditos = cantidad_inicial;
@@ -23,7 +23,6 @@ public class SistemaCreditos{
         if(hormigas_muertas >= 10){
             creditos_base *= 2;
         }
-
         sumarCreditos(creditos_base);
     }
     public void acreditarArania(int creditos_base){
@@ -43,6 +42,5 @@ public class SistemaCreditos{
            return;
         }
         creditos-= enConstruccion.costo();
-
     }
 }

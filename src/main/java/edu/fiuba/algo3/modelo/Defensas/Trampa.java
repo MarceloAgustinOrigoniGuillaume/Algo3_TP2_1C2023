@@ -6,15 +6,12 @@ import java.util.ArrayList;
 
 public class Trampa extends Defensa {
     public final static String TRAMPA_TYPE = "Trampa";
-
     public Trampa() {
         super(new EstadoTrampa(3));
     }
-
     public boolean posicionarEn(Celda celda){
         return celda.defensas().guardar(this);
     }
-
     @Override
     public int obtenerRango() {
         return 0;

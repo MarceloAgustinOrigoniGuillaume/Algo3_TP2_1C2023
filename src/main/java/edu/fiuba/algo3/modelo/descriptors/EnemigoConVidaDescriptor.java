@@ -10,7 +10,6 @@ public class EnemigoConVidaDescriptor extends EnemigoDescriptor{
         super(nombre, tipo ,velocidad,descripcion);
         this.vida = vida;
     }
-
     @Override
     public String infoStats(){
         String res =super.infoStats();

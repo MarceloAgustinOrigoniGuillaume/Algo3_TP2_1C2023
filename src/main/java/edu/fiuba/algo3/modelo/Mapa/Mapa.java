@@ -30,7 +30,7 @@ public class Mapa {
         int damageTotal;
         @Override
         public boolean ejecutarMetodoConCeldas(Celda celda, Coordenada coordenada) {
-            this.damageTotal = celda.enemigos().obtenerDamagePosible(damageTotal);
+            this.damageTotal = celda.obtenerDamagePosible(damageTotal);
             return true;
         }
     }
@@ -79,7 +79,6 @@ public class Mapa {
             coordenada = posicion;
             Logger.info("La coordenada actual de CAMINO AEREO es:"+posicion.x()+";"+posicion.y());
             if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual, posicion)){
-                //notificarCeldaCambio(celdaActual, posicion);
                 return;
             }
         }
@@ -88,7 +87,6 @@ public class Mapa {
             coordenada = caminoTerrestre.get(indice);
             Logger.info("La coordenada actual de CAMINO TERRESTRE es:"+caminoTerrestre.get(indice).x()+";"+caminoTerrestre.get(indice).y());
             if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual, caminoTerrestre.get(indice))){
-                //notificarCeldaCambio(celdaActual, caminoTerrestre.get(indice));
                 return;
             }
             indice -=1;
@@ -144,11 +142,11 @@ public class Mapa {
     //Pre: -
     //Post: Actualiza los habitantes de las coordenadas recibidas.
     private void actualizarPosicionEnemigo(Enemigo unidad, Coordenada desde, Coordenada hasta){
-        obtenerCelda(desde).enemigos().sacar(unidad);
 
-        if(hasta == posicionFinal()){
+        obtenerCelda(desde).sacar(unidad);
+
+        if(hasta == posicionFinal()){ // No se posiciona, ya que son "bombas"
             Logger.Log("Enemigo "+unidad.toString()+" llego al final.. "+hasta.toString());
-            // No se posiciona, ya que son "bombas"
             return;
         }
         unidad.posicionarEn(obtenerCelda(hasta));
@@ -209,7 +207,8 @@ public class Mapa {
 
         while (indice < defensas.size()){ // buscas primer torre.
             celdaBuscada = obtenerCelda(defensas.get(indice));
-            if(celdaBuscada.defensas().recibirAtaqueLechuza()){ // trampa devolveria false, no se puede quitar.
+
+            if(celdaBuscada.defensaRecibirAtaqueAereo()){
 
                 Logger.Log("-------->Defensa atacada... posicion: "+defensas.get(indice).toString());
                 defensas.remove(indice);
@@ -238,25 +237,25 @@ public class Mapa {
 
     public void removerConstruccion(Coordenada coordenada){
         Celda construccionAEliminar = obtenerCelda(coordenada);
-        construccionAEliminar.defensas().clear();
+        construccionAEliminar.limpiarDefensas();
         notificarCeldaCambio(coordenada);
     }
 
     //Pre: -
     //Post: Desde las defenses se le dice a mapa que quiere atacar a determinada coordenada.
     public boolean atacar(Coordenada coordenada, Defensa defensa){
+
         if(coordenada.x()<1 || coordenada.x()>this.width|| coordenada.y()<1 || coordenada.y()> height) {
             return true;
         }
         Celda celda = obtenerCelda(coordenada);
-        boolean seguirAtacando = celda.enemigos().recibirAtaque(defensa);
+        boolean seguirAtacando = celda.recibirAtaqueEnemigo(defensa);
 
-        ArrayList<Enemigo> muertos= celda.enemigos().popMuertos();
+        ArrayList<Enemigo> muertos = celda.retirarEnemigosMuertos();
 
         if(muertos.size() > 0){
             acreditadorMuertos.acreditarMuertos(muertos);
-
-            notificarCeldaCambio(coordenada);  // notify observers celda cambio.
+            notificarCeldaCambio(coordenada); // notify observers celda cambio.
         }
         return seguirAtacando;
     }
@@ -267,7 +266,6 @@ public class Mapa {
             obtenerCelda(posDefensa).accionarEstructuras(this, posDefensa);
         }
     }
-
     public CeldaDescriptor obtenerInformacion(Coordenada coordenada){
         return obtenerCelda(coordenada).describe();
     }

@@ -19,10 +19,8 @@ public class Juego {
     private Oleada oleada;
 
     private ObserverTurno observerTurno= (String turno)->{};
-
     private boolean estaJugando;
     //La clase oleadas almacena un vector de enemigos.
-
 
     private String jsonMapaUsed;
     private String jsonEnemigosUsed;
@@ -80,11 +78,9 @@ public class Juego {
         if(!jugador.puedeCostear(estructura)){
             return false;
         }
-
         if(!mapa.posicionar(pos, estructura)){
             return false;
         }
-
         jugador.costear(estructura);
         return true;
     }
@@ -117,7 +113,6 @@ public class Juego {
         }
         this.observerTurno = observerTurno;
     }
-
     public void notificarCambioTurno(int turno){
         this.observerTurno.updateTurno(String.valueOf(turno));
     }

@@ -29,7 +29,6 @@ public class Ventana extends Scene{
 		setRoot(this.view);
 
 		resetToInitial();
-
 		//setRoot(new IntermediarioLayoutBasico());
 	}
 

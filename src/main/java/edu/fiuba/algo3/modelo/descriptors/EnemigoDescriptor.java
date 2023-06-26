@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.descriptors;
 import java.util.ArrayList;
 
 public class EnemigoDescriptor {
-
     private String nombre;
     private String tipo;
     private String velocidad;
@@ -31,7 +30,6 @@ public class EnemigoDescriptor {
     public String nombre(){
         return nombre;
     }
-
 
     public String infoStats(){
         return "velocidad: "+velocidad;

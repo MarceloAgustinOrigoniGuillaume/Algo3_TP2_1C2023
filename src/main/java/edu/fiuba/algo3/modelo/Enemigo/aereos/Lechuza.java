@@ -32,7 +32,6 @@ public class Lechuza extends EnemigoAereo {
         Logger.info("El daño recibido es: "+danioRecibido);
     }
 
-
     public Enemigo copiar(){
         return new Lechuza();
     }

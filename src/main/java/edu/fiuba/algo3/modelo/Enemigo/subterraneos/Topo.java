@@ -56,7 +56,6 @@ public class Topo extends EnemigoSubterraneo {
     public EnemigoDescriptor describir(){
         return new TopoDescriptor(String.valueOf(this.contadorMovimientos),String.valueOf(this.contadorMovimientos+this.turnoInicial),String.valueOf(this.velocidad));
     }
-
 }
 
 
