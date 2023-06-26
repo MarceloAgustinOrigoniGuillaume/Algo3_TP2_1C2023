@@ -13,7 +13,6 @@ public class EstadoConstruido implements EstadoEstructura{
         coordenada.iterarEnRango( defensa.obtenerRango(),(Coordenada target)->
         { return mapa.atacar(target, defensa);});
     }
-
     public boolean estaActivo(){
         return true;
     }

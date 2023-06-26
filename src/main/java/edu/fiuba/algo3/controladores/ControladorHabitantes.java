@@ -10,7 +10,6 @@ public class ControladorHabitantes {
 
     public void mostrarHabitantes(Ventana ventana, Coordenada coordenada) {
         CeldaDescriptor celda= DatosModelo.obtenerTerrenoEn(coordenada.x(),coordenada.y());
-
         ventana.addPopup(new ViewHabitantes(ventana, celda));
     }
 }

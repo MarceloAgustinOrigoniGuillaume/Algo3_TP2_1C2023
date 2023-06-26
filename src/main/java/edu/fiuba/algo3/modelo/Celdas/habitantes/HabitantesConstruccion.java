@@ -23,9 +23,6 @@ public abstract class HabitantesConstruccion{
     }
 
 
-    // metodos de guardado
-
-    // metodo auxiliar para la logica de maximo una construccion.
 	protected boolean guardaConstruccion(Construccion construccion){
 		if(!hayEspacio()){
 			return false;
@@ -38,7 +35,6 @@ public abstract class HabitantesConstruccion{
 	public abstract boolean guardar(Trampa trampa);
 	public abstract boolean guardar(Construccion construccion);
 	public abstract boolean recibirAtaqueLechuza();
-
 
 
 	// accionar estructuras, acciona a la construccion de tener una.

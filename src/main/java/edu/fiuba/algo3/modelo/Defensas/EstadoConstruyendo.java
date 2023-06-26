@@ -32,11 +32,8 @@ public class EstadoConstruyendo implements EstadoEstructura{
             Logger.info("Defensa Estaba construyendose faltan\n"+String.valueOf(this.turnosRestantes)+" turnos para activarse");
         }
     }
-
     @Override
     public boolean estaActivo() {
         return false;
     }
-
-
 }

@@ -8,5 +8,4 @@ import java.util.ArrayList;
 public interface Construccion extends Posicionable{
 	boolean estaActiva();
 	void accionar(Mapa mapa, Coordenada desde);
-
 }

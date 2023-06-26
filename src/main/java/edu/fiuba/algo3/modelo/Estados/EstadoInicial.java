@@ -21,7 +21,6 @@ public class EstadoInicial implements EstadoJuego {
 
     private final static int WIDTH_MAP = 15;
     private final static int HEIGHT_MAP = 15;
-
     private String jsonMapa;
     private String jsonEnemigos;
 
@@ -30,19 +29,15 @@ public class EstadoInicial implements EstadoJuego {
         this.juego = juego;
         this.jsonMapa = jsonMapa;
         this.jsonEnemigos = jsonEnemigos;
-
     }
 
     @Override
-    public void ejecutarEstado() throws Exception{
-        // reinicia el estado de Juego
+    public void ejecutarEstado() throws Exception{ // reinicia el estado de Juego
 
         LectorMapa lector = new LectorMapa(jsonMapa,WIDTH_MAP,HEIGHT_MAP);
         
         juego.asignarMapa(new Mapa(lector, WIDTH_MAP,HEIGHT_MAP, juego.obtenerJugador()));
         LectorEnemigo lectorEnemigos = new LectorEnemigo(jsonEnemigos);
         juego.asignarOleadas(new Oleada(lectorEnemigos));
-
-        //Logger.info(juego.obtenerMapa().toString());
     }
 }

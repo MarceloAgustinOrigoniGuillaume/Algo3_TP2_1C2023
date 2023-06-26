@@ -11,7 +11,6 @@ import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 public class ControladorJuego extends Controlador {
 	public ControladorJuego() {
 	}
-
 	public void iniciarJuego(String jsonMapa, String jsonEnemigos, Ventana ventana){
 
 		try{
@@ -20,7 +19,6 @@ public class ControladorJuego extends Controlador {
 			Logger.Log("ERROR INICIANDO NUEVO JUEGO "+ex.toString());
 			ex.printStackTrace();
 		}
-
 		ventana.setVista(new MenuInicio(ventana));
 	}
 
@@ -36,14 +34,12 @@ public class ControladorJuego extends Controlador {
 			return false;
 		}
 
-
 		ViewJugador jugador = new ViewJugador(nombreJugador);
 
 		DatosModelo.setObserverVida(jugador::update_vida);
 		DatosModelo.setObserverCreditos(jugador::update_creditos);
 
 		ViewMapa mapa = new ViewMapa(DatosModelo.mapa_width,DatosModelo.mapa_height,(int x, int y)->{
-			//Logger.Log("Obteniendo ........celda... ");
 			return ControladorMapa.instanciarViewCelda(ventana::clickEnCelda ,
 				 DatosModelo.obtenerTerrenoEn(x,y), x, y);
 		});
@@ -53,20 +49,15 @@ public class ControladorJuego extends Controlador {
 		ViewJuego view = new ViewJuego(mapa,jugador, ventana);
 		ventana.setVista(view);
 		DatosModelo.setObserverTurno(view::updateTurno);
-		//new MenuConstrucciones();
 		return true;
 	}
 
 	public void mostrarOpciones(Ventana ventana) {
-
-		//new MenuConstrucciones(ventana);
 		ventana.addPopup(new MenuConstruir(ventana));
 	}
 
 
 	public void terminarJuego(Ventana ventana){
-
-		// por ahora... vuelve a inicio de juego.
 
 		DatosModelo.terminarJuego();
 		try{
@@ -75,15 +66,11 @@ public class ControladorJuego extends Controlador {
 			Logger.Log("ERROR INICIANDO NUEVO JUEGO "+ex.toString());
 			ex.printStackTrace();
 		}
-
 	}
 
 
 
 	public void reiniciarJuego(Ventana ventana){
-
-		// por ahora... vuelve a inicio de juego.
-
 		try{
 			String nombreJugador;
 			DatosModelo.reiniciarJuego();

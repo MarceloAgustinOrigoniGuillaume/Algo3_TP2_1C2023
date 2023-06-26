@@ -9,7 +9,6 @@ import edu.fiuba.algo3.Logger;
 public abstract class EnemigoConVida extends Enemigo implements SistemaVida {
 
     protected int vida;
-
     public EnemigoConVida(int vida, int velocidad) {
         super(velocidad);
         this.vida = vida;
@@ -23,7 +22,6 @@ public abstract class EnemigoConVida extends Enemigo implements SistemaVida {
         recibirAtaque(dmg);
         return true;
     }
-
 
     @Override
     public void recibirAtaque(int danioRecibido) {

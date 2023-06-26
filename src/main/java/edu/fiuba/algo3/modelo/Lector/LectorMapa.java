@@ -12,15 +12,12 @@ import java.io.IOException;
 public class LectorMapa implements Lector{
     private int width;
     private int height;
-
     private JSONObject mapa;
-
     private int filaActual;
     private ConvertidorFila fila;
 
     public LectorMapa(String filePath, int width, int height) throws Exception {
         JSONObject parsedObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
-
 
         mapa = (JSONObject)((parsedObject).get("Mapa")); // Obtenes mapa
 
@@ -30,7 +27,6 @@ public class LectorMapa implements Lector{
         if(mapa == null){
         	throw new IOException("JSON No tenia el objeto Mapa");
         }
-
         int maxFila = getMaxFila(mapa);
 
         if(maxFila != height){
@@ -39,8 +35,6 @@ public class LectorMapa implements Lector{
         filaActual = 0;
 
         replaceFilaNext();
-
-
     }
     private int getMaxFila(JSONObject mapa){
     	int i = 0;
@@ -49,7 +43,6 @@ public class LectorMapa implements Lector{
     	}
 
     	return i;
-
     }
 
 
@@ -58,7 +51,6 @@ public class LectorMapa implements Lector{
             fila = null;
         	return;
         }
-
         filaActual+= 1;
         fila = new ConvertidorFila(width,filaActual,(JSONArray)mapa.get(String.valueOf(filaActual)));
     }
@@ -69,11 +61,9 @@ public class LectorMapa implements Lector{
     	if(!haySiguiente()){
     		return null;
     	}
-
     	if(!fila.hayMas()){
     		replaceFilaNext();
     	}
-
     	return fila.obtener();
     }
 
@@ -81,8 +71,4 @@ public class LectorMapa implements Lector{
     public boolean haySiguiente(){
         return filaActual < height || fila.hayMas();
     }
-
-
-
-
 }

@@ -94,15 +94,11 @@ public class Mapa {
                 continue;
             }
             */
-
             celdaActual = obtenerCelda(posicion);
-
             if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual)){
                 return;
             }
         }
-
-
         while(indice >= 0){
             celdaActual = obtenerCelda(caminoTerrestre.get(indice));
             if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual)){
@@ -119,10 +115,6 @@ public class Mapa {
 
         if (convertidor.esCaminable()){
         	caminoTerrestre.add(celda.posicion());
-            //Logger.info("Se agrego camino, en posicion:"+String.valueOf(celda.posicion().x())+","+String.valueOf(celda.posicion().y()));
-            //Logger.info("Se agrega pasarela al mapa, en posicion: "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" u la celda es "+celda.toString());
-        } else {
-            //Logger.info("Coloco la celda en el mapa, en posicion: "+String.valueOf(convertidor.columna())+","+String.valueOf(convertidor.fila())+" y la celda es "+celda.toString());
         }
     }
 
@@ -140,7 +132,7 @@ public class Mapa {
         }
         return -1;
     }
-    // mover
+
     private int moverIndex(int index, int cantidad){
         index+= cantidad;
         if(index>=caminoTerrestre.size()){
@@ -169,7 +161,6 @@ public class Mapa {
             // No se posiciona, ya que son "bombas"
             return;
         }
-
         unidad.posicionarEn(obtenerCelda(hasta));
     }
 
@@ -177,16 +168,13 @@ public class Mapa {
     //Post: Obtiene la coordenada en la que te moverias segun el camino y delega el actualizar la coordenada.
     public void moverEnCaminoAereo(Enemigo unidad, Coordenada desde,Coordenada hasta){
 
-
         if(caminoAereo.contains(desde)){
             caminoAereo.remove(desde);
         }
         if(!caminoTerrestre.contains(hasta)){
             caminoAereo.add(hasta);
         }
-
         actualizarPosicionEnemigo(unidad, desde, hasta);
-
         notificarCeldaCambio(desde);
     }
 
@@ -211,7 +199,6 @@ public class Mapa {
             celdaActual.accionarEnemigos(this, jugador);
             return true;}
         );
-
         // hagamosla sencilla para notificar, por ahora almenos
         iteradorDeCeldas((Celda celdaActual)->{
             notificarCeldaCambio(celdaActual);
@@ -227,11 +214,9 @@ public class Mapa {
         int indice =0;
         Celda celdaBuscada;
 
-        // buscas primer torre.
-        while (indice < defensas.size()){
+        while (indice < defensas.size()){ // buscas primer torre.
             celdaBuscada = obtenerCelda(defensas.get(indice));
             if(celdaBuscada.defensas().recibirAtaqueLechuza()){ // trampa devolveria false, no se puede quitar.
-                
                 Logger.Log("-------->Defensa atacada... posicion: "+defensas.get(indice).toString());
                 defensas.remove(indice);
                 notificarCeldaCambio(celdaBuscada);
@@ -240,14 +225,12 @@ public class Mapa {
             }
             indice+=1;
         }
-
     }
 
     private void notificarCeldaCambio(Celda celda){
         if(listenerCambios != null){
             listenerCambios.cambio(celda.posicion(), celda.describe());
         }
-
     }
 
     // publico para que alguien externo... defensa avise si termino
@@ -260,12 +243,10 @@ public class Mapa {
         notificarCeldaCambio(caminoTerrestre.get(0));
     }
 
-
     public void removerConstruccion(Coordenada coordenada){
-        
-        obtenerCelda(coordenada).defensas().clear();
+        Celda construccionAEliminar = obtenerCelda(coordenada);
+        construccionAEliminar.defensas().clear();
         notificarCeldaCambio(coordenada);
-        return;
     }
 
     //Pre: -
@@ -281,14 +262,10 @@ public class Mapa {
         ArrayList<Enemigo> muertos= celda.enemigos().popMuertos();
 
         if(muertos.size() > 0){
-
-
             acreditadorMuertos.acreditarMuertos(muertos);
-            
-            // notify observers celda cambio.
-            notificarCeldaCambio(coordenada);
-        }
 
+            notificarCeldaCambio(coordenada);  // notify observers celda cambio.
+        }
         return seguirAtacando;
     }
 
@@ -320,7 +297,6 @@ public class Mapa {
     //Post: Devuelve una matriz de celdas (El mapa).
     @Override
     public String toString(){
-
         String columna = "{";
         for(int y = 0; y < 15; y++){
             String fila = String.valueOf(y)+" {";

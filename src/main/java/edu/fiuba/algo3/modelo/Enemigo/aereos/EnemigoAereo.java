@@ -16,20 +16,16 @@ public abstract class EnemigoAereo extends EnemigoConVida {//implements Monetiza
         return celda.enemigos().guardar(this);
     }
 
-
     public EnemigoDescriptor describir(){
         return new EnemigoConVidaDescriptor(this.toString(),
             "aereo",
             String.valueOf(velocidad), String.valueOf(vida),"ataca torres");
     }
-
-
     // No es atacado por trampa
     @Override
     public boolean atacadoPorTrampa(){
         return false;
     }
-
 
     @Override
     public String toString(){

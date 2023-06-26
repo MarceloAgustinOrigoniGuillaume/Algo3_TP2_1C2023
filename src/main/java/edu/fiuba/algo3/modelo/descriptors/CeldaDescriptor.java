@@ -30,7 +30,6 @@ public class CeldaDescriptor{
 
 
 	public String rel_image(){
-
 		if(defensa != null){
 			String res = defensa.rel_image();
 			if(res != ""){ // no habia defensa
@@ -39,7 +38,6 @@ public class CeldaDescriptor{
 		} else{
 			System.out.println("LA DEFENSA ERA NULL WTF??? "+terreno);
 		}
-
 		return "terrenos/"+terreno+".jpg";
 	}
 	public String tipo(){

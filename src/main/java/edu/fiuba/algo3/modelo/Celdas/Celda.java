@@ -24,7 +24,6 @@ public abstract class Celda {
         return coordenada;
     }
 
-
     public Habitantes enemigos(){
         return habitantes;
     }

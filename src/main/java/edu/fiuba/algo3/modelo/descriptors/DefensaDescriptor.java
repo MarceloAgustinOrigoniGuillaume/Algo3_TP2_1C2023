@@ -15,14 +15,11 @@ public class DefensaDescriptor {
             this.url = "construccion.jpg";
             return;
         }
-
         if(defensa == "Trampa"){
             this.url = "Trampa.jpg";
         } else{
             this.url = defensa+".png";
         }
-
-
     }
 
     public boolean existe(){

@@ -18,8 +18,7 @@ public class SistemaCreditos{
     }
 
     public void acreditarHormiga(int creditos_base){
-        
-        //System.out.println("ACREDITANDO HORMIGA> !!!");
+
         hormigas_muertas+=1;
         if(hormigas_muertas >= 10){
             creditos_base *= 2;
@@ -28,10 +27,8 @@ public class SistemaCreditos{
         sumarCreditos(creditos_base);
     }
     public void acreditarArania(int creditos_base){
-        //System.out.println("ACREDITANDO ARANIA> !!!");
         sumarCreditos(creditos_base);
     }
-
 
     private void sumarCreditos(int creditos){
         this.creditos += creditos;
@@ -48,6 +45,4 @@ public class SistemaCreditos{
         creditos-= enConstruccion.costo();
 
     }
-
-
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 
 public class EnemigosDescriptor {
-
     private ArrayList<EnemigoDescriptor> enemigos;
 
     public EnemigosDescriptor(){

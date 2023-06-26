@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class EstadoMovimientoDiagonal implements EstadoMovimiento{
-
     private EnemigoAereo enemigo;
     public EstadoMovimientoDiagonal(EnemigoAereo enemigo){
         this.enemigo = enemigo;

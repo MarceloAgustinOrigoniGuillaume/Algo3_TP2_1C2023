@@ -11,6 +11,4 @@ public interface EstadoEstructura {
 
     public boolean estaActivo();
 
-    //Hace lo que se espera que haga la instancia de EstadoConstruido o EstadoContruyendo.
-
 }

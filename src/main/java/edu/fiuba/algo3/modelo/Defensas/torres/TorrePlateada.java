@@ -11,9 +11,6 @@ public class TorrePlateada extends Defensa {
 
     public TorrePlateada(int turnosParaConstruccion) {
         super(new EstadoConstruyendo(turnosParaConstruccion));
-
-        //this.estadoActual = new EstadoConstruyendo(turnosParaConstruccion);
-        //this.turnosParaConstruccion = turnosParaConstruccion;
     }
     public TorrePlateada() {
         this(2);
@@ -26,7 +23,6 @@ public class TorrePlateada extends Defensa {
 
     public int ataque(){
         return 2;
-        //target.recibirAtaque(2); // hace uno de dmg
     }
     public int obtenerRango(){
         return 5;

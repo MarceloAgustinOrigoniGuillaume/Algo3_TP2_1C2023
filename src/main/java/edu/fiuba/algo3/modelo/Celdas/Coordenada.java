@@ -6,11 +6,9 @@ import java.lang.Math;
 
 
 public class Coordenada {
-
     public interface Iterador{
         boolean actOn(Coordenada coord);
     }
-
     private final int coordenadaX;
     private final int coordenadaY;
 
@@ -40,25 +38,6 @@ public class Coordenada {
         }
     }
 
-
-    public ArrayList<Coordenada> obtenerEnRango(ArrayList<Coordenada> coordenadas, int rango){
-        ArrayList<Coordenada> enRango = new ArrayList<>();
-
-        for (Coordenada coord: coordenadas){
-            if(distanciaA(coord) <= rango){
-                enRango.add(coord);
-            }
-        }
-        return enRango;
-    }
-
-    public int distanciaA(Coordenada coord){
-        int diffX = Math.abs(coord.x()- x());
-        int diffY = Math.abs(coord.y()- y());
-
-        return diffX+ diffY;
-    }
-
     @Override
     public String toString() {
         return String.valueOf(x())+","+String.valueOf(y());
@@ -70,7 +49,6 @@ public class Coordenada {
         Coordenada coordenada = (Coordenada) o;
         return Objects.equals(coordenadaX, coordenada.coordenadaX) && Objects.equals(coordenadaY, coordenada.coordenadaY);
     }
-
     public int x(){
         return coordenadaX;
     }
@@ -78,5 +56,4 @@ public class Coordenada {
     public int y(){
         return coordenadaY;
     }
-
 }

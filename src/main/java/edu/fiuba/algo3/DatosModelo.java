@@ -17,7 +17,6 @@ public class DatosModelo{
 	public static final int mapa_width = 15;
 	public static final int mapa_height = 15;
 
-
 	private DatosModelo(){
 	}
 
@@ -26,10 +25,7 @@ public class DatosModelo{
 		if(unicaInstancia.juego != null){
 			unicaInstancia.juego.terminarJuego();
 			unicaInstancia.juego = null;
-			// opcional, la verdad... pero haras algun cleanup
 		}
-
-		//nuevoJuego(jsonMapa,jsonEnemigos);
 	}
 
 	private String nombre;
@@ -41,38 +37,27 @@ public class DatosModelo{
 		return unicaInstancia.nombre;
 	}
 
-
 	public static void reiniciarJuego() throws Exception{
 
 		if(unicaInstancia.juego != null){
 			unicaInstancia.juego = unicaInstancia.juego.nuevoJuego();
 		}
-
-		//nuevoJuego(jsonMapa,jsonEnemigos);
 	}
 
-
-	// pasas un turno y devolves si sigue en juego
-	public static boolean pasarTurno(){
+	public static boolean pasarTurno(){ //Pasas un turno y devolves si sigue en juego
 
 		if(unicaInstancia.juego != null){
-
 			Logger.Log("--------------------PASANDO TURNO !!!!");
 			unicaInstancia.juego.pasarTurno();
 			return unicaInstancia.juego.estanEnJuego();
 		}
-
 		return false;
-
-		//nuevoJuego(jsonMapa,jsonEnemigos);
 	}
-
 
 	public static void nuevoJuego(String jsonMapa, String jsonEnemigos) throws Exception{
 		if(unicaInstancia.juego != null){
 			throw new Exception("Por el momento no se permite mas de una instancia del juego");
 		}
-
 		unicaInstancia.juego = new Juego(jsonMapa, jsonEnemigos);
 	}
 
@@ -81,32 +66,24 @@ public class DatosModelo{
 		if(tipoDeEstructura == "TorreBlanca"){
 			return new TorreBlanca();
 		}
-
 		if(tipoDeEstructura == "TorrePlateada"){
 			return new TorrePlateada();
 		}
-
 		if(tipoDeEstructura == "Trampa"){
 			return new Trampa();
 		}
-
 		return null;
 	}
-
 
 	public static boolean ganoJugador(){
 		return unicaInstancia.juego.ganoJugador();
 	}
 
-
-
 	public static void empezarJuegoActual(){
 		if(unicaInstancia.juego == null){
-			//throw new Exception("Por el momento no se permite mas de una instancia del juego");
 			Logger.Log("ERROR Quiso empezar juego sin un juego iniciado.");
 			return;
 		}
-
 		unicaInstancia.juego.iniciarJuego();
 	}
 
@@ -118,7 +95,6 @@ public class DatosModelo{
 		Logger.info("Intento colocar"+defensa.toString()+" En la posicion"+coordenada.x()+"-"+coordenada.y());
 		return unicaInstancia.juego.posicionar(defensa,coordenada);
 	}
-
 
 	public static void setOnCeldaChangedListener(Mapa.OnHabitantesChangedListener listener){
 		if(unicaInstancia.juego == null){
@@ -138,5 +114,4 @@ public class DatosModelo{
 	public  static void setObserverTurno(Juego.ObserverTurno modificacion_turno){
 		unicaInstancia.juego.setObserverTurno(modificacion_turno);
 	}
-
 }

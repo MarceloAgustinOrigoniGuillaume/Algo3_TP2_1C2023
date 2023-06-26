@@ -31,16 +31,12 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
         creditos = new SistemaCreditos(100);
     }
 
-
-
-    // delegacion de creditos
-    public void acreditarMuertos(ArrayList<Enemigo> muertos){
+    public void acreditarMuertos(ArrayList<Enemigo> muertos){ // delegacion de creditos
         for(Enemigo enemigo: muertos) {
             enemigo.acreditarseEn(creditos);
         }
         observer_creditos.update_creditos(String.valueOf(creditos.obtenerCreditos()));
     }
-
 
     public int obtenerCreditos() {
         return creditos.obtenerCreditos();
@@ -56,10 +52,7 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
         observer_creditos.update_creditos(String.valueOf(creditos.obtenerCreditos()));
     }
 
-
-
-    // nombre
-    public void asignarNombre(String nombre) {
+    public void asignarNombre(String nombre) { // nombre
         verificarNombre(nombre);
         this.nombre = nombre;
     }
@@ -69,10 +62,6 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
             throw new RuntimeException(); // Aca tenemos que hacer un error custom.
         }
     }
-
-
-
-    // recibir ataques.... 
 
     public int obtenerVida() {
         return vida;
@@ -90,7 +79,6 @@ public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
         if(estaMuerto()){
             vida = 0;
         }
-
         obsver_vida.update_vida(String.valueOf(vida));
     }
 

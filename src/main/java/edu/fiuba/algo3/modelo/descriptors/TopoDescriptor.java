@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.descriptors;
 import java.util.ArrayList;
 
 public class TopoDescriptor extends EnemigoDescriptor{
-
     private String cantidadMovimientos;
     private String turnos;
 
@@ -12,7 +11,6 @@ public class TopoDescriptor extends EnemigoDescriptor{
 
         this.turnos = turnos;
         this.cantidadMovimientos = cantidadMovimientos;
-
     }
 
     @Override
@@ -23,5 +21,4 @@ public class TopoDescriptor extends EnemigoDescriptor{
         res+= "\n"+"turnos: "+turnos;
         return res;
     }
-
 }

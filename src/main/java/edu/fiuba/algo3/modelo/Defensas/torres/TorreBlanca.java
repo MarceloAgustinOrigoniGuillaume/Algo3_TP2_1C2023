@@ -9,7 +9,6 @@ public class TorreBlanca extends Defensa {
 
     public final static String TORRE_TYPE = "TorreBlanca";
     public TorreBlanca(int turnosParaConstruccion) {
-        //this.turnosParaConstruccion = turnosParaConstruccion;
         super(new EstadoConstruyendo(turnosParaConstruccion));
     }
 
@@ -24,7 +23,6 @@ public class TorreBlanca extends Defensa {
 
     public int ataque(){
         return 1;
-        //target.recibirAtaque(1); // hace uno de dmg
     }
 
     public int obtenerRango(){

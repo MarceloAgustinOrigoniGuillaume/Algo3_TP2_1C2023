@@ -21,27 +21,15 @@ public class ConvertidorFila{
 
         if(columnas != width){
         	throw new Exception("Esperaba '"+String.valueOf(width)+"' columnas obtuvo "+String.valueOf(columnas)+"'");
-
         }
-
         iteradorFila = fila.iterator();
         columnaActual = 1;
 
 	}
 	public Convertidor obtener(){
-		/*
-		ArrayList<Object> fila = new ArrayList<>();
-
-		while (iteradorFila.hasNext()){
-			fila.add(new ConvertidorMapa(columnaActual,row,iteradorFila.next()))
-			columnaActual+=1;
-		}
-		*/
-
 		if(!hayMas()){
 			return null;
 		}
-
 		columnaActual+=1;
 		return new ConvertidorParcela(columnaActual-1,row,iteradorFila.next().toString());
 	}

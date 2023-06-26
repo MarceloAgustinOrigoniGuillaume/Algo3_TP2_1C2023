@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 
 public class Lechuza extends EnemigoAereo {
-
     private int vidaCambioMovimiento;
     private EstadoMovimiento estadoMovimiento;
 
@@ -24,7 +23,6 @@ public class Lechuza extends EnemigoAereo {
             vidaCambioMovimiento = 0; // que solo pase una vez.
             this.estadoMovimiento = new EstadoMovimientoDiagonal(this);
         }
-        //Logger.Log("LLEGO A FINAL ?? "+String.valueOf(moviendose));
         return (this.estadoMovimiento).ejecutarEstado(mapa, posicion);
     }
 

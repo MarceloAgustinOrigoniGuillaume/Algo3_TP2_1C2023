@@ -86,12 +86,10 @@ public class Juego {
         }
 
         jugador.costear(estructura);
-        //System.out.println("-->Posiciono defensa "+pos.toString()+" creditos jugador "+String.valueOf(jugador.obtenerCreditos()));
         return true;
     }
 
     public void pasarTurno() {
-        //System.out.println("JUEGO PASAR TURNO, EJECUTANDO ESTADO");
         try{
             estadoDeJuego.ejecutarEstado();
         } catch(Exception ex){

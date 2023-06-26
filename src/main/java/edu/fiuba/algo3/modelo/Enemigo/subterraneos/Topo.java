@@ -10,7 +10,6 @@ import edu.fiuba.algo3.modelo.descriptors.EnemigoDescriptor;
 import edu.fiuba.algo3.modelo.descriptors.TopoDescriptor;
 
 public class Topo extends EnemigoSubterraneo {
-
     private int turnoInicial;
     private int contadorMovimientos;
 
@@ -19,7 +18,6 @@ public class Topo extends EnemigoSubterraneo {
         this.turnoInicial = turnoActual;
         this.contadorMovimientos = 0;
     }
-
     //Pre: -
     // Post: -
     @Override
@@ -27,7 +25,6 @@ public class Topo extends EnemigoSubterraneo {
         incrementarContadorDePasos();
         return super.moverse(mapa, posicion);
     }
-
     //Pre: -
     // Post: -
     public void incrementarContadorDePasos() {
@@ -40,11 +37,6 @@ public class Topo extends EnemigoSubterraneo {
             this.velocidad = 3;
         }
     }
-
-    //Pre: -
-    // Post: -
-
-
     //Pre: -
     //Post: -
     protected void atacarObjeto(Jugador jugador, Mapa mapa) {
@@ -53,7 +45,6 @@ public class Topo extends EnemigoSubterraneo {
         if((this.turnoInicial+this.contadorMovimientos) % 2 != 0){
             ataque = 2;
         }
-
         jugador.recibirAtaque(ataque);
     }
     
@@ -61,7 +52,6 @@ public class Topo extends EnemigoSubterraneo {
     public Enemigo copiar() {
         return new Topo(this.turnoInicial);
     }
-
 
     public EnemigoDescriptor describir(){
         return new TopoDescriptor(String.valueOf(this.contadorMovimientos),String.valueOf(this.contadorMovimientos+this.turnoInicial),String.valueOf(this.velocidad));

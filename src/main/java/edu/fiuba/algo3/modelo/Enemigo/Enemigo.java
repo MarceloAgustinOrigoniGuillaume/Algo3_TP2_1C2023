@@ -11,19 +11,14 @@ import edu.fiuba.algo3.Logger;
 
 public abstract class Enemigo implements Ataque, Posicionable {
 
-
     protected int velocidad;
 
     public Enemigo(int velocidad){
         this.velocidad = velocidad;
 	}
-    //Pre: -
-    //Post: -
     public int velocidad(){
         return this.velocidad;
     }
-    //Pre: -
-    //Post: -
 
     // No es atacado por torre
     public boolean atacadoPorTorre(int dmg){
@@ -46,12 +41,9 @@ public abstract class Enemigo implements Ataque, Posicionable {
     // se necesita este metodo para el double dispatch
     public void acreditarseEn(SistemaCreditos sistema){
         return;
-    }    
-
-
+    }
 
     public abstract EnemigoDescriptor describir();
-
 
     //Pre: -
     // Post: Le dice a los enemigos que se muevan.

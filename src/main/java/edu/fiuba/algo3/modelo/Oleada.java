@@ -19,7 +19,6 @@ public class Oleada {
 			agregaroleadas((ArrayList<Instanciador>)(lector.siguienteElemento().obtener()));
 		}
 	}
-
 	public ArrayList<Enemigo> instanciar(int turno){
 		if(noHayMasOleadas(turno)){
 			return new ArrayList<>();
@@ -31,7 +30,6 @@ public class Oleada {
 		}
 		return enemigosNuevos;
 	}
-
 	public boolean noHayMasOleadas(int turno){
 		return turno> oleadas.size();
 	}

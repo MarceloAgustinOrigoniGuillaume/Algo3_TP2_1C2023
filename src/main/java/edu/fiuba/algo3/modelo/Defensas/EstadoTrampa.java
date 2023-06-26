@@ -15,21 +15,16 @@ public class EstadoTrampa implements EstadoEstructura{
 
     @Override
     public void ejecutarMetodo(Defensa defensa, Mapa mapa, Coordenada coordenada){
-        
 
         if(restanteDeVida<=0){
         	mapa.removerConstruccion(coordenada);
         	return;
         }
-
         restanteDeVida-=1;
         
         // ataca solo la coordenada en la que esta.
         mapa.atacar(coordenada, defensa);
-
-
     }
-
     public boolean estaActivo(){
         return true;
     }

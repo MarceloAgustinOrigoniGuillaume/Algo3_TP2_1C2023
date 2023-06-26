@@ -21,7 +21,6 @@ public class LectorEnemigo  implements Lector{
         iterador = turnos.iterator();
 
     }
-
     private Hashtable<String,Integer> convertToHash(JSONObject enemigos){
         Hashtable<String,Integer> oleada = new Hashtable<String,Integer>();
         

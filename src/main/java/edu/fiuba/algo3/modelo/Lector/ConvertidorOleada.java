@@ -41,8 +41,6 @@ public class ConvertidorOleada implements Convertidor {
 			//throw new Exception("No tenia label "+LECHUZA_LABEL);
 			aInstanciar.put(LECHUZA_LABEL, 0);
 		}
-
-
     }
 
 
@@ -69,11 +67,7 @@ public class ConvertidorOleada implements Convertidor {
 		if(cantidad > 0){
 			enemigosInstanciar.add(new Instanciador(new Topo(turno), cantidad));
 		}
-
-
-
 		return enemigosInstanciar;
-
     }
 
     public int getTurno(){

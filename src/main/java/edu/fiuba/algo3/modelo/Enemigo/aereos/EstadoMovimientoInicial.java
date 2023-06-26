@@ -4,13 +4,10 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class EstadoMovimientoInicial implements EstadoMovimiento {
-
     private EnemigoAereo enemigo;
-
     public EstadoMovimientoInicial(EnemigoAereo enemigo){
         this.enemigo = enemigo;
     }
-
     @Override
     public boolean ejecutarEstado(Mapa mapa, Coordenada posicion) {
 

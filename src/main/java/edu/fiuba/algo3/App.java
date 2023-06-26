@@ -8,8 +8,6 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-
-
     public static final int INITIAL_WIDTH = 640;
     public static final int INITIAL_HEIGHT = 680;
 

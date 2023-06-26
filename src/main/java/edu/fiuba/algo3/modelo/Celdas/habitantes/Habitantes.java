@@ -14,11 +14,6 @@ import edu.fiuba.algo3.modelo.descriptors.EnemigosDescriptor;
 
 
 public class Habitantes {
-
-	// por ahora todos las celdad/tipos habitantes deberian poder contener enemigos...
-	// por lo que la logica de su guardado ira aca...
-	// no asi con construcciones, rocoso no necesitaria eso. Por eso se creo HabitantesConstruccion
-
 	private ArrayList<Enemigo> enemigos;
 	private boolean habilitarTodos;
 
@@ -59,20 +54,12 @@ public class Habitantes {
     	}
     }
 
-    //public void clear(){
-    //	enemigos.clear();
-    //}
-
-
     // dice a la defensa que ataque a los enemigos,
 	public boolean recibirAtaque(Defensa ataque){
 		return ataque.atacar(enemigos);
 	}
 
-
-	// se fija quien esta muerto, los remueve y los devuelve
-
-	public ArrayList<Enemigo> popMuertos(){
+	public ArrayList<Enemigo> popMuertos(){ //Se fija quien esta muerto, los remueve y los devuelve
 
 		ArrayList<Enemigo> muertos = new ArrayList<>();
 		for (Enemigo enemigo: new ArrayList<Enemigo>(enemigos)){
@@ -82,13 +69,8 @@ public class Habitantes {
 				enemigos.remove(enemigo);
 			}
 		}
-
 		return muertos;
 	}
-
-
-
-
 
 	public void accionarEnemigos(Mapa mapa, Jugador jugador, Coordenada desde){
 		for(Enemigo enemigo: new ArrayList<Enemigo>(enemigos)){
@@ -111,8 +93,6 @@ public class Habitantes {
 		for(Enemigo enemigo : enemigos){
 			descriptor.agregarEnemigo(enemigo);
 		}
-
 		return descriptor;
-
 	}
 }

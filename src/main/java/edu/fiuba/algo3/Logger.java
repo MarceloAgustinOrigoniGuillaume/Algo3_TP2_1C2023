@@ -14,7 +14,6 @@ package edu.fiuba.algo3;
             loggerTests = activo;
         }
 
-
         public static void setTestMode(boolean activo){
             Logger.obtener().setTestsMode(activo);       
         }
@@ -29,7 +28,6 @@ package edu.fiuba.algo3;
             }
         }
 
-
         public void toggle(boolean bool){
             loggerActivado = bool;
         }
@@ -38,7 +36,6 @@ package edu.fiuba.algo3;
             if (loggerActivado)
                 System.out.println(mensajeLogeado);
         }
-
 
         public static void Log(String unString) {
             Logger.obtener().log(unString);
