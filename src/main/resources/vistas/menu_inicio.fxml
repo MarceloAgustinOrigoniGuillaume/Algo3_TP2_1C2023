@@ -59,3 +59,10 @@
       </Button>
    </children>
 </AnchorPane>
+
+
+<!--<VBox fx:id="initContainer" spacing="2" alignment="CENTER">-->
+<!--<Label text="Antes de empezar, cual es tu nombre? (minimo 6 caracteres)"/>-->
+<!--<TextField fx:id="editNombreUsuario" onAction="#iniciarJuego" maxWidth="200"/>-->
+<!--<Button fx:id="btnIniciarJuego" onAction="#iniciarJuego" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Iniciar Partida" />-->
+<!--</VBox>-->

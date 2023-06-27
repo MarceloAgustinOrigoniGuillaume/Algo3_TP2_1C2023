@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
-import javafx.scene.control.Label;;
+import javafx.scene.control.Label;
 
 public class DefensaDraggeable extends Label {
     private Defensa defensa;

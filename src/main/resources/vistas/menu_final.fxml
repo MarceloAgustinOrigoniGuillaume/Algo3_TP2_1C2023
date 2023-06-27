@@ -21,8 +21,8 @@
       </Label>
 
       <VBox fx:id="initContainer" spacing="2" alignment="CENTER">
-         <Button fx:id="btnReiniciarJuego" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Jugar devuelta" />
-         <Button fx:id="btnVolverInicio" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Volver inicio" />
+         <Button fx:id="btnReiniciarJuego" onAction="#reiniciarJuego" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Jugar devuelta" />
+         <Button fx:id="btnVolverInicio" onAction="#volverInicio" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Volver inicio" />
       </VBox>
 
    </children>

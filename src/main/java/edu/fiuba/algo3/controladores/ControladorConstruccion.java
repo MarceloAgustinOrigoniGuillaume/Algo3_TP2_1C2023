@@ -12,7 +12,7 @@ public class ControladorConstruccion {
         Defensa defensa;
         defensa = DatosModelo.instanciador(tipoDeEstructura);
 
-        ventana.removePopUp();
+        //ventana.removePopUp();
         ventana.iniciarConstruccionDefensa(defensa);
         //Aca se deberia invocar a la construccion seleccionada
     }

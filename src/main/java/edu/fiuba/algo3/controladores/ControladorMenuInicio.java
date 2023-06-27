@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class ControladorMenuInicio {
-//    @FXML
-//    public TextField playerName;
+    @FXML
+    public TextField playerName;
 
     @FXML
     public Button startGameButton;
@@ -15,7 +15,7 @@ public class ControladorMenuInicio {
     String name;
 
     public void submit(ActionEvent event) {
-        name = startGameButton.getText();
+        name = playerName.getText();
         System.out.println(name);
     }
 }

@@ -1,8 +1,7 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.controladores.ControladorJuego;
+import edu.fiuba.algo3.controladores.ControladorVentana;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
-import edu.fiuba.algo3.vistas.LayoutIntermediario;
 
 import edu.fiuba.algo3.vistas.ViewCelda;
 import javafx.scene.Parent;
@@ -11,48 +10,59 @@ import edu.fiuba.algo3.vistas.Vista;
 
 public class Ventana extends Scene{
 
-	private LayoutIntermediario view;
-
+	//private LayoutIntermediario layout;
+	private ControladorVentana controlador;
 	public void resetToInitial(){
 
-		this.view.resetConstruccion();
-		new ControladorJuego().iniciarJuego(Resources.getJsonPath("mapa"),
+		controlador.iniciarJuego(Resources.getJsonPath("mapa"),
 				Resources.getJsonPath("enemigos"), this);		
 	}
 
 	public Ventana(int width, int height) throws Exception{
 
 		// iniciar juego lo que hace es iniciar, y devuelva la pantalla inicial...
-		super(new LayoutIntermediario(), width,height);
+		super(ControladorVentana.menuInicio(), width,height);
+		controlador = new ControladorVentana();
 
-		this.view = new LayoutIntermediario();
-		setRoot(this.view);
+		//setRoot(new LayoutIntermediario());
 
 		resetToInitial();
 		//setRoot(new IntermediarioLayoutBasico());
 	}
 
-	public void setVista(Vista vista){
+	/*
+	public void setRoot(Parent vista){
+		if(layout == null){
+			Logger.Log("View Layout era null");
+			super.setRoot(vista);
+			return;
+		}
+		Logger.Log("View Layout ya existia entonces cambia solo");
 
-		view.setView(vista.obtener());
-		//setRoot(vista.obtener());
-		// el setRoot en el caso de no ser fx, mostraria por consola?
+		layout.setView(vista);
 	}
+	*/
 
-	public void addPopup(Parent popup){
-		view.setPopup(popup);
+	/*
+	public void setRoot(LayoutIntermediario layout){
+		Logger.Log("Cambiando layout...");
+		this.layout = layout;
+		super.setRoot(layout);
+	}
+	*/
+
+
+	public void setVista(Vista vista){
+		setRoot(vista.obtener());
 	}
 
     public void iniciarConstruccionDefensa(Defensa defensa) {
-
-		view.instanciarDefensa(defensa, this);
+    	Logger.Log("INICIANDO CONSTRUCCION ? "+defensa.toString());
+		//layout.instanciarDefensa(defensa, this);
 		//Parent view = ;
     }
 
 	public boolean clickEnCelda(ViewCelda celda){
-		return view.clickEnCelda(celda);
-	}
-	public void removePopUp() {
-		view.removePopUp();
+		return false;//layout.clickEnCelda(celda);
 	}
 }

@@ -7,12 +7,12 @@
 <?import javafx.scene.control.Label?>
 <HBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" spacing="5">
   <children>
-      <Label fx:id="TurnoActual" text="Turno : 1"/>
-      <Button fx:id="buttonConstruir" layoutY="2.0" prefHeight="15.0" prefWidth="139.0" text="Menu De Estructuras" />
+      <Label fx:id="turnoActual" text="Turno : 1"/>
+      <Button fx:id="buttonConstruir" onAction="#toggleConstruccion" layoutY="2.0" prefHeight="15.0" prefWidth="139.0" text="Construir" />
 
-      <Button fx:id="buttonPasarTurno" layoutY="2.0" prefHeight="15.0" prefWidth="139.0" text="Pasar turno" />
+      <Button fx:id="buttonPasarTurno" onAction="#pasarTurno" layoutY="2.0" prefHeight="15.0" prefWidth="139.0" text="Pasar turno" />
 
-      <Button fx:id="buttonAbandonar" layoutY="2.0" prefHeight="15.0" prefWidth="139.0" text="Abandonar Juego" />
+      <Button fx:id="buttonAbandonar" onAction="#volverInicio" layoutY="2.0" prefHeight="15.0" prefWidth="139.0" text="Abandonar Juego" />
 
   </children>
 </HBox>
