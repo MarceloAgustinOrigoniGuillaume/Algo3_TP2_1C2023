@@ -11,6 +11,7 @@ import edu.fiuba.algo3.vistas.popups.BasePopup;
 import edu.fiuba.algo3.Resources;
 import edu.fiuba.algo3.DatosModelo;
 import edu.fiuba.algo3.controladores.ControladorVentana;
+import edu.fiuba.algo3.vistas.DefensaDraggeable;
 
 //import edu.fiuba.algo3.vistas.Vista;
 
@@ -26,27 +27,50 @@ public class ControladorMenuAcciones extends Controlador {
 	}
 
 	public void initialize(){
-		Logger.Log("INITIALIZED MENU ACCIONES");
-		turnoActual.setText("Texto");
-
+		//Logger.Log("INITIALIZED MENU ACCIONES, status bar");
+		
 		DatosModelo.setObserverTurno((String turno)->{
 			turnoActual.setText("turno: "+turno);
 		});
 	}
 
-	public void toggleConstruccion(ActionEvent ev){
-		juego.toggleConstruyendo();
-		if(juego.estaConstruyendo()){
-			buttonConstruir.setText("Cancelar");
-			menu = new BasePopup(Resources.getVista("menu_construir", new ControladorConstruir()));
 
-			menu.show(buttonConstruir.getScene());
-		} else{
+	private void cancelConstruccion(){
+
+		if(!juego.estaConstruyendo()){
 			buttonConstruir.setText("Construir");
+		}
+	}
+
+	private void empezarConstruccion(String construccion){
+
+		DefensaDraggeable construccionTentativa= new DefensaDraggeable(DatosModelo.instanciador(construccion));
+
+		construccionTentativa.setOnPlaced(()->{
+			buttonConstruir.setText("Construir");
+		});
+		if (juego.empezarConstruccion(construccionTentativa)){
+			menu.hide();
+			menu = null;
+		}
+	}
+
+	public void toggleConstruccion(ActionEvent ev){
+		if(!juego.estaConstruyendo() && menu == null){
+
+
+			buttonConstruir.setText("Cancelar");
+			menu = new BasePopup(Resources.getVista("menu_construir", 
+				new ControladorConstruir(this::empezarConstruccion)));
+			menu.setOnHide(this::cancelConstruccion);
+			menu.show(buttonConstruir.getScene());			
+		} else{
 			if(menu != null){
 				menu.hide();
-				menu = null;
 			}
+			juego.cancelarConstruccion();
+			cancelConstruccion();
+			menu = null;
 		}
 	}
 

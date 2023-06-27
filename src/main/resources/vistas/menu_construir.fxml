@@ -4,10 +4,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="CENTER" minHeight="-Infinity" style="-fx-background-color: grey;" spacing="4" minWidth="-Infinity" prefHeight="80.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-   <Button fx:id="buttonTorrePlateada" layoutX="122.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="117.0" text="Torre Plateada" onAction="#empezarConstruccion"/>
-      <Button fx:id="buttonTrampa" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="82.0" text="Trampa" onAction="#empezarConstruccion"/>
-   <Button fx:id="buttonTorreBlanca" layoutX="260.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="117.0" text="Torre Blanca" onAction="#empezarConstruccion"/>
-   </children>
+<HBox alignment="CENTER" minHeight="-Infinity" style="-fx-background-color: grey;-fx-effect: dropshadow(gaussian, black, 50, 0, 0, 0);" spacing="4" minWidth="-Infinity" prefHeight="80.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+   <Button fx:id="buttonTorrePlateada" layoutX="122.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="117.0" text="Torre Plateada" onAction="#construirTorrePlateada"/>
+   
+   <Button fx:id="buttonTrampa" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="82.0" text="Trampa" onAction="#construirTrampa"/>
+   
+
+   <Button fx:id="buttonTorreBlanca" layoutX="260.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="117.0" text="Torre Blanca" onAction="#construirTorreBlanca" />
 </HBox>
