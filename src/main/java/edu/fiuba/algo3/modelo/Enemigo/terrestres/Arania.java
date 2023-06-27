@@ -13,7 +13,7 @@ public class Arania extends EnemigoTerrestre {
 
     @Override
     public void acreditarseEn(SistemaCreditos sistema){
-        sistema.acreditarArania(new Random().nextInt(9)+1);
+        sistema.acreditarArania(new Random().nextInt(10));
     }    
 
     @Override
