@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Celdas.habitantes;
 
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Defensas.Construccion;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 
@@ -19,7 +20,8 @@ public abstract class HabitantesConstruccion{
 	}
 
     public void clear(){
-    	construccionGuardada = null;
+    	Logger.Log("se borro la defensa: ", construccionGuardada);
+		construccionGuardada = null;
     }
 
 
