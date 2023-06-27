@@ -8,8 +8,8 @@ public class Rocosa extends Celda {
 
     public final static String ROCOSA_TYPE = "Rocoso";
 
-    public Rocosa(Coordenada coordenada){
-        super(coordenada, new Habitantes(false), new ConstruccionesRocoso());
+    public Rocosa(){
+        super(false , new ConstruccionesRocoso());
     }
     @Override
     public String toString(){

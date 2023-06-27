@@ -13,7 +13,7 @@ public abstract class EnemigoAereo extends EnemigoConVida {//implements Monetiza
     }
 
     public boolean posicionarEn(Celda celda){
-        return celda.enemigos().guardar(this);
+        return celda.guardar(this);
     }
 
     public EnemigoDescriptor describir(){

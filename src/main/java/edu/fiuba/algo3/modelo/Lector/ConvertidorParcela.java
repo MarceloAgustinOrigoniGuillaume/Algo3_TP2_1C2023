@@ -32,15 +32,15 @@ public class ConvertidorParcela implements Convertidor {
     private Celda instanciarParcela() throws Exception {
 
         if (TIPO_TIERRA.equals(tipo)){
-            return new Tierra(new Coordenada(x, y));
+            return new Tierra();
         }
 
         if (TIPO_ROCA.equals(tipo)){
-            return new Rocosa(new Coordenada(x,y));
+            return new Rocosa();
         }        
 
         if (TIPO_PASARELA.equals(tipo)){
-            return new Pasarela(new Coordenada(x,y));
+            return new Pasarela();
         }
 
         throw new Exception("Tipo de parcela invalido "+tipo);

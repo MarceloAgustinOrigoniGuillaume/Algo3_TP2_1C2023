@@ -9,8 +9,8 @@ public class Tierra extends Celda {
 
     public final static String TIERRA_TYPE = "Tierra";
 	
-    public Tierra(Coordenada coordenada){
-        super(coordenada, new Habitantes(false), new ConstruccionesTierra());
+    public Tierra(){
+        super(false, new ConstruccionesTierra());
     }
 
     @Override

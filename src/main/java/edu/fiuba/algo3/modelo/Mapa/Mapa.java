@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import java.util.ArrayList;
-
+//obtenerCelda
 public class Mapa {
 
     // interfaces externas para notificar cambios.
@@ -134,6 +134,8 @@ public class Mapa {
     }
 
     public boolean posicionar(Coordenada coordenada, Construccion construccion){
+        //TO-REFACTOR
+        Logger.info("Posicionando en",coordenada,"(",obtenerCelda(coordenada),") a",construccion);
         if(construccion.posicionarEn(obtenerCelda(coordenada))){
             defensas.add(coordenada);
 
@@ -212,10 +214,10 @@ public class Mapa {
         Celda celdaBuscada;
 
         while (indice < defensas.size()){ // buscas primer torre.
+            //TO-REFACTOR
             celdaBuscada = obtenerCelda(defensas.get(indice));
-            Logger.dbg("--------->Defensa preatacada : ... posicion", defensas.get(indice));
+            //Logger.info("--------->Defensa preatacada : ... posicion", defensas.get(indice));
             if(celdaBuscada.defensaRecibirAtaqueAereo()){
-
                 Logger.info("-------->Defensa atacada... posicion:",defensas.get(indice));
                 notificarCeldaCambio(celdaBuscada, defensas.get(indice));
                 defensas.remove(indice);
@@ -243,6 +245,8 @@ public class Mapa {
     }
 
     public void removerConstruccion(Coordenada coordenada){
+        //TO-REFACTOR
+        //Logger.info("REMOVIO EN  ",coordenada);
         Celda construccionAEliminar = obtenerCelda(coordenada);
         construccionAEliminar.limpiarDefensas();
         notificarCeldaCambio(coordenada);
@@ -256,9 +260,9 @@ public class Mapa {
             return true;
         }
         Celda celda = obtenerCelda(coordenada);
-        boolean seguirAtacando = celda.recibirAtaqueEnemigo(defensa);
+        boolean seguirAtacando = celda.recibirAtaque(defensa);
 
-        ArrayList<Enemigo> muertos = celda.retirarEnemigosMuertos();
+        ArrayList<Enemigo> muertos = celda.popMuertos();
 
         if(muertos.size() > 0){
 
@@ -270,8 +274,12 @@ public class Mapa {
     }
 
     public void accionarDefensas(){
+        Logger.info("Accionando defensas",defensas);
+
         for(Coordenada posDefensa: defensas){
             Logger.info("Se acciono defensa de la posicion: ",posDefensa);
+            
+            //TO-REFACTOR
             obtenerCelda(posDefensa).accionarEstructuras(this, posDefensa);
         }
     }

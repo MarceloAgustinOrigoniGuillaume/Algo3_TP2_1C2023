@@ -56,7 +56,7 @@ public abstract class Enemigo implements Ataque, Posicionable {
     public abstract Enemigo copiar();
 
     public boolean posicionarEn(Celda celda){
-        return celda.enemigos().guardar(this);
+        return celda.guardar(this);
     }
 
     protected abstract void atacarObjeto(Jugador jugador, Mapa mapa);
