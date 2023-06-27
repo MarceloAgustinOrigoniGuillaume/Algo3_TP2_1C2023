@@ -3,7 +3,6 @@ package edu.fiuba.algo3.controladores.vistas;
 
 import edu.fiuba.algo3.controladores.Controlador;
 import edu.fiuba.algo3.controladores.ControladorVentana;
-import edu.fiuba.algo3.controladores.ControladorMapa;
 import edu.fiuba.algo3.DatosModelo;
 
 
@@ -16,10 +15,6 @@ import edu.fiuba.algo3.vistas.popups.MessagePopup;
 
 
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
-import edu.fiuba.algo3.vistas.ViewCelda;
-import edu.fiuba.algo3.vistas.ViewJugador;
-import edu.fiuba.algo3.vistas.ViewMapa;
-import edu.fiuba.algo3.vistas.ViewJuego;
 
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;

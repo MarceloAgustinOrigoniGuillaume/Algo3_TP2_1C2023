@@ -8,6 +8,16 @@ import javafx.scene.Parent;
 
 public class BasePopup extends Popup {
 
+    public interface OnHideListener{
+        void hided();
+    }
+
+    private OnHideListener onHide = null;
+
+    public void setOnHide(OnHideListener listener){
+        onHide = listener;
+    }
+
     public BasePopup(){
         super();
         setAutoHide(true);
@@ -15,13 +25,25 @@ public class BasePopup extends Popup {
         setConsumeAutoHidingEvents(false);        
     }
 
+
+
     public BasePopup(Parent parent){
         this();
         getContent().add(parent);
     }
 
+    public void hide(){
+        if(onHide != null){
+            onHide.hided();
+        }
+
+        super.hide();
+    }
+
     public void show(Scene scene){
+        scene.getRoot().requestFocus();
         show(scene.getWindow());
+
     }
 
 

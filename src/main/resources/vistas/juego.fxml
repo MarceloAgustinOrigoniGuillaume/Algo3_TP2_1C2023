@@ -7,15 +7,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane ?>
 <?import javafx.scene.text.Font?>
+<?import edu.fiuba.algo3.vistas.ViewMapa ?>
 
 <VBox alignment="CENTER" style="-fx-background-color: #e9e9e9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<HBox fx:id="statusBar" alignment="CENTER">
 		
 	</HBox>
 
-	<!--
-  	<top>	
-  	</top>
-  -->
-
+	<ViewMapa fx:id="mapaJuego" alignment="CENTER" style="-fx-background-color: #000000;" spacing="1">
+	</ViewMapa>
 </VBox>

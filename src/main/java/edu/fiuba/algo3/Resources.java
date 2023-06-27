@@ -94,7 +94,7 @@ public class Resources {
 
     public static String getImgPath(String filename){
         return "file:"+resources_path+imgs_path+filename;
-    }    
+    }
 
     public static URL getFxmlPath(String filename){
         return App.class.getResource("/"+fxml_path+filename);

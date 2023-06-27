@@ -85,17 +85,16 @@ public class DatosModelo{
 		if(tipoDeEstructura == "TorrePlateada"){
 			return new TorrePlateada();
 		}
-
-		if(tipoDeEstructura == "Trampa"){
-			return new Trampa();
-		}
-
-		return null;
+		return new Trampa();
 	}
 
 
 	public static boolean ganoJugador(){
 		return unicaInstancia.juego.ganoJugador();
+	}
+
+	public static boolean puedeCostear(Defensa defensa){
+		return unicaInstancia.juego.obtenerJugador().puedeCostear(defensa);
 	}
 
 
@@ -111,7 +110,11 @@ public class DatosModelo{
 	}
 
 	public static CeldaDescriptor obtenerTerrenoEn(int x,int y){
-		return unicaInstancia.juego.obtenerMapa().obtenerInformacion(new Coordenada(x,y));
+		return obtenerTerrenoEn(new Coordenada(x,y));
+	}
+
+	public static CeldaDescriptor obtenerTerrenoEn(Coordenada coord){
+		return unicaInstancia.juego.obtenerMapa().obtenerInformacion(coord);
 	}
 
 	public static boolean colocadorDeDefensas(Defensa defensa, Coordenada coordenada){

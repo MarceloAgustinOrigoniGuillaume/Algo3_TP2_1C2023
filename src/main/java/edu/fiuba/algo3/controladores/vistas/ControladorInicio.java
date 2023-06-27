@@ -2,7 +2,6 @@ package edu.fiuba.algo3.controladores.vistas;
 
 
 import edu.fiuba.algo3.controladores.Controlador;
-import edu.fiuba.algo3.controladores.ControladorMapa;
 import edu.fiuba.algo3.DatosModelo;
 
 
@@ -16,9 +15,7 @@ import edu.fiuba.algo3.vistas.popups.MessagePopup;
 
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.vistas.ViewCelda;
-import edu.fiuba.algo3.vistas.ViewJugador;
 import edu.fiuba.algo3.vistas.ViewMapa;
-import edu.fiuba.algo3.vistas.ViewJuego;
 
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -26,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import java.lang.Thread;
 
 
 //import edu.fiuba.algo3.vistas.Vista;
@@ -65,6 +63,7 @@ public class ControladorInicio extends Controlador {
 		String nombreJugador = obtenerNombre();
 		if(nombreJugador == null){
 			new MessagePopup("Error", "Nombre '"+editNombreUsuario.getText()+"' es invalido ").show(editNombreUsuario.getScene());
+
 			return;
 		}
 
@@ -86,48 +85,23 @@ public class ControladorInicio extends Controlador {
 			return false;
 		}
 
-		ControladorJuego controlador = new ControladorJuego(nombreJugador);
-		VBox juego = Resources.getVista("juego",controlador);		
 
-		/*
-		ViewMapa mapa = new ViewMapa(DatosModelo.mapa_width,DatosModelo.mapa_height,(int x, int y)->{
-			//Loggerz.Log("Obteniendo ........celda... ");
-			return ControladorMapa.instanciarViewCelda((ViewCelda celda)->{
-				Logger.Log("CLICKED ON "+celda.toString()+" from controlador");
-				return true;
-			} ,
-				 DatosModelo.obtenerTerrenoEn(x,y), x, y);
+		// cargando... transicion.
+		ventana.setRoot(Resources.getVista("transicion"));
+
+		Thread juegoLoader = new Thread(()->{
+			VBox juego = Resources.getVista("juego",new ControladorJuego(nombreJugador));		
+
+			// no es ideal usar el setRoot en otro thread..
+			// o eso decian.
+			ventana.setRoot(juego);			
 		});
 
-		//juego.getChildren().add(Resources.getVista("menu_acciones",new ControladorMenuAcciones(controlador)));
-		*/
-		ventana.setRoot(juego);
+		juegoLoader.setDaemon(true);
 
+		juegoLoader.start();
 
 		return true;
-
-		/*
-
-
-		ViewJugador jugador = new ViewJugador(nombreJugador);
-
-		DatosModelo.setObserverVida(jugador::update_vida);
-		DatosModelo.setObserverCreditos(jugador::update_creditos);
-
-
-		new ControladorMapa().setListenerCeldas(mapa);
-
-		ViewJuego view = new ViewJuego(mapa,jugador, (Ventana) ventana);
-		
-		//ventana.setRoot(Resources.getVista("menu_inicio",new ControladorInicio()));
-
-		ventana.setRoot(view);
-
-		DatosModelo.setObserverTurno(view::updateTurno);
-
-		//new MenuConstrucciones();
-		return true;
-		*/
 	}
 
 

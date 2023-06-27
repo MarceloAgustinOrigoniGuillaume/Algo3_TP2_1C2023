@@ -7,18 +7,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" style="-fx-background-color: grey;-fx-padding: 5 15 5 15;-fx-effect: dropshadow(gaussian, black, 50, 0, 0, 0);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-  	<HBox alignment="CENTER">
-      <Button fx:id="buttonCerrar" text="X" />
-
       <Label text="Un tipo" fx:id="tipoCelda" alignment="CENTER">
          <font>
             <Font size="24"/>
          </font>
       </Label>
-  	</HBox>
-
 
   	<HBox spacing="10" alignment="CENTER">
 	  	<VBox fx:id="contenedorDefensa" spacing="1" style="-fx-background-color: white;" alignment="CENTER">
