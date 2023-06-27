@@ -93,7 +93,7 @@ public class ControladorInicio extends Controlador {
 			VBox juego = Resources.getVista("juego",new ControladorJuego(nombreJugador));		
 
 			// no es ideal usar el setRoot en otro thread..
-			// o eso decian.
+			// o eso dicen en otros frameworks.
 			ventana.setRoot(juego);			
 		});
 

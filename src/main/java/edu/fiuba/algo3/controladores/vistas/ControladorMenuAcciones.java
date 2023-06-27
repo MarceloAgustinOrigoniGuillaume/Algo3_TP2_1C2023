@@ -27,9 +27,8 @@ public class ControladorMenuAcciones extends Controlador {
 	}
 
 	public void initialize(){
-		Logger.Log("INITIALIZED MENU ACCIONES");
-		turnoActual.setText("Texto");
-
+		//Logger.Log("INITIALIZED MENU ACCIONES, status bar");
+		
 		DatosModelo.setObserverTurno((String turno)->{
 			turnoActual.setText("turno: "+turno);
 		});
