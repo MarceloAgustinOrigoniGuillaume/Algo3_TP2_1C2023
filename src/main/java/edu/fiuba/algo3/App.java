@@ -24,6 +24,9 @@ public class App extends Application {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setResizable(false);
+            Image icon = Resources.getImg("icon.png");
+            stage.getIcons().add(icon);
+            stage.setTitle("AlgoDefence");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

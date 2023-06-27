@@ -13,6 +13,11 @@
 <?import javafx.scene.text.Font?>
 
 <!-- onAction="#submit"  fx:controller="vistas." -->
+<!--<VBox fx:id="initContainer" spacing="2" alignment="CENTER">-->
+<!--<Label text="Antes de empezar, cual es tu nombre? (minimo 6 caracteres)"/>-->
+<!--<TextField fx:id="editNombreUsuario" onAction="#iniciarJuego" maxWidth="200"/>-->
+<!--<Button fx:id="btnIniciarJuego" onAction="#iniciarJuego" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Iniciar Partida" />-->
+<!--</VBox>-->
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.ControladorMenuInicio">
    <children>
@@ -32,12 +37,12 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <TextField fx:id="playerName" layoutX="316.0" layoutY="362.0" prefHeight="37.0" prefWidth="169.0">
+      <TextField fx:id="playerName" alignment="CENTER" layoutX="317.0" layoutY="332.0" prefHeight="37.0" prefWidth="169.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label alignment="CENTER" layoutX="1.0" layoutY="300.0" prefHeight="49.0" prefWidth="800.0" text="Player Name:" textFill="#e84646">
+      <Label alignment="CENTER" layoutX="1.0" layoutY="276.0" prefHeight="49.0" prefWidth="800.0" text="Player Name:" textFill="#e84646">
          <font>
             <Font name="Futura Heavy BT" size="40.0" />
          </font>
@@ -45,7 +50,7 @@
             <DropShadow radius="12.1975" width="29.79" />
          </effect>
       </Label>
-      <Button fx:id="startGameButton" alignment="CENTER" blendMode="LIGHTEN" layoutX="316.0" layoutY="433.0" mnemonicParsing="false" onAction="#submit" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: none; -fx-border-color: salmon; -fx-border-radius: 10px; -fx-border-width: 5px;" text="START GAME" textFill="#e87777">
+      <Button fx:id="startGameButton" alignment="CENTER" blendMode="LIGHTEN" layoutX="318.0" layoutY="412.0" mnemonicParsing="false" onAction="#submit" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #1f261f; -fx-border-color: salmon; -fx-border-radius: 10px; -fx-border-width: 5px;" text="START GAME" textFill="#e87777">
          <font>
             <Font name="Source Code Pro Bold" size="21.0" />
          </font>
@@ -57,12 +62,10 @@
             </Bloom>
          </effect>
       </Button>
+      <Label fx:id="nameWarning" alignment="CENTER" layoutX="235.0" layoutY="380.0" prefHeight="19.0" prefWidth="334.0" style="-fx-background-color: #eb726575; -fx-background-radius: 10px; -fx-padding: 5px;" text="Player name must be at least 6 characters long" textAlignment="CENTER" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
-
-
-<!--<VBox fx:id="initContainer" spacing="2" alignment="CENTER">-->
-<!--<Label text="Antes de empezar, cual es tu nombre? (minimo 6 caracteres)"/>-->
-<!--<TextField fx:id="editNombreUsuario" onAction="#iniciarJuego" maxWidth="200"/>-->
-<!--<Button fx:id="btnIniciarJuego" onAction="#iniciarJuego" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Iniciar Partida" />-->
-<!--</VBox>-->
