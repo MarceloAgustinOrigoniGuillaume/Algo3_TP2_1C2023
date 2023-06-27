@@ -217,8 +217,8 @@ public class Mapa {
             if(celdaBuscada.defensaRecibirAtaqueAereo()){
 
                 Logger.info("-------->Defensa atacada... posicion:",defensas.get(indice));
-                defensas.remove(indice);
                 notificarCeldaCambio(celdaBuscada, defensas.get(indice));
+                defensas.remove(indice);
                 return; // solo una torre.
             }
             indice+=1;
