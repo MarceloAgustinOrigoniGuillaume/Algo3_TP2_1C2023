@@ -35,9 +35,10 @@ public class ControladorJuego extends Controlador {
 	}
 
 	private void showError(String titulo, String mensaje){
-				new MessagePopup(titulo,
-				 mensaje).show(mapaJuego.getScene());
+		new MessagePopup(titulo,
+			mensaje).show(mapaJuego.getScene());
 
+		
 	}
 
 	private void showErrorConstruccion(String mensaje){
@@ -117,7 +118,7 @@ public class ControladorJuego extends Controlador {
 		DatosModelo.setOnCeldaChangedListener((Coordenada coordenada, CeldaDescriptor descriptor) ->{
 				ViewCelda celda = mapaJuego.tileAt(coordenada.x(),coordenada.y());
 				if(celda == null){
-					Logger.Log("CELDA GIVEN TO UPDATE WAS NULL");
+					Logger.err("at CeldaChanged, CELDA GIVEN TO UPDATE WAS NULL");
 					return;
 				}
 				//Logger.Log("CELDA GIVEN TO UPDATE HAD POSITION "+celda.getCoordenada().toString());
@@ -130,7 +131,7 @@ public class ControladorJuego extends Controlador {
 	private DefensaDraggeable construyendo = null;
 	public boolean empezarConstruccion(DefensaDraggeable nuevaConstruccion){
 		if(estaConstruyendo()){
-			Logger.Log("Intento construir mas de una vez? raro");
+			Logger.err("At empezarConstruccion, intento construir mas de una vez? ");
 			return true;
 		}
 		// verificar que pueda costear y sino retorna false.
@@ -164,7 +165,7 @@ public class ControladorJuego extends Controlador {
 		// pasas turno
 
 		if(!DatosModelo.pasarTurno()){
-			Logger.Log("----------->HABIA TERMINADO EL JUEGO?");
+			//Logger.dbg("----------->HABIA TERMINADO EL JUEGO?");
 			
 
 			scene.setRoot(Resources.getVista("menu_final",new ControladorFinal(DatosModelo.ganoJugador())));

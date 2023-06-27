@@ -70,7 +70,7 @@ public class ViewMapa extends HBox implements ControladorMapa.TileResources{
             ind_columna+=1;
         }
 
-        Logger.Log("NO SE ENCONTRO LA POSICION "+String.valueOf(x)+","+String.valueOf(y));
+        Logger.err("NO SE ENCONTRO LA POSICION",String.valueOf(x),",",String.valueOf(y));
         return null;
     }
 

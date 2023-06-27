@@ -27,7 +27,7 @@ public class ControladorVentana extends Controlador {
 		try{
 			DatosModelo.nuevoJuego(jsonMapa, jsonEnemigos);
 		} catch(Exception ex){
-			Logger.Log("ERROR INICIANDO NUEVO JUEGO "+ex.toString());
+			Logger.err("At iniciarJuego: ",ex);
 			ex.printStackTrace();
 		}
 

@@ -40,7 +40,7 @@ public class App extends Application {
             stage.setScene(scene);
             stage.show();
         } catch(Exception ex){
-            Logger.Log("Error at initing the game... "+ex.toString());
+            Logger.err("At start the app... ",ex);
             ex.printStackTrace();
             stage.close();
         }

@@ -57,7 +57,7 @@ public class DatosModelo{
 
 		if(unicaInstancia.juego != null){
 
-			Logger.Log("--------------------PASANDO TURNO !!!!");
+			//Logger.dbg("--------------------PASANDO TURNO !!!!");
 			unicaInstancia.juego.pasarTurno();
 			return unicaInstancia.juego.estanEnJuego();
 		}
@@ -102,7 +102,8 @@ public class DatosModelo{
 	public static void empezarJuegoActual(){
 		if(unicaInstancia.juego == null){
 			//throw new Exception("Por el momento no se permite mas de una instancia del juego");
-			Logger.Log("ERROR Quiso empezar juego sin un juego iniciado.");
+			Logger.err("At empezarJuegoActual, quiso empezar juego sin un juego iniciado.");
+
 			return;
 		}
 
@@ -118,14 +119,14 @@ public class DatosModelo{
 	}
 
 	public static boolean colocadorDeDefensas(Defensa defensa, Coordenada coordenada){
-		Logger.info("Intento colocar"+defensa.toString()+" En la posicion"+coordenada.x()+"-"+coordenada.y());
+		Logger.Log("Intento colocar"+defensa.toString()+" En la posicion"+coordenada.x()+"-"+coordenada.y());
 		return unicaInstancia.juego.posicionar(defensa,coordenada);
 	}
 
 
 	public static void setOnCeldaChangedListener(Mapa.OnHabitantesChangedListener listener){
 		if(unicaInstancia.juego == null){
-			Logger.Log("ERROR Set on celda changed listener sin juego.");			
+			Logger.err("At set on celda changed listener, sin juego iniciado.");			
 			return;
 		}
 		unicaInstancia.juego.obtenerMapa().setListenerCambiosCeldas(listener);

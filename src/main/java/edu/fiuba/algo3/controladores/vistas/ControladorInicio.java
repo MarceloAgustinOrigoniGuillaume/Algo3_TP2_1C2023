@@ -34,14 +34,7 @@ public class ControladorInicio extends Controlador {
 	@FXML private TextField editNombreUsuario; 
 
 	public ControladorInicio(){
-		Logger.Log("Construyendo controlador Inicio sin params");
 	}
-
-
-	public ControladorInicio(Ventana ventana){
-		Logger.Log("Construyendo controlador Inicio con ventana..."+ventana.toString());
-	}
-
 
 	private boolean validarNombreJugador(String nombre){
 		return nombre.length() >= 6;
@@ -51,7 +44,7 @@ public class ControladorInicio extends Controlador {
 	private String obtenerNombre(){
 		String nombreJugador = editNombreUsuario.getText();
 		if(!validarNombreJugador(nombreJugador)){
-			Logger.Log("Nombre invalido '"+nombreJugador+"' el nombre tener al menos 6 caracteres");
+			Logger.err("Nombre invalido '"+nombreJugador+"' el nombre tener al menos 6 caracteres");
 			return null;
 		}
 
@@ -76,11 +69,11 @@ public class ControladorInicio extends Controlador {
 	public static boolean empezarJuego(Scene ventana, String nombreJugador){
 
 		try{
-			Logger.Log("Empezando juego con jugador '"+nombreJugador+"'");
+			Logger.info("Empezando juego con jugador '"+nombreJugador+"'");
 			DatosModelo.empezarJuegoActual();
 			DatosModelo.setNombreJugador(nombreJugador);
 		} catch(Exception ex){
-			Logger.Log("Error at empezar Juego "+ex);
+			Logger.err("at empezar Juego ",ex);
 			ex.printStackTrace();
 			return false;
 		}

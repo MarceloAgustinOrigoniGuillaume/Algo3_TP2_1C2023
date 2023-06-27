@@ -58,12 +58,12 @@ public class Resources {
         T view;
         try {
             URL url = getVistaPath(vista);
-            Logger.Log("Loading Vista "+url.toString());
+            Logger.Log("Loading vista ",url,"with controller: ",controlador);
             loader.setController(controlador); // seteamos el controlador
             loader.setLocation(url);
             view = loader.load();
         } catch (Exception e) {
-            Logger.Log("ERROR while loading vista '"+vista+"' "+e.toString());
+            Logger.err("ERROR while loading vista (",vista,") ",e);
             e.printStackTrace();
             return null;
         }
@@ -79,11 +79,11 @@ public class Resources {
         T view;
         try {
             URL url = getVistaPath(vista);
-            Logger.Log("Loading Vista "+url.toString());
+            Logger.Log("Loading Vista ",url);
             loader.setLocation(url);
             view = loader.load();
         } catch (Exception e) {
-            Logger.Log("ERROR while loading vista '"+vista+"' "+e.toString());
+            Logger.err("At loading vista (",vista,")",e);
             e.printStackTrace();
             return null;
         }

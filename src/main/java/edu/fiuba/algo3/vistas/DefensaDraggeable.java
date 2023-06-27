@@ -70,7 +70,7 @@ public class DefensaDraggeable{
     public boolean posicionarEnMapa(){
 
         if(coordenada == null){
-            Logger.Log("WTF CORD WAS NULL");
+            Logger.dbg("COOFDENADA WAS NULL AT DefensaDraggeable::posicionarEnMapa");
             return false;
         }
         if(DatosModelo.colocadorDeDefensas(defensa, coordenada)){

@@ -34,7 +34,6 @@ public class ControladorFinal extends Controlador {
 	private boolean ganoJugador;
 	public ControladorFinal(boolean gano){
 		this.ganoJugador = gano;
-		Logger.Log("Construyendo controlador Final sin params");
 	}
 
 	public void initialize(){
@@ -56,7 +55,7 @@ public class ControladorFinal extends Controlador {
 			mensajeResultado.getScene().setRoot(ControladorVentana.menuInicio());
 
 		} catch(Exception ex){
-			Logger.Log("ERROR Re INICIANDO NUEVO JUEGO "+ex.toString());
+			Logger.err("at Final, volverInicio ",ex);
 			ex.printStackTrace();
 			return;
 		}
@@ -67,14 +66,13 @@ public class ControladorFinal extends Controlador {
 
 		// reinicia
 		try{
-			//String nombreJugador;
+			Logger.info("Reiniciando juego...");
 			DatosModelo.reiniciarJuego();
 				
-			Logger.Log("EMPEZAR ? ? ? ");
 			ControladorInicio.empezarJuego(mensajeResultado.getScene(),DatosModelo.getNombreJugador());
 
 		} catch(Exception ex){
-			Logger.Log("ERROR Re INICIANDO NUEVO JUEGO "+ex.toString());
+			Logger.err("at reiniciando juego ",ex);
 			ex.printStackTrace();
 			return;
 		}

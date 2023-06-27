@@ -40,7 +40,7 @@ public class Juego {
     }
 
     public void iniciarJuego() {
-        Logger.Log("Juego fue iniciado!!");
+        Logger.info("Juego fue empezado");
         this.estadoDeJuego = new EstadoJugando(this);
         this.estaJugando = true;
     }
@@ -48,10 +48,10 @@ public class Juego {
     public void terminarJuego() {
 
         if(this.estaJugando == false){
-            Logger.Log("Juego YA habia sido terminado, pero quiso terminarse otra vez");
+            Logger.err("Juego YA habia sido terminado, pero quiso terminarse otra vez");
             return;
         }
-        Logger.Log("Juego fue terminado!!");
+        Logger.info("Juego fue terminado");
         this.estadoDeJuego = new EstadoTerminado(this);
         this.estaJugando = false;
     }
@@ -90,7 +90,7 @@ public class Juego {
             estadoDeJuego.ejecutarEstado();
         } catch(Exception ex){
             // ocurrio un error...
-            Logger.Log("Error at pasarTurno "+ex.toString());
+            Logger.err("at pasarTurno ",ex);
             ex.printStackTrace();
         }
     }

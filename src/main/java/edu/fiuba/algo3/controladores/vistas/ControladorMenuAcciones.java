@@ -88,7 +88,7 @@ public class ControladorMenuAcciones extends Controlador {
 			buttonConstruir.getScene().setRoot(ControladorVentana.menuInicio());
 
 		} catch(Exception ex){
-			Logger.Log("ERROR Re INICIANDO NUEVO JUEGO "+ex.toString());
+			Logger.err("At volverInicio ",ex);
 			ex.printStackTrace();
 			return;
 		}
