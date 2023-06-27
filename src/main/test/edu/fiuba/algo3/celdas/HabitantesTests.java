@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.celdas;
 
 
+import edu.fiuba.algo3.modelo.Celdas.Pasarela;
+import edu.fiuba.algo3.modelo.Celdas.Rocosa;
+import edu.fiuba.algo3.modelo.Celdas.Tierra;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
