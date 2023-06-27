@@ -51,7 +51,7 @@ public class ControladorInicio extends Controlador {
 	private String obtenerNombre(){
 		String nombreJugador = editNombreUsuario.getText();
 		if(!validarNombreJugador(nombreJugador)){
-			Logger.Log("Nombre invalido '"+nombreJugador+"'");
+			Logger.Log("Nombre invalido '"+nombreJugador+"' el nombre tener al menos 6 caracteres");
 			return null;
 		}
 
@@ -80,7 +80,7 @@ public class ControladorInicio extends Controlador {
 			DatosModelo.empezarJuegoActual();
 			DatosModelo.setNombreJugador(nombreJugador);
 		} catch(Exception ex){
-			Logger.Log("Error at empezar Juego "+ex.toString());
+			Logger.Log("Error at empezar Juego "+ex);
 			ex.printStackTrace();
 			return false;
 		}
@@ -90,11 +90,11 @@ public class ControladorInicio extends Controlador {
 		ventana.setRoot(Resources.getVista("transicion"));
 
 		Thread juegoLoader = new Thread(()->{
-			VBox juego = Resources.getVista("juego",new ControladorJuego(nombreJugador));		
+			VBox juego = Resources.getVista("juego",new ControladorJuego(nombreJugador));
 
 			// no es ideal usar el setRoot en otro thread..
 			// o eso dicen en otros frameworks.
-			ventana.setRoot(juego);			
+			ventana.setRoot(juego);
 		});
 
 		juegoLoader.setDaemon(true);
