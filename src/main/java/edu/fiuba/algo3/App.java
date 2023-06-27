@@ -15,7 +15,7 @@ import java.io.IOException;
 public class App extends Application {
 
     public static final int INITIAL_WIDTH = 795;
-    public static final int INITIAL_HEIGHT = 845;
+    public static final int INITIAL_HEIGHT = 680;
 
     @Override
     public void start(Stage stage) {

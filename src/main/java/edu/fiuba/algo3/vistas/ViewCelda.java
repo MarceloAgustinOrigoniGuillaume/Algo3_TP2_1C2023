@@ -19,7 +19,7 @@ import javafx.scene.image.Image;
 
 public class ViewCelda extends VBox {
 
-    public static int TILE_SIZE = 52;
+    public static int TILE_SIZE = 41;
     private Coordenada coordenada;
     private ImageView imagen;
     private Label textoEnemigos;
