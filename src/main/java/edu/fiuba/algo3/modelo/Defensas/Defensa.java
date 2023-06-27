@@ -24,7 +24,7 @@ public abstract class Defensa implements Estructura {
     public void finalizarConstruccion(){
 
         this.estadoActual = new EstadoConstruido();
-        Logger.info("Defensa termino construccion, siguiente turno ataca.");
+        Logger.info(this,"termino construccion, siguiente turno ataca.");
     }
 
     public void accionar(Mapa mapa , Coordenada posicion){

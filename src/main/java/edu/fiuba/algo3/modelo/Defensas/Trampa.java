@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Defensas;
 import edu.fiuba.algo3.modelo.Celdas.Celda;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import java.util.ArrayList;
+import edu.fiuba.algo3.Logger;
 
 public class Trampa extends Defensa {
     public final static String TRAMPA_TYPE = "Trampa";
@@ -26,6 +27,8 @@ public class Trampa extends Defensa {
     // retorna false porque no debe seguir atacando.
     @Override
     public boolean atacar(ArrayList<Enemigo> enemigos) {
+
+        Logger.info("trampa relantizando enemigos");
         for (Enemigo enemigo : enemigos){
             enemigo.atacadoPorTrampa();
         }

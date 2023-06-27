@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.descriptors.EnemigoDescriptor;
 import edu.fiuba.algo3.modelo.descriptors.EnemigoConVidaDescriptor;
+import edu.fiuba.algo3.Logger;
 
 public abstract class EnemigoTerrestre extends EnemigoConVida {
 
@@ -45,6 +46,7 @@ public abstract class EnemigoTerrestre extends EnemigoConVida {
     //Pre: -
     //Post: -
     protected void atacarObjeto(Jugador jugador, Mapa mapa) {
+        Logger.info(this,"llego al final atacando al jugador. Danio",String.valueOf(this.ataqueMaximo));
         jugador.recibirAtaque(this.ataqueMaximo);
 
     }

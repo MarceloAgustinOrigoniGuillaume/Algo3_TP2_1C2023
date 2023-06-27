@@ -77,15 +77,15 @@ public class Mapa {
         for(Coordenada posicion: new ArrayList<>(caminoAereo)){
             celdaActual = obtenerCelda(posicion);
             coordenada = posicion;
-            Logger.info("La coordenada actual de CAMINO AEREO es:"+posicion.x()+";"+posicion.y());
+            //Logger.dbg("La coordenada actual de CAMINO AEREO es:",posicion);
             if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual, posicion)){
                 return;
             }
         }
-        while(indice >= 1){
+        while(indice >= 0){
             celdaActual = obtenerCelda(caminoTerrestre.get(indice));
             coordenada = caminoTerrestre.get(indice);
-            Logger.info("La coordenada actual de CAMINO TERRESTRE es:"+caminoTerrestre.get(indice).x()+";"+caminoTerrestre.get(indice).y());
+            //Logger.dbg("La coordenada actual de CAMINO TERRESTRE es:",caminoTerrestre.get(indice));
             if(!visitarCelda.ejecutarMetodoConCeldas(celdaActual, caminoTerrestre.get(indice))){
                 return;
             }
@@ -99,8 +99,12 @@ public class Mapa {
         matrizDeCeldas[convertidor.fila()-1][convertidor.columna()-1] = celda;
 
         if (convertidor.esCaminable()){
-            int x = convertidor.fila()-1;
-            int y = convertidor.columna()-1;
+
+            // columna es la x.... f1[ c1 c2 c3 c4 c5],
+            //                     f2[ c1 c2 c3 c4 c5]
+            // fila es la y.
+            int x = convertidor.columna();
+            int y = convertidor.fila();
             Coordenada coordenada = new Coordenada(x,y);
         	caminoTerrestre.add(coordenada);
         }
@@ -144,9 +148,10 @@ public class Mapa {
     private void actualizarPosicionEnemigo(Enemigo unidad, Coordenada desde, Coordenada hasta){
 
         obtenerCelda(desde).sacar(unidad);
+        Logger.info("se movio a ",unidad," de",desde,"hasta",hasta);
 
         if(hasta == posicionFinal()){ // No se posiciona, ya que son "bombas"
-            Logger.Log("Enemigo "+unidad.toString()+" llego al final.. "+hasta.toString());
+            Logger.dbg("Enemigo ",unidad," llego al final.. ",hasta);
             return;
         }
         unidad.posicionarEn(obtenerCelda(hasta));
@@ -176,6 +181,7 @@ public class Mapa {
             return false;
         }
         indiceFinal = moverIndex(index, cantidad);
+
         actualizarPosicionEnemigo(unidad, desde, caminoTerrestre.get(indiceFinal));
         return (indiceFinal == caminoTerrestre.size()-1);
     }
@@ -210,7 +216,7 @@ public class Mapa {
 
             if(celdaBuscada.defensaRecibirAtaqueAereo()){
 
-                Logger.Log("-------->Defensa atacada... posicion: "+defensas.get(indice).toString());
+                Logger.info("-------->Defensa atacada... posicion:",defensas.get(indice));
                 defensas.remove(indice);
                 notificarCeldaCambio(celdaBuscada, defensas.get(indice));
                 return; // solo una torre.
@@ -220,6 +226,7 @@ public class Mapa {
     }
 
     private void notificarCeldaCambio(Celda celda, Coordenada posicion){
+        //Logger.info("MODELO CAMBIO CELDO ",posicion);
         if(listenerCambios != null){
             listenerCambios.cambio(posicion, celda.describe());
         }
@@ -232,7 +239,7 @@ public class Mapa {
     }
 
     public void notificarInicioCambio(){
-        notificarCeldaCambio(caminoTerrestre.get(1));
+        notificarCeldaCambio(caminoTerrestre.get(0));
     }
 
     public void removerConstruccion(Coordenada coordenada){
@@ -254,6 +261,8 @@ public class Mapa {
         ArrayList<Enemigo> muertos = celda.retirarEnemigosMuertos();
 
         if(muertos.size() > 0){
+
+            Logger.info("Murieron ",muertos," acreditando...");
             acreditadorMuertos.acreditarMuertos(muertos);
             notificarCeldaCambio(coordenada); // notify observers celda cambio.
         }
@@ -262,7 +271,7 @@ public class Mapa {
 
     public void accionarDefensas(){
         for(Coordenada posDefensa: defensas){
-            Logger.info("Se acciono defensa de la posicion: "+posDefensa.toString());
+            Logger.info("Se acciono defensa de la posicion: ",posDefensa);
             obtenerCelda(posDefensa).accionarEstructuras(this, posDefensa);
         }
     }
@@ -271,7 +280,8 @@ public class Mapa {
     }
     
     public void posicionarInicio(Enemigo enemigo){
-        enemigo.posicionarEn(obtenerCelda(caminoTerrestre.get(1)));
+        Logger.info("posicionando ",enemigo,"en",caminoTerrestre);
+        enemigo.posicionarEn(obtenerCelda(caminoTerrestre.get(0)));
     }
 
     //Pre: -

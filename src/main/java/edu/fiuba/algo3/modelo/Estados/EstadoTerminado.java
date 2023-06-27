@@ -11,6 +11,6 @@ public class EstadoTerminado implements EstadoJuego {
 
     @Override
     public void ejecutarEstado() {
-        Logger.Log("-------> El juego ha finalizado");
+        Logger.info("Ejecutar estado con juego finalizado");
     }
 }

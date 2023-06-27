@@ -13,10 +13,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
 
+import edu.fiuba.algo3.Logger;
+
 public class LectorEnemigo  implements Lector{
     private JSONArray turnos;
     private Iterator iterador;
     public LectorEnemigo(String filePath) throws IOException, ParseException {
+
+        Logger.info("Loading enemigos from ",filePath);
         JSONArray turnos = (JSONArray) new JSONParser().parse(new FileReader(filePath));
         iterador = turnos.iterator();
 

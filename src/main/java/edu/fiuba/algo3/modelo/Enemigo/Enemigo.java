@@ -62,8 +62,8 @@ public abstract class Enemigo implements Ataque, Posicionable {
     protected abstract void atacarObjeto(Jugador jugador, Mapa mapa);
 
     public void accionar(Mapa mapa, Jugador jugador, Coordenada coordenada){
+        //Logger.info("Accionando ",this);
         if(moverse(mapa,coordenada)){
-            Logger.Log("Enemigo llego al final atacando...");
             atacarObjeto(jugador, mapa);
         }
     }

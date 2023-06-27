@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 import java.io.IOException;
+import edu.fiuba.algo3.Logger;
 
 public class LectorMapa implements Lector{
     private int width;
@@ -18,6 +19,7 @@ public class LectorMapa implements Lector{
 
     public LectorMapa(String filePath, int width, int height) throws Exception {
         JSONObject parsedObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
+        Logger.info("Loading mapa from ",filePath, "with size of ",String.valueOf(width),",",String.valueOf(height));
 
         mapa = (JSONObject)((parsedObject).get("Mapa")); // Obtenes mapa
 

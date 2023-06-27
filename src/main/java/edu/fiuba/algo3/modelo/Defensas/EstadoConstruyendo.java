@@ -14,10 +14,7 @@ public class EstadoConstruyendo implements EstadoEstructura{
     }
 
     public boolean hanFinalizadoLosTurnos(){
-        if(turnosRestantes == 0) {
-            return true;
-        }
-        return false;
+        return turnosRestantes == 0;
     }
 
     @Override
@@ -29,7 +26,7 @@ public class EstadoConstruyendo implements EstadoEstructura{
             defensa.finalizarConstruccion();
             mapa.notificarCeldaCambio(coordenada);
         } else{
-            Logger.info("Defensa Estaba construyendose faltan\n"+String.valueOf(this.turnosRestantes)+" turnos para activarse");
+            Logger.info("Defensa Estaba construyendose falta ",String.valueOf(this.turnosRestantes)," turnos para activarse");
         }
     }
     @Override

@@ -24,7 +24,7 @@ public class ConstruccionesTierra extends HabitantesConstruccion{
 	// puede recibir ataques de lechuza
 	public boolean recibirAtaqueLechuza(){
 		clear();
-		Logger.Log("Defensa fue removida?");
+		Logger.dbg("Defensa fue removida?");
 		return true;
 	}
 	

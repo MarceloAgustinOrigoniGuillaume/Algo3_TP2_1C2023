@@ -51,7 +51,7 @@ public class Lechuza extends EnemigoAereo {
     //Pre: -
     //Post: -
     protected void atacarObjeto(Jugador jugador, Mapa mapa){
-        Logger.Log("Lechuza esta atacando a la primer torre....");
+        Logger.info("Lechuza llego al final, atacando a la primer torre....");
         mapa.atacarPrimeraTorre();
     }
 }

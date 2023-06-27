@@ -45,6 +45,8 @@ public class Topo extends EnemigoSubterraneo {
         if((this.turnoInicial+this.contadorMovimientos) % 2 != 0){
             ataque = 2;
         }
+        Logger.info(this,"llego al final atacando al jugador. Danio",String.valueOf(ataque));
+
         jugador.recibirAtaque(ataque);
     }
     

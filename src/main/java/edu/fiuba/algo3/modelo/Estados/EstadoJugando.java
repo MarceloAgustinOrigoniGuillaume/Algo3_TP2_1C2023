@@ -25,7 +25,7 @@ public class EstadoJugando implements EstadoJuego {
     @Override
     public void ejecutarEstado() {
 
-        Logger.info("Se ejecuta el turno: "+String.valueOf(turno.turnoActual()));
+        Logger.info("Se ejecuta el turno:",String.valueOf(turno.turnoActual()));
 
        //Obtengo el jugador y el mapa.
         Jugador jugador = juego.obtenerJugador();
@@ -33,16 +33,18 @@ public class EstadoJugando implements EstadoJuego {
 
         // verificar si los enemigos actuales pueden eliminar al jugador.
         if(terminoElJuego(this.juego, jugador, this.turno, mapa)){
-            Logger.info("Finalizo el juegos. Los enemigos restantes no pueden matar al jugador");
+            Logger.info("----------------Finalizo el juego. Los enemigos restantes no pueden matar al jugador");
             juego.terminarJuego();
             return;
         }
     	// jugar turno...
         if(!turno.jugarTurno(mapa,jugador, juego.obtenerOleadas())){
+            Logger.info("----------------Finalizo el juego. Jugador murio");
             juego.terminarJuego();
             return;
         }
-        Logger.info("Vida actual de jugador: "+String.valueOf(jugador.obtenerVida()));
+
+        Logger.info("----------------Vida actual de jugador final de turno:",String.valueOf(jugador.obtenerVida()));
         juego.notificarCambioTurno(turno.turnoActual());
     }
 

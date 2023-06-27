@@ -23,7 +23,7 @@ public class Turno{
 	public boolean jugarTurno(Mapa mapa,Jugador jugador, Oleada oleada){
 
 		// move enemigos y que ataquen al jugador.
-		Logger.info("Accionando Turno: Accionar Enemigos");
+		Logger.info("----------------Accionando Turno: Accionar Enemigos");
 
 		mapa.accionarEnemigos(jugador);
 
@@ -32,10 +32,10 @@ public class Turno{
 			return false;
 		}
 		// defensas atacan mapa
-		Logger.info("Accionando Turno: Accionar Defensas");
+		Logger.info("----------------Accionando Turno: Accionar Defensas");
 		mapa.accionarDefensas();
 
-		Logger.info("Accionando Turno: Instanciando Enemigos");
+		Logger.info("----------------Accionando Turno: Instanciando Enemigos");
 
 		ArrayList<Enemigo> enemigos = oleada.instanciar(turno);
 		

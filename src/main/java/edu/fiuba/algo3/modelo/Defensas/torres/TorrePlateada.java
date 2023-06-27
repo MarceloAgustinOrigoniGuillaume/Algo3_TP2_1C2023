@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Defensas.EstadoConstruyendo;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import java.util.ArrayList;
+import edu.fiuba.algo3.Logger;
 
 public class TorrePlateada extends Defensa {
 
@@ -34,6 +35,7 @@ public class TorrePlateada extends Defensa {
     public boolean atacar(ArrayList<Enemigo> enemigos) {
         for (Enemigo enemigo : enemigos){
             if(enemigo.atacadoPorTorre(ataque())){
+                Logger.Log(this,"atacando a enemigo en rango",enemigo);
                 return false; // fue atacado, solo ataca a uno. false == no sigas con otras
             }
         }
