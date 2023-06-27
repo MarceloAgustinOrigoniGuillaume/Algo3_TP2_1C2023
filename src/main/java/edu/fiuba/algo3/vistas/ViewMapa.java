@@ -36,7 +36,7 @@ public class ViewMapa extends HBox implements ControladorMapa.TileResources{
     }
 
     private ViewCelda findNode(int x, int y){
-
+        Logger.dbg("Se actualizo la view: ", String.valueOf(x)+","+String.valueOf(y));
         ObservableList<Node> columnas = getChildren();
         ObservableList<Node> fila;
         ViewCelda celda;

@@ -213,7 +213,7 @@ public class Mapa {
 
         while (indice < defensas.size()){ // buscas primer torre.
             celdaBuscada = obtenerCelda(defensas.get(indice));
-
+            Logger.dbg("--------->Defensa preatacada : ... posicion", defensas.get(indice));
             if(celdaBuscada.defensaRecibirAtaqueAereo()){
 
                 Logger.info("-------->Defensa atacada... posicion:",defensas.get(indice));
@@ -226,7 +226,7 @@ public class Mapa {
     }
 
     private void notificarCeldaCambio(Celda celda, Coordenada posicion){
-        //Logger.info("MODELO CAMBIO CELDO ",posicion);
+        Logger.dbg("MODELO CAMBIO CELDO ",posicion);
         if(listenerCambios != null){
             listenerCambios.cambio(posicion, celda.describe());
         }
