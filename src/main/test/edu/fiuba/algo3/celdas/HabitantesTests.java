@@ -28,18 +28,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class HabitantesTests {
     @Test
     public void verificarHabitantesPasarelaGuardaHormiga() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
         Enemigo enemigo = new Hormiga();
 
         assertEquals(true , enemigo.posicionarEn(pasarela));
-        assertEquals(1, pasarela.enemigos().cantidadUnidades());
+        assertEquals(1, pasarela.cantidadUnidades());
 
     }
 
     @Test
     public void verificarHabitantesPasarelaAgregaHormigaYTopo() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
         Enemigo enemigo = new Hormiga();
         Enemigo enemigo2 = new Topo(0);
@@ -47,12 +47,12 @@ public class HabitantesTests {
 
         enemigo.posicionarEn(pasarela);
         assertEquals(true , enemigo2.posicionarEn(pasarela));
-        assertEquals(2, pasarela.enemigos().cantidadUnidades());
+        assertEquals(2, pasarela.cantidadUnidades());
     }
 
     @Test
     public void verificarHabitantesPasarelaQuitaHormiga() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
         Enemigo enemigo = new Hormiga();
         Enemigo enemigo2 = new Topo(0);
@@ -61,15 +61,15 @@ public class HabitantesTests {
         enemigo.posicionarEn(pasarela);
         enemigo2.posicionarEn(pasarela);
 
-        pasarela.enemigos().sacar(enemigo);
+        pasarela.sacar(enemigo);
 
-        assertEquals(1, pasarela.enemigos().cantidadUnidades());
+        assertEquals(1, pasarela.cantidadUnidades());
 
     }
 
     @Test
     public void verificarHabitantesPasarelaQuitaTrampaPuedePonerOtra() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
         Construccion trampa = new Trampa();
 
@@ -86,43 +86,43 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesPasarelaGuardaLechuza() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
         Enemigo enemigo = new Lechuza();
 
         assertEquals(true , enemigo.posicionarEn(pasarela));
-        assertEquals(1, pasarela.enemigos().cantidadUnidades());
+        assertEquals(1, pasarela.cantidadUnidades());
 
 
     }
 
     @Test
     public void verificarHabitantesPasarelaGuardaArania() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
         Enemigo enemigo = new Arania();
 
         assertEquals(true , enemigo.posicionarEn(pasarela));
-        assertEquals(1, pasarela.enemigos().cantidadUnidades());
+        assertEquals(1, pasarela.cantidadUnidades());
 
 
     }
 
     @Test
     public void verificarHabitantesPasarelaGuardaTopo() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
         Enemigo enemigo = new Topo(1);
 
         assertEquals(true , enemigo.posicionarEn(pasarela));
-        assertEquals(1, pasarela.enemigos().cantidadUnidades());
+        assertEquals(1, pasarela.cantidadUnidades());
 
 
     }
 
     @Test
     public void verificarHabitantesPasarelaGuardaTrampa() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
         Construccion construccion = new Trampa();
 
@@ -132,7 +132,7 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesPasarelaNOGuardaTorres() {
-        Celda pasarela = new Pasarela(new Coordenada(1,1));
+        Celda pasarela = new Pasarela();
 
 
         Construccion cons = new TorreBlanca();
@@ -145,7 +145,7 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesTierraNOGuardaEnemigosMenosLechuza() {
-        Celda celda = new Tierra(new Coordenada(1,1));
+        Celda celda = new Tierra();
 
         Enemigo enemigo = new Arania();
         Enemigo hormiga = new Hormiga();
@@ -164,7 +164,7 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesRocosoNOGuardaEnemigosMenosLechuza() {
-        Celda celda = new Rocosa(new Coordenada(1,1));
+        Celda celda = new Rocosa();
 
         Enemigo enemigo = new Arania();
         Enemigo hormiga = new Hormiga();
@@ -182,7 +182,7 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesTierraGuardaTorresYNoTrampas() {
-        Celda celda = new Tierra(new Coordenada(1,1));
+        Celda celda = new Tierra();
 
 
         Construccion cons = new TorreBlanca();
@@ -192,7 +192,7 @@ public class HabitantesTests {
         assertEquals(true , cons.posicionarEn(celda));
         assertEquals(false , cons3.posicionarEn(celda));
 
-        celda = new Tierra(new Coordenada(1,1));
+        celda = new Tierra();
 
         assertEquals(true , cons2.posicionarEn(celda));
 
@@ -202,7 +202,7 @@ public class HabitantesTests {
 
     @Test
     public void verificarHabitantesTierraGuardaTorresMaximo1() {
-        Celda celda = new Tierra(new Coordenada(1,1));
+        Celda celda = new Tierra();
 
 
         Construccion cons = new TorreBlanca();
@@ -215,7 +215,7 @@ public class HabitantesTests {
 
     @Test
     public void verificarRocosoNoGuardaConstrucciones() {
-        Celda celda = new Rocosa(new Coordenada(1,1));
+        Celda celda = new Rocosa();
 
 
         Construccion cons = new TorreBlanca();

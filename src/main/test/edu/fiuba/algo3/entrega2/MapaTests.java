@@ -5,20 +5,22 @@ package edu.fiuba.algo3.entrega2;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
+
+import edu.fiuba.algo3.modelo.Celdas.Celda;
 
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 //import edu.fiuba.algo3.modelo.moduloLector.Lector;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
 
 public class MapaTests {
     
@@ -35,6 +37,22 @@ public class MapaTests {
         Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
 
         assertEquals(true, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
+    }
+
+    @Test
+    public void VerificarSePosicioneLaDefensaAlPosicionar() throws Exception {
+        Defensa mockDefensa = mock(Defensa.class);
+        //ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
+        LectorMapa mockLector = mock(LectorMapa.class);
+
+
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+
+        Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
+
+        unMapa.posicionar(new Coordenada(1,1),mockDefensa);
+        verify(mockDefensa, times(1)).posicionarEn(any(Celda.class));
     }
     
     @Test
@@ -66,9 +84,6 @@ public class MapaTests {
         assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
         
     }  
-
-
-    
 
     @Test
     public void VerificarSePuedaConstruirDefensasSobreTierraSoloUnaVez() throws Exception {
@@ -178,6 +193,33 @@ public class MapaTests {
 
         assertEquals(0, unidadesInicio.cantidadEnemigos());
     }
+
+
+
+    @Test
+    public void VerificarAccionarEstructurasAccioneLasEstructurasUnaVez() throws Exception{
+
+        Defensa mockDefensa = mock(Defensa.class);
+
+        // necesitamos lo llame al posicionar.
+        doCallRealMethod().when(mockDefensa).posicionarEn(any(Celda.class));       
+
+        LectorMapa mockLector = mock(LectorMapa.class);
+
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+
+        Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
+        Coordenada desde =new Coordenada(1,1);
+        unMapa.posicionar(desde,mockDefensa);
+
+        unMapa.accionarDefensas();
+
+
+        verify(mockDefensa, times(1)).accionar(unMapa, desde);
+
+    }
+
 
     @Test
     public void VerificarEnemigosSeMuevenSoloPorPasarelasHastaElFinal() throws Exception {
