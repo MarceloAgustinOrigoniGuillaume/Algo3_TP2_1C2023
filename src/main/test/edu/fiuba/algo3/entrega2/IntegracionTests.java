@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.entrega2;
 
 import edu.fiuba.algo3.Resources;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
+import edu.fiuba.algo3.modelo.Defensas.torres.TorreBlanca;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
@@ -9,12 +12,11 @@ import java.io.IOException;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class IntegracionTests {
@@ -94,19 +96,15 @@ public class IntegracionTests {
         assertEquals(true, juego.estanEnJuego());
         assertEquals(2, unidadesInicio.cantidadEnemigos());
         assertEquals(4, unidadesSiguiente.cantidadEnemigos());
-
-        //TODO corregir el test para que termine el juego
     }
 
     @Test
     public void verificarPasan6TurnosHormigasInicialesLleganFinal() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
-        //System.out.println("PASO DE 6 TURNOS");
 
         CeldaDescriptor unidadesFinal;
         Coordenada posSiguiente = new Coordenada(5,3);
-        //int i =0;
         
         juego.pasarTurno();
         juego.pasarTurno();
@@ -121,10 +119,6 @@ public class IntegracionTests {
         assertEquals(true, juego.estanEnJuego());
         assertEquals(16, juego.obtenerJugador().obtenerVida()); // dmg de 4 hormigas
         assertEquals(0,unidadesFinal.cantidadEnemigos());
-        //System.out.println("T_----------------TEST 6 turnos");
-
-
-        //TODO corregir el test para que termine el juego
     }
 
 
@@ -145,42 +139,68 @@ public class IntegracionTests {
         
         assertEquals(false, juego.estanEnJuego());
         assertEquals(0, juego.obtenerJugador().obtenerVida()); // murio
-        assertEquals(false,juego.ganoJugador()); 
-        
-        //TODO corregir el test para que termine el juego
-        //System.out.println("T_----------------TEST 13 turnos");
+        assertEquals(false,juego.ganoJugador());
     }
 
 
     @Test
-    public void verificarPasan13ConUnaTorrePlateadaTurno2JugadorGana() throws Exception {
+    public void verificarPasan13ConUnaTorrePlateadaYUnaTorreBlancaTurno2JugadorGana() throws Exception {
 
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
-        System.out.println("PASO DE 12 TURNOS Juego termino, con defensa");
 
-        CeldaDescriptor unidadesFinal;
-        Coordenada posSiguiente = new Coordenada(5,3);
-        try{
+        juego.posicionar(new TorrePlateada(), new Coordenada(1,3));
+        juego.posicionar(new TorreBlanca(), new Coordenada(3,2));
 
+        assertEquals(70,juego.obtenerJugador().obtenerCreditos());
+
+        for (int i = 0; i < 8; i++) {
             juego.pasarTurno();
-            juego.posicionar(new TorrePlateada(), new Coordenada(3,2));
-
-            for(int i = 0; i<9 ; i++){
-                juego.pasarTurno();
-            }            
-        } catch(Exception ex){
-            ex.printStackTrace();
         }
 
-        //System.out.println("------> TEST ESTE ... LA VIDA DEL JUGADOR ERA "+String.valueOf(juego.obtenerJugador().obtenerVida()));
-        //System.out.println("-------> TESTE ESTE ... Creditos DEL JUGADOR ERAN "+String.valueOf(juego.obtenerJugador().obtenerCreditos()));
-       // assertEquals(false, juego.estanEnJuego());
-        //assertEquals(true, juego.ganoJugador());
-        
-        //assertEquals(0, juego.obtenerJugador().obtenerVida()); // dmg de 4 hormigas
-        //TODO corregir el test para que termine el juego
-        //System.out.println("T_----------------TEST 13 turnos");
+        assertEquals(78, juego.obtenerJugador().obtenerCreditos());
+
+
+    }
+
+    @Test
+    public void verificarSeCreanConstruccionesLejanasYJugadorPierde() throws Exception {
+
+        Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
+        juego.iniciarJuego();
+
+        juego.posicionar(new TorrePlateada(), new Coordenada(15,15));
+        juego.posicionar(new TorreBlanca(), new Coordenada(14,14));
+        juego.posicionar(new Trampa(), new Coordenada(5,3));
+
+        assertEquals(45,juego.obtenerJugador().obtenerCreditos());
+
+        for (int i = 0; i < 10; i++) {
+            juego.pasarTurno();
+        }
+
+        assertEquals(11, juego.obtenerJugador().obtenerVida());
+
+        juego.pasarTurno();
+        juego.pasarTurno();
+
+        assertEquals(false, juego.ganoJugador());
+        assertEquals(false,juego.estanEnJuego());
+    }
+
+    @Test void verificaQueNoSePuedenConstruirMasTorresPorQueNoTieneCreditos() throws Exception {
+        Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
+        juego.iniciarJuego();
+
+        assertEquals(true,juego.posicionar(new TorrePlateada(), new Coordenada(15,15)));
+        assertEquals(true,juego.posicionar(new TorreBlanca(), new Coordenada(14,14)));
+        assertEquals(false,juego.posicionar(new TorrePlateada(), new Coordenada(15,15)));
+
+        for (int i = 2; i < 9; i++) {
+            assertEquals(true,juego.posicionar(new TorreBlanca(), new Coordenada(1,i)));
+        }
+        assertEquals(0, juego.obtenerJugador().obtenerCreditos());
+        assertEquals(false,juego.posicionar(new TorrePlateada(), new Coordenada(1,10)));
     }
 
 
