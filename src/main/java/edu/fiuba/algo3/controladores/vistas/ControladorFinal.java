@@ -16,32 +16,67 @@ import edu.fiuba.algo3.vistas.popups.MessagePopup;
 
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 //import edu.fiuba.algo3.vistas.Vista;
 //setBackground(Resources.getBckImage("background2.jpg", 640,680));
 
 
-public class ControladorFinal extends Controlador {
-	@FXML private Label mensajeResultado; 
+public class ControladorFinal implements Initializable {
+	@FXML private Label mensajeResultado;
 
+	@FXML
+	private MediaView mediaView;
+
+	private File file1;
+	private File file2;
+	private Media media1;
+	private MediaPlayer mediaPlayer1;
+	private Media media2;
+	private MediaPlayer mediaPlayer2;
 	private boolean ganoJugador;
 	public ControladorFinal(boolean gano){
 		this.ganoJugador = gano;
 	}
 
-	public void initialize(){
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		file1 = new File("src/main/resources/images/videos/youWin.mp4");
+		media1 = new Media(file1.toURI().toString());
+		mediaPlayer1 = new MediaPlayer(media1);
 
+		file2 = new File("src/main/resources/images/videos/youLoose.mp4");
+		media2 = new Media(file2.toURI().toString());
+		mediaPlayer2 = new MediaPlayer(media2);
+
+
+		String mensajeFinal;
 		if(ganoJugador){
-			mensajeResultado.setText("Ganaste!!\nlos enemigos no podian matarte");
+			mediaView.setMediaPlayer(mediaPlayer1);
+			mediaPlayer1.play();
+			mensajeResultado.setText("Ganaste!!");
+			mensajeFinal = mensajeResultado.getText();
+			mensajeResultado.setText(mensajeFinal.toUpperCase());
 		} else{
-			mensajeResultado.setText("Perdiste!!\nlos enemigos te mataron");			
+			mediaView.setMediaPlayer(mediaPlayer2);
+			mediaPlayer2.play();
+			mensajeResultado.setText("Perdiste!!");
+			mensajeFinal = mensajeResultado.getText();
+			mensajeResultado.setText(mensajeFinal.toUpperCase());
 		}
 
 	}
@@ -78,8 +113,5 @@ public class ControladorFinal extends Controlador {
 		}
 
 	}
-
-
-
 
 }

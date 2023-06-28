@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.VBox?>
-
-<!-- onAction="#iniciarPartida"  fx:controller="vistas." -->
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
+<!-- onAction="#iniciarPartida"  fx:controller="vistas." -->
 
-<VBox fx:id="btnBoton" prefHeight="680.0" prefWidth="640.0" style="-fx-background-color: grey;" alignment="CENTER" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <MediaView fx:id="mediaView" fitHeight="680.0" fitWidth="795.0" preserveRatio="false" />
 
-      <Label text="Ganaste !!" fx:id="mensajeResultado" alignment="CENTER" style="-fx-text-fill: #FFFFFF;">
+            <Label fx:id="mensajeResultado" alignment="CENTER" layoutX="274.0" layoutY="280.0" style="-fx-text-fill: #FFFFFF; -fx-font-style: capital;" text="Ganaste !!">
          <font>
-            <Font size="32"/>
+            <Font name="Futura Heavy BT" size="50.0" />
          </font>
       </Label>
-
-      <VBox fx:id="initContainer" spacing="2" alignment="CENTER">
-         <Button fx:id="btnReiniciarJuego" onAction="#reiniciarJuego" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Jugar devuelta" />
-         <Button fx:id="btnVolverInicio" onAction="#volverInicio" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Volver inicio" />
-      </VBox>
-
+      <HBox fx:id="initContainer" layoutX="213.0" layoutY="368.0" spacing="50.0" style="-fx-alignment: center;">
+         <children>
+            <Button fx:id="btnReiniciarJuego" mnemonicParsing="false" onAction="#reiniciarJuego" prefHeight="40.0" prefWidth="160.0" text="Jugar devuelta" />
+            <Button fx:id="btnVolverInicio" mnemonicParsing="false" onAction="#volverInicio" prefHeight="40.0" prefWidth="160.0" text="Volver inicio" />
+         </children>
+      </HBox>
    </children>
-</VBox>
+</AnchorPane>
