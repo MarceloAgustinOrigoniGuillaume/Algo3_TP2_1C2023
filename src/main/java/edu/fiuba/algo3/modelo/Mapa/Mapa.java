@@ -210,7 +210,7 @@ public class Mapa {
             //TO-REFACTOR
             celdaBuscada = obtenerCelda(defensas.get(indice));
             //Logger.info("--------->Defensa preatacada : ... posicion", defensas.get(indice));
-            if(celdaBuscada.defensaRecibirAtaqueAereo()){
+            if(celdaBuscada.recibirAtaqueLechuza()){
                 Logger.info("-------->Defensa atacada... posicion:",defensas.get(indice));
                 notificarCeldaCambio(celdaBuscada, defensas.get(indice));
                 defensas.remove(indice);
@@ -256,7 +256,7 @@ public class Mapa {
         //TO-REFACTOR
         //Logger.info("REMOVIO EN  ",coordenada);
         Celda construccionAEliminar = obtenerCelda(coordenada);
-        construccionAEliminar.limpiarDefensas();
+        construccionAEliminar.borrarDefensa();
         notificarCeldaCambio(coordenada);
     }
 

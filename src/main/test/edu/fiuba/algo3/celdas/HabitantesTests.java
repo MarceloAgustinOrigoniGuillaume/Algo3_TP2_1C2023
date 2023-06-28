@@ -77,7 +77,7 @@ public class HabitantesTests {
 
         assertEquals(true , trampa.posicionarEn(pasarela));
         assertEquals(false , trampa.posicionarEn(pasarela));
-        pasarela.defensas().clear();
+        pasarela.borrarDefensa();
 
         trampa = new Trampa();
 

@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
 
-import edu.fiuba.algo3.modelo.Celdas.habitantes.ConstruccionesRocoso;
-import edu.fiuba.algo3.modelo.Celdas.habitantes.Habitantes;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 
