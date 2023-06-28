@@ -11,6 +11,9 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
+import edu.fiuba.algo3.modelo.Celdas.OnAttackListener;
+
+import edu.fiuba.algo3.Logger;
 
 
 import java.util.ArrayList;
@@ -143,6 +146,56 @@ public class DefensasTests {
 
 
     @Test
+    public void verificarTorrePlateadaAtacaAUnEnemigoComoTorre() {
+        TorrePlateada torre = new TorrePlateada();
+
+        Arania mockEnemigo = mock(Arania.class);
+
+        when(mockEnemigo.atacadoPorTorre(1)).thenReturn(true);
+
+        ArrayList<Enemigo> enemigos = new ArrayList<>();
+        enemigos.add(mockEnemigo);
+
+        torre.atacar(enemigos,(AttackDescriptor atk)->{});
+
+        verify(mockEnemigo, times(1)).atacadoPorTorre(2);
+        verify(mockEnemigo, times(0)).atacadoPorTrampa();
+
+        /*
+        Recien para despues lo del Mock, al verificar que esten operativas
+        */
+    }
+
+
+    @Test
+    public void verificarTorrePlateadaAtacaAUnEnemigoDe3PrimeroEsTopo() {
+        TorrePlateada torre = new TorrePlateada();
+
+        Topo mockEnemigo = mock(Topo.class);
+        Arania mockEnemigo2 = mock(Arania.class);
+        Arania mockEnemigo3 = mock(Arania.class);
+
+        when(mockEnemigo.atacadoPorTorre(2)).thenReturn(false);
+        when(mockEnemigo2.atacadoPorTorre(2)).thenReturn(true);
+        when(mockEnemigo3.atacadoPorTorre(2)).thenReturn(true);
+
+        ArrayList<Enemigo> enemigos = new ArrayList<>();
+        enemigos.add(mockEnemigo);
+        enemigos.add(mockEnemigo2);
+        enemigos.add(mockEnemigo3);
+
+        torre.atacar(enemigos,(AttackDescriptor atk)->{});
+
+        verify(mockEnemigo, times(1)).atacadoPorTorre(2);
+        verify(mockEnemigo2, times(1)).atacadoPorTorre(2);
+        verify(mockEnemigo3, times(0)).atacadoPorTorre(2);
+
+        /*
+        Recien para despues lo del Mock, al verificar que esten operativas
+        */
+    }
+
+    @Test
     public void verificarTorreAtacaAUnEnemigoYSoloUnoPeroPrimeroNoEsAtacable() {
         TorreBlanca torreBlanca = new TorreBlanca();
 
@@ -164,6 +217,74 @@ public class DefensasTests {
         Recien para despues lo del Mock, al verificar que esten operativas
         */
     }
+
+
+
+    private abstract class MockListener implements OnAttackListener{
+        public void onAttack(AttackDescriptor desc){
+
+        }
+    }
+
+
+    @Test
+    public void verificarTorreAtacaAUnEnemigoYAvisaAlListener() {
+        TorreBlanca torreBlanca = new TorreBlanca();
+        MockListener listener = mock(MockListener.class);
+        Topo mockEnemigo = mock(Topo.class);
+        Arania mockEnemigo2 = mock(Arania.class);
+
+        when(mockEnemigo.atacadoPorTorre(1)).thenReturn(false);
+        when(mockEnemigo2.atacadoPorTorre(1)).thenReturn(true);
+
+        ArrayList<Enemigo> enemigos = new ArrayList<>();
+        enemigos.add(mockEnemigo);
+        enemigos.add(mockEnemigo2);
+
+        torreBlanca.atacar(enemigos,listener);
+
+        verify(mockEnemigo, times(1)).atacadoPorTorre(1);
+        verify(mockEnemigo2, times(1)).atacadoPorTorre(1);
+
+        verify(listener, times(1)).onAttack(any(AttackDescriptor.class));
+
+        /*
+        Recien para despues lo del Mock, al verificar que esten operativas
+        */
+    }
+
+
+    @Test
+    public void verificarTorrePlateadaAtacaAUnEnemigoDe3PrimeroEsTopoYAvisa() {
+        TorrePlateada torre = new TorrePlateada();
+
+        Topo mockEnemigo = mock(Topo.class);
+        Arania mockEnemigo2 = mock(Arania.class);
+        Arania mockEnemigo3 = mock(Arania.class);
+        MockListener listener = mock(MockListener.class);
+
+        when(mockEnemigo.atacadoPorTorre(2)).thenReturn(false);
+        when(mockEnemigo2.atacadoPorTorre(2)).thenReturn(true);
+        when(mockEnemigo3.atacadoPorTorre(2)).thenReturn(true);
+
+        ArrayList<Enemigo> enemigos = new ArrayList<>();
+        enemigos.add(mockEnemigo);
+        enemigos.add(mockEnemigo2);
+        enemigos.add(mockEnemigo3);
+
+        torre.atacar(enemigos,listener);
+
+        verify(mockEnemigo, times(1)).atacadoPorTorre(2);
+        verify(mockEnemigo2, times(1)).atacadoPorTorre(2);
+        verify(mockEnemigo3, times(0)).atacadoPorTorre(2);
+
+        verify(listener, times(1)).onAttack(any(AttackDescriptor.class));
+
+        /*
+        Recien para despues lo del Mock, al verificar que esten operativas
+        */
+    }
+
 
 }
 
