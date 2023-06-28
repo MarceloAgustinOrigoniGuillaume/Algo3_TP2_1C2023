@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.EnemigoAereo;
 import edu.fiuba.algo3.modelo.descriptors.EnemigosDescriptor;
+import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 
 public abstract class CeldaConEnemigos {
@@ -86,7 +87,10 @@ public abstract class CeldaConEnemigos {
 		return contadorActual;
 	}
 
-	public EnemigosDescriptor describirEnemigos(){
+	protected EnemigosDescriptor describirEnemigos(){
 		return new EnemigosDescriptor(enemigos);
 	}
+
+    public abstract CeldaDescriptor describe();
+
 }

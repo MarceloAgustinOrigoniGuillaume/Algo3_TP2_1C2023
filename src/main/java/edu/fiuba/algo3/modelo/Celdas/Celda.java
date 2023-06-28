@@ -42,7 +42,7 @@ public abstract class Celda extends CeldaConEnemigos{
     }
 
     public CeldaDescriptor describe(){
-        return new CeldaDescriptor( this.toString() , cantidadUnidades(),
+        return new CeldaDescriptor( this.toString(),
             construcciones.describir(), describirEnemigos());
     }
 }

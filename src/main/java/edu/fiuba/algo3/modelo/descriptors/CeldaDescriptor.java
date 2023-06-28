@@ -5,19 +5,24 @@ import edu.fiuba.algo3.modelo.Defensas.Defensa;
 
 public class CeldaDescriptor{
 	private String terreno;
-	private int cantidadEnemigos;
 	private DefensaDescriptor defensa;
 	private EnemigosDescriptor enemigos;
 
-	public CeldaDescriptor(String terreno, int cantidadEnemigos, DefensaDescriptor defensa, EnemigosDescriptor enemigos){
+	public CeldaDescriptor(String terreno, DefensaDescriptor defensa, EnemigosDescriptor enemigos){
 		this.terreno = terreno;
-		this.cantidadEnemigos = cantidadEnemigos;
 		this.defensa = defensa;
 		this.enemigos = enemigos;
 	}
 
+	public CeldaDescriptor(String terreno, EnemigosDescriptor enemigos){
+		this.terreno = terreno;
+		this.defensa = new DefensaDescriptor();
+		this.enemigos = enemigos;
+	}
+
+
 	public int cantidadEnemigos(){
-		return cantidadEnemigos;
+		return enemigos.cantidadEnemigos();
 	}
 
 	public DefensaDescriptor defensa(){
