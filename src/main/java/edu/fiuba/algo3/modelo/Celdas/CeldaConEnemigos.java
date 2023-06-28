@@ -55,8 +55,8 @@ public abstract class CeldaConEnemigos {
     }
 
     // dice a la defensa que ataque a los enemigos,
-	public boolean recibirAtaque(Defensa ataque){
-		return ataque.atacar(enemigos);
+	public boolean recibirAtaque(Defensa ataque, OnAttackListener listener){
+		return ataque.atacar(enemigos, listener);
 	}
 
 	public ArrayList<Enemigo> popMuertos(){ //Se fija quien esta muerto, los remueve y los devuelve

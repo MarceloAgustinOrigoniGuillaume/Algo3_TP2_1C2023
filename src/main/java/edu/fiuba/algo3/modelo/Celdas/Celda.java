@@ -49,7 +49,7 @@ public abstract class Celda extends CeldaConEnemigos{
     // metodos publicos para el double dispatch
     public abstract boolean guardar(Trampa trampa);
     public abstract boolean guardar(Construccion construccion);
-    public abstract boolean recibirAtaqueLechuza();
+    public abstract boolean recibirAtaqueLechuza(OnAttackListener listener);
 
 
     private DefensaDescriptor describirDefensa() {

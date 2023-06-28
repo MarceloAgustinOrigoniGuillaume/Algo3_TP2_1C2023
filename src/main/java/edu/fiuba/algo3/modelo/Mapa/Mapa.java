@@ -9,11 +9,14 @@ import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
 
 
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.excepciones.mapa.*;
+
+import edu.fiuba.algo3.modelo.Celdas.OnAttackListener;
 
 //obtenerCelda
 public class Mapa {
@@ -23,7 +26,9 @@ public class Mapa {
     // listeners externos para eventos
     private OnEnemiesDiedListener acreditadorMuertos;
     private OnHabitantesChangedListener listenerCambios = null;
-
+    private OnAttackListener listenerAtaques = (AttackDescriptor atk)->{
+        Logger.info("----> DEBERIA REPRODUCIR SONIDO '"+atk.tipo()+"'");
+    };
 
     // dimensiones del mapa, sea para la matriz de celdas o la de enemigos
     private Integer width;
@@ -150,7 +155,7 @@ public class Mapa {
         for(Coordenada posDefensa: defensas){
             Logger.info("Se acciono defensa de la posicion: ",posDefensa);
             
-            //TO-REFACTOR
+            //REFACTORED-ROCOSO?
             obtenerCelda(posDefensa).accionarEstructuras(this, posDefensa);
         }
     }
@@ -185,7 +190,7 @@ public class Mapa {
             return true;
         }
         CeldaConEnemigos celda = obtenerCeldaEnemigos(coordenada);
-        boolean seguirAtacando = celda.recibirAtaque(defensa);
+        boolean seguirAtacando = celda.recibirAtaque(defensa, listenerAtaques);
 
         ArrayList<Enemigo> muertos = celda.popMuertos();
 
@@ -207,10 +212,10 @@ public class Mapa {
         Celda celdaBuscada;
 
         while (indice < defensas.size()){ // buscas primer torre.
-            //TO-REFACTOR
+            //REFACTORED-ROCOSO?
             celdaBuscada = obtenerCelda(defensas.get(indice));
             //Logger.info("--------->Defensa preatacada : ... posicion", defensas.get(indice));
-            if(celdaBuscada.recibirAtaqueLechuza()){
+            if(celdaBuscada.recibirAtaqueLechuza(listenerAtaques)){
                 Logger.info("-------->Defensa atacada... posicion:",defensas.get(indice));
                 notificarCeldaCambio(celdaBuscada, defensas.get(indice));
                 defensas.remove(indice);
@@ -227,7 +232,7 @@ public class Mapa {
 
     // posicionar de defensas
     public boolean posicionar(Coordenada coordenada, Construccion construccion){
-        //TO-REFACTOR
+        //REFACTORED-ROCOSO?
     
         Celda celda = obtenerCelda(coordenada);
 
@@ -253,8 +258,7 @@ public class Mapa {
 
     // remueve una construccion
     public void removerConstruccion(Coordenada coordenada){
-        //TO-REFACTOR
-        //Logger.info("REMOVIO EN  ",coordenada);
+        //REFACTORED-ROCOSO?
         Celda construccionAEliminar = obtenerCelda(coordenada);
         construccionAEliminar.borrarDefensa();
         notificarCeldaCambio(coordenada);
@@ -376,6 +380,15 @@ public class Mapa {
     // setters de listener para eventos.
     public void setListenerCambiosCeldas(OnHabitantesChangedListener listenerCambios){
         this.listenerCambios = listenerCambios;
+    }
+
+    // setters de listener para eventos.
+    public void setListenerAtaques(OnAttackListener listenerAtaques){
+
+        if(listenerAtaques == null){
+            listenerAtaques = (AttackDescriptor atk)->{};
+        }
+        this.listenerAtaques = listenerAtaques;
     }
 
 

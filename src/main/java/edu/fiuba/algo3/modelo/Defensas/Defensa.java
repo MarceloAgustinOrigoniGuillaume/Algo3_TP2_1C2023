@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 
 import javax.security.auth.DestroyFailedException;
+import edu.fiuba.algo3.modelo.Celdas.OnAttackListener;
 
 
 public abstract class Defensa implements Estructura {
@@ -39,7 +40,7 @@ public abstract class Defensa implements Estructura {
 
     public abstract int ataque();
 
-    public abstract boolean atacar(ArrayList<Enemigo> enemigo);
+    public abstract boolean atacar(ArrayList<Enemigo> enemigo, OnAttackListener listener);
 
     public boolean posicionarEn(Celda celda){
         return celda.guardar(this);

@@ -25,7 +25,7 @@ public class Pasarela extends Celda{
 	}
 
 	// No recibe ataques de lechuza, trampa no lo hace.
-	public boolean recibirAtaqueLechuza(){
+	public boolean recibirAtaqueLechuza(OnAttackListener listener){
 		return false;
 	}
 	

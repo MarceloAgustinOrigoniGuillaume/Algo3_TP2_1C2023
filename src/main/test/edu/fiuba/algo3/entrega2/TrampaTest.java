@@ -10,6 +10,8 @@ import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
+
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
@@ -42,7 +44,7 @@ public class TrampaTest {
         enemigos.add(mockEnemigo);
         enemigos.add(mockEnemigo2);
 
-        trampa.atacar(enemigos);
+        trampa.atacar(enemigos,(AttackDescriptor atk)->{});
 
         verify(mockEnemigo, times(1)).atacadoPorTrampa();
         verify(mockEnemigo2, times(1)).atacadoPorTrampa();
@@ -62,7 +64,7 @@ public class TrampaTest {
         enemigos.add(mockEnemigo);
         enemigos.add(mockEnemigo2);
 
-        trampa.atacar(enemigos);
+        trampa.atacar(enemigos, (AttackDescriptor atk)->{});
 
         verify(mockEnemigo, times(1)).atacadoPorTrampa();
         verify(mockEnemigo2, times(1)).atacadoPorTrampa();
@@ -79,7 +81,7 @@ public class TrampaTest {
         ArrayList<Enemigo> enemigos = new ArrayList<>();
         enemigos.add(mockEnemigo);
 
-        trampa.atacar(enemigos);
+        trampa.atacar(enemigos, (AttackDescriptor atk)->{});
 
         verify(mockEnemigo, times(0)).atacadoPorTorre(1);
         verify(mockEnemigo, times(1)).atacadoPorTrampa();

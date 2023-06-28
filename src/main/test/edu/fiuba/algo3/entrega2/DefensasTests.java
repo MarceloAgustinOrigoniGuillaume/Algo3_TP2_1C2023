@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Jugador;
 
+import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
+
 
 import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
@@ -85,7 +87,7 @@ public class DefensasTests {
         ArrayList<Enemigo> enemigos = new ArrayList<>();
         enemigos.add(mockEnemigo);
 
-        torreBlanca.atacar(enemigos);
+        torreBlanca.atacar(enemigos, (AttackDescriptor atk)->{});
 
         verify(mockEnemigo, times(1)).atacadoPorTorre(1);
 
@@ -108,7 +110,7 @@ public class DefensasTests {
         enemigos.add(mockEnemigo);
         enemigos.add(mockEnemigo2);
 
-        torreBlanca.atacar(enemigos);
+        torreBlanca.atacar(enemigos,(AttackDescriptor atk)->{});
 
         verify(mockEnemigo, times(1)).atacadoPorTorre(1);
         verify(mockEnemigo2, times(0)).atacadoPorTorre(1);
@@ -129,7 +131,7 @@ public class DefensasTests {
         ArrayList<Enemigo> enemigos = new ArrayList<>();
         enemigos.add(mockEnemigo);
 
-        torreBlanca.atacar(enemigos);
+        torreBlanca.atacar(enemigos,(AttackDescriptor atk)->{});
 
         verify(mockEnemigo, times(1)).atacadoPorTorre(1);
         verify(mockEnemigo, times(0)).atacadoPorTrampa();
@@ -153,7 +155,7 @@ public class DefensasTests {
         enemigos.add(mockEnemigo);
         enemigos.add(mockEnemigo2);
 
-        torreBlanca.atacar(enemigos);
+        torreBlanca.atacar(enemigos,(AttackDescriptor atk)->{});
 
         verify(mockEnemigo, times(1)).atacadoPorTorre(1);
         verify(mockEnemigo2, times(1)).atacadoPorTorre(1);

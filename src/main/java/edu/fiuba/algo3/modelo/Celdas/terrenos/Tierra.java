@@ -4,6 +4,7 @@ import edu.fiuba.algo3.Logger;
 
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Defensas.Construccion;
+import edu.fiuba.algo3.modelo.descriptors.AtaqueADefensa;
 
 public class Tierra extends Celda {
 
@@ -27,7 +28,11 @@ public class Tierra extends Celda {
 	}
 
 	// puede recibir ataques de lechuza
-	public boolean recibirAtaqueLechuza(){
+	public boolean recibirAtaqueLechuza(OnAttackListener listener){
+		
+		// notify ataque
+		listener.onAttack(new AtaqueADefensa());
+		
 		borrarDefensa();
 		Logger.info("Defensa fue removida?");
 		return true;
