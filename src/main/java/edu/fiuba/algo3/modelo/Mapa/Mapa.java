@@ -26,9 +26,7 @@ public class Mapa {
     // listeners externos para eventos
     private OnEnemiesDiedListener acreditadorMuertos;
     private OnHabitantesChangedListener listenerCambios = null;
-    private OnAttackListener listenerAtaques = (AttackDescriptor atk)->{
-        Logger.info("----> DEBERIA REPRODUCIR SONIDO '"+atk.tipo()+"'");
-    };
+    private OnAttackListener listenerAtaques = (AttackDescriptor atk)->{};
 
     // dimensiones del mapa, sea para la matriz de celdas o la de enemigos
     private Integer width;

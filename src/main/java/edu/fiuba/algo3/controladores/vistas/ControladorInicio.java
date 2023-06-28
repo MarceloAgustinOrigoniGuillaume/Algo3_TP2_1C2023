@@ -13,7 +13,9 @@ import edu.fiuba.algo3.vistas.popups.MessagePopup;
 
 
 
+import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+
 import edu.fiuba.algo3.vistas.ViewCelda;
 import edu.fiuba.algo3.vistas.ViewMapa;
 
@@ -72,6 +74,12 @@ public class ControladorInicio extends Controlador {
 			Logger.info("Empezando juego con jugador '"+nombreJugador+"'");
 			DatosModelo.empezarJuegoActual();
 			DatosModelo.setNombreJugador(nombreJugador);
+			DatosModelo.setOnAttackListener((AttackDescriptor ataque)->{
+				// hay que ver como hacemos la logica.
+				// pero creo un bueno singleton no vendria mal
+				// sino habra que hacer unos cambios a como conectamos con el modelo
+				Logger.Log("SHOULD REPRODUCE SOUND '"+ataque.tipo()+"'");
+			});
 		} catch(Exception ex){
 			Logger.err("at empezar Juego ",ex);
 			ex.printStackTrace();

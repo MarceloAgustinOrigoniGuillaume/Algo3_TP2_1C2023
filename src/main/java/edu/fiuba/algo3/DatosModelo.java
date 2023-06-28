@@ -10,7 +10,9 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+
 import edu.fiuba.algo3.modelo.Mapa.OnHabitantesChangedListener;
+import edu.fiuba.algo3.modelo.Celdas.OnAttackListener;
 
 public class DatosModelo{
 	private static final DatosModelo unicaInstancia = new DatosModelo();
@@ -133,6 +135,16 @@ public class DatosModelo{
 		}
 		unicaInstancia.juego.obtenerMapa().setListenerCambiosCeldas(listener);
 	}
+
+	public static void setOnAttackListener(OnAttackListener listener){
+		if(unicaInstancia.juego == null){
+			Logger.err("At set on attack listener, sin juego iniciado.");			
+			return;
+		}
+		unicaInstancia.juego.obtenerMapa().setListenerAtaques(listener);
+	}
+
+
 	public static void setObserverVida(Jugador.modificacion_vida modificacion_vida){
 		unicaInstancia.juego.obtenerJugador().setObsver_vida(modificacion_vida);
 	}
