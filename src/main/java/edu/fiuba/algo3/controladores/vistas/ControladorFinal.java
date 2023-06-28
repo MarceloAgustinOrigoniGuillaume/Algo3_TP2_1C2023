@@ -104,12 +104,13 @@ public class ControladorFinal implements Initializable {
 	public void reiniciarJuego(ActionEvent event){
 		// cargando... transicion.
 
-		mensajeResultado.getScene().setRoot(Resources.getVista("transicion"));
+		Scene scene = mensajeResultado.getScene();
+		scene.setRoot(Resources.getVista("transicion"));
 
 		LoadViewAsyncTask loadTask= new LoadViewAsyncTask(
 			"juego",()->new ControladorJuego(mediatorJuego));
 
-		loadTask.loadOn(mensajeResultado.getScene());
+		loadTask.loadOn(scene);
 	}
 
 }

@@ -16,7 +16,6 @@ import edu.fiuba.algo3.vistas.popups.MessagePopup;
 import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
-import edu.fiuba.algo3.vistas.ViewCelda;
 import edu.fiuba.algo3.vistas.ViewMapa;
 
 import javafx.scene.control.TextField;

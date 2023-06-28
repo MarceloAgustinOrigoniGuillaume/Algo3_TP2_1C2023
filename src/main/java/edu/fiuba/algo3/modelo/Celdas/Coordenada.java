@@ -9,8 +9,8 @@ public class Coordenada {
     public interface Iterador{
         boolean actOn(Coordenada coord);
     }
-    private final int coordenadaX;
-    private final int coordenadaY;
+    private int coordenadaX;
+    private int coordenadaY;
 
     public Coordenada(int x, int y) {
         this.coordenadaX = x;
@@ -56,4 +56,13 @@ public class Coordenada {
     public int y(){
         return coordenadaY;
     }
+
+    public void setX(int x){
+        coordenadaX = x;
+    }
+
+    public void setY(int y){
+        coordenadaY = y;
+    }
+
 }

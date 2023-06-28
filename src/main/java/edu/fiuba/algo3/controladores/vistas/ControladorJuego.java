@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.input.MouseEvent;
 
-import edu.fiuba.algo3.vistas.ViewCelda;
+import edu.fiuba.algo3.vistas.celda.CeldaView;
 import edu.fiuba.algo3.vistas.ViewMapa;
 import edu.fiuba.algo3.vistas.DefensaDraggeable;
 
@@ -56,8 +56,11 @@ public class ControladorJuego extends Controlador {
 		showError("Error al construir", mensaje);
 	}
 
-	public static ViewCelda instanciarViewCelda(CeldaDescriptor datos, int x , int y){
-		return new ViewCelda(datos.tipo(),datos.rel_image(), datos.cantidadEnemigos(), new Coordenada(x,y));
+	public static CeldaView instanciarCeldaView(CeldaDescriptor datos, int x , int y){
+		CeldaView celda= new CeldaView(x,y, datos.tipo());
+
+		celda.updateView(datos.defensa_image(), datos.cantidadEnemigos());
+		return celda;
 	}
 
 
@@ -67,14 +70,14 @@ public class ControladorJuego extends Controlador {
 	private void handleClickOnCelda(MouseEvent evento){
 		evento.consume(); 
 
-		ViewCelda celda = (ViewCelda)evento.getSource();
+		CeldaView celda = (CeldaView)evento.getSource();
 		if(estaConstruyendo()){
 
 
 			if(!construyendo.posicionarEnMapa(mediatorJuego)){
-				showErrorConstruccion("No se puede posicionar '"+construyendo.toString()+"' en '"+celda.getTipo()+"'");
+				showErrorConstruccion("No se puede posicionar '"+construyendo.toString()+"' en '"+celda.getTerreno()+"'");
 				return;
-			} 
+			}
 			construyendo = null;
 			return;
 		}				
@@ -90,7 +93,7 @@ public class ControladorJuego extends Controlador {
 		}
 
 		evento.consume(); 		
-		construyendo.placeOn((ViewCelda)evento.getSource());
+		construyendo.placeOn((CeldaView)evento.getSource());
 		//Logger.Log("Move defensa drageable a celda...");
 	}
 
@@ -101,7 +104,7 @@ public class ControladorJuego extends Controlador {
 
 		evento.consume(); 
 
-		construyendo.removeFrom((ViewCelda)evento.getSource());
+		construyendo.removeFrom((CeldaView)evento.getSource());
 		//Logger.Log("Erase defensa drageable a celda...");
 	}
 
@@ -115,7 +118,7 @@ public class ControladorJuego extends Controlador {
 
 		mapaJuego.loadFromResources(mediatorJuego.width(),mediatorJuego.height(),
 			(int x, int y)->{
-				ViewCelda celda = instanciarViewCelda(mediatorJuego.obtenerTerrenoEn(x,y), x, y);
+				CeldaView celda = instanciarCeldaView(mediatorJuego.obtenerTerrenoEn(x,y), x, y);
 
 				celda.addEventHandler(MouseEvent.MOUSE_CLICKED,this::handleClickOnCelda);
 				celda.addEventHandler(MouseEvent.MOUSE_ENTERED,this::handleEnteredOnCelda);
@@ -126,13 +129,13 @@ public class ControladorJuego extends Controlador {
 
 
 		mediatorJuego.setOnCeldaChangedListener((Coordenada coordenada, CeldaDescriptor descriptor) ->{
-				ViewCelda celda = mapaJuego.tileAt(coordenada.x(),coordenada.y());
+				CeldaView celda = mapaJuego.tileAt(coordenada.x(),coordenada.y());
 				if(celda == null){
 					Logger.err("at CeldaChanged, CELDA GIVEN TO UPDATE WAS NULL");
 					return;
 				}
 				//Logger.Log("CELDA GIVEN TO UPDATE HAD POSITION "+celda.getCoordenada().toString());
-				celda.updateView(descriptor.rel_image(), descriptor.cantidadEnemigos());
+				celda.updateView(descriptor.defensa_image(), descriptor.cantidadEnemigos());
 			});
 
 		// ahora inicializas 

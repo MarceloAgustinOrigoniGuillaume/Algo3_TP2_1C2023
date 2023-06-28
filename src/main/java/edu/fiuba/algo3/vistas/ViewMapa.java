@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 
 import javafx.collections.ObservableList;
+import edu.fiuba.algo3.vistas.celda.CeldaView;
 
 
 public class ViewMapa extends HBox implements ControladorMapa.TileResources{
@@ -35,18 +36,18 @@ public class ViewMapa extends HBox implements ControladorMapa.TileResources{
 
     }
 
-    private ViewCelda findNode(int x, int y){
+    private CeldaView findNode(int x, int y){
         Logger.dbg("Se actualizo la view: ", String.valueOf(x)+","+String.valueOf(y));
         ObservableList<Node> columnas = getChildren();
         ObservableList<Node> fila;
-        ViewCelda celda;
+        CeldaView celda;
         int ind_columna = 0;
         int ind_fila = 0;
 
         while(ind_columna < columnas.size()){
             fila = ((VBox)columnas.get(ind_columna)).getChildren();
 
-            celda = (ViewCelda)fila.get(0);
+            celda = (CeldaView)fila.get(0);
             if(celda.getCoordenada().x() != x){
                 // no era esta columna
                 ind_columna+=1;
@@ -59,7 +60,7 @@ public class ViewMapa extends HBox implements ControladorMapa.TileResources{
 
             ind_fila = 1;
             while(ind_fila < fila.size()){
-                celda = (ViewCelda)fila.get(ind_fila);
+                celda = (CeldaView)fila.get(ind_fila);
                 if(celda.getCoordenada().y() == y){
                     return celda;
                 }
@@ -75,7 +76,7 @@ public class ViewMapa extends HBox implements ControladorMapa.TileResources{
     }
 
 
-    public ViewCelda tileAt(int x, int y){
+    public CeldaView tileAt(int x, int y){
         return findNode(x,y);
     }
 }
