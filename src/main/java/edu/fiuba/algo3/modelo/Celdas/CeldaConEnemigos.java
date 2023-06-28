@@ -10,87 +10,39 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.EnemigoAereo;
-import edu.fiuba.algo3.modelo.descriptors.EnemigosDescriptor;
+
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
-
-public abstract class CeldaConEnemigos {
-	private ArrayList<Enemigo> enemigos = new ArrayList<>();
-	private boolean habilitarTodos;
-
-	public CeldaConEnemigos(boolean habilitarTodos){
-		this.habilitarTodos = habilitarTodos;
-	}
-
-	public CeldaConEnemigos(){
-		this(true);
-	}
-
-	// se observa  que CeldaConEnemigos guarda cualquier Enemigo si una implementacion
-	// le dice guarda. Los metodos publicos filtran
-	protected boolean guardaUnidad(Enemigo unidad){ 
-		enemigos.add(unidad);
-		return true;
-	}
+// Interfaz para que mapa dependa de una abstraccion
+// y poder tambien no romper liskov el usar herencia.
+public interface CeldaConEnemigos {
 
 	//Pre: Por default solo se puede guardar Unidades en pasarela. habilitarTodos es false.
 	//Post: -
-	public boolean guardar(Enemigo unidad){
-		return habilitarTodos && guardaUnidad(unidad); 
-	}
+	boolean guardar(Enemigo unidad);
 	
 	// diferenciamos entre aereo y uno general para posicionar.
-	public boolean guardar(EnemigoAereo aereo){
-		return guardaUnidad(aereo); 
-	}
+	boolean guardar(EnemigoAereo aereo);
 
-	public int cantidadUnidades(){
-		return enemigos.size();
-	}
 
-    public void sacar(Enemigo enemigo){
-    	if(enemigos.contains(enemigo)){
-    		enemigos.remove(enemigo);
-    	}
-    }
+	int cantidadUnidades();
+    void sacar(Enemigo enemigo);
 
-    // dice a la defensa que ataque a los enemigos,
-	public boolean recibirAtaque(Defensa ataque, OnAttackListener listener){
-		return ataque.atacar(enemigos, listener);
-	}
 
-	public ArrayList<Enemigo> popMuertos(){ //Se fija quien esta muerto, los remueve y los devuelve
+    // Metodos relacionados a ataques
 
-		ArrayList<Enemigo> muertos = new ArrayList<>();
-		for (Enemigo enemigo: new ArrayList<Enemigo>(enemigos)){
+	boolean recibirAtaque(Defensa ataque, OnAttackListener listener);
 
-			if(enemigo.estaMuerto()){
-				muertos.add(enemigo);
-				enemigos.remove(enemigo);
-			}
-		}
-		return muertos;
-	}
+	ArrayList<Enemigo> popMuertos();
 
-	public void accionarEnemigos(Mapa mapa, Jugador jugador, Coordenada desde){
-		for(Enemigo enemigo: new ArrayList<Enemigo>(enemigos)){
-			enemigo.accionar(mapa,jugador, desde);
-		}
-	}
+	void accionarEnemigos(Mapa mapa, Jugador jugador, Coordenada desde);
 
-	//Pre: -
-	//Post: -
-	public int obtenerDamagePosible(int contadorActual){
-		for(Enemigo enemigo: new ArrayList<Enemigo>(enemigos)){
-			contadorActual += enemigo.ataqueMaximo();
-		}
-		return contadorActual;
-	}
 
-	protected EnemigosDescriptor describirEnemigos(){
-		return new EnemigosDescriptor(enemigos);
-	}
 
-    public abstract CeldaDescriptor describe();
+	// getters, le suma al damage posible y lo devuelve
+	int obtenerDamagePosible(int contadorActual);
+
+	// devuelve una descripcion, usada para la ui despues.
+    CeldaDescriptor describe();
 
 }

@@ -1,8 +1,18 @@
 package edu.fiuba.algo3.modelo.Celdas;
 
 import edu.fiuba.algo3.Logger;
+
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Defensas.Construccion;
+
+// imports celda enemigo.
+import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigo.aereos.EnemigoAereo;
+import java.util.ArrayList;
+
+import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
+
 
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
@@ -11,12 +21,15 @@ import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 
 //import edu.fiuba.algo3.modelo.Celdas.habitantes.HabitantesConstruccion;
 
-public abstract class Celda extends CeldaConEnemigos{
+public abstract class Celda implements CeldaConEnemigos{
 
     private Construccion construccionGuardada;
 
+    // Se usa composicion para evitar romper liskov.
+    private CeldaBase celdaEnemigos;
     public Celda(boolean habilitarTodos){
-        super(habilitarTodos);
+        celdaEnemigos = new CeldaBase(habilitarTodos);
+
     }
 
     private boolean estaOcupada(){
@@ -59,8 +72,63 @@ public abstract class Celda extends CeldaConEnemigos{
         return new DefensaDescriptor();
     }
 
+
+
+    // Metodos Implementacion de CeldaConEnemigos, que delegan.
+
+    //Pre: Por default solo se puede guardar Unidades en pasarela. habilitarTodos es false.
+    //Post: -
+    public boolean guardar(Enemigo unidad){
+        return celdaEnemigos.guardar(unidad);
+    }
+    
+    // diferenciamos entre aereo y uno general para posicionar.
+    public boolean guardar(EnemigoAereo aereo){
+        return celdaEnemigos.guardar(aereo);        
+    }
+
+
+    public int cantidadUnidades(){
+        return celdaEnemigos.cantidadUnidades();
+
+    }
+    public void sacar(Enemigo enemigo){
+        celdaEnemigos.sacar(enemigo);        
+    }
+
+
+    // Metodos relacionados a ataques
+    public boolean recibirAtaque(Defensa ataque, OnAttackListener listener){
+        return celdaEnemigos.recibirAtaque(ataque, listener);        
+    }
+
+    public ArrayList<Enemigo> popMuertos(){
+        return celdaEnemigos.popMuertos();
+    }
+
+    public void accionarEnemigos(Mapa mapa, Jugador jugador, Coordenada desde){
+        celdaEnemigos.accionarEnemigos(mapa, jugador, desde);
+    }
+
+
+
+    // getters, le suma al damage posible y lo devuelve
+    public int obtenerDamagePosible(int contadorActual){
+        return celdaEnemigos.obtenerDamagePosible(contadorActual);
+    }
+
+
     public CeldaDescriptor describe(){
         return new CeldaDescriptor( this.toString(),
-            describirDefensa(), describirEnemigos());
+            describirDefensa(), celdaEnemigos.describirEnemigos());
     }
+
+
+
+
+
+
+
+
+
 }
