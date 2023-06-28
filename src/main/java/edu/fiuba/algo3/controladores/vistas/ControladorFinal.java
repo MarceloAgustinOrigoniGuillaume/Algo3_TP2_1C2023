@@ -31,6 +31,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.fiuba.algo3.controladores.LoadViewAsyncTask;
 
 //import edu.fiuba.algo3.vistas.Vista;
 //setBackground(Resources.getBckImage("background2.jpg", 640,680));
@@ -101,9 +102,14 @@ public class ControladorFinal implements Initializable {
 	}
 
 	public void reiniciarJuego(ActionEvent event){
-		// reinicia
-		Logger.info("Reiniciando juego...");				
-		ControladorInicio.reiniciarJuego(mensajeResultado.getScene(), mediatorJuego);
+		// cargando... transicion.
+
+		mensajeResultado.getScene().setRoot(Resources.getVista("transicion"));
+
+		LoadViewAsyncTask loadTask= new LoadViewAsyncTask(
+			"juego",()->new ControladorJuego(mediatorJuego));
+
+		loadTask.loadOn(mensajeResultado.getScene());
 	}
 
 }

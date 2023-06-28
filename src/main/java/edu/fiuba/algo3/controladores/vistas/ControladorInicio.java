@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controladores.vistas;
 
 
 import edu.fiuba.algo3.controladores.Controlador;
+
 import edu.fiuba.algo3.AlgoDefense;
 
 
@@ -24,7 +25,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import java.lang.Thread;
+
+// cambios a no usar Thread.
+import edu.fiuba.algo3.controladores.LoadViewAsyncTask;
 
 //import edu.fiuba.algo3.vistas.Vista;
 //setBackground(Resources.getBckImage("background2.jpg", 640,680));
@@ -79,61 +82,17 @@ public class ControladorInicio extends Controlador {
 		}
 	}
 
-
 	public boolean empezarJuego(Scene ventana,String nombreJugador){
 
 		// cargando... transicion.
 		ventana.setRoot(Resources.getVista("transicion"));
 
-		Thread juegoLoader = new Thread(()->{
-
-			try{
-				VBox juego = Resources.getVista("juego",new ControladorJuego(
+		LoadViewAsyncTask loadTask= new LoadViewAsyncTask("juego",()->new ControladorJuego(
 					path_mapa, path_enemigos,
 					nombreJugador));
 
-				// no es ideal usar el setRoot en otro thread..
-				// o eso dicen en otros frameworks.
-				ventana.setRoot(juego);				
-			} catch(Exception ex){
-				Logger.err("At load juego",ex);
-				ex.printStackTrace();
-			}
-		});
-
-		juegoLoader.setDaemon(true);
-
-		juegoLoader.start();
+		loadTask.loadOn(ventana);
 
 		return true;
 	}
-
-	public static boolean reiniciarJuego(Scene ventana,AlgoDefense mediatorJuego){
-
-		// cargando... transicion.
-		ventana.setRoot(Resources.getVista("transicion"));
-
-		Thread juegoLoader = new Thread(()->{
-
-			try{
-				VBox juego = Resources.getVista("juego",new ControladorJuego(mediatorJuego));
-
-				// no es ideal usar el setRoot en otro thread..
-				// o eso dicen en otros frameworks.
-				ventana.setRoot(juego);				
-			} catch(Exception ex){
-				Logger.err("At reset juego",ex);
-				ex.printStackTrace();
-			}
-		});
-
-		juegoLoader.setDaemon(true);
-
-		juegoLoader.start();
-
-		return true;
-	}
-
-
-
 }
