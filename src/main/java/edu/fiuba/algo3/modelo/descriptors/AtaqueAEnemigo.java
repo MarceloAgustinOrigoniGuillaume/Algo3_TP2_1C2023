@@ -6,14 +6,14 @@ public class AtaqueAEnemigo extends AttackDescriptor{
     private static String parseUrl(String enemigo,String atacante){
 
     	// fijate algo del tipo de torre?
-    	return enemigo;
+    	return "TorrePlateada.wav";
     }
     public AtaqueAEnemigo(String enemigo,String atacante){
         super(parseUrl(enemigo,atacante));
     }
 
     public AtaqueAEnemigo(){
-        super("AtaqueTrampa");
+        super("AtaqueTrampa.wav");
         // por defecto si no se pasa parametros es la trampa.
     }
 }

@@ -27,6 +27,9 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import java.lang.Thread;
 
+// por ahora aca el tema de reproducir
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 //import edu.fiuba.algo3.vistas.Vista;
 //setBackground(Resources.getBckImage("background2.jpg", 640,680));
@@ -79,6 +82,12 @@ public class ControladorInicio extends Controlador {
 				// pero creo un bueno singleton no vendria mal
 				// sino habra que hacer unos cambios a como conectamos con el modelo
 				Logger.info("------------>SHOULD REPRODUCE SOUND '"+ataque.tipo()+"'");
+
+				Media sound = new Media(Resources.getSoundPath(ataque.tipo()));
+				MediaPlayer mediaPlayer = new MediaPlayer(sound);
+				mediaPlayer.play();
+				// en vez de reproducir cosas ahora
+				// capaz deberiamos esperar al final de turno.
 			});
 		} catch(Exception ex){
 			Logger.err("at empezar Juego ",ex);

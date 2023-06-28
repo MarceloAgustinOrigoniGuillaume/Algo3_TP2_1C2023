@@ -12,12 +12,14 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.Background;
 import javafx.scene.image.Image;
+import java.io.File;
 
 public class Resources {
     public static final String resources_path = "src/main/resources/";
     public static final String jsons_path = "archivos-json/";
     public static final String fxml_path = "vistas/";
     public static final String imgs_path = "images/";
+    public static final String sounds_path = "sounds/";
 
     public static Image getImg(String image){
         return new Image(getImgPath(image));
@@ -94,6 +96,14 @@ public class Resources {
 
     public static String getImgPath(String filename){
         return "file:"+resources_path+imgs_path+filename;
+    }
+
+    private static String getSound(String filename){
+        return resources_path+sounds_path+filename;
+    }
+
+    public static String getSoundPath(String filename){
+        return new File(getSound(filename)).toURI().toString();
     }
 
     public static URL getFxmlPath(String filename){
