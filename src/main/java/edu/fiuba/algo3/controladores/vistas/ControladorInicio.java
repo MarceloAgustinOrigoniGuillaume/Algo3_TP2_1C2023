@@ -78,7 +78,7 @@ public class ControladorInicio extends Controlador {
 				// hay que ver como hacemos la logica.
 				// pero creo un bueno singleton no vendria mal
 				// sino habra que hacer unos cambios a como conectamos con el modelo
-				Logger.Log("SHOULD REPRODUCE SOUND '"+ataque.tipo()+"'");
+				Logger.info("------------>SHOULD REPRODUCE SOUND '"+ataque.tipo()+"'");
 			});
 		} catch(Exception ex){
 			Logger.err("at empezar Juego ",ex);
