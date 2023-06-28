@@ -18,6 +18,10 @@ public class EnemigosDescriptor {
     }
 
 
+    public int cantidadEnemigos(){
+        return enemigos.size();
+    }
+
     public void agregarEnemigo(Enemigo enemigo){
         enemigos.add(enemigo.describir());
     }

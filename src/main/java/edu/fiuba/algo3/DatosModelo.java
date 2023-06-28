@@ -8,7 +8,9 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
+
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Mapa.OnHabitantesChangedListener;
 
 public class DatosModelo{
 	private static final DatosModelo unicaInstancia = new DatosModelo();
@@ -124,7 +126,7 @@ public class DatosModelo{
 	}
 
 
-	public static void setOnCeldaChangedListener(Mapa.OnHabitantesChangedListener listener){
+	public static void setOnCeldaChangedListener(OnHabitantesChangedListener listener){
 		if(unicaInstancia.juego == null){
 			Logger.err("At set on celda changed listener, sin juego iniciado.");			
 			return;

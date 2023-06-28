@@ -1,15 +1,8 @@
 package edu.fiuba.algo3.modelo.Lector;
 
-import edu.fiuba.algo3.modelo.Celdas.*;
 import edu.fiuba.algo3.modelo.Celdas.Pasarela;
 import edu.fiuba.algo3.modelo.Celdas.Rocosa;
 import edu.fiuba.algo3.modelo.Celdas.Tierra;
-import edu.fiuba.algo3.modelo.Lector.*;
-
-//import edu.fiuba.algo3.modelo.moduloMapa.Posicion;
-//import edu.fiuba.algo3.modelo.moduloMapa.Parcela;
-//import edu.fiuba.algo3.modelo.moduloMapa.Terreno;
-//import edu.fiuba.algo3.modelo.moduloMapa.Pasarela;
 
 import edu.fiuba.algo3.modelo.Celdas.*;
 
@@ -29,7 +22,7 @@ public class ConvertidorParcela implements Convertidor {
         this.tipo = tipo;
     }
 
-    private Celda instanciarParcela() throws Exception {
+    private CeldaConEnemigos instanciarParcela() throws Exception {
 
         if (TIPO_TIERRA.equals(tipo)){
             return new Tierra();
@@ -46,8 +39,8 @@ public class ConvertidorParcela implements Convertidor {
         throw new Exception("Tipo de parcela invalido "+tipo);
     }
 
-    public Object obtener() throws Exception {
-        return instanciarParcela();
+    public <T extends Object> T obtener() throws Exception {
+        return (T)instanciarParcela();
     }
 
     public int fila(){
@@ -61,4 +54,9 @@ public class ConvertidorParcela implements Convertidor {
     public boolean esCaminable(){
         return TIPO_PASARELA.equals(tipo);
     }
+
+    public boolean esConstruible(){
+        return !TIPO_ROCA.equals(tipo);
+    }
+
 }

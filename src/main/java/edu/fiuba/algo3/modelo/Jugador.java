@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Defensas.Estructura;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Mapa.OnEnemiesDiedListener;
 import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.Logger;
 
 import java.util.ArrayList;
 
-public class Jugador implements SistemaVida, Mapa.OnEnemiesDiedListener{
+public class Jugador implements SistemaVida, OnEnemiesDiedListener{
     private int vida;
     private SistemaCreditos creditos;
     private modificacion_vida obsver_vida = (String vida)->{};

@@ -11,7 +11,7 @@ public class Trampa extends Defensa {
         super(new EstadoTrampa(3));
     }
     public boolean posicionarEn(Celda celda){
-        return celda.defensas().guardar(this);
+        return celda.guardar(this);
     }
     @Override
     public int obtenerRango() {

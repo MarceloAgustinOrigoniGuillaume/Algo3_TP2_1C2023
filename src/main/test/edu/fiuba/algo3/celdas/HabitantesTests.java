@@ -4,6 +4,8 @@ package edu.fiuba.algo3.celdas;
 import edu.fiuba.algo3.modelo.Celdas.Pasarela;
 import edu.fiuba.algo3.modelo.Celdas.Rocosa;
 import edu.fiuba.algo3.modelo.Celdas.Tierra;
+import edu.fiuba.algo3.modelo.Celdas.CeldaConEnemigos;
+
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
@@ -75,7 +77,7 @@ public class HabitantesTests {
 
         assertEquals(true , trampa.posicionarEn(pasarela));
         assertEquals(false , trampa.posicionarEn(pasarela));
-        pasarela.defensas().clear();
+        pasarela.borrarDefensa();
 
         trampa = new Trampa();
 
@@ -162,21 +164,6 @@ public class HabitantesTests {
     }
 
 
-    @Test
-    public void verificarHabitantesRocosoNOGuardaEnemigosMenosLechuza() {
-        Celda celda = new Rocosa();
-
-        Enemigo enemigo = new Arania();
-        Enemigo hormiga = new Hormiga();
-        Enemigo topo = new Topo(0);
-        Enemigo lechuza = new Lechuza();
-
-
-        assertEquals(false , enemigo.posicionarEn(celda));
-        assertEquals(false , hormiga.posicionarEn(celda));
-        assertEquals(false , topo.posicionarEn(celda));
-        assertEquals(true , lechuza.posicionarEn(celda));
-    }
 
 
 
@@ -213,9 +200,28 @@ public class HabitantesTests {
     }
 
 
+
+    @Test
+    public void verificarHabitantesRocosoNOGuardaEnemigosMenosLechuza() {
+        CeldaConEnemigos celda = new Rocosa();
+
+        Enemigo enemigo = new Arania();
+        Enemigo hormiga = new Hormiga();
+        Enemigo topo = new Topo(0);
+        Enemigo lechuza = new Lechuza();
+
+
+        assertEquals(false , enemigo.posicionarEn(celda));
+        assertEquals(false , hormiga.posicionarEn(celda));
+        assertEquals(false , topo.posicionarEn(celda));
+        assertEquals(true , lechuza.posicionarEn(celda));
+    }
+
+
+    /*
     @Test
     public void verificarRocosoNoGuardaConstrucciones() {
-        Celda celda = new Rocosa();
+        CeldaConEnemigos celda = new Rocosa();
 
 
         Construccion cons = new TorreBlanca();
@@ -227,6 +233,7 @@ public class HabitantesTests {
         assertEquals(false , cons3.posicionarEn(celda));
 
     }
+    */
 
 
 
