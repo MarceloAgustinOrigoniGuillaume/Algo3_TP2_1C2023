@@ -2,15 +2,14 @@ package edu.fiuba.algo3.controladores.vistas;
 
 
 import edu.fiuba.algo3.controladores.Controlador;
-import edu.fiuba.algo3.DatosModelo;
+import edu.fiuba.algo3.AlgoDefense;
 
 
-import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Ventana;
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Resources;
 
 import edu.fiuba.algo3.vistas.popups.MessagePopup;
-
 
 
 import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
@@ -27,10 +26,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import java.lang.Thread;
 
-// por ahora aca el tema de reproducir
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
 //import edu.fiuba.algo3.vistas.Vista;
 //setBackground(Resources.getBckImage("background2.jpg", 640,680));
 
@@ -38,8 +33,21 @@ import javafx.scene.media.MediaPlayer;
 public class ControladorInicio extends Controlador {
 	@FXML private TextField editNombreUsuario; 
 
-	public ControladorInicio(){
+
+	private String path_mapa;
+	private String path_enemigos;
+
+	public ControladorInicio(String path_mapa, String path_enemigos){
+		this.path_mapa = path_mapa;
+		this.path_enemigos = path_enemigos;
 	}
+
+	public ControladorInicio(){
+		this(Resources.getJsonPath("mapa"),
+			Resources.getJsonPath("enemigos"));
+		// constructor default para un nivel default.
+	}
+
 
 	private boolean validarNombreJugador(String nombre){
 		return nombre.length() >= 6;
@@ -71,40 +79,52 @@ public class ControladorInicio extends Controlador {
 		}
 	}
 
-	public static boolean empezarJuego(Scene ventana, String nombreJugador){
 
-		try{
-			Logger.info("Empezando juego con jugador '"+nombreJugador+"'");
-			DatosModelo.empezarJuegoActual();
-			DatosModelo.setNombreJugador(nombreJugador);
-			DatosModelo.setOnAttackListener((AttackDescriptor ataque)->{
-				// hay que ver como hacemos la logica.
-				// pero creo un bueno singleton no vendria mal
-				// sino habra que hacer unos cambios a como conectamos con el modelo
-				Logger.info("------------>SHOULD REPRODUCE SOUND '"+ataque.tipo()+"'");
-
-				Media sound = new Media(Resources.getSoundPath(ataque.tipo()));
-				MediaPlayer mediaPlayer = new MediaPlayer(sound);
-				mediaPlayer.play();
-				// en vez de reproducir cosas ahora
-				// capaz deberiamos esperar al final de turno.
-			});
-		} catch(Exception ex){
-			Logger.err("at empezar Juego ",ex);
-			ex.printStackTrace();
-			return false;
-		}
-
+	public boolean empezarJuego(Scene ventana,String nombreJugador){
 
 		// cargando... transicion.
 		ventana.setRoot(Resources.getVista("transicion"));
 
 		Thread juegoLoader = new Thread(()->{
-			VBox juego = Resources.getVista("juego",new ControladorJuego(nombreJugador));
 
-			// no es ideal usar el setRoot en otro thread..
-			// o eso dicen en otros frameworks.
-			ventana.setRoot(juego);
+			try{
+				VBox juego = Resources.getVista("juego",new ControladorJuego(
+					path_mapa, path_enemigos,
+					nombreJugador));
+
+				// no es ideal usar el setRoot en otro thread..
+				// o eso dicen en otros frameworks.
+				ventana.setRoot(juego);				
+			} catch(Exception ex){
+				Logger.err("At load juego",ex);
+				ex.printStackTrace();
+			}
+		});
+
+		juegoLoader.setDaemon(true);
+
+		juegoLoader.start();
+
+		return true;
+	}
+
+	public static boolean reiniciarJuego(Scene ventana,AlgoDefense mediatorJuego){
+
+		// cargando... transicion.
+		ventana.setRoot(Resources.getVista("transicion"));
+
+		Thread juegoLoader = new Thread(()->{
+
+			try{
+				VBox juego = Resources.getVista("juego",new ControladorJuego(mediatorJuego));
+
+				// no es ideal usar el setRoot en otro thread..
+				// o eso dicen en otros frameworks.
+				ventana.setRoot(juego);				
+			} catch(Exception ex){
+				Logger.err("At reset juego",ex);
+				ex.printStackTrace();
+			}
 		});
 
 		juegoLoader.setDaemon(true);

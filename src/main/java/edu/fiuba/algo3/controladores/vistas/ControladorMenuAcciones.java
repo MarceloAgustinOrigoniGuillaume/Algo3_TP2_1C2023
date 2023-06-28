@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import edu.fiuba.algo3.vistas.popups.BasePopup;
 import edu.fiuba.algo3.Resources;
-import edu.fiuba.algo3.DatosModelo;
+import edu.fiuba.algo3.AlgoDefense;
 import edu.fiuba.algo3.controladores.ControladorVentana;
 import edu.fiuba.algo3.vistas.DefensaDraggeable;
 
@@ -21,15 +21,17 @@ public class ControladorMenuAcciones extends Controlador {
 	@FXML private Label turnoActual;
 
 	private ControladorJuego juego;
+	private AlgoDefense mediatorJuego;
 	private BasePopup menu = null;
-	public ControladorMenuAcciones(ControladorJuego controladorJuego){
+	public ControladorMenuAcciones(ControladorJuego controladorJuego, AlgoDefense mediatorJuego){
 		juego = controladorJuego;
+		this.mediatorJuego = mediatorJuego;
 	}
 
 	public void initialize(){
 		//Logger.Log("INITIALIZED MENU ACCIONES, status bar");
 		
-		DatosModelo.setObserverTurno((String turno)->{
+		mediatorJuego.setObserverTurno((String turno)->{
 			turnoActual.setText("turno: "+turno);
 		});
 	}
@@ -44,7 +46,7 @@ public class ControladorMenuAcciones extends Controlador {
 
 	private void empezarConstruccion(String construccion){
 
-		DefensaDraggeable construccionTentativa= new DefensaDraggeable(DatosModelo.instanciador(construccion));
+		DefensaDraggeable construccionTentativa= new DefensaDraggeable(mediatorJuego.instanciador(construccion));
 
 		construccionTentativa.setOnPlaced(()->{
 			buttonConstruir.setText("Construir");
@@ -82,7 +84,7 @@ public class ControladorMenuAcciones extends Controlador {
 	public void volverInicio(ActionEvent event){
 		try{
 			//String nombreJugador;
-			DatosModelo.reiniciarJuego();
+			mediatorJuego.reiniciarJuego();
 					
 			// volve a inicio
 			buttonConstruir.getScene().setRoot(ControladorVentana.menuInicio());

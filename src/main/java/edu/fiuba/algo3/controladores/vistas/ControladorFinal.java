@@ -3,7 +3,7 @@ package edu.fiuba.algo3.controladores.vistas;
 
 import edu.fiuba.algo3.controladores.Controlador;
 import edu.fiuba.algo3.controladores.ControladorVentana;
-import edu.fiuba.algo3.DatosModelo;
+import edu.fiuba.algo3.AlgoDefense;
 
 
 import edu.fiuba.algo3.Logger;
@@ -48,9 +48,12 @@ public class ControladorFinal implements Initializable {
 	private MediaPlayer mediaPlayer1;
 	private Media media2;
 	private MediaPlayer mediaPlayer2;
-	private boolean ganoJugador;
-	public ControladorFinal(boolean gano){
-		this.ganoJugador = gano;
+	
+	private AlgoDefense mediatorJuego;
+
+
+	public ControladorFinal(AlgoDefense mediatorJuego){
+		this.mediatorJuego = mediatorJuego;
 	}
 
 	@Override
@@ -65,7 +68,7 @@ public class ControladorFinal implements Initializable {
 
 
 		String mensajeFinal;
-		if(ganoJugador){
+		if(mediatorJuego.ganoJugador()){
 			mediaView.setMediaPlayer(mediaPlayer1);
 			mediaPlayer1.play();
 			mensajeResultado.setText("Ganaste!!");
@@ -84,8 +87,8 @@ public class ControladorFinal implements Initializable {
 	public void volverInicio(ActionEvent event){
 		try{
 			//String nombreJugador;
-			DatosModelo.reiniciarJuego();
-					
+			mediatorJuego.terminarJuego();
+
 			// volve a inicio
 			mensajeResultado.getScene().setRoot(ControladorVentana.menuInicio());
 
@@ -98,20 +101,9 @@ public class ControladorFinal implements Initializable {
 	}
 
 	public void reiniciarJuego(ActionEvent event){
-
 		// reinicia
-		try{
-			Logger.info("Reiniciando juego...");
-			DatosModelo.reiniciarJuego();
-				
-			ControladorInicio.empezarJuego(mensajeResultado.getScene(),DatosModelo.getNombreJugador());
-
-		} catch(Exception ex){
-			Logger.err("at reiniciando juego ",ex);
-			ex.printStackTrace();
-			return;
-		}
-
+		Logger.info("Reiniciando juego...");				
+		ControladorInicio.reiniciarJuego(mensajeResultado.getScene(), mediatorJuego);
 	}
 
 }

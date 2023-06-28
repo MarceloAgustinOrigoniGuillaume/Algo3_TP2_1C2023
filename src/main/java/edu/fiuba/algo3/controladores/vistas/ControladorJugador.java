@@ -4,7 +4,7 @@ package edu.fiuba.algo3.controladores.vistas;
 import edu.fiuba.algo3.controladores.Controlador;
 import edu.fiuba.algo3.Logger;
 import javafx.event.ActionEvent;
-import edu.fiuba.algo3.DatosModelo;
+import edu.fiuba.algo3.AlgoDefense;
 import javafx.scene.control.Label;
 
 import javafx.fxml.FXML;
@@ -17,19 +17,21 @@ public class ControladorJugador extends Controlador {
 	@FXML private Label labelVida;
 	@FXML private Label labelCreditos;
 
-	private String nombreJugador;
-	public ControladorJugador(String nombreJugador){
-		this.nombreJugador = nombreJugador;
+
+	private AlgoDefense mediatorJuego;
+
+	public ControladorJugador(AlgoDefense  mediatorJuego){
+		this.mediatorJuego = mediatorJuego;
 	}
 
 	public void initialize(){
-		labelNombre.setText(nombreJugador);
+		labelNombre.setText(mediatorJuego.getNombreJugador());
 
-		DatosModelo.setObserverVida((String vida)->{
+		mediatorJuego.setObserverVida((String vida)->{
 			labelVida.setText("Vida: "+vida);
 		});
 
-		DatosModelo.setObserverCreditos((String creditos)->{
+		mediatorJuego.setObserverCreditos((String creditos)->{
 			labelCreditos.setText("Creditos: "+creditos);
 		});
 	}

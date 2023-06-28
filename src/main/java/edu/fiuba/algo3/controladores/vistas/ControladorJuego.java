@@ -3,9 +3,11 @@ package edu.fiuba.algo3.controladores.vistas;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.DatosModelo;
+import edu.fiuba.algo3.AlgoDefense;
 
 import edu.fiuba.algo3.controladores.Controlador;
+import edu.fiuba.algo3.controladores.ReproductorSonidos;
+
 import edu.fiuba.algo3.Logger;
 import javafx.event.ActionEvent;
 import edu.fiuba.algo3.Ventana;
@@ -29,9 +31,18 @@ public class ControladorJuego extends Controlador {
 	@FXML private HBox statusBar;
 	@FXML private ViewMapa mapaJuego;
 
-	private String nombreJugador;
-	public ControladorJuego(String nombreJugador){
-		this.nombreJugador = nombreJugador;
+	private AlgoDefense mediatorJuego;
+
+
+	public ControladorJuego(String jsonMapa, String jsonEnemigos, String nombreJugador) throws Exception{
+		this.mediatorJuego = new AlgoDefense(jsonMapa,jsonEnemigos,nombreJugador);
+
+		mediatorJuego.setOnAttackListener(new ReproductorSonidos());
+	}
+
+	// para reiniciar.
+	public ControladorJuego(AlgoDefense mediatorJuego) throws Exception {
+		this.mediatorJuego = mediatorJuego.reiniciarJuego();
 	}
 
 	private void showError(String titulo, String mensaje){
@@ -60,7 +71,7 @@ public class ControladorJuego extends Controlador {
 		if(estaConstruyendo()){
 
 
-			if(!construyendo.posicionarEnMapa()){
+			if(!construyendo.posicionarEnMapa(mediatorJuego)){
 				showErrorConstruccion("No se puede posicionar '"+construyendo.toString()+"' en '"+celda.getTipo()+"'");
 				return;
 			} 
@@ -69,7 +80,7 @@ public class ControladorJuego extends Controlador {
 		}				
 
 		new BasePopup(Resources.getVista("popup_habitantes", 
-			new ControladorHabitantes(DatosModelo.obtenerTerrenoEn(celda.getCoordenada()))))
+			new ControladorHabitantes(mediatorJuego.obtenerTerrenoEn(celda.getCoordenada()))))
 			.show(celda.getScene());		
 	}
 
@@ -98,14 +109,13 @@ public class ControladorJuego extends Controlador {
 
 	public void initialize(){
 
-		statusBar.getChildren().add(Resources.getVista("jugador",new ControladorJugador(nombreJugador)));
-		statusBar.getChildren().add(Resources.getVista("menu_acciones",new ControladorMenuAcciones(this)));
+		statusBar.getChildren().add(Resources.getVista("jugador",new ControladorJugador(mediatorJuego)));
+		statusBar.getChildren().add(Resources.getVista("menu_acciones",new ControladorMenuAcciones(this, mediatorJuego)));
 		
 
-
-		mapaJuego.loadFromResources(DatosModelo.mapa_width,DatosModelo.mapa_height,
+		mapaJuego.loadFromResources(mediatorJuego.width(),mediatorJuego.height(),
 			(int x, int y)->{
-				ViewCelda celda = instanciarViewCelda(DatosModelo.obtenerTerrenoEn(x,y), x, y);
+				ViewCelda celda = instanciarViewCelda(mediatorJuego.obtenerTerrenoEn(x,y), x, y);
 
 				celda.addEventHandler(MouseEvent.MOUSE_CLICKED,this::handleClickOnCelda);
 				celda.addEventHandler(MouseEvent.MOUSE_ENTERED,this::handleEnteredOnCelda);
@@ -115,7 +125,7 @@ public class ControladorJuego extends Controlador {
 			});
 
 
-		DatosModelo.setOnCeldaChangedListener((Coordenada coordenada, CeldaDescriptor descriptor) ->{
+		mediatorJuego.setOnCeldaChangedListener((Coordenada coordenada, CeldaDescriptor descriptor) ->{
 				ViewCelda celda = mapaJuego.tileAt(coordenada.x(),coordenada.y());
 				if(celda == null){
 					Logger.err("at CeldaChanged, CELDA GIVEN TO UPDATE WAS NULL");
@@ -124,6 +134,10 @@ public class ControladorJuego extends Controlador {
 				//Logger.Log("CELDA GIVEN TO UPDATE HAD POSITION "+celda.getCoordenada().toString());
 				celda.updateView(descriptor.rel_image(), descriptor.cantidadEnemigos());
 			});
+
+		// ahora inicializas 
+		// para cualquier cosa ya avisar cambios, aunque ahora es lo mismo
+		mediatorJuego.empezarJuego();
 	}
 
 
@@ -135,7 +149,7 @@ public class ControladorJuego extends Controlador {
 			return true;
 		}
 		// verificar que pueda costear y sino retorna false.
-		if(!DatosModelo.puedeCostear(nuevaConstruccion.obtenerDefensa())){
+		if(!mediatorJuego.puedeCostear(nuevaConstruccion.obtenerDefensa())){
 			showErrorConstruccion("No se tiene los suficientes creditos para '"+nuevaConstruccion.toString()+"'");
 			return false;
 		}
@@ -164,11 +178,10 @@ public class ControladorJuego extends Controlador {
 		}
 		// pasas turno
 
-		if(!DatosModelo.pasarTurno()){
-			//Logger.dbg("----------->HABIA TERMINADO EL JUEGO?");
+		if(!mediatorJuego.pasarTurno()){
+			Logger.dbg("----------->HABIA TERMINADO EL JUEGO? CAMBIA VISTA FINAL");
 			
-
-			scene.setRoot(Resources.getVista("menu_final",new ControladorFinal(DatosModelo.ganoJugador())));
+			scene.setRoot(Resources.getVista("menu_final",new ControladorFinal(mediatorJuego)));
 			//terminarJuego(ventana);
 			//return;
 		}

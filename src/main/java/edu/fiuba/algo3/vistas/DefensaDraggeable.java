@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.control.Label;
 import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.DatosModelo;
+import edu.fiuba.algo3.AlgoDefense;
 import edu.fiuba.algo3.Logger;
 
 public class DefensaDraggeable{
@@ -67,13 +67,13 @@ public class DefensaDraggeable{
     }
 
 
-    public boolean posicionarEnMapa(){
+    public boolean posicionarEnMapa(AlgoDefense mediatorJuego){
 
         if(coordenada == null){
             Logger.dbg("COOFDENADA WAS NULL AT DefensaDraggeable::posicionarEnMapa");
             return false;
         }
-        if(DatosModelo.colocadorDeDefensas(defensa, coordenada)){
+        if(mediatorJuego.colocadorDeDefensas(defensa, coordenada)){
 
             if(onPlaced != null){
                 onPlaced.placed();
