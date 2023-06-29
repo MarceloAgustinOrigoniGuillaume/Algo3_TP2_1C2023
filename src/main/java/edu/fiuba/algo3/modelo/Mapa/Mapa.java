@@ -78,6 +78,10 @@ public class Mapa {
 
 
         //validacion de camino sencilla.
+        validarCaminoMapa();
+    }
+
+    private void validarCaminoMapa() throws CaminoInvalido{
         if(caminoTerrestre.size() < 2){
             throw new CaminoInvalido("No se detecto un camino en el mapa, se necesitan minimo dos pasarelas.");
         }
@@ -93,8 +97,7 @@ public class Mapa {
 
             anterior = actual;
             indice++;
-        }
-
+        }        
     }
 
     // metodo para agregar celda.

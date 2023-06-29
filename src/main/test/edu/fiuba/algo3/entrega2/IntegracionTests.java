@@ -161,6 +161,8 @@ public class IntegracionTests {
         assertEquals(78, juego.obtenerJugador().obtenerCreditos());
 
 
+        assertEquals(false,juego.estanEnJuego());
+        assertEquals(true, juego.ganoJugador());
     }
 
     @Test

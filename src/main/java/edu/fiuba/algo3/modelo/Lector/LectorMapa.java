@@ -18,6 +18,14 @@ public class LectorMapa implements Lector{
     private int filaActual;
     private ConvertidorFila fila;
 
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
+    }
+
     public LectorMapa(String filePath, int width, int height) throws Exception {
         JSONObject parsedObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
         Logger.info("Loading mapa from ",filePath, "with size of ",String.valueOf(width),",",String.valueOf(height));
