@@ -9,6 +9,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 import java.io.IOException;
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.excepciones.mapa.*;
 
 public class LectorMapa implements Lector{
     private int width;
@@ -32,7 +33,7 @@ public class LectorMapa implements Lector{
         int maxFila = getMaxFila(mapa);
 
         if(maxFila != height){
-        	throw new IOException("Esperaba '"+String.valueOf(height)+"' filas obtuvo "+String.valueOf(maxFila)+"'");
+        	throw new TamanioInvalido("Esperaba '"+String.valueOf(height)+"' filas obtuvo "+String.valueOf(maxFila)+"'");
         }
         filaActual = 0;
 

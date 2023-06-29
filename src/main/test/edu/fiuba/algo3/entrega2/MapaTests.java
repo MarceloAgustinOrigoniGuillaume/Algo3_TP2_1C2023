@@ -21,20 +21,24 @@ import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import edu.fiuba.algo3.modelo.excepciones.mapa.*;
 
 public class MapaTests {
     
     @Test
     public void VerificarSePuedaConstruirDefensasSobreTierra() throws Exception {
         TorrePlateada torrePlateada = new TorrePlateada();
-        //ConstruccionTentativa enConstruccion = new ConstruccionTentativa(torrePlateada);
+
         LectorMapa mockLector = mock(LectorMapa.class);
 
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
-        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"))
+        .thenReturn(new ConvertidorParcela(1,2,"Pasarela")).thenReturn(new ConvertidorParcela(1,3,"Pasarela"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
+        Mapa unMapa = new Mapa(mockLector,1,3, new Jugador());
 
         assertEquals(true, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
     }
@@ -46,25 +50,55 @@ public class MapaTests {
         LectorMapa mockLector = mock(LectorMapa.class);
 
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
-        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"))
+        .thenReturn(new ConvertidorParcela(1,2,"Pasarela")).thenReturn(new ConvertidorParcela(1,3,"Pasarela"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
+        Mapa unMapa = new Mapa(mockLector,1,3, new Jugador());
 
         unMapa.posicionar(new Coordenada(1,1),mockDefensa);
         verify(mockDefensa, times(1)).posicionarEn(any(Celda.class));
     }
-    
+
+    @Test
+    public void VerificarSalteErrorAlConstruirMapaSinUnCamino() throws Exception {
+        LectorMapa mockLector = mock(LectorMapa.class);
+
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+        assertThrows(CaminoInvalido.class, () -> {
+
+            Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
+
+        });
+    }
+
+
+    @Test
+    public void VerificaMapaTiraErrorCuandoSeAgregaCeldaFueraDeRango() throws Exception {
+        LectorMapa mockLector = mock(LectorMapa.class);
+
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"))
+        .thenReturn(new ConvertidorParcela(1,2,"Pasarela")).thenReturn(new ConvertidorParcela(1,3,"Pasarela"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(false);
+        assertThrows(CeldaFueraDeRango.class, () -> {
+
+            Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
+
+        });
+    }
+
     @Test
     public void VerificarNoSePuedaConstruirDefensasSobreRoca() throws Exception {
         TorrePlateada torrePlateada = new TorrePlateada();
 
         LectorMapa mockLector = mock(LectorMapa.class);
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Rocoso"));
-        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Rocoso"))
+        .thenReturn(new ConvertidorParcela(1,2,"Pasarela")).thenReturn(new ConvertidorParcela(1,3,"Pasarela"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1,new Jugador());
+        Mapa unMapa = new Mapa(mockLector,1,3,new Jugador());
 
         assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
         
@@ -76,10 +110,11 @@ public class MapaTests {
 
         LectorMapa mockLector = mock(LectorMapa.class);
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"));
-        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Pasarela"))
+        .thenReturn(new ConvertidorParcela(1,2,"Pasarela"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1,new Jugador());
+        Mapa unMapa = new Mapa(mockLector,1,3,new Jugador());
 
         assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
         
@@ -92,10 +127,11 @@ public class MapaTests {
         LectorMapa mockLector = mock(LectorMapa.class);
 
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
-        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"))
+        .thenReturn(new ConvertidorParcela(2,1,"Pasarela")).thenReturn(new ConvertidorParcela(3,1,"Pasarela"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1,new Jugador());
+        Mapa unMapa = new Mapa(mockLector,3,1,new Jugador());
         unMapa.posicionar(new Coordenada(1,1),torrePlateada);
 
         assertEquals(false, unMapa.posicionar(new Coordenada(1,1),torrePlateada));
@@ -206,10 +242,11 @@ public class MapaTests {
 
         LectorMapa mockLector = mock(LectorMapa.class);
 
-        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"));
-        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(false);
+        when(mockLector.siguienteElemento()).thenReturn(new ConvertidorParcela(1,1,"Tierra"))
+        .thenReturn(new ConvertidorParcela(1,2,"Pasarela")).thenReturn(new ConvertidorParcela(2,2,"Pasarela"));
+        when(mockLector.haySiguiente()).thenReturn(true).thenReturn(true).thenReturn(true).thenReturn(false);
 
-        Mapa unMapa = new Mapa(mockLector,1,1, new Jugador());
+        Mapa unMapa = new Mapa(mockLector,2,2, new Jugador());
         Coordenada desde =new Coordenada(1,1);
         unMapa.posicionar(desde,mockDefensa);
 

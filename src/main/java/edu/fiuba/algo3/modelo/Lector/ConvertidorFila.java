@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Lector;
 import java.util.Iterator;
 import org.json.simple.JSONArray;
 
+import edu.fiuba.algo3.modelo.excepciones.mapa.*;
 
 public class ConvertidorFila{
 
@@ -20,7 +21,7 @@ public class ConvertidorFila{
         }
 
         if(columnas != width){
-        	throw new Exception("Esperaba '"+String.valueOf(width)+"' columnas obtuvo "+String.valueOf(columnas)+"'");
+        	throw new TamanioInvalido("Esperaba '"+String.valueOf(width)+"' columnas obtuvo "+String.valueOf(columnas)+"'");
         }
         iteradorFila = fila.iterator();
         columnaActual = 1;

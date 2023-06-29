@@ -18,6 +18,8 @@ import edu.fiuba.algo3.modelo.excepciones.mapa.*;
 
 import edu.fiuba.algo3.modelo.Celdas.OnAttackListener;
 
+
+import edu.fiuba.algo3.modelo.excepciones.mapa.CaminoInvalido;
 //obtenerCelda
 public class Mapa {
 
@@ -73,11 +75,37 @@ public class Mapa {
         while(lector.haySiguiente()){
             agregarCelda((ConvertidorParcela)(lector.siguienteElemento()));
         }
+
+
+        //validacion de camino sencilla.
+        if(caminoTerrestre.size() < 2){
+            throw new CaminoInvalido("No se detecto un camino en el mapa, se necesitan minimo dos pasarelas.");
+        }
+        Coordenada anterior = caminoTerrestre.get(0);
+        Coordenada actual;
+        int indice = 1;
+        while(indice < caminoTerrestre.size()){
+            actual = caminoTerrestre.get(indice);
+            if(anterior.distanciaA(actual) >1){
+                // no son celdas contiguas...
+                throw new CaminoInvalido("Camino no era un continuo, fue de "+anterior.toString()+" a "+actual.toString());
+            }
+
+            anterior = actual;
+            indice++;
+        }
+
     }
 
     // metodo para agregar celda.
     private void agregarCelda(ConvertidorParcela convertidor) throws Exception {
     
+        //validacion posicion
+        if(convertidor.fila() < 1 || convertidor.columna() < 1 ||
+        convertidor.fila() > height || convertidor.columna() > width){
+            throw new CeldaFueraDeRango("Al agregar celda ",convertidor.columna(), convertidor.fila(), width, height);
+        }
+
 
         // verificas a quien debes agregar        
         if(convertidor.esConstruible()){
@@ -250,7 +278,7 @@ public class Mapa {
 
     // posicionar inicial de enemigos.
     public void posicionarInicio(Enemigo enemigo){
-        Logger.info("posicionando ",enemigo,"en",caminoTerrestre);
+        Logger.info("posicionando ",enemigo,"en",caminoTerrestre.get(0));
         enemigo.posicionarEn(obtenerCeldaEnemigos(caminoTerrestre.get(0)));
     }
 
@@ -392,7 +420,7 @@ public class Mapa {
 
     //#### notificadores, para los observers
     private void notificarCeldaCambio(CeldaConEnemigos celda, Coordenada posicion){
-        Logger.dbg("MODELO CAMBIO CELDO ",posicion);
+        //Logger.dbg("MODELO CAMBIO CELDO ",posicion);
         if(listenerCambios != null){
             listenerCambios.cambio(posicion, celda.describe());
         }

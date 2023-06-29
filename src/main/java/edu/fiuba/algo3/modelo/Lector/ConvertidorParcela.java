@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Celdas.Rocosa;
 import edu.fiuba.algo3.modelo.Celdas.Tierra;
 
 import edu.fiuba.algo3.modelo.Celdas.*;
+import edu.fiuba.algo3.modelo.excepciones.mapa.CeldaNoExistia;
 
 
 public class ConvertidorParcela implements Convertidor {
@@ -36,7 +37,7 @@ public class ConvertidorParcela implements Convertidor {
             return new Pasarela();
         }
 
-        throw new Exception("Tipo de parcela invalido "+tipo);
+        throw new CeldaNoExistia("Tipo de parcela '"+tipo+"' es invalido ");
     }
 
     public <T extends Object> T obtener() throws Exception {

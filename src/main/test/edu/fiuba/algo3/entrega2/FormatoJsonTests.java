@@ -15,6 +15,8 @@ import edu.fiuba.algo3.modelo.Juego;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import edu.fiuba.algo3.modelo.excepciones.mapa.*;
+
 public class FormatoJsonTests {
     @Test
     public void formatoValidoDeEnemigos() throws Exception {
@@ -69,7 +71,7 @@ public class FormatoJsonTests {
     }
     @Test
     public void pruebaLectorFormatoMapaInvalido() {
-        assertThrows(Exception.class, () -> {
+        assertThrows(CeldaNoExistia.class, () -> {
             Lector lector = new LectorMapa(Resources.getJsonPath("test/formato/mapaParcelaInvalida"),15,15);
             int cantidad = 0;
             while (lector.haySiguiente()) {
@@ -85,7 +87,7 @@ public class FormatoJsonTests {
 
     @Test
     public void pruebaMapaTamanioInvalidoColumna (){
-        assertThrows(Exception.class, () -> {
+        assertThrows(TamanioInvalido.class, () -> {
             Lector lector = new LectorMapa(Resources.getJsonPath("test/formato/mapaTamanioInvalidoColumna"),15,15);
             int cantidad = 0;
             while (lector.haySiguiente()) {
@@ -98,7 +100,7 @@ public class FormatoJsonTests {
     }
     @Test
     public void pruebaMapaTamanioInvalidoFila (){
-        assertThrows(Exception.class, () -> {
+        assertThrows(TamanioInvalido.class, () -> {
             Lector lector = new LectorMapa(Resources.getJsonPath("test/formato/mapaTamanioInvalidoFila"),15,15);
             int cantidad = 0;
             while (lector.haySiguiente()) {

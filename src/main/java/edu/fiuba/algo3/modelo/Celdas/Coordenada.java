@@ -17,6 +17,13 @@ public class Coordenada {
         this.coordenadaY = y;
     }
 
+
+    // la resta de coordenadas nomas se define como distancia
+    // es un supuesto, hay que hacer un test de esto.
+    public int distanciaA(Coordenada coordenada){
+        return Math.abs(coordenada.x()-x()) + Math.abs(coordenada.y()- y());
+    }
+
     public void iterarEnRango(int rango, Iterador iterador){
         int x_inicial = Math.max(x()-rango, 0);
         int y_inicial = Math.max(y()-rango, 0);
