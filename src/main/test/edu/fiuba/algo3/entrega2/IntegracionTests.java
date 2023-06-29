@@ -188,7 +188,39 @@ public class IntegracionTests {
         assertEquals(false,juego.estanEnJuego());
     }
 
-    @Test void verificaQueNoSePuedenConstruirMasTorresPorQueNoTieneCreditos() throws Exception {
+
+    @Test
+    public void verificarSeCreanConstruccionesLejanasRepetitivamenteUnaYJugadorPierde() throws Exception {
+
+        Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
+        juego.iniciarJuego();
+
+        juego.posicionar(new TorrePlateada(), new Coordenada(15,15));
+        juego.posicionar(new Trampa(), new Coordenada(5,3));
+
+        assertEquals(55,juego.obtenerJugador().obtenerCreditos());
+
+        int contador =0;
+        for (int i = 0; i < 10; i++) {
+            juego.pasarTurno();
+            if(juego.posicionar(new TorreBlanca(), new Coordenada(14,14))){
+                contador++;
+            }
+        }
+
+        assertEquals(1, contador); // solo la construyo una vez.
+
+        assertEquals(11, juego.obtenerJugador().obtenerVida());
+
+        juego.pasarTurno();
+        juego.pasarTurno();
+
+        assertEquals(false, juego.ganoJugador());
+        assertEquals(false,juego.estanEnJuego());
+    }
+
+    @Test
+    public void verificaQueNoSePuedenConstruirMasTorresPorQueNoTieneCreditos() throws Exception {
         Juego juego = new Juego(Resources.getJsonPath("test/mapa_sencillo"),Resources.getJsonPath("test/enemigos_sencillo_no_mata"));
         juego.iniciarJuego();
 

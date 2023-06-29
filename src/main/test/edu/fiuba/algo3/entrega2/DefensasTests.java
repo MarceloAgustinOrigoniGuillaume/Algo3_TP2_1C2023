@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 import edu.fiuba.algo3.modelo.Defensas.torres.TorreBlanca;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Jugador;
@@ -143,6 +144,7 @@ public class DefensasTests {
         Recien para despues lo del Mock, al verificar que esten operativas
         */
     }
+
 
 
     @Test
@@ -286,25 +288,223 @@ public class DefensasTests {
     }
 
 
+    // integracion con Coordenada
+
+    @Test
+    public void verificarTorreAccionarNoAtacaCoordenadasEnRangoNoActiva() {
+        TorreBlanca torreBlanca = new TorreBlanca();
+
+        Coordenada origen = new Coordenada(1, 1);
+
+        Mapa mockMapa = mock(Mapa.class);
+
+        when(mockMapa.atacar(any(Coordenada.class), any(Defensa.class))).thenReturn(true);
+
+        torreBlanca.accionar(mockMapa, origen);
+
+        verify(mockMapa, times(0)).atacar(any(Coordenada.class), any(Defensa.class));
+    }
+
+
+
+    @Test
+    public void verificarFuncionIterarDeCoordenada(){
+        TorrePlateada torrePlateada = new TorrePlateada();
+
+        Coordenada origen = new Coordenada(6, 6);
+        int rango = 2;
+
+        Mapa mockMapa = mock(Mapa.class);
+
+        when(mockMapa.atacar(any(Coordenada.class), any(Defensa.class))).thenReturn(true);
+        origen.iterarEnRango(rango, (Coordenada atacada)->{
+            return mockMapa.atacar(atacada, torrePlateada);
+        });
+
+
+        // dist = 0
+        verify(mockMapa, times(1)).atacar(new Coordenada(6,6), torrePlateada);
+
+        // dist = 1
+        verify(mockMapa, times(1)).atacar(new Coordenada(7,6), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(6,7), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(5,6), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(6,5), torrePlateada);
+
+        // dist = 2
+        verify(mockMapa, times(1)).atacar(new Coordenada(8,6), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(7,7), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(7,5), torrePlateada);
+
+        verify(mockMapa, times(1)).atacar(new Coordenada(6,8), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(5,7), torrePlateada);
+
+        verify(mockMapa, times(1)).atacar(new Coordenada(4,6), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(5,5), torrePlateada);
+
+        verify(mockMapa, times(1)).atacar(new Coordenada(6,4), torrePlateada);
+
+        // total
+        verify(mockMapa, times((2*rango+1)*(2*rango+1))).atacar(any(Coordenada.class), any(Defensa.class));
+
+
+    }
+
+
+
+    @Test
+    public void verificarFuncionIterarDeCoordenadaEnBorde(){
+        TorrePlateada torrePlateada = new TorrePlateada();
+
+        Coordenada origen = new Coordenada(1, 1);
+        int rango = 2;
+
+        Mapa mockMapa = mock(Mapa.class);
+
+        when(mockMapa.atacar(any(Coordenada.class), any(Defensa.class))).thenReturn(true);
+
+        origen.iterarEnRango(rango, (Coordenada atacada)->{
+            return mockMapa.atacar(atacada, torrePlateada);
+        });
+
+
+        // singularmente
+
+        // dist = 0
+        verify(mockMapa, times(1)).atacar(new Coordenada(1,1), torrePlateada);
+
+        // dist = 1
+        verify(mockMapa, times(1)).atacar(new Coordenada(2,1), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(1,2), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(0,1), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(1,0), torrePlateada);
+
+        // dist = 2
+        verify(mockMapa, times(1)).atacar(new Coordenada(3,1), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(2,2), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(2,0), torrePlateada);
+
+        verify(mockMapa, times(1)).atacar(new Coordenada(1,3), torrePlateada);
+        verify(mockMapa, times(1)).atacar(new Coordenada(0,2), torrePlateada);
+
+        verify(mockMapa, times(1)).atacar(new Coordenada(0,0), torrePlateada);
+
+        // total
+        verify(mockMapa, times((2*rango+1)*(2*rango+1) - 9)).atacar(any(Coordenada.class), any(Defensa.class));
+
+
+    }
+
+
+    @Test
+    public void verificarTorreIteraCoordenadasEnRangoActivaTorrePlateada() {
+        TorrePlateada torrePlateada = new TorrePlateada();
+
+        Coordenada mockDesde = mock(Coordenada.class);
+        int rango = 5;
+
+        Mapa mockMapa = mock(Mapa.class);
+
+        torrePlateada.accionar(mockMapa, mockDesde);
+        torrePlateada.accionar(mockMapa, mockDesde); // dos turnos de activacion
+        torrePlateada.accionar(mockMapa, mockDesde);
+
+        //assert
+        verify(mockDesde, times(1)).iterarEnRango(any(Integer.class), any());
+
+
+    }
+
+    @Test
+    public void verificarTorreNoIteraCoordenadasEnRangoNoActivaTorrePlateada() {
+        TorrePlateada torrePlateada = new TorrePlateada();
+
+        Coordenada mockDesde = mock(Coordenada.class);
+        int rango = 5;
+
+        Mapa mockMapa = mock(Mapa.class);
+
+        torrePlateada.accionar(mockMapa, mockDesde);
+        torrePlateada.accionar(mockMapa, mockDesde); // dos turnos de activacion
+
+        //assert
+        verify(mockDesde, times(0)).iterarEnRango(any(Integer.class), any());
+
+
+    }
+
+    @Test
+    public void verificarTorreAccionarAtacaCoordenadasEnRangoActivaTorrePlateada() {
+        TorrePlateada torrePlateada = new TorrePlateada();
+
+        Coordenada mockDesde = mock(Coordenada.class);
+        
+        when(mockDesde.x()).thenReturn(6);
+        when(mockDesde.y()).thenReturn(6);
+
+        doCallRealMethod().when(mockDesde).iterarEnRango(any(Integer.class), any());
+        int rango = 5;
+
+        Mapa mockMapa = mock(Mapa.class);
+
+        when(mockMapa.atacar(any(Coordenada.class), any(Defensa.class))).thenReturn(true);
+
+        torrePlateada.accionar(mockMapa, mockDesde);
+        torrePlateada.accionar(mockMapa, mockDesde); // dos turnos de activacion
+        torrePlateada.accionar(mockMapa, mockDesde);
+
+
+        // dx + dy<= rango = 4
+        // dx tiene 2*rango+1 posibilidades, -2,-1,0,1,2..rango
+        // dy tiene rango-abs(dx) posibilidades 2 3 4 3 2
+        // cada posibilidad de dy anterior se 
+        // dividiria 2 para + y -. +1 por el no hacer cambio
+        // osea dy tendria (rango-abs(dx))*2 + 1  para un dx, donde dx va de -rango a rango, que 
+        // podemos decir es 2((rango-dx)*2 + 1) con dx de 1 a rango, + 2rango+1 por dx = 0
+
+        //total = 2*rango+1; // dx = 0
+
+        //for(int dx = 1; dx<= rango; dx++){
+        //    total+= 2((rango-dx)*2 + 1);
+        //}
+        // total =  
+        // total = 4*rango - 4 dx + 2
+        // 4*rango+2, con dx de 1 a rango
+        // suma 2*rango*(2rango+1), a esto le restas 2*rango(rango+1) del dx
+        // 2*rango( 2rango +1 - rango-1) = 2 *rango * rango + 2*rango+1
+        // total = 2rango(rango+1) +1
+        verify(mockMapa, times((2*rango+1)*(2*rango+1))).atacar(any(Coordenada.class), any(Defensa.class));
+
+
+    }
+
+
+
+
+    @Test
+    public void verificarTorreAccionarAtacaCoordenadasEnRangoActivaTorreBlanca() {
+        TorreBlanca torreBlanca = new TorreBlanca();
+
+        Coordenada mockDesde = mock(Coordenada.class);
+        int rango = 3;
+
+        Mapa mockMapa = mock(Mapa.class);
+
+        when(mockMapa.atacar(any(Coordenada.class), any(Defensa.class))).thenReturn(true);
+
+        torreBlanca.accionar(mockMapa, mockDesde); // un turno de activacion
+        torreBlanca.accionar(mockMapa, mockDesde);
+
+        //assert
+        verify(mockDesde, times(1)).iterarEnRango(any(Integer.class), any());
+
+    }
+
+
+
+
+
+
+
+
 }
-
-
-//    @Test
-//    public void VerificarQueAgregar1vez() {
-//        SistemaConstruccion SistConstruccion = new SistemaConstruccion();
-//        TorrePlateada torrePlateada = new TorrePlateada(new Posicion(0,0));
-//
-//        ConstruccionTentativa enContruccion = new ConstruccionTentativa(torrePlateada);
-//
-//        EstructurasActivas mock =  mock(EstructurasActivas.class);
-//
-//        SistConstruccion.agregarEnConstruccion(enContruccion);
-//
-//        for(int i = 0; i < 20; i++ ){
-//            SistConstruccion.activarEstructuras(mock);
-//        }
-//
-//        assertEquals(enContruccion.estaActiva(),true);
-//        verify(mock,times(1)).agregar(torrePlateada);
-//    }
-//}

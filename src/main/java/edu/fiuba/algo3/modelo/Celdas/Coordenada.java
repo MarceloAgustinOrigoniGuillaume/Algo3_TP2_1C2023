@@ -18,11 +18,11 @@ public class Coordenada {
     }
 
     public void iterarEnRango(int rango, Iterador iterador){
-        int x_inicial = Math.max(coordenadaX-rango, 0);
-        int y_inicial = Math.max(coordenadaY-rango, 0);
+        int x_inicial = Math.max(x()-rango, 0);
+        int y_inicial = Math.max(y()-rango, 0);
 
-        int x_final = coordenadaX + rango;
-        int y_final = coordenadaY + rango;
+        int x_final = x() + rango;
+        int y_final = y() + rango;
 
 
         int x = x_inicial;
@@ -47,7 +47,7 @@ public class Coordenada {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coordenada coordenada = (Coordenada) o;
-        return Objects.equals(coordenadaX, coordenada.coordenadaX) && Objects.equals(coordenadaY, coordenada.coordenadaY);
+        return Objects.equals(x(), coordenada.x()) && Objects.equals(y(), coordenada.y());
     }
     public int x(){
         return coordenadaX;
