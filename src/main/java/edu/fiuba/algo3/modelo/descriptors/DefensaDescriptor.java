@@ -18,7 +18,7 @@ public class DefensaDescriptor {
         if(defensa == "Trampa"){
             this.url = "Trampa.jpg";
         } else{
-            this.url = defensa+".png";
+            this.url = defensa+"SinFondo.png";
         }
     }
 
