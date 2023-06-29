@@ -12,9 +12,11 @@ import edu.fiuba.algo3.modelo.descriptors.AtaqueAEnemigo;
 public class TorrePlateada extends Defensa {
 
     public final static String TORRE_TYPE = "TorrePlateada";
+    private final int tiempoConstruccion;
 
     public TorrePlateada(int turnosParaConstruccion) {
         super(new EstadoConstruyendo(turnosParaConstruccion));
+        this.tiempoConstruccion = turnosParaConstruccion;
     }
     public TorrePlateada() {
         this(2);
@@ -25,6 +27,9 @@ public class TorrePlateada extends Defensa {
         return 20;
     }
 
+    public int getTiempoConstruccion() {
+        return tiempoConstruccion;
+    }
     public int ataque(){
         return 2;
     }

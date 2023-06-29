@@ -11,10 +11,10 @@ import edu.fiuba.algo3.modelo.descriptors.AtaqueAEnemigo;
 
 public class TorreBlanca extends Defensa {
     public final static String TORRE_TYPE = "TorreBlanca";
-
+    private final int tiempoConstruccion;
     public TorreBlanca(int turnosParaConstruccion) {
-
         super(new EstadoConstruyendo(turnosParaConstruccion));
+        this.tiempoConstruccion = turnosParaConstruccion;
     }
     public TorreBlanca() {
 
@@ -27,6 +27,7 @@ public class TorreBlanca extends Defensa {
     public int ataque(){
         return 1;
     }
+    public int getTiempoConstruccion() {return tiempoConstruccion;}
     public int obtenerRango(){
         return 3;
     }

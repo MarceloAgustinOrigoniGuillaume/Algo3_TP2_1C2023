@@ -62,8 +62,7 @@ public class ControladorMenuAcciones extends Controlador {
 
 
 			buttonConstruir.setText("Cancelar");
-			menu = new BasePopup(Resources.getVista("menu_construir", 
-				new ControladorConstruir(this::empezarConstruccion)));
+			menu = new BasePopup(Resources.getVista("menu_construir", new ControladorConstruir(this::empezarConstruccion)));
 			menu.setOnHide(this::cancelConstruccion);
 			menu.show(buttonConstruir.getScene());			
 		} else{

@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import java.util.ArrayList;
 
 public class EstadoConstruyendo implements EstadoEstructura{
-    private int turnosRestantes;
+    public int turnosRestantes;
 
     public EstadoConstruyendo(int turnosNecesarios){
         this.turnosRestantes = turnosNecesarios;

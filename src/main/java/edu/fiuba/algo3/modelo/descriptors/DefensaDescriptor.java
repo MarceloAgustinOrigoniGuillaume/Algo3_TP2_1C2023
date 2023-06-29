@@ -30,7 +30,6 @@ public class DefensaDescriptor {
         this.defensa = "No hay defensa en esta celda";
         this.url = null;
     }
-
     public String tipo(){
         return defensa;
     }
