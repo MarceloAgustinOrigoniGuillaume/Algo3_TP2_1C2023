@@ -32,7 +32,7 @@ public class ControladorMenuAcciones extends Controlador {
 		//Logger.Log("INITIALIZED MENU ACCIONES, status bar");
 		
 		mediatorJuego.setObserverTurno((String turno)->{
-			turnoActual.setText("turno: "+turno);
+			turnoActual.setText("Turno: "+turno);
 		});
 	}
 
