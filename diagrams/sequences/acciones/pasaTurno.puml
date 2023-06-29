@@ -1,0 +1,80 @@
+@startuml
+
+participant ":Juego" as juego
+participant ":EstadoJugando" as stateJ
+participant ":Oleada" as old
+participant ":Turno" as turno
+participant ":Mapa" as mapa
+
+stateJ->stateJ:enemigosPuedenMatarJugador?
+activate stateJ
+
+stateJ->old: noHayMasOleadas(turnoActual)
+activate old
+old-->stateJ: noHayMasOleadas?
+deactivate old
+
+stateJ->mapa: cantidadDamagePosible(turnoActual)
+activate mapa
+mapa-->stateJ: damagePosible
+deactivate mapa
+deactivate stateJ
+
+
+
+alt noHayMasOleadas y damagePosible < vida jugador
+stateJ->juego:terminarJuego()
+activate juego
+juego--> stateJ: void
+deactivate juego
+end
+
+
+stateJ->turno: jugarTurno(mapa,jugador,oleada)
+activate turno
+
+
+turno->mapa: accionarEnemigos()
+activate mapa
+mapa--> turno: void
+deactivate mapa
+
+alt jugador estaMuerto?
+turno-->stateJ: jugador murio
+end
+
+
+turno->mapa: accionarDefensas()
+activate mapa
+mapa--> turno: void
+deactivate mapa
+
+
+turno->old: instanciar(turnoActual)
+activate old
+old--> turno: vector<Enemigos>
+deactivate old
+
+loop cada enemigo instanciado
+
+turno->mapa: posicionarInicio(enemigo)
+activate mapa
+mapa--> turno: void
+deactivate mapa
+end
+
+turno->mapa: notificarInicioCambio()
+activate mapa
+mapa--> turno: void
+deactivate mapa
+
+turno-->stateJ: jugador no murio
+deactivate turno
+alt jugador murio?
+stateJ->juego:terminarJuego()
+activate juego
+juego--> stateJ: void
+deactivate juego
+end
+
+@enduml

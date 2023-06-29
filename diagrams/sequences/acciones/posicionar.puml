@@ -1,0 +1,104 @@
+@startuml
+Actor "usuario/test" as sis
+participant ":Juego" as juego
+participant "p:Jugador" as jugador
+participant ":Mapa" as mapa
+participant "cons:Defensa" as construccion
+participant ":TorrePlateada" as torrePlateada
+participant ":TorreBlanca" as torreBlanca
+participant ":EstadoConstruyendo" as est
+participant ":Coordenada" as coord
+
+group instanciarTorres()
+sis-> torrePlateada: TorrePlateada()
+activate torrePlateada
+
+torrePlateada->est: EstadoConstruyendo(2)
+activate est
+est--> torrePlateada: estado
+deactivate est
+
+torrePlateada->torrePlateada:super(estado)
+
+torrePlateda --> sis : torrePlateada
+deactivate torrePlateada
+
+sis-> torreBlanca: TorreBlanca()
+activate torreBlanca
+
+torreBlanca->est: EstadoConstruyendo(1)
+activate est
+est--> torreBlanca: estado
+deactivate est
+
+torreBlanca->torreBlanca:super(estado)
+
+torrePlateda --> sis : torreBlanca
+deactivate torreBlanca
+end
+sis -> coord : Coordenada(1,3)
+activate coord
+coord --> sis : coord1
+deactivate coord
+
+
+sis -> coord : Coordenada(3,2)
+activate coord
+coord --> sis : coord2
+deactivate coord
+
+sis -> juego : posicionar(torrePlateada, coord1)
+activate juego
+
+group posicionar cons=torrePlateada
+
+juego->jugador:puedeCostear(construccion)
+activate jugador
+jugador-->juego: puede costear?
+deactivate jugador
+
+alt no puede costear?
+juego --> sis: false
+else
+
+juego->mapa: posicionar(coordenada, construccion)
+activate mapa
+
+mapa->mapa: obtenerCelda(coordenada) as celda
+
+alt no pudo obtener celda?
+mapa-->juego:false
+else sino
+mapa->construccion: posicionarseEn(celda)
+activate construccion
+construccion--> mapa: posiciono?
+deactivate construccion
+mapa-->juego : posiciono?
+end
+deactivate mapa
+alt posiciono?
+juego->jugador:costear(construccion)
+activate jugador
+jugador-->juego: void
+deactivate jugador
+juego --> sis: true
+else
+juego --> sis: false
+end
+activate juego
+end
+
+juego --> sis :posiciono?
+deactivate juego
+end
+
+sis -> juego : posicionar(torreBlanca, coord2)
+activate juego
+group posicionar cons=torreBlanca
+
+end
+juego-->sis:posiciono?
+deactivate juego
+
+
+@enduml

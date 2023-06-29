@@ -1,0 +1,72 @@
+@startuml
+
+participant ":EstadoInicial" as state
+
+
+participant ":Oleada" as old
+participant ":LectorEnemigo" as lold
+participant ":ConvertidorOleada" as conv
+participant ":Instanciador" as inst
+state->lold: LectorEnemigos(pathEnemigos)
+activate lold
+
+lold->lold:carga el archivos json\n con json-simple\n y genera iterador
+lold-->state: lectorEnemigos
+deactivate lold
+
+state->old: Oleada(lectorEnemigos)
+activate old
+
+
+loop haya mas oleadas
+
+
+
+
+old -> lold: siguienteElemento()
+activate lold
+
+lold->lold: convertToHashCantidades()
+lold->lold: obtenerTurnoActual()
+lold-> conv: ConvertidorOleada(turno, hashCantidades)
+activate conv
+note right
+si la cantidad de
+topo o lechuza no esta
+asume 0, pero hormiga y
+arania son obligatorios, por mas sea 0 
+end note
+conv --> lold: conv
+deactivate conv
+lold --> old: conv
+deactivate lold
+
+
+old->conv: obtener()
+activate conv
+loop por cada tipo enemigo
+conv->conv: parsearTipoAenemigo()
+
+conv-> inst: Instanciador(enemigo:Enemigo, int cantidad)
+activate inst
+inst--> conv: instanciador
+deactivate inst
+conv->conv: agregar a instanciadores
+end
+conv -->old: instanciadores
+
+deactivate conv
+old->old: agregarArregloInstanciadorDelTurno()
+
+old -> lold: haySiguiente()
+activate lold
+lold --> old: hay siguiente en iterador
+deactivate lold
+
+end
+
+
+old-->state: oleadas
+deactivate old
+
+@enduml

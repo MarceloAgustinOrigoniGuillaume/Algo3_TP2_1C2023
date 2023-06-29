@@ -1,0 +1,106 @@
+@startuml
+Actor "usuario/test" as sis
+participant ":Juego" as juego
+participant ":Coordenada" as coord
+participant ":EstadoJugando" as stateJ
+participant ":Turno" as turno
+
+group inicializacion juego 
+sis -> juego: Juego(pathMapa,pathEnemigos)
+activate juego
+
+
+juego --> sis: juego
+deactivate juego
+end
+
+sis -> juego : iniciarJuego()
+activate juego
+
+juego->stateJ: EstadoJugando(this)
+activate stateJ
+
+stateJ-> turno: Turno()
+activate turno
+turno-->stateJ: turno
+deactivate turno
+
+stateJ--> juego: estadoJugando
+deactivate stateJ
+juego->juego: cambiarEstado a estadoJugando
+
+juego --> sis : void
+deactivate juego
+
+sis->sis: instanciarTorres()
+
+sis -> coord : Coordenada(1,3)
+activate coord
+coord --> sis : coord1
+deactivate coord
+
+
+sis -> coord : Coordenada(3,2)
+activate coord
+coord --> sis : coord2
+deactivate coord
+
+sis -> juego : posicionar(torrePlateada, coord1)
+activate juego
+group posicionar cons=torrePlateada
+
+end
+juego-->sis:posiciono?
+deactivate juego
+
+sis -> juego : posicionar(torreBlanca, coord2)
+activate juego
+group posicionar cons=torreBlanca
+
+end
+juego-->sis:posiciono?
+deactivate juego
+
+sis->sis:assertCreditosJugadorEquals(70)
+
+loop 7 veces
+    sis->juego:pasarTurno()
+    activate juego
+
+    juego->stateJ: ejecutarEstado()
+activate stateJ
+    group pasarTurno, enemigos pueden matar jugador
+    end
+    stateJ-->juego:void
+deactivate stateJ
+
+    juego-->sis:void
+    deactivate juego
+end
+
+sis->juego:pasarTurno()
+activate juego
+
+juego->stateJ: ejecutarEstado()
+activate stateJ
+group pasarTurno, enemigos No pueden matar jugador
+
+stateJ->juego:terminarJuego()
+activate juego
+juego--> stateJ: void
+deactivate juego
+end
+
+stateJ-->juego:void
+deactivate stateJ
+juego-->sis:void
+deactivate juego
+
+
+sis->sis:assertCreditosJugadorEquals(78)
+sis->sis:assertGanoJugador()
+
+
+
+
+@enduml

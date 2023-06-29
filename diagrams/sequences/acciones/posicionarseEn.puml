@@ -1,0 +1,61 @@
+@startuml
+Actor "usuario/test" as sis
+
+participant ":Juego" as juego
+participant ":Mapa" as mapa
+participant ":Celda" as celda
+participant ":Defensa" as defensa
+participant ":Trampa" as trampa
+
+
+
+
+== torres ==
+juego->mapa: posicionar(torrePlateada,coordenada)
+activate mapa
+mapa->mapa: obtenerCelda(coordenada)
+
+alt no pudo obtenerla?
+mapa-->juego: false
+else
+
+mapa-> defensa: posicionarseEn(celda)
+activate defensa
+defensa->celda: guardar(defensa:Construccion)
+activate celda
+celda-->defensa : posiciono?
+deactivate celda
+defensa--> mapa: posiciono?
+deactivate defensa
+mapa-->juego: posiciono?
+deactivate mapa
+
+end
+
+
+
+
+== trampa ==
+juego->mapa: posicionar(trampa, coordenada)
+activate mapa
+mapa->mapa: obtenerCelda(coordenada)
+
+alt no pudo obtenerla?
+mapa-->juego: false
+else
+
+mapa-> trampa: posicionarseEn(celda)
+activate trampa
+trampa->celda: guardar(defensa:Trampa)
+activate celda
+celda-->trampa: posiciono?
+deactivate celda
+trampa--> mapa: posiciono?
+deactivate trampa
+mapa-->juego: posiciono?
+deactivate mapa
+
+end
+
+
+@enduml

@@ -1,0 +1,112 @@
+@startuml
+
+Actor ":EstadoInicial" as state
+participant ":Mapa" as mapa
+participant ":LectorMapa" as lmapa
+participant "conp:ConvertidorParcela" as cp
+participant "conf:ConvertidorFila" as cf
+participant "coord:Coordenada" as cord
+state->lmapa: LectorMapa(pathMapa,15,15)
+activate lmapa
+
+lmapa->lmapa: carga el path y \n hace validacion de cantidad de filas
+
+lmapa->lmapa: replaceFilaNext()
+activate lmapa
+lmapa->cf: ConvertidorFila(width:int,filaActual:int,objetojson:JSONArray)
+activate cf
+
+cf->cf: hace validacion cantidad de columnas\n en fila. Y obtiene iterador individual
+
+cf-->lmapa: conf
+deactivate cf
+
+lmapa-->state: lectorMapa
+deactivate lmapa
+deactivate lmapa
+
+state->mapa: Mapa(lectorMapa,width,height,jugador\n:OnEnemiesDiedListener)
+activate mapa
+
+
+loop mientras haya\nmas en lector
+
+mapa->lmapa: obtener()
+activate lmapa
+
+
+lmapa->cf :haySiguiente()
+activate cf
+cf--> lmapa: haySiguienteCf
+deactivate cf
+
+alt no haySiguienteCf y no haySiguiente lector
+lmapa-->mapa: null 
+note right
+esto no deberia pasar,
+pero sino, que el invocador
+se encarge del null
+end note
+
+else no haySiguienteCf pero si haySiguiente lector
+lmapa->lmapa: replaceFilaNext()
+end
+
+
+
+lmapa->cf :obtener()
+activate cf
+cf->cp: ConvertidorParcela(columna, fila, tipo)
+activate cp
+cp--> cf: conp
+deactivate cp
+cf--> lmapa: conp
+deactivate cf
+
+lmapa--> mapa: conp
+deactivate lmapa
+
+
+mapa->mapa:agregarCelda(conp)
+activate mapa
+
+mapa->mapa:validarFilaYColumnaEnRango(conp)
+
+alt conp es construible
+mapa->cp: obtener()
+activate cp
+cp-->mapa: celda
+deactivate cp
+else no es construible
+mapa->cp: obtener()
+activate cp
+cp-->mapa: celdaEnemigos
+deactivate cp
+end
+alt conp es caminable
+
+
+mapa->cord : Coordenada(conp.columna(), conp.fila())
+mapa->mapa: agregarCaminoTerrestre(coord)
+end
+
+
+mapa->lmapa: haySiguiente()
+activate lmapa
+lmapa--> mapa: hay mas\nen lector:Boolean
+deactivate lmapa
+end
+
+mapa->mapa:validarCaminoTerrestre
+note right
+verifica camino terrestre\n
+tenga minimo 2 de longitud y 
+sea continuo, maxima distancia entre siguientes
+pasarelas es 1.
+end note
+
+mapa-->state: mapa
+deactivate mapa
+
+
+@enduml

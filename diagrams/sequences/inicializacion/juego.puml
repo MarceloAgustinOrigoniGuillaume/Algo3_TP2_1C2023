@@ -1,0 +1,87 @@
+@startuml
+
+Actor "usuario/test" as sis
+participant ":Juego" as juego
+participant "p:Jugador" as jugador
+participant ":SistemaCreditos" as creditos
+participant ":EstadoInicial" as state
+
+
+participant ":Oleada" as old
+participant ":Mapa" as mapa
+participant ":LectorMapa" as lmapa
+participant ":LectorEnemigos" as lold
+
+
+sis -> juego: Juego(pathMapa,pathEnemigos)
+activate juego
+
+juego -> jugador: Jugador()
+activate jugador
+
+jugador->creditos: SistemaCreditos(100)
+activate creditos
+creditos --> jugador: creditos
+deactivate creditos
+
+jugador --> juego : p:Jugador
+deactivate jugador
+
+
+juego -> state: EstadoInicial(this,pathMapa,pathEnemigos)
+activate state
+
+state --> juego : state:EstadoInicial
+deactivate state
+
+juego -> state: ejecutarEstado()
+activate state
+
+state->lmapa: LectorMapa(pathMapa,15,15)
+activate lmapa
+
+lmapa-->state: lectorMapa
+deactivate lmapa
+
+state->juego : obtenerJugador()
+activate juego
+juego --> state: p
+deactivate juego
+
+state->mapa: Mapa(lectorMapa,15,15, p)
+activate mapa
+
+mapa-->state: mapa
+deactivate mapa
+
+state->juego : asignarMapa(mapa)
+activate juego
+juego --> state: void
+deactivate juego
+
+
+state->lold: LectorEnemigos(pathEnemigos)
+activate lold
+
+lold-->state: lectorEnemigos
+deactivate lold
+
+state->old: Oleada(lectorEnemigos)
+activate old
+
+old-->state: oleadas
+deactivate old
+
+state->juego : asignarOleada(oleadas)
+activate juego
+juego --> state: void
+deactivate juego
+
+state--> juego: void
+deactivate state
+juego--> sis: juego
+deactivate juego
+
+
+
+@enduml
