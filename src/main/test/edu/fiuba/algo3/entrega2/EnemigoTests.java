@@ -7,10 +7,10 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.SistemaCreditos;
 //import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
 //import edu.fiuba.algo3.modelo.moduloDefensas.TorreBlanca;
-//import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada;
+//import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada; trampa
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
+import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
 import org.junit.jupiter.api.Test;
@@ -237,6 +237,10 @@ public class EnemigoTests {
         assertEquals(5, lechuza.velocidad());
         lechuza.accionar(mockMapa,new Jugador(), origen);
         verify(mockMapa,times(1)).moverEnCaminoAereo(lechuza, new Coordenada(0,0),new Coordenada(5,0));
-
     }
+
+
+
+
+
 }
