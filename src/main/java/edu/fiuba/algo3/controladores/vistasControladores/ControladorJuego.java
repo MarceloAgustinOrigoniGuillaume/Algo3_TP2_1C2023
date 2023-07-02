@@ -31,7 +31,7 @@ public class ControladorJuego extends Controlador {
 	private AlgoDefense mediatorJuego;
 
 	private void preloadSounds(){
-		Resources.preload(());
+		//Resources.preload(;
 	}
 
 	public ControladorJuego(String jsonMapa, String jsonEnemigos, String nombreJugador) throws Exception{

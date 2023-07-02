@@ -46,7 +46,7 @@ public class Resources {
     }
 
     private void remove(String resource){
-        return resources.remove(resource);
+        resources.remove(resource);
     }
 
 
@@ -227,8 +227,7 @@ public class Resources {
 
     public static void removeLoaded(String resource){
         if(recursos.contains(resource)){
-            remove(resource);
-            return;
+            recursos.remove(resource);
         }
 
     }
