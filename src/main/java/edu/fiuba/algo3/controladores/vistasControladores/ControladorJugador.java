@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 
 //import edu.fiuba.algo3.vistas.Vista;
+import edu.fiuba.algo3.controladores.ReproductorSonidos;
 
 
 public class ControladorJugador extends Controlador {
@@ -17,9 +18,11 @@ public class ControladorJugador extends Controlador {
 
 
 	private AlgoDefense mediatorJuego;
+	private ReproductorSonidos sonidos;
 
-	public ControladorJugador(AlgoDefense  mediatorJuego){
+	public ControladorJugador(AlgoDefense  mediatorJuego, ReproductorSonidos sonidos){
 		this.mediatorJuego = mediatorJuego;
+		this.sonidos = sonidos;
 	}
 
 	public void initialize(){
@@ -27,6 +30,7 @@ public class ControladorJugador extends Controlador {
 
 		mediatorJuego.setObserverVida((String vida)->{
 			labelVida.setText("Vida: "+vida);
+			sonidos.reproduceLater("AtaqueAJugador.mp3");
 		});
 
 		mediatorJuego.setObserverCreditos((String creditos)->{

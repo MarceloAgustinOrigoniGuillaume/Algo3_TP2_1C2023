@@ -46,41 +46,40 @@ public class ControladorFinal implements Initializable {
 	private AlgoDefense mediatorJuego;
 	private ReproductorSonidos sonidos;
 
+	private MediaPlayer playingVideo;
 	public ControladorFinal(AlgoDefense mediatorJuego, ReproductorSonidos sonidos){
 		this.mediatorJuego = mediatorJuego;
 		this.sonidos = sonidos;
 	}
 
+	private void initializeOn(String url, String title){
+		file1 = new File(url);
+		media1 = new Media(file1.toURI().toString());
+		playingVideo = new MediaPlayer(media1);
+
+		mediaView.setMediaPlayer(playingVideo);
+		playingVideo.play();
+		mensajeResultado.setText(title.toUpperCase());
+
+	}
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		file1 = new File("src/main/resources/images/videos/youWin.mp4");
-		media1 = new Media(file1.toURI().toString());
-		mediaPlayer1 = new MediaPlayer(media1);
-
-		file2 = new File("src/main/resources/images/videos/youLoose.mp4");
-		media2 = new Media(file2.toURI().toString());
-		mediaPlayer2 = new MediaPlayer(media2);
-
-
-		String mensajeFinal;
 		if(mediatorJuego.ganoJugador()){
-			mediaView.setMediaPlayer(mediaPlayer1);
-			mediaPlayer1.play();
-			mensajeResultado.setText("Ganaste!!");
-			mensajeFinal = mensajeResultado.getText();
-			mensajeResultado.setText(mensajeFinal.toUpperCase());
+			initializeOn("src/main/resources/images/videos/youWin.mp4",
+						"Ganaste!!");
 		} else{
-			mediaView.setMediaPlayer(mediaPlayer2);
-			mediaPlayer2.play();
-			mensajeResultado.setText("Perdiste!!");
-			mensajeFinal = mensajeResultado.getText();
-			mensajeResultado.setText(mensajeFinal.toUpperCase());
+			initializeOn("src/main/resources/images/videos/youLoose.mp4",
+						"Perdiste!!");
 		}
 
 	}
 
 	public void volverInicio(ActionEvent event){
 		try{
+			sonidos.reproduce("start.mp3");
+			playingVideo.stop();
+
 			//String nombreJugador;
 			mediatorJuego.terminarJuego();
 
@@ -97,6 +96,8 @@ public class ControladorFinal implements Initializable {
 
 	public void reiniciarJuego(ActionEvent event){
 		// cargando... transicion.
+		sonidos.reproduce("start.mp3");
+		playingVideo.stop();
 
 		Scene scene = mensajeResultado.getScene();
 		scene.setRoot(Resources.getVista("transicion"));

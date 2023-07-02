@@ -33,6 +33,12 @@ public class ControladorMenuAcciones extends Controlador {
 		
 		mediatorJuego.setObserverTurno((String turno)->{
 			turnoActual.setText("Turno: "+turno);
+
+			// rompe algo demeter. Se podria hacer que pase por juego
+			// que tenga a los sonidos
+			// o que simplemente sea la ui y los eventos sean
+			// seteados desde afuera			
+			juego.getSonidos().reproduceAll();
 		});
 	}
 
@@ -58,6 +64,10 @@ public class ControladorMenuAcciones extends Controlador {
 	}
 
 	public void toggleConstruccion(ActionEvent ev){
+		// rompe algo demeter. Se podria hacer que pase por juego
+		// o simplemente que tenga a los sonidos
+		juego.getSonidos().reproduce("start.mp3");			
+
 		if(!juego.estaConstruyendo() && menu == null){
 
 
@@ -82,6 +92,9 @@ public class ControladorMenuAcciones extends Controlador {
 
 	public void volverInicio(ActionEvent event){
 		try{
+			// rompe algo demeter. Se podria hacer que pase por juego
+			// o simplemente que tenga a los sonidos
+			juego.getSonidos().reproduce("start.mp3");			
 			//String nombreJugador;
 			mediatorJuego.reiniciarJuego();
 					

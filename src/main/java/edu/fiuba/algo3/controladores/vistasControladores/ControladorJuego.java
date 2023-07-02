@@ -124,7 +124,7 @@ public class ControladorJuego extends Controlador {
 
 	public void initialize(){
 
-		statusBar.getChildren().add(Resources.getVista("jugador",new ControladorJugador(mediatorJuego)));
+		statusBar.getChildren().add(Resources.getVista("jugador",new ControladorJugador(mediatorJuego, sonidos)));
 		statusBar.getChildren().add(Resources.getVista("menu_acciones",new ControladorMenuAcciones(this, mediatorJuego)));
 		
 
@@ -191,13 +191,15 @@ public class ControladorJuego extends Controlador {
 	public void pasarTurno(Scene scene){
 
 		if(estaConstruyendo()){
+			sonidos.reproduce("error.mp3");			
 			showError("Error al pasar turno","Se esta construyendo. Termina o cancela la construccion antes.");
 			return;
 		}
 		// pasas turno
 
+		sonidos.reproduce("pasar.wav");			
 		if(!mediatorJuego.pasarTurno()){
-			Logger.dbg("----------->HABIA TERMINADO EL JUEGO? CAMBIA VISTA FINAL");
+			//Logger.dbg("----------->HABIA TERMINADO EL JUEGO? CAMBIA VISTA FINAL");
 			
 			scene.setRoot(Resources.getVista("menu_final",new ControladorFinal(mediatorJuego,sonidos)));
 			//terminarJuego(ventana);
