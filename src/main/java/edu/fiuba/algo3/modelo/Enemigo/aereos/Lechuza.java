@@ -18,17 +18,20 @@ public class Lechuza extends EnemigoAereo {
     }
 
     public boolean moverse(Mapa mapa, Coordenada posicion){
-
-        if(vida <= vidaCambioMovimiento){
-            vidaCambioMovimiento = 0; // que solo pase una vez.
-            this.estadoMovimiento = new EstadoMovimientoDiagonal(this);
-        }
         return (this.estadoMovimiento).ejecutarEstado(mapa, posicion);
     }
 
     @Override
     public void recibirAtaque(int danioRecibido) {
-        this.vida = this.vida - danioRecibido;
+
+
+        int nueva_vida =this.vida - danioRecibido; 
+        
+        if(this.vida > vidaCambioMovimiento && nueva_vida <= vidaCambioMovimiento){
+            this.estadoMovimiento = new EstadoMovimientoDiagonal(this);
+        }
+
+        this.vida = nueva_vida;
         Logger.info("El daño recibido es: "+danioRecibido);
     }
 

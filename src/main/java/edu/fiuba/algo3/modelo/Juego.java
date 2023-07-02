@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Estados.EstadoJugando;
 import edu.fiuba.algo3.modelo.Estados.EstadoTerminado;
 import org.json.simple.parser.ParseException;
 import edu.fiuba.algo3.Logger;
+import edu.fiuba.algo3.modelo.excepciones.juego.CambioDeEstadoInvalido;
 
 import java.io.IOException;
 
@@ -39,17 +40,20 @@ public class Juego {
         estadoDeJuego.ejecutarEstado();
     }
 
-    public void iniciarJuego() {
+    public void iniciarJuego() throws CambioDeEstadoInvalido {
+        if(estaJugando){
+            throw new CambioDeEstadoInvalido("Juego YA habia sido iniciado");
+        }
+
         Logger.info("Juego fue empezado");
         this.estadoDeJuego = new EstadoJugando(this);
         this.estaJugando = true;
     }
 
-    public void terminarJuego() {
+    public void terminarJuego() throws CambioDeEstadoInvalido {
 
-        if(this.estaJugando == false){
-            Logger.err("Juego YA habia sido terminado, pero quiso terminarse otra vez");
-            return;
+        if(!estaJugando){
+            throw new CambioDeEstadoInvalido("Juego YA habia sido terminado, pero quiso terminarse otra vez");
         }
         Logger.info("Juego fue terminado");
         this.estadoDeJuego = new EstadoTerminado(this);

@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Enemigo.instanciacion.Instanciador;
 import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
 import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
+import edu.fiuba.algo3.modelo.excepciones.enemigos.EnemigoFaltante;
 
 public class ConvertidorOleada implements Convertidor {
 
@@ -21,24 +22,22 @@ public class ConvertidorOleada implements Convertidor {
     private int turno;
     private Map<String, Integer> aInstanciar;
 
-    public ConvertidorOleada(String turno, Map<String,Integer> aInstanciar) throws Exception{
+    public ConvertidorOleada(String turno, Map<String,Integer> aInstanciar) throws EnemigoFaltante{
         this.turno = Integer.parseInt(turno);
         this.aInstanciar = aInstanciar;
 
         // capaz podriamos decir que si no estan, simplemente sera 0..
 		if(!aInstanciar.containsKey(HORMIGA_LABEL)){
-			throw new Exception("No tenia label Hormiga");
+			throw new EnemigoFaltante("No tenia label Hormiga");
 		}
 		if (!aInstanciar.containsKey(ARANIA_LABEL)){
-			throw new Exception("No tenia label Arania");
+			throw new EnemigoFaltante("No tenia label Arania");
 		}
 		if (!aInstanciar.containsKey(TOPO_LABEL)){
-			//throw new Exception("No tenia label "+TOPO_LABEL);
 			aInstanciar.put(TOPO_LABEL, 0);
 		}
 
 		if (!aInstanciar.containsKey(LECHUZA_LABEL)){
-			//throw new Exception("No tenia label "+LECHUZA_LABEL);
 			aInstanciar.put(LECHUZA_LABEL, 0);
 		}
     }

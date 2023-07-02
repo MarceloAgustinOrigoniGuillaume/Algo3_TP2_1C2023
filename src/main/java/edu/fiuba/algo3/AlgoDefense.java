@@ -45,11 +45,20 @@ public class AlgoDefense {
 
 	//### control estado juego.
 	public void empezarJuego(){
-		juego.iniciarJuego();
+		try{
+			juego.iniciarJuego();
+		} catch(Exception ex){
+			Logger.err("----------------Error al iniciar juego",ex);
+		}		
+
 	}
 
 	public void terminarJuego(){
-		juego.terminarJuego();
+		try{
+			juego.terminarJuego();
+		} catch(Exception ex){
+			Logger.err("----------------Error al finalizar juego",ex);
+		}		
 	}
 
 

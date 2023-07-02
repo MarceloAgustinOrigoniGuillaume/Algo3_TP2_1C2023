@@ -34,13 +34,21 @@ public class EstadoJugando implements EstadoJuego {
         // verificar si los enemigos actuales pueden eliminar al jugador.
         if(terminoElJuego(this.juego, jugador, this.turno, mapa)){
             Logger.info("----------------Finalizo el juego. Los enemigos restantes no pueden matar al jugador");
-            juego.terminarJuego();
+            try{
+                juego.terminarJuego();
+            } catch(Exception ex){
+                Logger.err("----------------Error al finalizar juego",ex);
+            }
             return;
         }
     	// jugar turno...
         if(!turno.jugarTurno(mapa,jugador, juego.obtenerOleadas())){
             Logger.info("----------------Finalizo el juego. Jugador murio");
-            juego.terminarJuego();
+            try{
+                juego.terminarJuego();
+            } catch(Exception ex){
+                Logger.err("----------------Error al finalizar juego",ex);
+            }
             return;
         }
 

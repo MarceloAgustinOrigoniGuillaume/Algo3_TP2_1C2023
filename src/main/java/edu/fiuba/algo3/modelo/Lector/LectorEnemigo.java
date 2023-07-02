@@ -5,6 +5,8 @@ import org.json.simple.JSONArray;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import edu.fiuba.algo3.modelo.excepciones.enemigos.TurnoFaltante;
+import edu.fiuba.algo3.modelo.excepciones.enemigos.EnemigoFaltante;
 
 
 
@@ -41,7 +43,7 @@ public class LectorEnemigo  implements Lector{
     }
 
     @Override
-    public Convertidor siguienteElemento() throws Exception {
+    public Convertidor siguienteElemento() throws TurnoFaltante,EnemigoFaltante {
 
     	JSONObject parseadoJson = (JSONObject)iterador.next();
 
@@ -49,7 +51,7 @@ public class LectorEnemigo  implements Lector{
         String turno = parseadoJson.get("turno").toString();
 
         if(Integer.parseInt(turno) != 1+turno_anterior){
-            throw new Exception("No se proporciono los turnos en el orden correcto paso de "+String.valueOf(turno_anterior)+" a "+turno);
+            throw new TurnoFaltante("No se proporciono los turnos en el orden correcto paso de "+String.valueOf(turno_anterior)+" a "+turno);
         }
         turno_anterior++;
         return new ConvertidorOleada(turno, oleada);//new ConvertidorEnemigo((JSONObject) iterador.next());
