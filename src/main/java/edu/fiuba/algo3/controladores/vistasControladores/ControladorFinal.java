@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.AlgoDefense;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Resources;
 
+import edu.fiuba.algo3.controladores.ReproductorSonidos;
+
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -42,10 +44,11 @@ public class ControladorFinal implements Initializable {
 	private MediaPlayer mediaPlayer2;
 	
 	private AlgoDefense mediatorJuego;
+	private ReproductorSonidos sonidos;
 
-
-	public ControladorFinal(AlgoDefense mediatorJuego){
+	public ControladorFinal(AlgoDefense mediatorJuego, ReproductorSonidos sonidos){
 		this.mediatorJuego = mediatorJuego;
+		this.sonidos = sonidos;
 	}
 
 	@Override
@@ -82,7 +85,7 @@ public class ControladorFinal implements Initializable {
 			mediatorJuego.terminarJuego();
 
 			// volve a inicio
-			mensajeResultado.getScene().setRoot(ControladorVentana.menuInicio());
+			mensajeResultado.getScene().setRoot(ControladorVentana.menuInicio(sonidos));
 
 		} catch(Exception ex){
 			Logger.err("at Final, volverInicio ",ex);
@@ -99,7 +102,7 @@ public class ControladorFinal implements Initializable {
 		scene.setRoot(Resources.getVista("transicion"));
 
 		LoadViewAsyncTask loadTask= new LoadViewAsyncTask(
-			"juego",()->new ControladorJuego(mediatorJuego));
+			"juego",()->new ControladorJuego(mediatorJuego,sonidos));
 
 		loadTask.loadOn(scene);
 	}

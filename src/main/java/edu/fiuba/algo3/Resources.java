@@ -17,6 +17,10 @@ import java.util.Hashtable;
 
 import java.util.ResourceBundle;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+
 public class Resources {
     public static final String resources_path = "src/main/resources/";
     public static final String jsons_path = "archivos-json/";
@@ -42,7 +46,7 @@ public class Resources {
 
 
     private boolean contains(String resource){
-        return resources.contains(resource);
+        return resources.containsKey(resource);
     }
 
     private void remove(String resource){
@@ -217,6 +221,7 @@ public class Resources {
 
     public static void preloadOnce(String resource, Loader loader){
 
+
         if(recursos.contains(resource)){
             return;
         }
@@ -249,7 +254,14 @@ public class Resources {
     //###
 
 
+    public static Media loadSound(String sound){
+        return new Media(Resources.getSoundPath(sound));//new MediaPlayer(new Media(Resources.getSoundPath(sound)));
+    }
 
+
+    public static MediaPlayer loadPlayer(String sound){
+        return new MediaPlayer(new Media(Resources.getSoundPath(sound)));
+    }
 
 
 }

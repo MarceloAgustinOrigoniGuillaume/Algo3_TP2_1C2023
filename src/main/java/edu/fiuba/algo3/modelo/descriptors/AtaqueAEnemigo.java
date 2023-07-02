@@ -6,7 +6,7 @@ public class AtaqueAEnemigo extends AttackDescriptor{
     private static String parseUrl(String enemigo,String atacante){
 
     	// fijate algo del tipo de torre?
-    	return "TorrePlateada.wav";
+    	return "AtaqueTorre.wav";
     }
     public AtaqueAEnemigo(String enemigo,String atacante){
         super(parseUrl(enemigo,atacante));

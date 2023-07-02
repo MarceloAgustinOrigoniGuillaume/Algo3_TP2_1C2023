@@ -9,6 +9,8 @@ import edu.fiuba.algo3.Resources;
 
 import edu.fiuba.algo3.vistas.popups.MessagePopup;
 
+import edu.fiuba.algo3.controladores.ReproductorSonidos;
+
 
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ public class ControladorInicio extends Controlador {
 
 	private String path_mapa;
 	private String path_enemigos;
+	private ReproductorSonidos sonidos;
 
 	public ControladorInicio(String path_mapa, String path_enemigos){
 		this.path_mapa = path_mapa;
@@ -38,6 +41,17 @@ public class ControladorInicio extends Controlador {
 		this(Resources.getJsonPath("mapa"),
 			Resources.getJsonPath("enemigos"));
 		// constructor default para un nivel default.
+	}
+
+	public ControladorInicio(ReproductorSonidos sonidos){
+		this(Resources.getJsonPath("mapa"),
+			Resources.getJsonPath("enemigos"));
+
+		this.sonidos = sonidos;
+	}
+
+	public void initialize(){
+		sonidos.setMusic("HeroReturn.mp3");
 	}
 
 
@@ -60,6 +74,7 @@ public class ControladorInicio extends Controlador {
 
 		String nombreJugador = obtenerNombre();
 		if(nombreJugador == null){
+			sonidos.reproduce("error.mp3");			
 			new MessagePopup("Error", "Nombre '"+editNombreUsuario.getText()+"' es invalido ").show(editNombreUsuario.getScene());
 
 			return;
@@ -72,13 +87,14 @@ public class ControladorInicio extends Controlador {
 	}
 
 	public boolean empezarJuego(Scene ventana,String nombreJugador){
+		sonidos.reproduce("start.mp3");
 
 		// cargando... transicion.
 		ventana.setRoot(Resources.getVista("transicion"));
 
 		LoadViewAsyncTask loadTask= new LoadViewAsyncTask("juego",()->new ControladorJuego(
 					path_mapa, path_enemigos,
-					nombreJugador));
+					nombreJugador, sonidos));
 
 		loadTask.loadOn(ventana);
 

@@ -29,22 +29,30 @@ public class ControladorJuego extends Controlador {
 	@FXML private ViewMapa mapaJuego;
 
 	private AlgoDefense mediatorJuego;
+	private ReproductorSonidos sonidos;
 
-	private void preloadSounds(){
-		//Resources.preload(;
+	public ReproductorSonidos getSonidos(){
+		return sonidos;
 	}
 
-	public ControladorJuego(String jsonMapa, String jsonEnemigos, String nombreJugador) throws Exception{
-		this.mediatorJuego = new AlgoDefense(jsonMapa,jsonEnemigos,nombreJugador);
+	private void preloadSounds(){
+		Resources.preloadOnce("AtaqueTrampa.wav",()-> Resources.loadPlayer("AtaqueTrampa.wav"));
+		Resources.preloadOnce("DestruccionTorre.wav",()-> Resources.loadPlayer("DestruccionTorre.wav"));
+		Resources.preloadOnce("AtaqueTorre.wav",()-> Resources.loadPlayer("AtaqueTorre.wav"));
+	}
 
-		mediatorJuego.setOnAttackListener(new ReproductorSonidos());
+	public ControladorJuego(String jsonMapa, String jsonEnemigos, String nombreJugador, ReproductorSonidos sonidos) throws Exception{
+		this.mediatorJuego = new AlgoDefense(jsonMapa,jsonEnemigos,nombreJugador);
+		this.sonidos= sonidos;
+		mediatorJuego.setOnAttackListener(sonidos);
 		preloadSounds();
 	}
 
 	// para reiniciar.
-	public ControladorJuego(AlgoDefense mediatorJuego) throws Exception {
+	public ControladorJuego(AlgoDefense mediatorJuego, ReproductorSonidos sonidos) throws Exception {
 		this.mediatorJuego = mediatorJuego.reiniciarJuego();
-		mediatorJuego.setOnAttackListener(new ReproductorSonidos());
+		this.sonidos= sonidos;
+		mediatorJuego.setOnAttackListener(sonidos);
 	}
 
 	private void showError(String titulo, String mensaje){
@@ -77,9 +85,11 @@ public class ControladorJuego extends Controlador {
 
 
 			if(!construyendo.posicionarEnMapa(mediatorJuego)){
+				sonidos.reproduce("error.mp3");
 				showErrorConstruccion("No se puede posicionar '"+construyendo.toString()+"' en '"+celda.getTerreno()+"'");
 				return;
 			}
+			sonidos.reproduce("Construir.wav");
 			construyendo = null;
 			return;
 		}				
@@ -140,9 +150,11 @@ public class ControladorJuego extends Controlador {
 				celda.updateView(descriptor.defensa_image(), descriptor.cantidadEnemigos());
 			});
 
-		// ahora inicializas 
+		// ahora inicializas  HeroReturn
 		// para cualquier cosa ya avisar cambios, aunque ahora es lo mismo
+		sonidos.setMusic("HeroicDesire.mp3");
 		mediatorJuego.empezarJuego();
+
 	}
 
 
@@ -155,6 +167,7 @@ public class ControladorJuego extends Controlador {
 		}
 		// verificar que pueda costear y sino retorna false.
 		if(!mediatorJuego.puedeCostear(nuevaConstruccion.obtenerDefensa())){
+			sonidos.reproduce("error.mp3");			
 			showErrorConstruccion("No se tiene los suficientes creditos para '"+nuevaConstruccion.toString()+"'");
 			return false;
 		}
@@ -186,7 +199,7 @@ public class ControladorJuego extends Controlador {
 		if(!mediatorJuego.pasarTurno()){
 			Logger.dbg("----------->HABIA TERMINADO EL JUEGO? CAMBIA VISTA FINAL");
 			
-			scene.setRoot(Resources.getVista("menu_final",new ControladorFinal(mediatorJuego)));
+			scene.setRoot(Resources.getVista("menu_final",new ControladorFinal(mediatorJuego,sonidos)));
 			//terminarJuego(ventana);
 			//return;
 		}

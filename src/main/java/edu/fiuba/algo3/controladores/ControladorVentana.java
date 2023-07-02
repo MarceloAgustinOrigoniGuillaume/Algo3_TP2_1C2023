@@ -15,6 +15,10 @@ public class ControladorVentana extends Controlador {
 	}
 
 	public static Parent menuInicio(){		
-		return Resources.getVista("menu_inicio",new ControladorInicio());
+		return Resources.getVista("menu_inicio",new ControladorInicio(new ReproductorSonidos()));
+	}
+
+	public static Parent menuInicio(ReproductorSonidos sonidos){		
+		return Resources.getVista("menu_inicio",new ControladorInicio(sonidos));
 	}
 }

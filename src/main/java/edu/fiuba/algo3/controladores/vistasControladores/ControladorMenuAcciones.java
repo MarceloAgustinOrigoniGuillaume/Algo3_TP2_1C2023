@@ -86,7 +86,7 @@ public class ControladorMenuAcciones extends Controlador {
 			mediatorJuego.reiniciarJuego();
 					
 			// volve a inicio
-			buttonConstruir.getScene().setRoot(ControladorVentana.menuInicio());
+			buttonConstruir.getScene().setRoot(ControladorVentana.menuInicio(juego.getSonidos()));
 
 		} catch(Exception ex){
 			Logger.err("At volverInicio ",ex);
