@@ -1,29 +1,19 @@
-package edu.fiuba.algo3.controladores.vistas;
+package edu.fiuba.algo3.controladores.vistasControladores;
 
 
 import edu.fiuba.algo3.controladores.Controlador;
 
-import edu.fiuba.algo3.AlgoDefense;
 
-
-import edu.fiuba.algo3.Ventana;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Resources;
 
 import edu.fiuba.algo3.vistas.popups.MessagePopup;
 
 
-import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
-import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
-
-import edu.fiuba.algo3.vistas.ViewMapa;
-
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
 
 // cambios a no usar Thread.
 import edu.fiuba.algo3.controladores.LoadViewAsyncTask;

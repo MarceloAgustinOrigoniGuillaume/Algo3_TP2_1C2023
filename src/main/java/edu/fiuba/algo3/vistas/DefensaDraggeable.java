@@ -2,10 +2,9 @@ package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import javafx.scene.image.Image;
-import javafx.scene.control.Label;
 import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.AlgoDefense;
+import edu.fiuba.algo3.modelo.AlgoDefense;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.vistas.celda.CeldaView;
 import edu.fiuba.algo3.vistas.celda.DefensaCeldaView;

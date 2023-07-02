@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.entrega2;
 
 import edu.fiuba.algo3.modelo.Defensas.torres.TorreBlanca;
-import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.SistemaCreditos;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
+import edu.fiuba.algo3.modelo.Jugador.SistemaCreditos;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;

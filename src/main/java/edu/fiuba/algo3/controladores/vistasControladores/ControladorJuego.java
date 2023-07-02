@@ -1,16 +1,13 @@
-package edu.fiuba.algo3.controladores.vistas;
+package edu.fiuba.algo3.controladores.vistasControladores;
 
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
-import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.AlgoDefense;
+import edu.fiuba.algo3.modelo.AlgoDefense;
 
 import edu.fiuba.algo3.controladores.Controlador;
 import edu.fiuba.algo3.controladores.ReproductorSonidos;
 
 import edu.fiuba.algo3.Logger;
-import javafx.event.ActionEvent;
-import edu.fiuba.algo3.Ventana;
 import javafx.scene.Scene;
 import edu.fiuba.algo3.Resources;
 

@@ -1,15 +1,13 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Defensas.torres.TorreBlanca;
 import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
-import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
-
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import edu.fiuba.algo3.modelo.Mapa.OnHabitantesChangedListener;
 import edu.fiuba.algo3.modelo.Celdas.OnAttackListener;

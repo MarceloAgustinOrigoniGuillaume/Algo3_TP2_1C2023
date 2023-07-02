@@ -1,12 +1,11 @@
 package edu.fiuba.algo3.modelo.Enemigo;
 
-import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.SistemaCreditos;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
+import edu.fiuba.algo3.modelo.Jugador.SistemaCreditos;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Celdas.CeldaConEnemigos;
 import edu.fiuba.algo3.modelo.descriptors.EnemigoDescriptor;
-import edu.fiuba.algo3.Logger;
 
 public abstract class Enemigo implements Ataque {
 

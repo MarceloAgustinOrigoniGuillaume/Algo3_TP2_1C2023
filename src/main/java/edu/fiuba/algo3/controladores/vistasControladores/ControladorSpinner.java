@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controladores.vistas;
+package edu.fiuba.algo3.controladores.vistasControladores;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;

@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entrega2;
 
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Enemigo.aereos.Lechuza;
-import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 

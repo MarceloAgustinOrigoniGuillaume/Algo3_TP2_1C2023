@@ -2,9 +2,9 @@ package edu.fiuba.algo3.entrega2;
 
 
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.SistemaCreditos;
+import edu.fiuba.algo3.modelo.Jugador.SistemaCreditos;
 //import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
 //import edu.fiuba.algo3.modelo.moduloDefensas.TorreBlanca;
 //import edu.fiuba.algo3.modelo.moduloDefensas.TorrePlateada; trampa

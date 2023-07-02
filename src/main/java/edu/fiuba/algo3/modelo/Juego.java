@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Enemigo.Oleada;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
@@ -7,11 +9,8 @@ import edu.fiuba.algo3.modelo.Estados.EstadoInicial;
 import edu.fiuba.algo3.modelo.Estados.EstadoJuego;
 import edu.fiuba.algo3.modelo.Estados.EstadoJugando;
 import edu.fiuba.algo3.modelo.Estados.EstadoTerminado;
-import org.json.simple.parser.ParseException;
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.excepciones.juego.CambioDeEstadoInvalido;
-
-import java.io.IOException;
 
 public class Juego {
     private EstadoJuego estadoDeJuego;

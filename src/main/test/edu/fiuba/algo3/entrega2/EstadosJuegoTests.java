@@ -1,27 +1,14 @@
 package edu.fiuba.algo3.entrega2;
 
 import edu.fiuba.algo3.Resources;
-import edu.fiuba.algo3.modelo.Defensas.Trampa;
-import edu.fiuba.algo3.modelo.Defensas.torres.TorreBlanca;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.Jugador;
 
-import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
-import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import edu.fiuba.algo3.modelo.excepciones.juego.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
 import static org.mockito.ArgumentMatchers.any;
 
 public class EstadosJuegoTests {

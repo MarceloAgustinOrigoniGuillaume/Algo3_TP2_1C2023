@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.modelo.Estados;
 
-import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.Oleada;
+import edu.fiuba.algo3.modelo.Enemigo.Oleada;
 
 
 

@@ -1,10 +1,8 @@
-package edu.fiuba.algo3.controladores.vistas;
+package edu.fiuba.algo3.controladores.vistasControladores;
 
 
 import edu.fiuba.algo3.controladores.Controlador;
-import edu.fiuba.algo3.Logger;
-import javafx.event.ActionEvent;
-import edu.fiuba.algo3.AlgoDefense;
+import edu.fiuba.algo3.modelo.AlgoDefense;
 import javafx.scene.control.Label;
 
 import javafx.fxml.FXML;

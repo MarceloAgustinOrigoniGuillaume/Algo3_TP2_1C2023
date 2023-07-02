@@ -4,19 +4,13 @@ import edu.fiuba.algo3.modelo.Celdas.Coordenada;
 import edu.fiuba.algo3.modelo.Lector.ConvertidorParcela;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
-import edu.fiuba.algo3.modelo.Defensas.torres.TorreBlanca;
-import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
 
 import edu.fiuba.algo3.modelo.descriptors.AttackDescriptor;
-import edu.fiuba.algo3.modelo.Celdas.OnAttackListener;
 
-import edu.fiuba.algo3.Logger;
-
-import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Lector.Lector;
 import edu.fiuba.algo3.modelo.Lector.LectorEnemigo;
 
@@ -34,12 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import edu.fiuba.algo3.modelo.excepciones.mapa.CaminoInvalido;
 
-import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-
-import edu.fiuba.algo3.modelo.Enemigo.terrestres.Hormiga;
-import edu.fiuba.algo3.modelo.Enemigo.subterraneos.Topo;
-import edu.fiuba.algo3.modelo.Enemigo.terrestres.Arania;
-import edu.fiuba.algo3.modelo.SistemaCreditos;
+import edu.fiuba.algo3.modelo.Jugador.SistemaCreditos;
 
 
 public class SupuestosTests {
