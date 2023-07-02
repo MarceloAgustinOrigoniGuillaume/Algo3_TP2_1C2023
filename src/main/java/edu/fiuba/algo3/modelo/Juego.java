@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.modelo.Defensas.Estructura;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Estados.EstadoInicial;
 import edu.fiuba.algo3.modelo.Estados.EstadoJuego;
 import edu.fiuba.algo3.modelo.Estados.EstadoJugando;
@@ -78,7 +78,7 @@ public class Juego {
 
         return oleada;
     }
-    public boolean posicionar(Estructura estructura, Coordenada pos){
+    public boolean posicionar(Defensa estructura, Coordenada pos){
         if(!jugador.puedeCostear(estructura)){
             return false;
         }

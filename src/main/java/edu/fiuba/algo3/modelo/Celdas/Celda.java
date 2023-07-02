@@ -4,6 +4,7 @@ import edu.fiuba.algo3.Logger;
 
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Defensas.Construccion;
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 
 // imports celda enemigo.
 import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
@@ -11,7 +12,6 @@ import edu.fiuba.algo3.modelo.Enemigo.aereos.EnemigoAereo;
 import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Defensas.Defensa;
 
 
 import edu.fiuba.algo3.modelo.Mapa.Mapa;

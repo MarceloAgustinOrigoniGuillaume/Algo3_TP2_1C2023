@@ -33,16 +33,21 @@ public class ControladorJuego extends Controlador {
 
 	private AlgoDefense mediatorJuego;
 
+	private void preloadSounds(){
+		Resources.preload(());
+	}
 
 	public ControladorJuego(String jsonMapa, String jsonEnemigos, String nombreJugador) throws Exception{
 		this.mediatorJuego = new AlgoDefense(jsonMapa,jsonEnemigos,nombreJugador);
 
 		mediatorJuego.setOnAttackListener(new ReproductorSonidos());
+		preloadSounds();
 	}
 
 	// para reiniciar.
 	public ControladorJuego(AlgoDefense mediatorJuego) throws Exception {
 		this.mediatorJuego = mediatorJuego.reiniciarJuego();
+		mediatorJuego.setOnAttackListener(new ReproductorSonidos());
 	}
 
 	private void showError(String titulo, String mensaje){

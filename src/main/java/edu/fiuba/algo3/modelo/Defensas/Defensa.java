@@ -11,11 +11,10 @@ import edu.fiuba.algo3.modelo.Enemigo.Enemigo;
 import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 import edu.fiuba.algo3.modelo.descriptors.DefensaDescriptor;
 
-import javax.security.auth.DestroyFailedException;
 import edu.fiuba.algo3.modelo.Celdas.OnAttackListener;
 
 
-public abstract class Defensa implements Estructura {
+public abstract class Defensa implements Estructura, Construccion {
     protected EstadoEstructura estadoActual;
 
     public Defensa(EstadoEstructura estado_inicial){

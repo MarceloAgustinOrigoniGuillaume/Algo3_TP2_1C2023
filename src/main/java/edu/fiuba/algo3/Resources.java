@@ -13,6 +13,8 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.Background;
 import javafx.scene.image.Image;
 import java.io.File;
+import java.util.Hashtable;
+
 import java.util.ResourceBundle;
 
 public class Resources {
@@ -23,8 +25,34 @@ public class Resources {
     public static final String sounds_path = "sounds/";
 
 
+    public static final Resources recursos = new Resources(); 
 
-    // loaders fxml...
+    private Hashtable<String,Object> resources;
+    private Resources(){
+        resources = new Hashtable<String,Object>();
+    }
+
+    private void load(String resource, Object value){
+        resources.put(resource,value);
+    }
+
+    private <T> T get(String resource){
+        return (T)resources.get(resource);
+    }
+
+
+    private boolean contains(String resource){
+        return resources.contains(resource);
+    }
+
+    private void remove(String resource){
+        return resources.remove(resource);
+    }
+
+
+
+
+    //### loaders fxml vistas...
     public static <T extends Parent> T getVista(String vista, Object controlador, ResourceBundle bundle){
         FXMLLoader loader = new FXMLLoader();
         T view;
@@ -101,12 +129,22 @@ public class Resources {
 
     }
 
+    public static URL getFxmlPath(String filename){
+        return App.class.getResource("/"+fxml_path+filename);
+
+        //se podria hacer esto sino y creas la URL
+        //return resources_path+fxml_path+filename;
+    }
+
+    public static URL getVistaPath(String vistaName){
+        return getFxmlPath(vistaName+".fxml");
+    }
 
 
 
 
 
-
+    //### no preload images
     public static Image getImg(String image){
         return new Image(getImgPath(image));
     }
@@ -142,6 +180,9 @@ public class Resources {
         return "file:"+resources_path+imgs_path+filename;
     }
 
+
+
+    //### no preload sounds
     private static String getSound(String filename){
         return resources_path+sounds_path+filename;
     }
@@ -150,20 +191,11 @@ public class Resources {
         return new File(getSound(filename)).toURI().toString();
     }
 
-    public static URL getFxmlPath(String filename){
-        return App.class.getResource("/"+fxml_path+filename);
-
-        //se podria hacer esto sino y creas la URL
-        //return resources_path+fxml_path+filename;
-    }
-
-    public static URL getVistaPath(String vistaName){
-        return getFxmlPath(vistaName+".fxml");
-    }
-
+    //### paths utilities
     public static String getJsonPath(String fileName){
         return resources_path+jsons_path+fileName+".json";
     }
+
 
     public static String getAssetTerreno(String asset){
         return "terrenos/"+asset+".jpg";
@@ -172,6 +204,52 @@ public class Resources {
     public static String getResourcePath(String path){
         return resources_path+path;
     }
+
+
+    public interface Loader{
+        Object load();
+    }
+
+
+    public static void preload(String resource, Object objeto){
+        recursos.load(resource,objeto);
+    }
+
+    public static void preloadOnce(String resource, Loader loader){
+
+        if(recursos.contains(resource)){
+            return;
+        }
+
+        preload(resource,loader.load());
+    }
+
+
+    public static void removeLoaded(String resource){
+        if(recursos.contains(resource)){
+            remove(resource);
+            return;
+        }
+
+    }
+
+
+    public static <T> T load(String resource, Loader loader){
+
+        if(recursos.contains(resource)){
+            return recursos.get(resource);
+        }
+
+        return (T) loader.load();
+    }
+
+    public static <T> T loaded(String resource){
+        return recursos.get(resource);
+    }
+
+    //###
+
+
 
 
 
