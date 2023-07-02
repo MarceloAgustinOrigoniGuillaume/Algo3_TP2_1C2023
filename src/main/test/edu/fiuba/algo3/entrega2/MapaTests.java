@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entrega2;
 
 
 //import edu.fiuba.algo3.modelo.moduloContruccion.ConstruccionTentativa;
-import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Lector.LectorMapa;
 import edu.fiuba.algo3.modelo.Defensas.torres.TorrePlateada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;

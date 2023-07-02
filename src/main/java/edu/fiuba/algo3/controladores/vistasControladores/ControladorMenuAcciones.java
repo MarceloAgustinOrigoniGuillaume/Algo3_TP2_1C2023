@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controladores.vistas;
+package edu.fiuba.algo3.controladores.vistasControladores;
 
 
 import edu.fiuba.algo3.controladores.Controlador;
@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import edu.fiuba.algo3.vistas.popups.BasePopup;
 import edu.fiuba.algo3.Resources;
-import edu.fiuba.algo3.AlgoDefense;
+import edu.fiuba.algo3.modelo.AlgoDefense;
 import edu.fiuba.algo3.controladores.ControladorVentana;
 import edu.fiuba.algo3.vistas.DefensaDraggeable;
 

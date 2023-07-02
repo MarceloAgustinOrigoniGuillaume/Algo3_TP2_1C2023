@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigo.terrestres;
 
-import edu.fiuba.algo3.modelo.Enemigo.SistemaVida;
 import edu.fiuba.algo3.modelo.Enemigo.EnemigoConVida;
-import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.descriptors.EnemigoDescriptor;
 import edu.fiuba.algo3.modelo.descriptors.EnemigoConVidaDescriptor;

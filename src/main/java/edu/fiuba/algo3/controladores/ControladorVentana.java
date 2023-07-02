@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.controladores;
 
-import edu.fiuba.algo3.modelo.Celdas.Coordenada;
-import edu.fiuba.algo3.controladores.vistas.*;
+import edu.fiuba.algo3.controladores.vistasControladores.*;
 
-import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.Resources;
 import javafx.scene.Parent;
 

@@ -1,28 +1,19 @@
-package edu.fiuba.algo3.controladores.vistas;
+package edu.fiuba.algo3.controladores.vistasControladores;
 
 
-import edu.fiuba.algo3.controladores.Controlador;
 import edu.fiuba.algo3.controladores.ControladorVentana;
-import edu.fiuba.algo3.AlgoDefense;
+import edu.fiuba.algo3.modelo.AlgoDefense;
 
 
 import edu.fiuba.algo3.Logger;
-import edu.fiuba.algo3.Ventana;
 import edu.fiuba.algo3.Resources;
 
-import edu.fiuba.algo3.vistas.popups.MessagePopup;
-
-
-
-import edu.fiuba.algo3.modelo.descriptors.CeldaDescriptor;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;

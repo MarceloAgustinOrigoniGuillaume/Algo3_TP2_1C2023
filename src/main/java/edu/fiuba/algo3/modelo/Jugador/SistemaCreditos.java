@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.Jugador;
 
 import edu.fiuba.algo3.Logger;
 import edu.fiuba.algo3.modelo.Defensas.Estructura;
