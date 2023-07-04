@@ -1,0 +1,60 @@
+@startuml
+
+
+participant ":EstadoConstruido" as cons
+participant ":Mapa" as mapa
+participant ":Celda" as cell
+participant "defensa:Torre" as def
+participant ":Enemigo" as enemigo
+participant ":Jugador" as jugador
+
+
+
+== lambdaAtaqueMapa  == 
+cons->mapa:atacar(coordenadaActual, defensa)
+activate mapa
+mapa->mapa: obtenerCeldaConEnemigos(posicion)
+mapa->cell: recibirAtaque(defensa, listenerAtaques)
+cell-> def: atacar(enemigos, listenerAtaques)
+activate def
+loop cada enemigo\no hasta el primer ataque
+
+def-> enemigo: atacadoPorTorre(ataque)
+activate enemigo
+enemigo--> def : fue atacado?
+deactivate enemigo
+end
+
+def--> cell: continuar atacando?
+deactivate def
+
+activate cell
+cell--> mapa : continuar atacando?
+deactivate cell
+
+mapa->cell: popMuertos()
+activate cell
+cell--> mapa : muertos: arreglo<Enemigo>
+deactivate cell
+
+alt muertos no esta vacio
+mapa->jugador: acreditarMuertos(muertos)
+activate jugador
+loop cada muerto
+jugador-> enemigo: acreditarseEn(creditos)
+activate enemigo
+enemigo--> jugador: void
+deactivate enemigo
+end
+
+jugador-->mapa: void
+deactivate jugador
+mapa->mapa: notificarCeldaCambio(posicion)
+end
+mapa--> cons: continuar atacando?
+
+
+
+deactivate mapa
+
+@enduml

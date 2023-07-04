@@ -1,0 +1,54 @@
+@startuml
+
+actor test as sis
+participant ":Mapa" as mapa
+participant ":Celda" as cell
+participant "defensa:Torre" as def
+participant ":EstadoConstruido" as cons
+participant ":Coordenada" as cord
+
+sis->mapa:accionarDefensas()
+activate mapa
+
+loop por cada posicion con defensa
+
+mapa->mapa: obtenerCelda(posicion)
+
+mapa-> cell : accionarEstructuras\n(mapa, posicion)
+activate cell
+
+alt construccionGuardad != null
+
+cell -> def: accionar(mapa, posicion)
+activate def
+def -> cons: ejecutarMetodo\n(this, mapa, posicion)
+activate cons
+cons -> cord : iterarEnRango\n(rango, lambdaAtaqueMapa)
+activate cord
+
+loop por cada celda en rango \ny mientras lambdaAtaqueMapa == true
+cord->cord : ejecutar \nlambdaAtaqueMapa(coordenadaActual)
+end
+
+cord -->cons: void
+deactivate cord
+
+
+cons --> def : void
+deactivate cons
+def --> cell : void
+deactivate def
+
+end
+
+
+cell--> mapa : void
+deactivate cell
+end
+
+
+
+
+mapa-->sis : void
+deactivate mapa
+@enduml
