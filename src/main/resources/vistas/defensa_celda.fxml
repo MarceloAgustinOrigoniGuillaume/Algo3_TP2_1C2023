@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import edu.fiuba.algo3.vistas.celda.DefensaCeldaView ?>
+
+<fx:root type="DefensaCeldaView" alignment="CENTER" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<ImageView pickOnBounds="true" preserveRatio="true"
+			fx:id="imagenDefensa">
+			<image>
+				<Image url="@../images/icon.png" />
+			</image>
+		</ImageView>
+	</children>
+</fx:root>

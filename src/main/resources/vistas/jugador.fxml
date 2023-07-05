@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="155.0" prefWidth="205.0" style="-fx-background-color: #2E8E64; -fx-border-color: black; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+   
+               <Label fx:id="labelNombre" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="14.0" prefHeight="25.0" prefWidth="205.0" text="Nombre jugador" textFill="#f5f5f5">
+         <font>
+            <Font name="Futura Heavy BT" size="21.0" />
+         </font>
+      </Label>
+            <Label fx:id="labelVida" layoutX="71.0" layoutY="54.0" text="Vida: 20" textFill="WHITE">
+         <font>
+            <Font name="Futura Extra Black BT" size="18.0" />
+         </font>
+      </Label>
+            <Label fx:id="labelCreditos" layoutX="71.0" layoutY="104.0" text="Creditos: 100" textFill="WHITE">
+         <font>
+            <Font name="Futura Extra Black BT" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Credito-12.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/vida-13.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

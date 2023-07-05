@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="424.0" prefWidth="522.0" style="-fx-background-color: #21400e90; -fx-background-radius: 10px; -fx-border-color: #3e6e22; -fx-border-width: 5px; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane alignment="CENTER" layoutX="198.0" layoutY="163.0" prefHeight="379.0" prefWidth="512.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="20.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="95.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="130.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="137.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="136.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="135.0" text="Costo:" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Futura Heavy BT" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="39.0" prefWidth="135.0" text="Rango:" textFill="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Futura Heavy BT" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" prefHeight="33.0" prefWidth="135.0" text="Daño:" textFill="WHITE" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Futura Heavy BT" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="135.0" text="Descripcion:" textFill="WHITE" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Futura Heavy BT" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="142.0" text="Tiempo de Construccion:" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS" wrapText="true" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Futura Heavy BT" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="110.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../images/defensas/TorreBlancaSinFondo.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="123.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../images/defensas/TorrePlateadaSinFondo.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="15.0" left="10.0" right="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" GridPane.columnIndex="3">
+               <image>
+                  <Image url="@../images/defensas/Trampa.jpg" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="12.0" right="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            
+                                    
+               <Button fx:id="buttonTorreBlanca" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#construirTorreBlanca" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #ffffff; -fx-border-color: white; -fx-border-radius: 3px; -fx-border-width: 3px; -fx-background-radius: 3px;" text="Torre Blanca" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Futura-Bold" size="13.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="6.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         
+               <Button fx:id="buttonTorrePlateada" alignment="CENTER" mnemonicParsing="false" onAction="#construirTorrePlateada" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #bdbfbb; -fx-border-radius: 3px; -fx-border-width: 3px; -fx-border-color: #9d9e9d; -fx-background-radius: 3px;" text="Torre Plateada" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Futura-Bold" size="13.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            
+               <Button fx:id="buttonTrampa" mnemonicParsing="false" onAction="#construirTrampa" prefHeight="18.0" prefWidth="97.0" style="-fx-background-color: #946e54; -fx-border-color: #bf9e88; -fx-border-width: 3px; -fx-border-radius: 3px;" text="Trampa" textFill="#fff6f6" GridPane.columnIndex="3" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Futura-Bold" size="13.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="costoTorreBlanca" alignment="CENTER" prefHeight="31.0" prefWidth="149.0" text="00" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="costoTorrePlateada" alignment="CENTER" prefHeight="31.0" prefWidth="149.0" text="00" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="costoTrampa" alignment="CENTER" prefHeight="31.0" prefWidth="195.0" text="00" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="rangoTorreBlanca" alignment="CENTER" prefHeight="28.0" prefWidth="150.0" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="rangoTorrePlateada" alignment="CENTER" prefHeight="28.0" prefWidth="155.0" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="153.0" text="0" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="danioTorreBlanca" alignment="CENTER" prefHeight="33.0" prefWidth="198.0" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="danioTorrePlateada" alignment="CENTER" prefHeight="33.0" prefWidth="195.0" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="33.0" prefWidth="152.0" text="0" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="tiempoTorreBlanca" alignment="CENTER" prefHeight="38.0" prefWidth="226.0" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="tiempoTorrePlateada" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="144.0" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="38.0" prefWidth="157.0" text="0" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Futura Medium Condensed BT" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="287.0" text="Ataca Enemigos" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="135.0" text="Ataca Enemigos" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="152.0" text="Reduce velocidad de enemigos a la mitad, por 3 turnos" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

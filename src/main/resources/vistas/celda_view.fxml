@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import edu.fiuba.algo3.vistas.CeldaView ?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+
+<fx:root  type="CeldaView" alignment="CENTER" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Label text="LLLOL" alignment="CENTER" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+			<font>
+				<Font size="14"/>
+			</font>
+		</Label>
+
+		<Label text="LLLOL2" alignment="CENTER" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+			<font>
+				<Font size="14"/>
+			</font>
+		</Label>
+
+		<!--
+		<fx:include fx:id="defensaCelda" source="defensa_celda.fxml" />
+
+
+		<fx:include fx:id="enemigosCelda" source="enemigos_celda.fxml" />
+	-->
+    </children>
+</fx:root>

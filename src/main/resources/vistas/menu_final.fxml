@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<!-- onAction="#iniciarPartida"  fx:controller="vistas." -->
+
+<AnchorPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MediaView fx:id="mediaView" fitHeight="780.0" fitWidth="630.0" preserveRatio="false" />
+
+            <Label fx:id="mensajeResultado" alignment="CENTER" layoutX="191.0" layoutY="330.0" style="-fx-text-fill: #FFFFFF; -fx-font-style: capital;" text="Ganaste !!">
+         <font>
+            <Font name="Futura Heavy BT" size="50.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <HBox fx:id="initContainer" layoutX="130.0" layoutY="451.0" spacing="50.0" style="-fx-alignment: center;">
+         <children>
+            <Button fx:id="btnReiniciarJuego" mnemonicParsing="false" onAction="#reiniciarJuego" prefHeight="40.0" prefWidth="160.0" text="Jugar devuelta" />
+            <Button fx:id="btnVolverInicio" mnemonicParsing="false" onAction="#volverInicio" prefHeight="40.0" prefWidth="160.0" text="Volver inicio" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
