@@ -10,7 +10,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 4** - [Llosas, Nicolas Pablo](https://github.com/nllosas)
 * **Integrante 5** - [Exner, Tomas](https://github.com/tomas1000)
 
-Corrector: **Maia Naftali**
+Correctora: **Maia Naftali**
 
 ## Aplicación
 
